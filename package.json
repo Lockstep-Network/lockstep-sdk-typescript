@@ -1,0 +1,29 @@
+{
+    "name": "lockstep-sdk",
+    "version": "2021.39.690",
+    "description": "API Client to use the Lockstep Platform API",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tspence/lockstep-sdk-typescript"
+    },
+    "license": "MIT",
+    "author": "Lockstep <developer@lockstep.io> (https://developer.lockstep.io)",
+    "keywords": [
+        "fintech",
+        "sdk",
+        "lockstep",
+        "erp",
+        "invoices"
+    ],
+    "homepage": "https://developer.lockstep.io",
+    "dependencies": {
+        "axios": "^0.24.0"
+    },
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^27.4.5"
+    },
+    "type": "module"
+}
