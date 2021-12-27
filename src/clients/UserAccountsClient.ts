@@ -48,7 +48,7 @@ export class UserAccountsClient {
         include,
       },
     };
-    return this.client.get<UserAccountModel>(url, options);
+    return this.client.request<UserAccountModel>('get', url, options, null);
   }
 
   /**
@@ -61,7 +61,7 @@ export class UserAccountsClient {
    */
   updateUser(id: string, body: object): Promise<UserAccountModel | ErrorResult> {
     const url = `/api/v1/UserAccounts/${id}`;
-    return this.client.patch<UserAccountModel>(url, null, body);
+    return this.client.request<UserAccountModel>('patch', url, null, body);
   }
 
   /**
@@ -73,7 +73,7 @@ export class UserAccountsClient {
    */
   disableUser(id: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/UserAccounts/${id}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -90,7 +90,7 @@ export class UserAccountsClient {
         id,
       },
     };
-    return this.client.post<ActionResultModel>(url, options, null);
+    return this.client.request<ActionResultModel>('post', url, options, null);
   }
 
   /**
@@ -102,7 +102,7 @@ export class UserAccountsClient {
    */
   inviteUser(body: InviteSubmitModel[]): Promise<InviteModel[] | ErrorResult> {
     const url = `/api/v1/UserAccounts/invite`;
-    return this.client.post<InviteModel[]>(url, null, body);
+    return this.client.request<InviteModel[]>('post', url, null, body);
   }
 
   /**
@@ -118,7 +118,7 @@ export class UserAccountsClient {
         code,
       },
     };
-    return this.client.get<InviteDataModel>(url, options);
+    return this.client.request<InviteDataModel>('get', url, options, null);
   }
 
   /**
@@ -130,7 +130,7 @@ export class UserAccountsClient {
    */
   transferOwner(body: TransferOwnerSubmitModel): Promise<TransferOwnerModel | ErrorResult> {
     const url = `/api/v1/UserAccounts/transfer-owner`;
-    return this.client.post<TransferOwnerModel>(url, null, body);
+    return this.client.request<TransferOwnerModel>('post', url, null, body);
   }
 
   /**
@@ -153,6 +153,6 @@ export class UserAccountsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<UserAccountModel>>(url, options);
+    return this.client.request<FetchResult<UserAccountModel>>('get', url, options, null);
   }
 }

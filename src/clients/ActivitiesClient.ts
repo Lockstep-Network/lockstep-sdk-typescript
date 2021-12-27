@@ -42,7 +42,7 @@ export class ActivitiesClient {
         include,
       },
     };
-    return this.client.get<ActivityModel>(url, options);
+    return this.client.request<ActivityModel>('get', url, options, null);
   }
 
   /**
@@ -57,7 +57,7 @@ export class ActivitiesClient {
    */
   updateActivity(id: string, body: object): Promise<ActivityModel | ErrorResult> {
     const url = `/api/v1/Activities/${id}`;
-    return this.client.patch<ActivityModel>(url, null, body);
+    return this.client.request<ActivityModel>('patch', url, null, body);
   }
 
   /**
@@ -69,7 +69,7 @@ export class ActivitiesClient {
    */
   deleteActivity(id: string): Promise<ActivityModel | ErrorResult> {
     const url = `/api/v1/Activities/${id}`;
-    return this.client.delete<ActivityModel>(url, null);
+    return this.client.request<ActivityModel>('delete', url, null, null);
   }
 
   /**
@@ -81,7 +81,7 @@ export class ActivitiesClient {
    */
   createActivities(body: ActivityModel[]): Promise<ActivityModel[] | ErrorResult> {
     const url = `/api/v1/Activities`;
-    return this.client.post<ActivityModel[]>(url, null, body);
+    return this.client.request<ActivityModel[]>('post', url, null, body);
   }
 
   /**
@@ -108,6 +108,6 @@ export class ActivitiesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<ActivityModel>>(url, options);
+    return this.client.request<FetchResult<ActivityModel>>('get', url, options, null);
   }
 }

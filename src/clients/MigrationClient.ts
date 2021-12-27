@@ -33,7 +33,7 @@ export class MigrationClient {
    */
   migrateData(): Promise<MigrationResultModel | ErrorResult> {
     const url = `/api/v1/Migration`;
-    return this.client.post<MigrationResultModel>(url, null, null);
+    return this.client.request<MigrationResultModel>('post', url, null, null);
   }
 
   /**
@@ -42,6 +42,6 @@ export class MigrationClient {
    */
   listMigrations(): Promise<AvailableMigrationsModel | ErrorResult> {
     const url = `/api/v1/Migration/list`;
-    return this.client.get<AvailableMigrationsModel>(url, null);
+    return this.client.request<AvailableMigrationsModel>('get', url, null, null);
   }
 }

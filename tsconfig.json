@@ -5,7 +5,7 @@
       "noEmitOnError": true,
       "removeComments": false,
       "sourceMap": true,
-      "target": "es2017",
+      "target": "es6",
       "outDir": "dist"
     },
     "include": [

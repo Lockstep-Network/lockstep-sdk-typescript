@@ -42,7 +42,7 @@ export class CodeDefinitionsClient {
         include,
       },
     };
-    return this.client.get<CodeDefinitionModel>(url, options);
+    return this.client.request<CodeDefinitionModel>('get', url, options, null);
   }
 
   /**
@@ -67,6 +67,6 @@ export class CodeDefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CodeDefinitionModel>>(url, options);
+    return this.client.request<FetchResult<CodeDefinitionModel>>('get', url, options, null);
   }
 }

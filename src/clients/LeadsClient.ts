@@ -34,6 +34,6 @@ export class LeadsClient {
    */
   createLeads(body: LeadModel[]): Promise<LeadModel[] | ErrorResult> {
     const url = `/api/v1/Leads`;
-    return this.client.post<LeadModel[]>(url, null, body);
+    return this.client.request<LeadModel[]>('post', url, null, body);
   }
 }

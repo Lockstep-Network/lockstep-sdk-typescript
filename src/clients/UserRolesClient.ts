@@ -40,7 +40,7 @@ export class UserRolesClient {
         include,
       },
     };
-    return this.client.get<UserRoleModel>(url, options);
+    return this.client.request<UserRoleModel>('get', url, options, null);
   }
 
   /**
@@ -63,6 +63,6 @@ export class UserRolesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<UserRoleModel>>(url, options);
+    return this.client.request<FetchResult<UserRoleModel>>('get', url, options, null);
   }
 }

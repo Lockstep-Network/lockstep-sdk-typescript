@@ -166,84 +166,32 @@ export class LockstepApi {
   }
 
   /**
+   * Construct headers for a request
+   */
+  private getHeaders(): any {
+    if (this.apiKey !== null) {
+      return {
+        'Api-Key': this.apiKey,
+      };
+    }
+    if (this.bearerToken !== null) {
+      return {
+        'Authorization': `Bearer ${this.bearerToken}`,
+      };
+    }
+    return {};
+  }
+
+  /**
    * Make a GET request using this client
    */
-  public async get<T>(path: string, options: any): Promise<T | ErrorResult> {
+  public async request<T>(method: axios.Method, path: string, options: any, body: any): Promise<T | ErrorResult> {
     const requestConfig = {
       url: new URL(this.serverUrl, path).href,
-      method: 'get' as axios.Method,
-      params: options,
-    };
-    var result = await axios.default.request(requestConfig);
-    if (result.status >= 200 && result.status < 300) {
-      return result.data as T;
-    } else {
-      return result.data as ErrorResult;
-    }
-  }
-
-  /**
-   * Make a POST request using this client
-   */
-  public async post<T>(path: string, options: any, body: any): Promise<T | ErrorResult> {
-    const requestConfig = {
-      url: new URL(this.serverUrl, path).href,
-      method: 'post' as axios.Method,
+      method,
       params: options,
       data: body,
-    };
-    var result = await axios.default.request(requestConfig);
-    if (result.status >= 200 && result.status < 300) {
-      return result.data as T;
-    } else {
-      return result.data as ErrorResult;
-    }
-  }
-
-  /**
-   * Make a PUT request using this client
-   */
-  public async put<T>(path: string, options: any, body: any): Promise<T | ErrorResult> {
-    const requestConfig = {
-      url: new URL(this.serverUrl, path).href,
-      method: 'put' as axios.Method,
-      params: options,
-      data: body,
-    };
-    var result = await axios.default.request(requestConfig);
-    if (result.status >= 200 && result.status < 300) {
-      return result.data as T;
-    } else {
-      return result.data as ErrorResult;
-    }
-  }
-
-  /**
-   * Make a PATCH request using this client
-   */
-  public async patch<T>(path: string, options: any, body: any): Promise<T | ErrorResult> {
-    const requestConfig = {
-      url: new URL(this.serverUrl, path).href,
-      method: 'patch' as axios.Method,
-      params: options,
-      data: body,
-    };
-    var result = await axios.default.request(requestConfig);
-    if (result.status >= 200 && result.status < 300) {
-      return result.data as T;
-    } else {
-      return result.data as ErrorResult;
-    }
-  }
-
-  /**
-   * Make a DELETE request using this client
-   */
-  public async delete<T>(path: string, options: any): Promise<T | ErrorResult> {
-    const requestConfig = {
-      url: new URL(this.serverUrl, path).href,
-      method: 'delete' as axios.Method,
-      params: options
+      headers: this.getHeaders(),
     };
     var result = await axios.default.request(requestConfig);
     if (result.status >= 200 && result.status < 300) {

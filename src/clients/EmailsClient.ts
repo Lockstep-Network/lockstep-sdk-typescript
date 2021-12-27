@@ -43,7 +43,7 @@ export class EmailsClient {
         include,
       },
     };
-    return this.client.get<EmailModel>(url, options);
+    return this.client.request<EmailModel>('get', url, options, null);
   }
 
   /**
@@ -58,7 +58,7 @@ export class EmailsClient {
    */
   updateEmail(id: string, body: object): Promise<EmailModel | ErrorResult> {
     const url = `/api/v1/Emails/${id}`;
-    return this.client.patch<EmailModel>(url, null, body);
+    return this.client.request<EmailModel>('patch', url, null, body);
   }
 
   /**
@@ -70,7 +70,7 @@ export class EmailsClient {
    */
   deleteEmail(id: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/Emails/${id}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -82,7 +82,7 @@ export class EmailsClient {
    */
   retrieveEmailLogo(emailId: string, nonce: string): Promise<File | ErrorResult> {
     const url = `/api/v1/Emails/${emailId}/logo/${nonce}`;
-    return this.client.get<File>(url, null);
+    return this.client.request<File>('get', url, null, null);
   }
 
   /**
@@ -94,7 +94,7 @@ export class EmailsClient {
    */
   createEmails(body: EmailModel[]): Promise<EmailModel[] | ErrorResult> {
     const url = `/api/v1/Emails`;
-    return this.client.post<EmailModel[]>(url, null, body);
+    return this.client.request<EmailModel[]>('post', url, null, body);
   }
 
   /**
@@ -121,6 +121,6 @@ export class EmailsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<EmailModel>>(url, options);
+    return this.client.request<FetchResult<EmailModel>>('get', url, options, null);
   }
 }

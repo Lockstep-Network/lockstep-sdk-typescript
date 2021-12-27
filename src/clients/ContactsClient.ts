@@ -41,7 +41,7 @@ export class ContactsClient {
         include,
       },
     };
-    return this.client.get<ContactModel>(url, options);
+    return this.client.request<ContactModel>('get', url, options, null);
   }
 
   /**
@@ -54,7 +54,7 @@ export class ContactsClient {
    */
   updateContact(id: string, body: object): Promise<ContactModel | ErrorResult> {
     const url = `/api/v1/Contacts/${id}`;
-    return this.client.patch<ContactModel>(url, null, body);
+    return this.client.request<ContactModel>('patch', url, null, body);
   }
 
   /**
@@ -66,7 +66,7 @@ export class ContactsClient {
    */
   disableContact(id: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/Contacts/${id}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -78,7 +78,7 @@ export class ContactsClient {
    */
   createContacts(body: ContactModel[]): Promise<ContactModel[] | ErrorResult> {
     const url = `/api/v1/Contacts`;
-    return this.client.post<ContactModel[]>(url, null, body);
+    return this.client.request<ContactModel[]>('post', url, null, body);
   }
 
   /**
@@ -103,6 +103,6 @@ export class ContactsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<ContactModel>>(url, options);
+    return this.client.request<FetchResult<ContactModel>>('get', url, options, null);
   }
 }

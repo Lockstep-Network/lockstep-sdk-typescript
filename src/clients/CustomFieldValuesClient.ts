@@ -44,7 +44,7 @@ export class CustomFieldValuesClient {
         include,
       },
     };
-    return this.client.get<CustomFieldValueModel>(url, options);
+    return this.client.request<CustomFieldValueModel>('get', url, options, null);
   }
 
   /**
@@ -60,7 +60,7 @@ export class CustomFieldValuesClient {
    */
   updateField(definitionId: string, recordKey: string, body: object): Promise<CustomFieldValueModel | ErrorResult> {
     const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
-    return this.client.patch<CustomFieldValueModel>(url, null, body);
+    return this.client.request<CustomFieldValueModel>('patch', url, null, body);
   }
 
   /**
@@ -73,7 +73,7 @@ export class CustomFieldValuesClient {
    */
   deleteField(definitionId: string, recordKey: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -83,7 +83,7 @@ export class CustomFieldValuesClient {
    */
   createFields(body: CustomFieldValueModel[]): Promise<CustomFieldValueModel[] | ErrorResult> {
     const url = `/api/v1/CustomFieldValues`;
-    return this.client.post<CustomFieldValueModel[]>(url, null, body);
+    return this.client.request<CustomFieldValueModel[]>('post', url, null, body);
   }
 
   /**
@@ -110,6 +110,6 @@ export class CustomFieldValuesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CustomFieldValueModel>>(url, options);
+    return this.client.request<FetchResult<CustomFieldValueModel>>('get', url, options, null);
   }
 }

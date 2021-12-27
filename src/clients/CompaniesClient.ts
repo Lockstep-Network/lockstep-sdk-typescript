@@ -45,7 +45,7 @@ export class CompaniesClient {
         include,
       },
     };
-    return this.client.get<CompanyModel>(url, options);
+    return this.client.request<CompanyModel>('get', url, options, null);
   }
 
   /**
@@ -60,7 +60,7 @@ export class CompaniesClient {
    */
   updateCompany(id: string, body: object): Promise<CompanyModel | ErrorResult> {
     const url = `/api/v1/Companies/${id}`;
-    return this.client.patch<CompanyModel>(url, null, body);
+    return this.client.request<CompanyModel>('patch', url, null, body);
   }
 
   /**
@@ -74,7 +74,7 @@ export class CompaniesClient {
    */
   disableCompany(id: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/Companies/${id}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -86,7 +86,7 @@ export class CompaniesClient {
    */
   createCompanies(body: CompanyModel[]): Promise<CompanyModel[] | ErrorResult> {
     const url = `/api/v1/Companies`;
-    return this.client.post<CompanyModel[]>(url, null, body);
+    return this.client.request<CompanyModel[]>('post', url, null, body);
   }
 
   /**
@@ -113,7 +113,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CompanyModel>>(url, options);
+    return this.client.request<FetchResult<CompanyModel>>('get', url, options, null);
   }
 
   /**
@@ -138,7 +138,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CustomerSummaryModel>>(url, options);
+    return this.client.request<FetchResult<CustomerSummaryModel>>('get', url, options, null);
   }
 
   /**
@@ -148,6 +148,6 @@ export class CompaniesClient {
    */
   retrieveCustomerDetail(id: string): Promise<CustomerDetailsModel | ErrorResult> {
     const url = `/api/v1/Companies/views/customer-details/${id}`;
-    return this.client.get<CustomerDetailsModel>(url, null);
+    return this.client.request<CustomerDetailsModel>('get', url, null, null);
   }
 }

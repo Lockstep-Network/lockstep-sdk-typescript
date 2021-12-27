@@ -45,7 +45,7 @@ export class InvoicesClient {
         include,
       },
     };
-    return this.client.get<InvoiceModel>(url, options);
+    return this.client.request<InvoiceModel>('get', url, options, null);
   }
 
   /**
@@ -58,7 +58,7 @@ export class InvoicesClient {
    */
   updateInvoice(id: string, body: object): Promise<InvoiceModel | ErrorResult> {
     const url = `/api/v1/Invoices/${id}`;
-    return this.client.patch<InvoiceModel>(url, null, body);
+    return this.client.request<InvoiceModel>('patch', url, null, body);
   }
 
   /**
@@ -68,7 +68,7 @@ export class InvoicesClient {
    */
   deleteInvoice(id: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/Invoices/${id}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -80,7 +80,7 @@ export class InvoicesClient {
    */
   createInvoices(body: InvoiceModel[]): Promise<InvoiceModel[] | ErrorResult> {
     const url = `/api/v1/Invoices`;
-    return this.client.post<InvoiceModel[]>(url, null, body);
+    return this.client.request<InvoiceModel[]>('post', url, null, body);
   }
 
   /**
@@ -105,7 +105,7 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<InvoiceModel>>(url, options);
+    return this.client.request<FetchResult<InvoiceModel>>('get', url, options, null);
   }
 
   /**
@@ -132,7 +132,7 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<InvoiceSummaryModel>>(url, options);
+    return this.client.request<FetchResult<InvoiceSummaryModel>>('get', url, options, null);
   }
 
   /**
@@ -159,6 +159,6 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<AtRiskInvoiceSummaryModel>>(url, options);
+    return this.client.request<FetchResult<AtRiskInvoiceSummaryModel>>('get', url, options, null);
   }
 }

@@ -51,7 +51,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CountryModel>>(url, options);
+    return this.client.request<FetchResult<CountryModel>>('get', url, options, null);
   }
 
   /**
@@ -77,7 +77,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CurrencyModel>>(url, options);
+    return this.client.request<FetchResult<CurrencyModel>>('get', url, options, null);
   }
 
   /**
@@ -101,7 +101,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<StateModel>>(url, options);
+    return this.client.request<FetchResult<StateModel>>('get', url, options, null);
   }
 
   /**
@@ -125,6 +125,6 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<ErpModel>>(url, options);
+    return this.client.request<FetchResult<ErpModel>>('get', url, options, null);
   }
 }

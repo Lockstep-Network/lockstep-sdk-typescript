@@ -42,7 +42,7 @@ export class CreditMemoAppliedClient {
         include,
       },
     };
-    return this.client.get<CreditMemoAppliedModel>(url, options);
+    return this.client.request<CreditMemoAppliedModel>('get', url, options, null);
   }
 
   /**
@@ -55,7 +55,7 @@ export class CreditMemoAppliedClient {
    */
   updateCreditMemoApplication(id: string, body: object): Promise<CreditMemoAppliedModel | ErrorResult> {
     const url = `/api/v1/CreditMemoApplied/${id}`;
-    return this.client.patch<CreditMemoAppliedModel>(url, null, body);
+    return this.client.request<CreditMemoAppliedModel>('patch', url, null, body);
   }
 
   /**
@@ -67,7 +67,7 @@ export class CreditMemoAppliedClient {
    */
   deleteCreditMemoApplication(id: string): Promise<CreditMemoAppliedModel | ErrorResult> {
     const url = `/api/v1/CreditMemoApplied/${id}`;
-    return this.client.delete<CreditMemoAppliedModel>(url, null);
+    return this.client.request<CreditMemoAppliedModel>('delete', url, null, null);
   }
 
   /**
@@ -79,7 +79,7 @@ export class CreditMemoAppliedClient {
    */
   createCreditMemoApplications(body: CreditMemoAppliedModel[]): Promise<CreditMemoAppliedModel[] | ErrorResult> {
     const url = `/api/v1/CreditMemoApplied`;
-    return this.client.post<CreditMemoAppliedModel[]>(url, null, body);
+    return this.client.request<CreditMemoAppliedModel[]>('post', url, null, body);
   }
 
   /**
@@ -104,6 +104,6 @@ export class CreditMemoAppliedClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CreditMemoAppliedModel>>(url, options);
+    return this.client.request<FetchResult<CreditMemoAppliedModel>>('get', url, options, null);
   }
 }

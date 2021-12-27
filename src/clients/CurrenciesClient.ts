@@ -46,7 +46,7 @@ export class CurrenciesClient {
         dataProvider,
       },
     };
-    return this.client.get<CurrencyRateModel>(url, options);
+    return this.client.request<CurrencyRateModel>('get', url, options, null);
   }
 
   /**
@@ -62,6 +62,6 @@ export class CurrenciesClient {
         destinationCurrency,
       },
     };
-    return this.client.post<CurrencyRateModel[]>(url, options, body);
+    return this.client.request<CurrencyRateModel[]>('post', url, options, body);
   }
 }

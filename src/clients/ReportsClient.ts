@@ -45,7 +45,7 @@ export class ReportsClient {
         timeframe,
       },
     };
-    return this.client.get<CashflowReportModel>(url, options);
+    return this.client.request<CashflowReportModel>('get', url, options, null);
   }
 
   /**
@@ -56,7 +56,7 @@ export class ReportsClient {
    */
   dailySalesOutstanding(): Promise<DailySalesOutstandingReportModel[] | ErrorResult> {
     const url = `/api/v1/Reports/dailysalesoutstanding`;
-    return this.client.get<DailySalesOutstandingReportModel[]>(url, null);
+    return this.client.request<DailySalesOutstandingReportModel[]>('get', url, null, null);
   }
 
   /**
@@ -67,7 +67,7 @@ export class ReportsClient {
    */
   riskRates(): Promise<RiskRateModel[] | ErrorResult> {
     const url = `/api/v1/Reports/riskrates`;
-    return this.client.get<RiskRateModel[]>(url, null);
+    return this.client.request<RiskRateModel[]>('get', url, null, null);
   }
 
   /**
@@ -84,7 +84,7 @@ export class ReportsClient {
         companyId,
       },
     };
-    return this.client.get<ArHeaderInfoModel>(url, options);
+    return this.client.request<ArHeaderInfoModel>('get', url, options, null);
   }
 
   /**
@@ -113,7 +113,7 @@ export class ReportsClient {
         Buckets,
       },
     };
-    return this.client.get<AgingModel[]>(url, options);
+    return this.client.request<AgingModel[]>('get', url, options, null);
   }
 
   /**
@@ -124,6 +124,6 @@ export class ReportsClient {
    */
   accountsReceivableAgingHeader(): Promise<ArAgingHeaderInfoModel[] | ErrorResult> {
     const url = `/api/v1/Reports/ar-aging-header`;
-    return this.client.get<ArAgingHeaderInfoModel[]>(url, null);
+    return this.client.request<ArAgingHeaderInfoModel[]>('get', url, null, null);
   }
 }

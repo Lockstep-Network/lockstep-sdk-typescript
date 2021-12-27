@@ -46,7 +46,7 @@ export class PaymentsClient {
         include,
       },
     };
-    return this.client.get<PaymentModel>(url, options);
+    return this.client.request<PaymentModel>('get', url, options, null);
   }
 
   /**
@@ -61,7 +61,7 @@ export class PaymentsClient {
    */
   updatePayment(id: string, body: object): Promise<PaymentModel | ErrorResult> {
     const url = `/api/v1/Payments/${id}`;
-    return this.client.patch<PaymentModel>(url, null, body);
+    return this.client.request<PaymentModel>('patch', url, null, body);
   }
 
   /**
@@ -73,7 +73,7 @@ export class PaymentsClient {
    */
   deletePayment(id: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/Payments/${id}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -85,7 +85,7 @@ export class PaymentsClient {
    */
   createPayments(body: PaymentModel[]): Promise<PaymentModel[] | ErrorResult> {
     const url = `/api/v1/Payments`;
-    return this.client.post<PaymentModel[]>(url, null, body);
+    return this.client.request<PaymentModel[]>('post', url, null, body);
   }
 
   /**
@@ -112,7 +112,7 @@ export class PaymentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<PaymentModel>>(url, options);
+    return this.client.request<FetchResult<PaymentModel>>('get', url, options, null);
   }
 
   /**
@@ -139,7 +139,7 @@ export class PaymentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<PaymentSummaryModel>>(url, options);
+    return this.client.request<FetchResult<PaymentSummaryModel>>('get', url, options, null);
   }
 
   /**
@@ -148,7 +148,7 @@ export class PaymentsClient {
    */
   retrievePaymentDetailHeader(): Promise<PaymentDetailHeaderModel | ErrorResult> {
     const url = `/api/v1/Payments/views/detail-header`;
-    return this.client.get<PaymentDetailHeaderModel>(url, null);
+    return this.client.request<PaymentDetailHeaderModel>('get', url, null, null);
   }
 
   /**
@@ -173,6 +173,6 @@ export class PaymentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<PaymentDetailModel>>(url, options);
+    return this.client.request<FetchResult<PaymentDetailModel>>('get', url, options, null);
   }
 }

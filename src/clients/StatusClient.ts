@@ -34,7 +34,7 @@ export class StatusClient {
    */
   ping(): Promise<StatusModel | ErrorResult> {
     const url = `/api/v1/Status`;
-    return this.client.get<StatusModel>(url, null);
+    return this.client.request<StatusModel>('get', url, null, null);
   }
 
   /**
@@ -52,6 +52,6 @@ export class StatusClient {
         err,
       },
     };
-    return this.client.get<TestTimeoutException>(url, options);
+    return this.client.request<TestTimeoutException>('get', url, options, null);
   }
 }

@@ -37,7 +37,7 @@ export class SyncClient {
    */
   createSync(body: SyncSubmitModel): Promise<SyncRequestModel | ErrorResult> {
     const url = `/api/v1/Sync`;
-    return this.client.post<SyncRequestModel>(url, null, body);
+    return this.client.request<SyncRequestModel>('post', url, null, body);
   }
 
   /**
@@ -48,7 +48,7 @@ export class SyncClient {
    */
   uploadSyncFile(): Promise<SyncRequestModel | ErrorResult> {
     const url = `/api/v1/Sync/zip`;
-    return this.client.post<SyncRequestModel>(url, null, null);
+    return this.client.request<SyncRequestModel>('post', url, null, null);
   }
 
   /**
@@ -63,7 +63,7 @@ export class SyncClient {
    */
   updateSync(id: string, body: object): Promise<SyncRequestModel | ErrorResult> {
     const url = `/api/v1/Sync/${id}`;
-    return this.client.patch<SyncRequestModel>(url, null, body);
+    return this.client.request<SyncRequestModel>('patch', url, null, body);
   }
 
   /**
@@ -79,7 +79,7 @@ export class SyncClient {
         include,
       },
     };
-    return this.client.get<SyncRequestModel>(url, options);
+    return this.client.request<SyncRequestModel>('get', url, options, null);
   }
 
   /**
@@ -104,6 +104,6 @@ export class SyncClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<SyncRequestModel>>(url, options);
+    return this.client.request<FetchResult<SyncRequestModel>>('get', url, options, null);
   }
 }

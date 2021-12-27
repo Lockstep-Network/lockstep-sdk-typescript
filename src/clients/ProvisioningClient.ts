@@ -35,7 +35,7 @@ export class ProvisioningClient {
    */
   provisionUserAccount(body: ProvisioningModel): Promise<ProvisioningResponseModel | ErrorResult> {
     const url = `/api/v1/Provisioning`;
-    return this.client.post<ProvisioningResponseModel>(url, null, body);
+    return this.client.request<ProvisioningResponseModel>('post', url, null, body);
   }
 
   /**
@@ -45,6 +45,6 @@ export class ProvisioningClient {
    */
   finalizeUserAccountProvisioning(body: ProvisioningFinalizeRequestModel): Promise<ProvisioningResponseModel | ErrorResult> {
     const url = `/api/v1/Provisioning/finalize`;
-    return this.client.post<ProvisioningResponseModel>(url, null, body);
+    return this.client.request<ProvisioningResponseModel>('post', url, null, body);
   }
 }

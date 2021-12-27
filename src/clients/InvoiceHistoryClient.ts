@@ -36,7 +36,7 @@ export class InvoiceHistoryClient {
    */
   retrieveInvoiceHistory(id: string): Promise<FetchResult<InvoiceHistoryModel> | ErrorResult> {
     const url = `/api/v1/InvoiceHistory/${id}`;
-    return this.client.get<FetchResult<InvoiceHistoryModel>>(url, null);
+    return this.client.request<FetchResult<InvoiceHistoryModel>>('get', url, null, null);
   }
 
   /**
@@ -61,6 +61,6 @@ export class InvoiceHistoryClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<InvoiceHistoryModel>>(url, options);
+    return this.client.request<FetchResult<InvoiceHistoryModel>>('get', url, options, null);
   }
 }

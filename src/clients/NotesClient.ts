@@ -43,7 +43,7 @@ export class NotesClient {
         include,
       },
     };
-    return this.client.get<NoteModel>(url, options);
+    return this.client.request<NoteModel>('get', url, options, null);
   }
 
   /**
@@ -55,7 +55,7 @@ export class NotesClient {
    */
   archiveNote(id: string): Promise<ActionResultModel | ErrorResult> {
     const url = `/api/v1/Notes/${id}`;
-    return this.client.delete<ActionResultModel>(url, null);
+    return this.client.request<ActionResultModel>('delete', url, null, null);
   }
 
   /**
@@ -69,7 +69,7 @@ export class NotesClient {
    */
   createNotes(body: NoteModel[]): Promise<NoteModel[] | ErrorResult> {
     const url = `/api/v1/Notes`;
-    return this.client.post<NoteModel[]>(url, null, body);
+    return this.client.request<NoteModel[]>('post', url, null, body);
   }
 
   /**
@@ -96,6 +96,6 @@ export class NotesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<NoteModel>>(url, options);
+    return this.client.request<FetchResult<NoteModel>>('get', url, options, null);
   }
 }
