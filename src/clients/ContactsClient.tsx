@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { ContactModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
 
 export class ContactsClient {
   private readonly client: LockstepApi;
@@ -25,7 +28,6 @@ export class ContactsClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the Contact specified by this unique identifier, optionally including nested data sets.  A Contact contains information about a person or role within a Company. You can use Contacts to track information about who is responsible for a specific project, who handles invoices, or information about which role at a particular customer or vendor you should speak with about invoices.
    * 
@@ -33,13 +35,13 @@ export class ContactsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, CustomFields, Notes
    */
   retrieveContact(id: string, include: string): Promise<ContactModel | ErrorResult> {
-    const url = `/api/v1/Contacts/{id}`;
+    const url = `/api/v1/Contacts/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<ContactModel>(url, options, null);
+    return this.client.get<ContactModel>(url, options);
   }
 
   /**
@@ -51,7 +53,7 @@ export class ContactsClient {
    * @param body - A list of changes to apply to this Contact
    */
   updateContact(id: string, body: object): Promise<ContactModel | ErrorResult> {
-    const url = `/api/v1/Contacts/{id}`;
+    const url = `/api/v1/Contacts/${id}`;
     return this.client.patch<ContactModel>(url, null, body);
   }
 
@@ -63,8 +65,8 @@ export class ContactsClient {
    * @param id - The unique Lockstep Platform ID number of the Contact to disable; NOT the customer's ERP key
    */
   disableContact(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Contacts/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Contacts/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -74,7 +76,7 @@ export class ContactsClient {
    * 
    * @param body - The Contacts to create
    */
-  createContacts(body: object): Promise<ContactModel[] | ErrorResult> {
+  createContacts(body: ContactModel[]): Promise<ContactModel[] | ErrorResult> {
     const url = `/api/v1/Contacts`;
     return this.client.post<ContactModel[]>(url, null, body);
   }
@@ -101,6 +103,6 @@ export class ContactsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<ContactModel>>(url, options, null);
+    return this.client.get<FetchResult<ContactModel>>(url, options);
   }
 }

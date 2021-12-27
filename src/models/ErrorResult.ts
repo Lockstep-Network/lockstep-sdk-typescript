@@ -15,7 +15,7 @@
 /**
  * Represents a failed request.
  */
-type ErrorResult = {
+export type ErrorResult = {
     type: string | null;
     title: string | null;
     status: number | null;

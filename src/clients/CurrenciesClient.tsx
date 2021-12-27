@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { CurrencyModel } from "../models/DataModels";
+import { CurrencyRateModel } from "../models/DataModels";
+import { BulkCurrencyConversionModel } from "../models/DataModels";
 
 export class CurrenciesClient {
   private readonly client: LockstepApi;
@@ -24,7 +27,6 @@ export class CurrenciesClient {
   public constructor(client: LockstepApi) {
     this.client = client;
   }
-
 
   /**
    * Retrieve a currency conversation rate from one currency to another as of the specified date.              Optionally, you can specify which currency data provider to use.
@@ -37,14 +39,14 @@ export class CurrenciesClient {
    * @param dataProvider - Optionally, you can specify a data provider.
    */
   retrievecurrencyrate(sourceCurrency: string, destinationCurrency: string, date: string, dataProvider: string): Promise<CurrencyRateModel | ErrorResult> {
-    const url = `/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}`;
+    const url = `/api/v1/Currencies/${sourceCurrency}/${destinationCurrency}`;
     const options = {
       params: {
         date,
         dataProvider,
       },
     };
-    return this.client.get<CurrencyRateModel>(url, options, null);
+    return this.client.get<CurrencyRateModel>(url, options);
   }
 
   /**
@@ -53,7 +55,7 @@ export class CurrenciesClient {
    * @param destinationCurrency - The currency to convert to.
    * @param body - A list of dates and source currencies.
    */
-  bulkcurrencydata(destinationCurrency: string, body: object): Promise<CurrencyRateModel[] | ErrorResult> {
+  bulkcurrencydata(destinationCurrency: string, body: BulkCurrencyConversionModel[]): Promise<CurrencyRateModel[] | ErrorResult> {
     const url = `/api/v1/Currencies/bulk`;
     const options = {
       params: {

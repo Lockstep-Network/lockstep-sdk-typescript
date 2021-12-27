@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { CustomFieldDefinitionModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class CustomFieldDefinitionsClient {
   private readonly client: LockstepApi;
@@ -25,7 +27,6 @@ export class CustomFieldDefinitionsClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the Custom Field Definition specified by this unique identifier.
    * 
@@ -35,13 +36,13 @@ export class CustomFieldDefinitionsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No additional data collections are currently defined on this object, but may be supported in the future.
    */
   retrieveFieldDefinition(id: string, include: string): Promise<CustomFieldDefinitionModel | ErrorResult> {
-    const url = `/api/v1/CustomFieldDefinitions/{id}`;
+    const url = `/api/v1/CustomFieldDefinitions/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<CustomFieldDefinitionModel>(url, options, null);
+    return this.client.get<CustomFieldDefinitionModel>(url, options);
   }
 
   /**
@@ -55,7 +56,7 @@ export class CustomFieldDefinitionsClient {
    * @param body - A list of changes to apply to this Custom Field Definition
    */
   updateFieldDefinition(id: string, body: object): Promise<CustomFieldDefinitionModel | ErrorResult> {
-    const url = `/api/v1/CustomFieldDefinitions/{id}`;
+    const url = `/api/v1/CustomFieldDefinitions/${id}`;
     return this.client.patch<CustomFieldDefinitionModel>(url, null, body);
   }
 
@@ -67,8 +68,8 @@ export class CustomFieldDefinitionsClient {
    * @param id - The unique Lockstep Platform ID number of the Custom Field Definition to delete
    */
   deleteFieldDefinition(id: string): Promise<CustomFieldDefinitionModel | ErrorResult> {
-    const url = `/api/v1/CustomFieldDefinitions/{id}`;
-    return this.client.delete<CustomFieldDefinitionModel>(url, null, null);
+    const url = `/api/v1/CustomFieldDefinitions/${id}`;
+    return this.client.delete<CustomFieldDefinitionModel>(url, null);
   }
 
   /**
@@ -76,7 +77,7 @@ export class CustomFieldDefinitionsClient {
    * 
    * @param body - The Custom Field Definitions to create
    */
-  createFieldDefinitions(body: object): Promise<CustomFieldDefinitionModel[] | ErrorResult> {
+  createFieldDefinitions(body: CustomFieldDefinitionModel[]): Promise<CustomFieldDefinitionModel[] | ErrorResult> {
     const url = `/api/v1/CustomFieldDefinitions`;
     return this.client.post<CustomFieldDefinitionModel[]>(url, null, body);
   }
@@ -105,6 +106,6 @@ export class CustomFieldDefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CustomFieldDefinitionModel>>(url, options, null);
+    return this.client.get<FetchResult<CustomFieldDefinitionModel>>(url, options);
   }
 }

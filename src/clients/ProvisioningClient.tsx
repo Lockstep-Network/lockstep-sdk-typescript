@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { ProvisioningResponseModel } from "../models/DataModels";
+import { ProvisioningModel } from "../models/DataModels";
+import { ProvisioningFinalizeRequestModel } from "../models/DataModels";
 
 export class ProvisioningClient {
   private readonly client: LockstepApi;
@@ -25,13 +28,12 @@ export class ProvisioningClient {
     this.client = client;
   }
 
-
   /**
    * Creates a new User or updates an Invited user based on metadata provided by the User during the onboarding process
    * 
    * @param body - Represents a User and their related metadata
    */
-  provisionUserAccount(body: object): Promise<ProvisioningResponseModel | ErrorResult> {
+  provisionUserAccount(body: ProvisioningModel): Promise<ProvisioningResponseModel | ErrorResult> {
     const url = `/api/v1/Provisioning`;
     return this.client.post<ProvisioningResponseModel>(url, null, body);
   }
@@ -41,7 +43,7 @@ export class ProvisioningClient {
    * 
    * @param body - Represents a User and their related metadata
    */
-  finalizeUserAccountProvisioning(body: object): Promise<ProvisioningResponseModel | ErrorResult> {
+  finalizeUserAccountProvisioning(body: ProvisioningFinalizeRequestModel): Promise<ProvisioningResponseModel | ErrorResult> {
     const url = `/api/v1/Provisioning/finalize`;
     return this.client.post<ProvisioningResponseModel>(url, null, body);
   }

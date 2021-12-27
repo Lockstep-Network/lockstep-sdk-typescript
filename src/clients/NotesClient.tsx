@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { NoteModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
 
 export class NotesClient {
   private readonly client: LockstepApi;
@@ -25,7 +28,6 @@ export class NotesClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the note with the specified note identifier.  A note is a customizable text string that can be attached to various account attributes within Lockstep. You can use notes for internal communication, correspondence with clients, or personal reminders. The Note Model represents a note and a number of different metadata attributes related to the creation, storage, and ownership of the note.
    * 
@@ -35,13 +37,13 @@ export class NotesClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
    */
   retrieveNote(id: string, include: string): Promise<NoteModel | ErrorResult> {
-    const url = `/api/v1/Notes/{id}`;
+    const url = `/api/v1/Notes/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<NoteModel>(url, options, null);
+    return this.client.get<NoteModel>(url, options);
   }
 
   /**
@@ -52,8 +54,8 @@ export class NotesClient {
    * @param id - Note id to be archived
    */
   archiveNote(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Notes/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Notes/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -65,7 +67,7 @@ export class NotesClient {
    * 
    * @param body - The array of notes to be created
    */
-  createNotes(body: object): Promise<NoteModel[] | ErrorResult> {
+  createNotes(body: NoteModel[]): Promise<NoteModel[] | ErrorResult> {
     const url = `/api/v1/Notes`;
     return this.client.post<NoteModel[]>(url, null, body);
   }
@@ -94,6 +96,6 @@ export class NotesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<NoteModel>>(url, options, null);
+    return this.client.get<FetchResult<NoteModel>>(url, options);
   }
 }

@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { CreditMemoAppliedModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class CreditMemoAppliedClient {
   private readonly client: LockstepApi;
@@ -25,7 +27,6 @@ export class CreditMemoAppliedClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the Credit Memo Application specified by this unique identifier, optionally including nested data sets.
    * 
@@ -35,13 +36,13 @@ export class CreditMemoAppliedClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, CustomFields, Notes
    */
   retrieveCreditMemoApplication(id: string, include: string): Promise<CreditMemoAppliedModel | ErrorResult> {
-    const url = `/api/v1/CreditMemoApplied/{id}`;
+    const url = `/api/v1/CreditMemoApplied/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<CreditMemoAppliedModel>(url, options, null);
+    return this.client.get<CreditMemoAppliedModel>(url, options);
   }
 
   /**
@@ -53,7 +54,7 @@ export class CreditMemoAppliedClient {
    * @param body - A list of changes to apply to this Credit Memo Application
    */
   updateCreditMemoApplication(id: string, body: object): Promise<CreditMemoAppliedModel | ErrorResult> {
-    const url = `/api/v1/CreditMemoApplied/{id}`;
+    const url = `/api/v1/CreditMemoApplied/${id}`;
     return this.client.patch<CreditMemoAppliedModel>(url, null, body);
   }
 
@@ -65,8 +66,8 @@ export class CreditMemoAppliedClient {
    * @param id - The unique Lockstep Platform ID number of the Credit Memo Application to delete; NOT the customer's ERP key
    */
   deleteCreditMemoApplication(id: string): Promise<CreditMemoAppliedModel | ErrorResult> {
-    const url = `/api/v1/CreditMemoApplied/{id}`;
-    return this.client.delete<CreditMemoAppliedModel>(url, null, null);
+    const url = `/api/v1/CreditMemoApplied/${id}`;
+    return this.client.delete<CreditMemoAppliedModel>(url, null);
   }
 
   /**
@@ -76,7 +77,7 @@ export class CreditMemoAppliedClient {
    * 
    * @param body - The Credit Memo Applications to create
    */
-  createCreditMemoApplications(body: object): Promise<CreditMemoAppliedModel[] | ErrorResult> {
+  createCreditMemoApplications(body: CreditMemoAppliedModel[]): Promise<CreditMemoAppliedModel[] | ErrorResult> {
     const url = `/api/v1/CreditMemoApplied`;
     return this.client.post<CreditMemoAppliedModel[]>(url, null, body);
   }
@@ -103,6 +104,6 @@ export class CreditMemoAppliedClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CreditMemoAppliedModel>>(url, options, null);
+    return this.client.get<FetchResult<CreditMemoAppliedModel>>(url, options);
   }
 }

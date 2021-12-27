@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { CodeDefinitionModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class CodeDefinitionsClient {
   private readonly client: LockstepApi;
@@ -25,7 +27,6 @@ export class CodeDefinitionsClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the CodeDefinition specified by this unique identifier, optionally including nested data sets.
    * 
@@ -35,13 +36,13 @@ export class CodeDefinitionsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
    */
   retrieveCodeDefinition(id: string, include: string): Promise<CodeDefinitionModel | ErrorResult> {
-    const url = `/api/v1/CodeDefinitions/{id}`;
+    const url = `/api/v1/CodeDefinitions/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<CodeDefinitionModel>(url, options, null);
+    return this.client.get<CodeDefinitionModel>(url, options);
   }
 
   /**
@@ -66,6 +67,6 @@ export class CodeDefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CodeDefinitionModel>>(url, options, null);
+    return this.client.get<FetchResult<CodeDefinitionModel>>(url, options);
   }
 }

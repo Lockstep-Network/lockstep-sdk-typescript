@@ -12,8 +12,12 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { AttachmentModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { UriModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class AttachmentsClient {
   private readonly client: LockstepApi;
@@ -24,7 +28,6 @@ export class AttachmentsClient {
   public constructor(client: LockstepApi) {
     this.client = client;
   }
-
 
   /**
    * Retrieves the Attachment with the provided Attachment identifier.
@@ -37,13 +40,13 @@ export class AttachmentsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available for querying but may be available in the future.
    */
   retrieveAttachment(id: string, include: string): Promise<AttachmentModel | ErrorResult> {
-    const url = `/api/v1/Attachments/{id}`;
+    const url = `/api/v1/Attachments/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<AttachmentModel>(url, options, null);
+    return this.client.get<AttachmentModel>(url, options);
   }
 
   /**
@@ -59,7 +62,7 @@ export class AttachmentsClient {
    * @param body - A list of changes to apply to this Attachment
    */
   updateAttachment(id: string, body: object): Promise<AttachmentModel | ErrorResult> {
-    const url = `/api/v1/Attachments/{id}`;
+    const url = `/api/v1/Attachments/${id}`;
     return this.client.patch<AttachmentModel>(url, null, body);
   }
 
@@ -73,8 +76,8 @@ export class AttachmentsClient {
    * @param id - The unique ID number of the Attachment to be archived
    */
   archiveAttachment(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Attachments/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Attachments/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -87,8 +90,8 @@ export class AttachmentsClient {
    * @param id - The unique ID number of the Attachment whose URI will be returned
    */
   downloadAttachment(id: string): Promise<UriModel | ErrorResult> {
-    const url = `/api/v1/Attachments/{id}/download`;
-    return this.client.get<UriModel>(url, null, null);
+    const url = `/api/v1/Attachments/${id}/download`;
+    return this.client.get<UriModel>(url, null);
   }
 
   /**
@@ -109,7 +112,7 @@ export class AttachmentsClient {
         objectId,
       },
     };
-    return this.client.post<AttachmentModel[]>(url, options, body);
+    return this.client.post<AttachmentModel[]>(url, options, null);
   }
 
   /**
@@ -138,6 +141,6 @@ export class AttachmentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<AttachmentModel>>(url, options, null);
+    return this.client.get<FetchResult<AttachmentModel>>(url, options);
   }
 }

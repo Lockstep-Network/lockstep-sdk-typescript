@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { CustomFieldValueModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
 
 export class CustomFieldValuesClient {
   private readonly client: LockstepApi;
@@ -25,7 +28,6 @@ export class CustomFieldValuesClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves all Custom Field Definitions.
    * 
@@ -36,13 +38,13 @@ export class CustomFieldValuesClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: CustomFieldDefinition
    */
   retrieveField(definitionId: string, recordKey: string, include: string): Promise<CustomFieldValueModel | ErrorResult> {
-    const url = `/api/v1/CustomFieldValues/{definitionId}/{recordKey}`;
+    const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<CustomFieldValueModel>(url, options, null);
+    return this.client.get<CustomFieldValueModel>(url, options);
   }
 
   /**
@@ -57,7 +59,7 @@ export class CustomFieldValuesClient {
    * @param body - A list of changes to apply to this Custom Field
    */
   updateField(definitionId: string, recordKey: string, body: object): Promise<CustomFieldValueModel | ErrorResult> {
-    const url = `/api/v1/CustomFieldValues/{definitionId}/{recordKey}`;
+    const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
     return this.client.patch<CustomFieldValueModel>(url, null, body);
   }
 
@@ -70,8 +72,8 @@ export class CustomFieldValuesClient {
    * @param recordKey - The unique Lockstep Platform ID number of the Lockstep Platform object the Custom Field Value is attached to.
    */
   deleteField(definitionId: string, recordKey: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/CustomFieldValues/{definitionId}/{recordKey}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -79,7 +81,7 @@ export class CustomFieldValuesClient {
    * 
    * @param body - The Custom Fields to create
    */
-  createFields(body: object): Promise<CustomFieldValueModel[] | ErrorResult> {
+  createFields(body: CustomFieldValueModel[]): Promise<CustomFieldValueModel[] | ErrorResult> {
     const url = `/api/v1/CustomFieldValues`;
     return this.client.post<CustomFieldValueModel[]>(url, null, body);
   }
@@ -108,6 +110,6 @@ export class CustomFieldValuesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CustomFieldValueModel>>(url, options, null);
+    return this.client.get<FetchResult<CustomFieldValueModel>>(url, options);
   }
 }

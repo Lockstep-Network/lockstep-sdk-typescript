@@ -12,8 +12,13 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { InvoiceModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
+import { InvoiceSummaryModel } from "../models/DataModels";
+import { AtRiskInvoiceSummaryModel } from "../models/DataModels";
 
 export class InvoicesClient {
   private readonly client: LockstepApi;
@@ -25,7 +30,6 @@ export class InvoicesClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the Invoice specified by this unique identifier, optionally including nested data sets.
    * 
@@ -35,13 +39,13 @@ export class InvoicesClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Addresses, Lines, Payments, Notes, Attachments, Company, Customer, CustomFields, CreditMemos
    */
   retrieveInvoice(id: string, include: string): Promise<InvoiceModel | ErrorResult> {
-    const url = `/api/v1/Invoices/{id}`;
+    const url = `/api/v1/Invoices/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<InvoiceModel>(url, options, null);
+    return this.client.get<InvoiceModel>(url, options);
   }
 
   /**
@@ -53,7 +57,7 @@ export class InvoicesClient {
    * @param body - A list of changes to apply to this Invoice
    */
   updateInvoice(id: string, body: object): Promise<InvoiceModel | ErrorResult> {
-    const url = `/api/v1/Invoices/{id}`;
+    const url = `/api/v1/Invoices/${id}`;
     return this.client.patch<InvoiceModel>(url, null, body);
   }
 
@@ -63,8 +67,8 @@ export class InvoicesClient {
    * @param id - The unique Lockstep Platform ID number of the invoice to delete; NOT the customer's ERP key
    */
   deleteInvoice(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Invoices/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Invoices/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -74,7 +78,7 @@ export class InvoicesClient {
    * 
    * @param body - The Invoices to create
    */
-  createInvoices(body: object): Promise<InvoiceModel[] | ErrorResult> {
+  createInvoices(body: InvoiceModel[]): Promise<InvoiceModel[] | ErrorResult> {
     const url = `/api/v1/Invoices`;
     return this.client.post<InvoiceModel[]>(url, null, body);
   }
@@ -101,7 +105,7 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<InvoiceModel>>(url, options, null);
+    return this.client.get<FetchResult<InvoiceModel>>(url, options);
   }
 
   /**
@@ -128,7 +132,7 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<InvoiceSummaryModel>>(url, options, null);
+    return this.client.get<FetchResult<InvoiceSummaryModel>>(url, options);
   }
 
   /**
@@ -155,6 +159,6 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<AtRiskInvoiceSummaryModel>>(url, options, null);
+    return this.client.get<FetchResult<AtRiskInvoiceSummaryModel>>(url, options);
   }
 }

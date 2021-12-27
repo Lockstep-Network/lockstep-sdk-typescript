@@ -12,17 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
-import { LockstepApi } from "../APIClient";
-
-export class ErpsClient {
-  private readonly client: LockstepApi;
-
-  /**
-   * Internal constructor for this client library
-   */
-  public constructor(client: LockstepApi) {
-    this.client = client;
-  }
-
+/**
+ * Represents a failed request.
+ */
+export type ActionResultModel = {
+    messages: string[] | null;
 }
+

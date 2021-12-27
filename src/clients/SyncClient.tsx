@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { SyncRequestModel } from "../models/DataModels";
+import { SyncSubmitModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class SyncClient {
   private readonly client: LockstepApi;
@@ -25,7 +28,6 @@ export class SyncClient {
     this.client = client;
   }
 
-
   /**
    * Requests a new Sync task from the Application specified in the request and returns a token that can be used to check the progress and status of the task.
    * 
@@ -33,7 +35,7 @@ export class SyncClient {
    * 
    * @param body - Information about the Sync to execute
    */
-  createSync(body: object): Promise<SyncRequestModel | ErrorResult> {
+  createSync(body: SyncSubmitModel): Promise<SyncRequestModel | ErrorResult> {
     const url = `/api/v1/Sync`;
     return this.client.post<SyncRequestModel>(url, null, body);
   }
@@ -46,7 +48,7 @@ export class SyncClient {
    */
   uploadSyncFile(): Promise<SyncRequestModel | ErrorResult> {
     const url = `/api/v1/Sync/zip`;
-    return this.client.post<SyncRequestModel>(url, null, body);
+    return this.client.post<SyncRequestModel>(url, null, null);
   }
 
   /**
@@ -60,7 +62,7 @@ export class SyncClient {
    * @param body - A list of changes to apply to this Application
    */
   updateSync(id: string, body: object): Promise<SyncRequestModel | ErrorResult> {
-    const url = `/api/v1/Sync/{id}`;
+    const url = `/api/v1/Sync/${id}`;
     return this.client.patch<SyncRequestModel>(url, null, body);
   }
 
@@ -71,13 +73,13 @@ export class SyncClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Details
    */
   retrieveSync(id: string, include: string): Promise<SyncRequestModel | ErrorResult> {
-    const url = `/api/v1/Sync/{id}`;
+    const url = `/api/v1/Sync/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<SyncRequestModel>(url, options, null);
+    return this.client.get<SyncRequestModel>(url, options);
   }
 
   /**
@@ -102,6 +104,6 @@ export class SyncClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<SyncRequestModel>>(url, options, null);
+    return this.client.get<FetchResult<SyncRequestModel>>(url, options);
   }
 }

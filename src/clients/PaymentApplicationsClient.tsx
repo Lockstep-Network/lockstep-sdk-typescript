@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { PaymentAppliedModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
 
 export class PaymentApplicationsClient {
   private readonly client: LockstepApi;
@@ -25,7 +28,6 @@ export class PaymentApplicationsClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the Payment Application specified by this unique identifier, optionally including nested data sets.
    * 
@@ -35,13 +37,13 @@ export class PaymentApplicationsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Invoice
    */
   retrievePaymentApplication(id: string, include: string): Promise<PaymentAppliedModel | ErrorResult> {
-    const url = `/api/v1/PaymentApplications/{id}`;
+    const url = `/api/v1/PaymentApplications/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<PaymentAppliedModel>(url, options, null);
+    return this.client.get<PaymentAppliedModel>(url, options);
   }
 
   /**
@@ -53,7 +55,7 @@ export class PaymentApplicationsClient {
    * @param body - A list of changes to apply to this Payment Application
    */
   updatePaymentApplication(id: string, body: object): Promise<PaymentAppliedModel | ErrorResult> {
-    const url = `/api/v1/PaymentApplications/{id}`;
+    const url = `/api/v1/PaymentApplications/${id}`;
     return this.client.patch<PaymentAppliedModel>(url, null, body);
   }
 
@@ -65,8 +67,8 @@ export class PaymentApplicationsClient {
    * @param id - The unique Lockstep Platform ID number of the Payment Application to delete; NOT the customer's ERP key
    */
   deletePaymentApplication(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/PaymentApplications/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/PaymentApplications/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -76,7 +78,7 @@ export class PaymentApplicationsClient {
    * 
    * @param body - The Payment Applications to create
    */
-  createPaymentApplications(body: object): Promise<PaymentAppliedModel[] | ErrorResult> {
+  createPaymentApplications(body: PaymentAppliedModel[]): Promise<PaymentAppliedModel[] | ErrorResult> {
     const url = `/api/v1/PaymentApplications`;
     return this.client.post<PaymentAppliedModel[]>(url, null, body);
   }
@@ -103,6 +105,6 @@ export class PaymentApplicationsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<PaymentAppliedModel>>(url, options, null);
+    return this.client.get<FetchResult<PaymentAppliedModel>>(url, options);
   }
 }

@@ -12,8 +12,14 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { CashflowReportModel } from "../models/DataModels";
+import { DailySalesOutstandingReportModel } from "../models/DataModels";
+import { RiskRateModel } from "../models/DataModels";
+import { ArHeaderInfoModel } from "../models/DataModels";
+import { AgingModel } from "../models/DataModels";
+import { ArAgingHeaderInfoModel } from "../models/DataModels";
 
 export class ReportsClient {
   private readonly client: LockstepApi;
@@ -24,7 +30,6 @@ export class ReportsClient {
   public constructor(client: LockstepApi) {
     this.client = client;
   }
-
 
   /**
    * Retrieves a current Cash Flow report for this account.
@@ -40,7 +45,7 @@ export class ReportsClient {
         timeframe,
       },
     };
-    return this.client.get<CashflowReportModel>(url, options, null);
+    return this.client.get<CashflowReportModel>(url, options);
   }
 
   /**
@@ -51,7 +56,7 @@ export class ReportsClient {
    */
   dailySalesOutstanding(): Promise<DailySalesOutstandingReportModel[] | ErrorResult> {
     const url = `/api/v1/Reports/dailysalesoutstanding`;
-    return this.client.get<DailySalesOutstandingReportModel[]>(url, null, null);
+    return this.client.get<DailySalesOutstandingReportModel[]>(url, null);
   }
 
   /**
@@ -62,7 +67,7 @@ export class ReportsClient {
    */
   riskRates(): Promise<RiskRateModel[] | ErrorResult> {
     const url = `/api/v1/Reports/riskrates`;
-    return this.client.get<RiskRateModel[]>(url, null, null);
+    return this.client.get<RiskRateModel[]>(url, null);
   }
 
   /**
@@ -79,7 +84,7 @@ export class ReportsClient {
         companyId,
       },
     };
-    return this.client.get<ArHeaderInfoModel>(url, options, null);
+    return this.client.get<ArHeaderInfoModel>(url, options);
   }
 
   /**
@@ -97,7 +102,7 @@ export class ReportsClient {
    * @param CurrencyProvider - Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)
    * @param Buckets - Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)
    */
-  invoiceagingreport(CompanyId: string, Recalculate: boolean, CurrencyCode: string, CurrencyProvider: string, Buckets: array): Promise<AgingModel[] | ErrorResult> {
+  invoiceagingreport(CompanyId: string, Recalculate: boolean, CurrencyCode: string, CurrencyProvider: string, Buckets: number[]): Promise<AgingModel[] | ErrorResult> {
     const url = `/api/v1/Reports/aging`;
     const options = {
       params: {
@@ -108,7 +113,7 @@ export class ReportsClient {
         Buckets,
       },
     };
-    return this.client.get<AgingModel[]>(url, options, null);
+    return this.client.get<AgingModel[]>(url, options);
   }
 
   /**
@@ -119,6 +124,6 @@ export class ReportsClient {
    */
   accountsReceivableAgingHeader(): Promise<ArAgingHeaderInfoModel[] | ErrorResult> {
     const url = `/api/v1/Reports/ar-aging-header`;
-    return this.client.get<ArAgingHeaderInfoModel[]>(url, null, null);
+    return this.client.get<ArAgingHeaderInfoModel[]>(url, null);
   }
 }

@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { FetchResult } from "../models/FetchResult";
+import { InvoiceHistoryModel } from "../models/DataModels";
 
 export class InvoiceHistoryClient {
   private readonly client: LockstepApi;
@@ -25,7 +27,6 @@ export class InvoiceHistoryClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the history of the Invoice specified by this unique identifier.
    * 
@@ -34,8 +35,8 @@ export class InvoiceHistoryClient {
    * @param id - The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key
    */
   retrieveInvoiceHistory(id: string): Promise<FetchResult<InvoiceHistoryModel> | ErrorResult> {
-    const url = `/api/v1/InvoiceHistory/{id}`;
-    return this.client.get<FetchResult<InvoiceHistoryModel>>(url, null, null);
+    const url = `/api/v1/InvoiceHistory/${id}`;
+    return this.client.get<FetchResult<InvoiceHistoryModel>>(url, null);
   }
 
   /**
@@ -60,6 +61,6 @@ export class InvoiceHistoryClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<InvoiceHistoryModel>>(url, options, null);
+    return this.client.get<FetchResult<InvoiceHistoryModel>>(url, options);
   }
 }

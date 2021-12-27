@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { UserRoleModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class UserRolesClient {
   private readonly client: LockstepApi;
@@ -25,7 +27,6 @@ export class UserRolesClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the User Role with this identifier.
    * 
@@ -33,13 +34,13 @@ export class UserRolesClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
    */
   retrieveUserRole(id: string, include: string): Promise<UserRoleModel | ErrorResult> {
-    const url = `/api/v1/UserRoles/{id}`;
+    const url = `/api/v1/UserRoles/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<UserRoleModel>(url, options, null);
+    return this.client.get<UserRoleModel>(url, options);
   }
 
   /**
@@ -62,6 +63,6 @@ export class UserRolesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<UserRoleModel>>(url, options, null);
+    return this.client.get<FetchResult<UserRoleModel>>(url, options);
   }
 }

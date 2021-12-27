@@ -12,8 +12,16 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { UserAccountModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { InviteModel } from "../models/DataModels";
+import { InviteSubmitModel } from "../models/DataModels";
+import { InviteDataModel } from "../models/DataModels";
+import { TransferOwnerModel } from "../models/DataModels";
+import { TransferOwnerSubmitModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class UserAccountsClient {
   private readonly client: LockstepApi;
@@ -25,7 +33,6 @@ export class UserAccountsClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the User with this identifier.
    * 
@@ -35,13 +42,13 @@ export class UserAccountsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Notes, Attachments, CustomFields, AccountingRole
    */
   retrieveUser(id: string, include: string): Promise<UserAccountModel | ErrorResult> {
-    const url = `/api/v1/UserAccounts/{id}`;
+    const url = `/api/v1/UserAccounts/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<UserAccountModel>(url, options, null);
+    return this.client.get<UserAccountModel>(url, options);
   }
 
   /**
@@ -53,7 +60,7 @@ export class UserAccountsClient {
    * @param body - A list of changes to apply to this User
    */
   updateUser(id: string, body: object): Promise<UserAccountModel | ErrorResult> {
-    const url = `/api/v1/UserAccounts/{id}`;
+    const url = `/api/v1/UserAccounts/${id}`;
     return this.client.patch<UserAccountModel>(url, null, body);
   }
 
@@ -65,8 +72,8 @@ export class UserAccountsClient {
    * @param id - The unique Lockstep Platform ID number of this User
    */
   disableUser(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/UserAccounts/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/UserAccounts/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -83,7 +90,7 @@ export class UserAccountsClient {
         id,
       },
     };
-    return this.client.post<ActionResultModel>(url, options, body);
+    return this.client.post<ActionResultModel>(url, options, null);
   }
 
   /**
@@ -93,7 +100,7 @@ export class UserAccountsClient {
    * 
    * @param body - The user to invite
    */
-  inviteUser(body: object): Promise<InviteModel[] | ErrorResult> {
+  inviteUser(body: InviteSubmitModel[]): Promise<InviteModel[] | ErrorResult> {
     const url = `/api/v1/UserAccounts/invite`;
     return this.client.post<InviteModel[]>(url, null, body);
   }
@@ -111,7 +118,7 @@ export class UserAccountsClient {
         code,
       },
     };
-    return this.client.get<InviteDataModel>(url, options, null);
+    return this.client.get<InviteDataModel>(url, options);
   }
 
   /**
@@ -121,7 +128,7 @@ export class UserAccountsClient {
    * 
    * @param body - 
    */
-  transferOwner(body: object): Promise<TransferOwnerModel | ErrorResult> {
+  transferOwner(body: TransferOwnerSubmitModel): Promise<TransferOwnerModel | ErrorResult> {
     const url = `/api/v1/UserAccounts/transfer-owner`;
     return this.client.post<TransferOwnerModel>(url, null, body);
   }
@@ -146,6 +153,6 @@ export class UserAccountsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<UserAccountModel>>(url, options, null);
+    return this.client.get<FetchResult<UserAccountModel>>(url, options);
   }
 }

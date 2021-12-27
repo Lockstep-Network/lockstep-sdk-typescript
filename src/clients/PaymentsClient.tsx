@@ -12,8 +12,14 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { PaymentModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
+import { PaymentSummaryModel } from "../models/DataModels";
+import { PaymentDetailHeaderModel } from "../models/DataModels";
+import { PaymentDetailModel } from "../models/DataModels";
 
 export class PaymentsClient {
   private readonly client: LockstepApi;
@@ -25,7 +31,6 @@ export class PaymentsClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the Payment specified by this unique identifier, optionally including nested data sets.
    * 
@@ -35,13 +40,13 @@ export class PaymentsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Applications, Notes, Attachments, CustomFields
    */
   retrievePayment(id: string, include: string): Promise<PaymentModel | ErrorResult> {
-    const url = `/api/v1/Payments/{id}`;
+    const url = `/api/v1/Payments/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<PaymentModel>(url, options, null);
+    return this.client.get<PaymentModel>(url, options);
   }
 
   /**
@@ -55,7 +60,7 @@ export class PaymentsClient {
    * @param body - A list of changes to apply to this Payment
    */
   updatePayment(id: string, body: object): Promise<PaymentModel | ErrorResult> {
-    const url = `/api/v1/Payments/{id}`;
+    const url = `/api/v1/Payments/${id}`;
     return this.client.patch<PaymentModel>(url, null, body);
   }
 
@@ -67,8 +72,8 @@ export class PaymentsClient {
    * @param id - The unique Lockstep Platform ID number of the Payment to delete; NOT the customer's ERP key
    */
   deletePayment(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Payments/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Payments/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -78,7 +83,7 @@ export class PaymentsClient {
    * 
    * @param body - The Payments to create
    */
-  createPayments(body: object): Promise<PaymentModel[] | ErrorResult> {
+  createPayments(body: PaymentModel[]): Promise<PaymentModel[] | ErrorResult> {
     const url = `/api/v1/Payments`;
     return this.client.post<PaymentModel[]>(url, null, body);
   }
@@ -107,7 +112,7 @@ export class PaymentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<PaymentModel>>(url, options, null);
+    return this.client.get<FetchResult<PaymentModel>>(url, options);
   }
 
   /**
@@ -134,7 +139,7 @@ export class PaymentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<PaymentSummaryModel>>(url, options, null);
+    return this.client.get<FetchResult<PaymentSummaryModel>>(url, options);
   }
 
   /**
@@ -143,7 +148,7 @@ export class PaymentsClient {
    */
   retrievePaymentDetailHeader(): Promise<PaymentDetailHeaderModel | ErrorResult> {
     const url = `/api/v1/Payments/views/detail-header`;
-    return this.client.get<PaymentDetailHeaderModel>(url, null, null);
+    return this.client.get<PaymentDetailHeaderModel>(url, null);
   }
 
   /**
@@ -168,6 +173,6 @@ export class PaymentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<PaymentDetailModel>>(url, options, null);
+    return this.client.get<FetchResult<PaymentDetailModel>>(url, options);
   }
 }

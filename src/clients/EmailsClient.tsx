@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { EmailModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
 
 export class EmailsClient {
   private readonly client: LockstepApi;
@@ -25,7 +28,6 @@ export class EmailsClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the email with the specified email identifier.
    * 
@@ -35,13 +37,13 @@ export class EmailsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, CustomFields, Notes
    */
   retrieveEmail(id: string, include: string): Promise<EmailModel | ErrorResult> {
-    const url = `/api/v1/Emails/{id}`;
+    const url = `/api/v1/Emails/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<EmailModel>(url, options, null);
+    return this.client.get<EmailModel>(url, options);
   }
 
   /**
@@ -55,7 +57,7 @@ export class EmailsClient {
    * @param body - A list of changes to apply to this Email
    */
   updateEmail(id: string, body: object): Promise<EmailModel | ErrorResult> {
-    const url = `/api/v1/Emails/{id}`;
+    const url = `/api/v1/Emails/${id}`;
     return this.client.patch<EmailModel>(url, null, body);
   }
 
@@ -67,8 +69,8 @@ export class EmailsClient {
    * @param id - The unique Lockstep Platform ID number of the Email to delete
    */
   deleteEmail(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Emails/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Emails/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -79,8 +81,8 @@ export class EmailsClient {
    * @param nonce - The random nonce applied at time of url creation.
    */
   retrieveEmailLogo(emailId: string, nonce: string): Promise<File | ErrorResult> {
-    const url = `/api/v1/Emails/{emailId}/logo/{nonce}`;
-    return this.client.get<File>(url, null, null);
+    const url = `/api/v1/Emails/${emailId}/logo/${nonce}`;
+    return this.client.get<File>(url, null);
   }
 
   /**
@@ -90,7 +92,7 @@ export class EmailsClient {
    * 
    * @param body - The array of emails to be created
    */
-  createEmails(body: object): Promise<EmailModel[] | ErrorResult> {
+  createEmails(body: EmailModel[]): Promise<EmailModel[] | ErrorResult> {
     const url = `/api/v1/Emails`;
     return this.client.post<EmailModel[]>(url, null, body);
   }
@@ -119,6 +121,6 @@ export class EmailsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<EmailModel>>(url, options, null);
+    return this.client.get<FetchResult<EmailModel>>(url, options);
   }
 }

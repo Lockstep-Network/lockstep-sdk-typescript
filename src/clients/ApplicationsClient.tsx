@@ -12,8 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { ApplicationModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
 
 export class ApplicationsClient {
   private readonly client: LockstepApi;
@@ -24,7 +27,6 @@ export class ApplicationsClient {
   public constructor(client: LockstepApi) {
     this.client = client;
   }
-
 
   /**
    * Retrieves the Application with this identifier.
@@ -37,13 +39,13 @@ export class ApplicationsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Notes, Attachments, CustomFields
    */
   retrieveApplication(id: string, include: string): Promise<ApplicationModel | ErrorResult> {
-    const url = `/api/v1/Applications/{id}`;
+    const url = `/api/v1/Applications/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<ApplicationModel>(url, options, null);
+    return this.client.get<ApplicationModel>(url, options);
   }
 
   /**
@@ -57,7 +59,7 @@ export class ApplicationsClient {
    * @param body - A list of changes to apply to this Application
    */
   updateApplication(id: string, body: object): Promise<ApplicationModel | ErrorResult> {
-    const url = `/api/v1/Applications/{id}`;
+    const url = `/api/v1/Applications/${id}`;
     return this.client.patch<ApplicationModel>(url, null, body);
   }
 
@@ -69,8 +71,8 @@ export class ApplicationsClient {
    * @param id - The unique ID number of the Application to delete
    */
   deleteApplication(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Applications/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Applications/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -82,7 +84,7 @@ export class ApplicationsClient {
    * 
    * @param body - The Applications to create
    */
-  createApplications(body: object): Promise<ApplicationModel[] | ErrorResult> {
+  createApplications(body: ApplicationModel[]): Promise<ApplicationModel[] | ErrorResult> {
     const url = `/api/v1/Applications`;
     return this.client.post<ApplicationModel[]>(url, null, body);
   }
@@ -111,6 +113,6 @@ export class ApplicationsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<ApplicationModel>>(url, options, null);
+    return this.client.get<FetchResult<ApplicationModel>>(url, options);
   }
 }

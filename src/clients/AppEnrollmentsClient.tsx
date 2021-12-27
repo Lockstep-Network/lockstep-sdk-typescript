@@ -12,8 +12,12 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { AppEnrollmentModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
+import { AppEnrollmentCustomFieldModel } from "../models/DataModels";
 
 export class AppEnrollmentsClient {
   private readonly client: LockstepApi;
@@ -24,7 +28,6 @@ export class AppEnrollmentsClient {
   public constructor(client: LockstepApi) {
     this.client = client;
   }
-
 
   /**
    * Retrieves the App Enrollment with this identifier.
@@ -37,13 +40,13 @@ export class AppEnrollmentsClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields
    */
   retrieveAppEnrollment(id: string, include: string): Promise<AppEnrollmentModel | ErrorResult> {
-    const url = `/api/v1/AppEnrollments/{id}`;
+    const url = `/api/v1/AppEnrollments/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<AppEnrollmentModel>(url, options, null);
+    return this.client.get<AppEnrollmentModel>(url, options);
   }
 
   /**
@@ -57,7 +60,7 @@ export class AppEnrollmentsClient {
    * @param body - A list of changes to apply to this App Enrollment
    */
   updateAppEnrollment(id: string, body: object): Promise<AppEnrollmentModel | ErrorResult> {
-    const url = `/api/v1/AppEnrollments/{id}`;
+    const url = `/api/v1/AppEnrollments/${id}`;
     return this.client.patch<AppEnrollmentModel>(url, null, body);
   }
 
@@ -69,8 +72,8 @@ export class AppEnrollmentsClient {
    * @param id - The unique ID number of the App Enrollment to delete
    */
   deleteAppEnrollment(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/AppEnrollments/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/AppEnrollments/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -82,7 +85,7 @@ export class AppEnrollmentsClient {
    * 
    * @param body - The App Enrollments to create
    */
-  createAppEnrollments(body: object): Promise<AppEnrollmentModel[] | ErrorResult> {
+  createAppEnrollments(body: AppEnrollmentModel[]): Promise<AppEnrollmentModel[] | ErrorResult> {
     const url = `/api/v1/AppEnrollments`;
     return this.client.post<AppEnrollmentModel[]>(url, null, body);
   }
@@ -111,7 +114,7 @@ export class AppEnrollmentsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<AppEnrollmentModel>>(url, options, null);
+    return this.client.get<FetchResult<AppEnrollmentModel>>(url, options);
   }
 
   /**
@@ -124,7 +127,7 @@ export class AppEnrollmentsClient {
    * @param id - The unique ID number of the App Enrollment for which we retrieve custom fields
    */
   queryEnrollmentFields(id: string): Promise<FetchResult<AppEnrollmentCustomFieldModel> | ErrorResult> {
-    const url = `/api/v1/AppEnrollments/settings/{id}`;
-    return this.client.get<FetchResult<AppEnrollmentCustomFieldModel>>(url, null, null);
+    const url = `/api/v1/AppEnrollments/settings/${id}`;
+    return this.client.get<FetchResult<AppEnrollmentCustomFieldModel>>(url, null);
   }
 }

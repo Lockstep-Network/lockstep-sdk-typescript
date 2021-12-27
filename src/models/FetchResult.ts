@@ -16,7 +16,7 @@
  * Represents the results of a query.  The total number of records matching the query are in the `totalCount` parameter.
  * You can use `pageSize` and `pageNumber` to continue fetching data until `totalCount` is reached.
  */
-type FetchResult<T> = {
+export type FetchResult<T> = {
     records: T[] | null;
     totalCount: number;
     pageSize: number;

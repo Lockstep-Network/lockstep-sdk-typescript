@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { MigrationResultModel } from "../models/DataModels";
+import { AvailableMigrationsModel } from "../models/DataModels";
 
 export class MigrationClient {
   private readonly client: LockstepApi;
@@ -25,14 +27,13 @@ export class MigrationClient {
     this.client = client;
   }
 
-
   /**
    * Migrates all customer data from the Lockstep Collect system to the API, including all stored data for contacts, companies, payments, and invoices.
    * 
    */
   migrateData(): Promise<MigrationResultModel | ErrorResult> {
     const url = `/api/v1/Migration`;
-    return this.client.post<MigrationResultModel>(url, null, body);
+    return this.client.post<MigrationResultModel>(url, null, null);
   }
 
   /**
@@ -41,6 +42,6 @@ export class MigrationClient {
    */
   listMigrations(): Promise<AvailableMigrationsModel | ErrorResult> {
     const url = `/api/v1/Migration/list`;
-    return this.client.get<AvailableMigrationsModel>(url, null, null);
+    return this.client.get<AvailableMigrationsModel>(url, null);
   }
 }

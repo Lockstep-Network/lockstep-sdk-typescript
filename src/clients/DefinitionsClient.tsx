@@ -12,8 +12,13 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { FetchResult } from "../models/FetchResult";
+import { CountryModel } from "../models/DataModels";
+import { CurrencyModel } from "../models/DataModels";
+import { StateModel } from "../models/DataModels";
+import { ErpModel } from "../models/DataModels";
 
 export class DefinitionsClient {
   private readonly client: LockstepApi;
@@ -24,7 +29,6 @@ export class DefinitionsClient {
   public constructor(client: LockstepApi) {
     this.client = client;
   }
-
 
   /**
    * Queries the ISO3166 List of Countries using the specified filtering, sorting, nested fetch, and pagination rules requested.
@@ -47,7 +51,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CountryModel>>(url, options, null);
+    return this.client.get<FetchResult<CountryModel>>(url, options);
   }
 
   /**
@@ -73,7 +77,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CurrencyModel>>(url, options, null);
+    return this.client.get<FetchResult<CurrencyModel>>(url, options);
   }
 
   /**
@@ -97,7 +101,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<StateModel>>(url, options, null);
+    return this.client.get<FetchResult<StateModel>>(url, options);
   }
 
   /**
@@ -121,6 +125,6 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<ErpModel>>(url, options, null);
+    return this.client.get<FetchResult<ErpModel>>(url, options);
   }
 }

@@ -13,7 +13,34 @@
  */
 
 import * as axios from "axios";
+import { ActivitiesClient } from "./clients/ActivitiesClient";
+import { ApiKeysClient } from "./clients/ApiKeysClient";
+import { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient";
+import { ApplicationsClient } from "./clients/ApplicationsClient";
+import { AttachmentsClient } from "./clients/AttachmentsClient";
+import { CodeDefinitionsClient } from "./clients/CodeDefinitionsClient";
+import { CompaniesClient } from "./clients/CompaniesClient";
+import { ContactsClient } from "./clients/ContactsClient";
+import { CreditMemoAppliedClient } from "./clients/CreditMemoAppliedClient";
+import { CurrenciesClient } from "./clients/CurrenciesClient";
+import { CustomFieldDefinitionsClient } from "./clients/CustomFieldDefinitionsClient";
+import { CustomFieldValuesClient } from "./clients/CustomFieldValuesClient";
+import { DefinitionsClient } from "./clients/DefinitionsClient";
+import { EmailsClient } from "./clients/EmailsClient";
+import { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient";
+import { InvoicesClient } from "./clients/InvoicesClient";
+import { LeadsClient } from "./clients/LeadsClient";
+import { MigrationClient } from "./clients/MigrationClient";
+import { NotesClient } from "./clients/NotesClient";
+import { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient";
+import { PaymentsClient } from "./clients/PaymentsClient";
+import { ProvisioningClient } from "./clients/ProvisioningClient";
+import { ReportsClient } from "./clients/ReportsClient";
 import { StatusClient } from "./clients/StatusClient";
+import { SyncClient } from "./clients/SyncClient";
+import { UserAccountsClient } from "./clients/UserAccountsClient";
+import { UserRolesClient } from "./clients/UserRolesClient";
+import { ErrorResult } from "./models/ErrorResult";
 
 export class LockstepApi {
 
@@ -23,14 +50,68 @@ export class LockstepApi {
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
 
+  public readonly Activities: ActivitiesClient;
+  public readonly ApiKeys: ApiKeysClient;
+  public readonly AppEnrollments: AppEnrollmentsClient;
+  public readonly Applications: ApplicationsClient;
+  public readonly Attachments: AttachmentsClient;
+  public readonly CodeDefinitions: CodeDefinitionsClient;
+  public readonly Companies: CompaniesClient;
+  public readonly Contacts: ContactsClient;
+  public readonly CreditMemoApplied: CreditMemoAppliedClient;
+  public readonly Currencies: CurrenciesClient;
+  public readonly CustomFieldDefinitions: CustomFieldDefinitionsClient;
+  public readonly CustomFieldValues: CustomFieldValuesClient;
+  public readonly Definitions: DefinitionsClient;
+  public readonly Emails: EmailsClient;
+  public readonly InvoiceHistory: InvoiceHistoryClient;
+  public readonly Invoices: InvoicesClient;
+  public readonly Leads: LeadsClient;
+  public readonly Migration: MigrationClient;
+  public readonly Notes: NotesClient;
+  public readonly PaymentApplications: PaymentApplicationsClient;
+  public readonly Payments: PaymentsClient;
+  public readonly Provisioning: ProvisioningClient;
+  public readonly Reports: ReportsClient;
   public readonly Status: StatusClient;
+  public readonly Sync: SyncClient;
+  public readonly UserAccounts: UserAccountsClient;
+  public readonly UserRoles: UserRolesClient;
+
 
   /** 
    * Internal constructor for the Lockstep API client
    */
   private constructor(customUrl: string) {
     this.serverUrl = customUrl;
+
+    this.Activities = new ActivitiesClient(this);
+    this.ApiKeys = new ApiKeysClient(this);
+    this.AppEnrollments = new AppEnrollmentsClient(this);
+    this.Applications = new ApplicationsClient(this);
+    this.Attachments = new AttachmentsClient(this);
+    this.CodeDefinitions = new CodeDefinitionsClient(this);
+    this.Companies = new CompaniesClient(this);
+    this.Contacts = new ContactsClient(this);
+    this.CreditMemoApplied = new CreditMemoAppliedClient(this);
+    this.Currencies = new CurrenciesClient(this);
+    this.CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
+    this.CustomFieldValues = new CustomFieldValuesClient(this);
+    this.Definitions = new DefinitionsClient(this);
+    this.Emails = new EmailsClient(this);
+    this.InvoiceHistory = new InvoiceHistoryClient(this);
+    this.Invoices = new InvoicesClient(this);
+    this.Leads = new LeadsClient(this);
+    this.Migration = new MigrationClient(this);
+    this.Notes = new NotesClient(this);
+    this.PaymentApplications = new PaymentApplicationsClient(this);
+    this.Payments = new PaymentsClient(this);
+    this.Provisioning = new ProvisioningClient(this);
+    this.Reports = new ReportsClient(this);
     this.Status = new StatusClient(this);
+    this.Sync = new SyncClient(this);
+    this.UserAccounts = new UserAccountsClient(this);
+    this.UserRoles = new UserRolesClient(this);
   }
 
   /**
@@ -39,8 +120,7 @@ export class LockstepApi {
    * @param env The environment to use, either "prd" for production or "sbx" for sandbox.
    * @returns The Lockstep API client to use
    */
-  public static withEnvironment(env: "prd" | "sbx"): LockstepApi
-  {
+  public static withEnvironment(env: "prd" | "sbx"): LockstepApi {
     var url = "https://api.lockstep.io";
     switch (env) {
       case "prd": url = "https://api.lockstep.io"; break;
@@ -57,8 +137,7 @@ export class LockstepApi {
    * @param unsafeUrl The non-Lockstep URL to use for this client
    * @returns The Lockstep API client to use
    */
-  public static withCustomEnvironment(unsafeUrl: string): LockstepApi
-  {
+  public static withCustomEnvironment(unsafeUrl: string): LockstepApi {
     return new LockstepApi(unsafeUrl);
   }
 
@@ -89,8 +168,7 @@ export class LockstepApi {
   /**
    * Make a GET request using this client
    */
-  public async get<T>(path: string, options: any): Promise<T | ErrorResult>
-  {
+  public async get<T>(path: string, options: any): Promise<T | ErrorResult> {
     const requestConfig = {
       url: new URL(this.serverUrl, path).href,
       method: 'get' as axios.Method,
@@ -107,8 +185,7 @@ export class LockstepApi {
   /**
    * Make a POST request using this client
    */
-   public async post<T>(path: string, options: any, body: any): Promise<T | ErrorResult>
-  {
+  public async post<T>(path: string, options: any, body: any): Promise<T | ErrorResult> {
     const requestConfig = {
       url: new URL(this.serverUrl, path).href,
       method: 'post' as axios.Method,
@@ -126,8 +203,7 @@ export class LockstepApi {
   /**
    * Make a PUT request using this client
    */
-   public async put<T>(path: string, options: any, body: any): Promise<T | ErrorResult>
-  {
+  public async put<T>(path: string, options: any, body: any): Promise<T | ErrorResult> {
     const requestConfig = {
       url: new URL(this.serverUrl, path).href,
       method: 'put' as axios.Method,
@@ -145,8 +221,7 @@ export class LockstepApi {
   /**
    * Make a PATCH request using this client
    */
-   public async patch<T>(path: string, options: any, body: any): Promise<T | ErrorResult>
-  {
+  public async patch<T>(path: string, options: any, body: any): Promise<T | ErrorResult> {
     const requestConfig = {
       url: new URL(this.serverUrl, path).href,
       method: 'patch' as axios.Method,
@@ -164,8 +239,7 @@ export class LockstepApi {
   /**
    * Make a DELETE request using this client
    */
-   public async delete<T>(path: string, options: any): Promise<T | ErrorResult>
-  {
+  public async delete<T>(path: string, options: any): Promise<T | ErrorResult> {
     const requestConfig = {
       url: new URL(this.serverUrl, path).href,
       method: 'delete' as axios.Method,

@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { ApiKeyModel } from "../models/DataModels";
+import { FetchResult } from "../models/FetchResult";
 
 export class ApiKeysClient {
   private readonly client: LockstepApi;
@@ -25,7 +27,6 @@ export class ApiKeysClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the API Key with this identifier.
    * 
@@ -35,13 +36,13 @@ export class ApiKeysClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future.
    */
   retrieveAPIKey(id: string, include: string): Promise<ApiKeyModel | ErrorResult> {
-    const url = `/api/v1/ApiKeys/{id}`;
+    const url = `/api/v1/ApiKeys/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<ApiKeyModel>(url, options, null);
+    return this.client.get<ApiKeyModel>(url, options);
   }
 
   /**
@@ -52,8 +53,8 @@ export class ApiKeysClient {
    * @param id - The unique Lockstep Platform ID number of this API Key
    */
   revokeAPIKey(id: string): Promise<ApiKeyModel | ErrorResult> {
-    const url = `/api/v1/ApiKeys/{id}`;
-    return this.client.delete<ApiKeyModel>(url, null, null);
+    const url = `/api/v1/ApiKeys/${id}`;
+    return this.client.delete<ApiKeyModel>(url, null);
   }
 
   /**
@@ -63,7 +64,7 @@ export class ApiKeysClient {
    * 
    * @param body - Metadata about the API Key to create.
    */
-  createAPIKey(body: object): Promise<ApiKeyModel | ErrorResult> {
+  createAPIKey(body: ApiKeyModel): Promise<ApiKeyModel | ErrorResult> {
     const url = `/api/v1/ApiKeys`;
     return this.client.post<ApiKeyModel>(url, null, body);
   }
@@ -88,6 +89,6 @@ export class ApiKeysClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<ApiKeyModel>>(url, options, null);
+    return this.client.get<FetchResult<ApiKeyModel>>(url, options);
   }
 }

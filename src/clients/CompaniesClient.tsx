@@ -12,8 +12,13 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { CompanyModel } from "../models/DataModels";
+import { ActionResultModel } from "../models/ActionResultModel";
+import { FetchResult } from "../models/FetchResult";
+import { CustomerSummaryModel } from "../models/DataModels";
+import { CustomerDetailsModel } from "../models/DataModels";
 
 export class CompaniesClient {
   private readonly client: LockstepApi;
@@ -25,7 +30,6 @@ export class CompaniesClient {
     this.client = client;
   }
 
-
   /**
    * Retrieves the Company specified by this unique identifier, optionally including nested data sets.  A Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.
    * 
@@ -35,13 +39,13 @@ export class CompaniesClient {
    * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification
    */
   retrieveCompany(id: string, include: string): Promise<CompanyModel | ErrorResult> {
-    const url = `/api/v1/Companies/{id}`;
+    const url = `/api/v1/Companies/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.get<CompanyModel>(url, options, null);
+    return this.client.get<CompanyModel>(url, options);
   }
 
   /**
@@ -55,7 +59,7 @@ export class CompaniesClient {
    * @param body - A list of changes to apply to this Company
    */
   updateCompany(id: string, body: object): Promise<CompanyModel | ErrorResult> {
-    const url = `/api/v1/Companies/{id}`;
+    const url = `/api/v1/Companies/${id}`;
     return this.client.patch<CompanyModel>(url, null, body);
   }
 
@@ -69,8 +73,8 @@ export class CompaniesClient {
    * @param id - The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
    */
   disableCompany(id: string): Promise<ActionResultModel | ErrorResult> {
-    const url = `/api/v1/Companies/{id}`;
-    return this.client.delete<ActionResultModel>(url, null, null);
+    const url = `/api/v1/Companies/${id}`;
+    return this.client.delete<ActionResultModel>(url, null);
   }
 
   /**
@@ -80,7 +84,7 @@ export class CompaniesClient {
    * 
    * @param body - The Companies to create
    */
-  createCompanies(body: object): Promise<CompanyModel[] | ErrorResult> {
+  createCompanies(body: CompanyModel[]): Promise<CompanyModel[] | ErrorResult> {
     const url = `/api/v1/Companies`;
     return this.client.post<CompanyModel[]>(url, null, body);
   }
@@ -109,7 +113,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CompanyModel>>(url, options, null);
+    return this.client.get<FetchResult<CompanyModel>>(url, options);
   }
 
   /**
@@ -134,7 +138,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.get<FetchResult<CustomerSummaryModel>>(url, options, null);
+    return this.client.get<FetchResult<CustomerSummaryModel>>(url, options);
   }
 
   /**
@@ -143,7 +147,7 @@ export class CompaniesClient {
    * @param id - The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
    */
   retrieveCustomerDetail(id: string): Promise<CustomerDetailsModel | ErrorResult> {
-    const url = `/api/v1/Companies/views/customer-details/{id}`;
-    return this.client.get<CustomerDetailsModel>(url, null, null);
+    const url = `/api/v1/Companies/views/customer-details/${id}`;
+    return this.client.get<CustomerDetailsModel>(url, null);
   }
 }

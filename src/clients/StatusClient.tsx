@@ -12,8 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-
 import { LockstepApi } from "../APIClient";
+import { ErrorResult } from "../models/ErrorResult";
+import { StatusModel } from "../models/DataModels";
+import { TestTimeoutException } from "../models/DataModels";
 
 export class StatusClient {
   private readonly client: LockstepApi;
@@ -24,7 +26,6 @@ export class StatusClient {
   public constructor(client: LockstepApi) {
     this.client = client;
   }
-
 
   /**
    * Verifies that your application can successfully call the Lockstep Platform API and returns a successful code regardless of your authentication status or permissions.
@@ -44,13 +45,13 @@ export class StatusClient {
    * The Error Test API allows you to test whether your client program is capable of handling certain types of error codes.  Developers writing libraries may find it useful to create integration tests that verify that their code can correctly detect the difference between a validation error resulting in a 400 error code, a network timeout resulting in a broken network connection, and a server error resulting in a 500 error code.  You may use the Error Test API to verify that your code is able to identify and handle these cases correctly.
    * @param err - The type of error test to execute. Supported error types: 500, timeout
    */
-  errorTest(err: string): Promise<unknown | ErrorResult> {
+  errorTest(err: string): Promise<TestTimeoutException | ErrorResult> {
     const url = `/api/v1/Status/testing`;
     const options = {
       params: {
         err,
       },
     };
-    return this.client.get<unknown>(url, options);
+    return this.client.get<TestTimeoutException>(url, options);
   }
 }
