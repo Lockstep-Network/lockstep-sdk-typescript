@@ -19,3 +19,4 @@ export type ActionResultModel = {
     messages: string[] | null;
 }
 
+export type UriModel = string;

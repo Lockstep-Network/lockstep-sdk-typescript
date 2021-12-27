@@ -2,10 +2,7 @@
     "name": "lockstep-sdk",
     "version": "2021.39.690",
     "description": "API Client to use the Lockstep Platform API",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/tspence/lockstep-sdk-typescript"
-    },
+    "repository": "https://github.com/tspence/lockstep-sdk-typescript",
     "license": "MIT",
     "author": "Lockstep <developer@lockstep.io> (https://developer.lockstep.io)",
     "keywords": [
@@ -20,10 +17,11 @@
         "axios": "^0.24.0"
     },
     "scripts": {
-        "test": "jest"
+        "compile": "tsc"
     },
+    "type": "module",
+    "main": "index.js",
     "devDependencies": {
-        "jest": "^27.4.5"
-    },
-    "type": "module"
+        "typescript": "^4.5.4"
+    }
 }

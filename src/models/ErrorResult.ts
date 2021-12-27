@@ -23,3 +23,7 @@ export type ErrorResult = {
     instance: string | null;
 }
 
+/**
+ * Not intended to be used
+ */
+export type TestTimeoutException = ErrorResult;

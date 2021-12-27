@@ -16,7 +16,7 @@ import { LockstepApi } from "../APIClient";
 import { ErrorResult } from "../models/ErrorResult";
 import { AttachmentModel } from "../models/DataModels";
 import { ActionResultModel } from "../models/ActionResultModel";
-import { UriModel } from "../models/DataModels";
+import { UriModel } from "../models/ActionResultModel";
 import { FetchResult } from "../models/FetchResult";
 
 export class AttachmentsClient {

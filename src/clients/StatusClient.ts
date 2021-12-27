@@ -15,7 +15,7 @@
 import { LockstepApi } from "../APIClient";
 import { ErrorResult } from "../models/ErrorResult";
 import { StatusModel } from "../models/DataModels";
-import { TestTimeoutException } from "../models/DataModels";
+import { TestTimeoutException } from "../models/ErrorResult";
 
 export class StatusClient {
   private readonly client: LockstepApi;
