@@ -12,12 +12,12 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient";
-import { ErrorResult } from "../models/ErrorResult";
-import { AppEnrollmentModel } from "../models/DataModels";
-import { ActionResultModel } from "../models/ActionResultModel";
-import { FetchResult } from "../models/FetchResult";
-import { AppEnrollmentCustomFieldModel } from "../models/DataModels";
+import { LockstepApi } from "../APIClient.js";
+import { ErrorResult } from "../models/ErrorResult.js";
+import { AppEnrollmentModel } from "../models/DataModels.js";
+import { ActionResultModel } from "../models/ActionResultModel.js";
+import { FetchResult } from "../models/FetchResult.js";
+import { AppEnrollmentCustomFieldModel } from "../models/DataModels.js";
 
 export class AppEnrollmentsClient {
   private readonly client: LockstepApi;

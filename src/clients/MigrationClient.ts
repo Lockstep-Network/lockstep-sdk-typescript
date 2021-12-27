@@ -12,10 +12,10 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient";
-import { ErrorResult } from "../models/ErrorResult";
-import { MigrationResultModel } from "../models/DataModels";
-import { AvailableMigrationsModel } from "../models/DataModels";
+import { LockstepApi } from "../APIClient.js";
+import { ErrorResult } from "../models/ErrorResult.js";
+import { MigrationResultModel } from "../models/DataModels.js";
+import { AvailableMigrationsModel } from "../models/DataModels.js";
 
 export class MigrationClient {
   private readonly client: LockstepApi;

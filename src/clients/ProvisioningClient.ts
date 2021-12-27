@@ -12,11 +12,11 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient";
-import { ErrorResult } from "../models/ErrorResult";
-import { ProvisioningResponseModel } from "../models/DataModels";
-import { ProvisioningModel } from "../models/DataModels";
-import { ProvisioningFinalizeRequestModel } from "../models/DataModels";
+import { LockstepApi } from "../APIClient.js";
+import { ErrorResult } from "../models/ErrorResult.js";
+import { ProvisioningResponseModel } from "../models/DataModels.js";
+import { ProvisioningModel } from "../models/DataModels.js";
+import { ProvisioningFinalizeRequestModel } from "../models/DataModels.js";
 
 export class ProvisioningClient {
   private readonly client: LockstepApi;

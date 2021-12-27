@@ -13,34 +13,34 @@
  */
 
 import * as axios from "axios";
-import { ActivitiesClient } from "./clients/ActivitiesClient";
-import { ApiKeysClient } from "./clients/ApiKeysClient";
-import { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient";
-import { ApplicationsClient } from "./clients/ApplicationsClient";
-import { AttachmentsClient } from "./clients/AttachmentsClient";
-import { CodeDefinitionsClient } from "./clients/CodeDefinitionsClient";
-import { CompaniesClient } from "./clients/CompaniesClient";
-import { ContactsClient } from "./clients/ContactsClient";
-import { CreditMemoAppliedClient } from "./clients/CreditMemoAppliedClient";
-import { CurrenciesClient } from "./clients/CurrenciesClient";
-import { CustomFieldDefinitionsClient } from "./clients/CustomFieldDefinitionsClient";
-import { CustomFieldValuesClient } from "./clients/CustomFieldValuesClient";
-import { DefinitionsClient } from "./clients/DefinitionsClient";
-import { EmailsClient } from "./clients/EmailsClient";
-import { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient";
-import { InvoicesClient } from "./clients/InvoicesClient";
-import { LeadsClient } from "./clients/LeadsClient";
-import { MigrationClient } from "./clients/MigrationClient";
-import { NotesClient } from "./clients/NotesClient";
-import { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient";
-import { PaymentsClient } from "./clients/PaymentsClient";
-import { ProvisioningClient } from "./clients/ProvisioningClient";
-import { ReportsClient } from "./clients/ReportsClient";
-import { StatusClient } from "./clients/StatusClient";
-import { SyncClient } from "./clients/SyncClient";
-import { UserAccountsClient } from "./clients/UserAccountsClient";
-import { UserRolesClient } from "./clients/UserRolesClient";
-import { ErrorResult } from "./models/ErrorResult";
+import { ActivitiesClient } from "./clients/ActivitiesClient.js";
+import { ApiKeysClient } from "./clients/ApiKeysClient.js";
+import { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient.js";
+import { ApplicationsClient } from "./clients/ApplicationsClient.js";
+import { AttachmentsClient } from "./clients/AttachmentsClient.js";
+import { CodeDefinitionsClient } from "./clients/CodeDefinitionsClient.js";
+import { CompaniesClient } from "./clients/CompaniesClient.js";
+import { ContactsClient } from "./clients/ContactsClient.js";
+import { CreditMemoAppliedClient } from "./clients/CreditMemoAppliedClient.js";
+import { CurrenciesClient } from "./clients/CurrenciesClient.js";
+import { CustomFieldDefinitionsClient } from "./clients/CustomFieldDefinitionsClient.js";
+import { CustomFieldValuesClient } from "./clients/CustomFieldValuesClient.js";
+import { DefinitionsClient } from "./clients/DefinitionsClient.js";
+import { EmailsClient } from "./clients/EmailsClient.js";
+import { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient.js";
+import { InvoicesClient } from "./clients/InvoicesClient.js";
+import { LeadsClient } from "./clients/LeadsClient.js";
+import { MigrationClient } from "./clients/MigrationClient.js";
+import { NotesClient } from "./clients/NotesClient.js";
+import { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient.js";
+import { PaymentsClient } from "./clients/PaymentsClient.js";
+import { ProvisioningClient } from "./clients/ProvisioningClient.js";
+import { ReportsClient } from "./clients/ReportsClient.js";
+import { StatusClient } from "./clients/StatusClient.js";
+import { SyncClient } from "./clients/SyncClient.js";
+import { UserAccountsClient } from "./clients/UserAccountsClient.js";
+import { UserRolesClient } from "./clients/UserRolesClient.js";
+import { ErrorResult } from "./models/ErrorResult.js";
 
 export class LockstepApi {
 
@@ -187,7 +187,7 @@ export class LockstepApi {
    */
   public async request<T>(method: axios.Method, path: string, options: any, body: any): Promise<T | ErrorResult> {
     const requestConfig = {
-      url: new URL(this.serverUrl, path).href,
+      url: new URL(path, this.serverUrl).href,
       method,
       params: options,
       data: body,

@@ -1,14 +1,10 @@
-import { LockstepApi } from "../APIClient"
+import { LockstepApi } from "../APIClient.js"
 
-// async main()
-// {
-//     // Using an API key
-//     var client = LockstepApi.withEnvironment("prd").withApiKey("LSPK-12345");
-//     var pingResult = await client.Status.ping();
-
-//     // Using a bearer token
-//     var token = await GetToken();
-//     var clientWithBearerToken = LockstepApi.withEnvironment("prd").withBearerToken(token);
-//     var pingResult2 = await clientWithBearerToken.Status.ping();
-// }
-
+// Using an API key
+console.log("Creating client");
+var client = LockstepApi.withEnvironment("sbx").withApiKey("TEST NOT A REAL KEY");
+console.log("About to call ping");
+client.Status.ping().then(result => {
+    console.log("Result: " + JSON.stringify(result));
+});
+console.log("Started ping call");

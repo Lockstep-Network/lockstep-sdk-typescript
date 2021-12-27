@@ -12,14 +12,14 @@
  * @link       https://github.com/tspence/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient";
-import { ErrorResult } from "../models/ErrorResult";
-import { CashflowReportModel } from "../models/DataModels";
-import { DailySalesOutstandingReportModel } from "../models/DataModels";
-import { RiskRateModel } from "../models/DataModels";
-import { ArHeaderInfoModel } from "../models/DataModels";
-import { AgingModel } from "../models/DataModels";
-import { ArAgingHeaderInfoModel } from "../models/DataModels";
+import { LockstepApi } from "../APIClient.js";
+import { ErrorResult } from "../models/ErrorResult.js";
+import { CashflowReportModel } from "../models/DataModels.js";
+import { DailySalesOutstandingReportModel } from "../models/DataModels.js";
+import { RiskRateModel } from "../models/DataModels.js";
+import { ArHeaderInfoModel } from "../models/DataModels.js";
+import { AgingModel } from "../models/DataModels.js";
+import { ArAgingHeaderInfoModel } from "../models/DataModels.js";
 
 export class ReportsClient {
   private readonly client: LockstepApi;
