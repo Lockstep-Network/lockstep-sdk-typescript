@@ -2,7 +2,7 @@
     "name": "lockstep-sdk",
     "version": "2021.39.691",
     "description": "API Client to use the Lockstep Platform API",
-    "repository": "https://github.com/tspence/lockstep-sdk-typescript",
+    "repository": "https://github.com/Lockstep-Network/lockstep-sdk-typescript",
     "license": "MIT",
     "author": "Lockstep <developer@lockstep.io> (https://developer.lockstep.io)",
     "keywords": [

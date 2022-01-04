@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { FetchResult } from "../models/FetchResult.js";
 import { InvoiceHistoryModel } from "../models/DataModels.js";
 
@@ -34,7 +34,7 @@ export class InvoiceHistoryClient {
    * 
    * @param id - The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key
    */
-  retrieveInvoiceHistory(id: string): Promise<FetchResult<InvoiceHistoryModel> | ErrorResult> {
+  retrieveInvoiceHistory(id: string): Promise<LockstepResponse<FetchResult<InvoiceHistoryModel>>> {
     const url = `/api/v1/InvoiceHistory/${id}`;
     return this.client.request<FetchResult<InvoiceHistoryModel>>('get', url, null, null);
   }
@@ -45,12 +45,12 @@ export class InvoiceHistoryClient {
    * An Invoice represents a bill sent from one company to another.  The Lockstep Platform tracks changes to each Invoice so that you can observe the changes over time.  You can view the InvoiceHistory list to monitor and observe the changes of this Invoice and track the dates when changes occurred.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available for querying but may be available in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryInvoiceHistory(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<InvoiceHistoryModel> | ErrorResult> {
+  queryInvoiceHistory(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<InvoiceHistoryModel>>> {
     const url = `/api/v1/InvoiceHistory/query`;
     const options = {
       params: {

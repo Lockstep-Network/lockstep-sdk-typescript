@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { CustomFieldValueModel } from "../models/DataModels.js";
 import { ActionResultModel } from "../models/ActionResultModel.js";
 import { FetchResult } from "../models/FetchResult.js";
@@ -35,9 +35,9 @@ export class CustomFieldValuesClient {
    * 
    * @param definitionId - The unique Lockstep Platform ID number of the Custom Field Definition for the Custom Field Value to retrieve.
    * @param recordKey - The unique Lockstep Platform ID number of the Lockstep Platform object the Custom Field Value is attached to.
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: CustomFieldDefinition
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: CustomFieldDefinition
    */
-  retrieveField(definitionId: string, recordKey: string, include: string): Promise<CustomFieldValueModel | ErrorResult> {
+  retrieveField(definitionId: string, recordKey: string, include: string): Promise<LockstepResponse<CustomFieldValueModel>> {
     const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
     const options = {
       params: {
@@ -58,7 +58,7 @@ export class CustomFieldValuesClient {
    * @param recordKey - The unique Lockstep Platform ID number of the Lockstep Platform object the Custom Field Value is attached to.
    * @param body - A list of changes to apply to this Custom Field
    */
-  updateField(definitionId: string, recordKey: string, body: object): Promise<CustomFieldValueModel | ErrorResult> {
+  updateField(definitionId: string, recordKey: string, body: object): Promise<LockstepResponse<CustomFieldValueModel>> {
     const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
     return this.client.request<CustomFieldValueModel>('patch', url, null, body);
   }
@@ -71,7 +71,7 @@ export class CustomFieldValuesClient {
    * @param definitionId - The unique Lockstep Platform ID number of the Custom Field Definition for the Custom Field Value to retrieve.
    * @param recordKey - The unique Lockstep Platform ID number of the Lockstep Platform object the Custom Field Value is attached to.
    */
-  deleteField(definitionId: string, recordKey: string): Promise<ActionResultModel | ErrorResult> {
+  deleteField(definitionId: string, recordKey: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/CustomFieldValues/${definitionId}/${recordKey}`;
     return this.client.request<ActionResultModel>('delete', url, null, null);
   }
@@ -81,7 +81,7 @@ export class CustomFieldValuesClient {
    * 
    * @param body - The Custom Fields to create
    */
-  createFields(body: CustomFieldValueModel[]): Promise<CustomFieldValueModel[] | ErrorResult> {
+  createFields(body: CustomFieldValueModel[]): Promise<LockstepResponse<CustomFieldValueModel[]>> {
     const url = `/api/v1/CustomFieldValues`;
     return this.client.request<CustomFieldValueModel[]>('post', url, null, body);
   }
@@ -94,12 +94,12 @@ export class CustomFieldValuesClient {
    * A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a core definition for each object.  The core definition is intended to represent a level of compatibility that provides support across most accounting systems and products.  When a user or developer requires information beyond this core definition, you can use Custom Fields to represent this information.  See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: CustomFieldDefinition
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: CustomFieldDefinition
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryFields(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<CustomFieldValueModel> | ErrorResult> {
+  queryFields(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CustomFieldValueModel>>> {
     const url = `/api/v1/CustomFieldValues/query`;
     const options = {
       params: {

@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { CodeDefinitionModel } from "../models/DataModels.js";
 import { FetchResult } from "../models/FetchResult.js";
 
@@ -33,9 +33,9 @@ export class CodeDefinitionsClient {
    * A CodeDefinition contains information around system code values and their definitions.
    * 
    * @param id - The unique Lockstep Platform ID number of this CodeDefinition
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    */
-  retrieveCodeDefinition(id: string, include: string): Promise<CodeDefinitionModel | ErrorResult> {
+  retrieveCodeDefinition(id: string, include: string): Promise<LockstepResponse<CodeDefinitionModel>> {
     const url = `/api/v1/CodeDefinitions/${id}`;
     const options = {
       params: {
@@ -51,12 +51,12 @@ export class CodeDefinitionsClient {
    * A CodeDefinition contains information around system code values and their definitions.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryCodeDefinitions(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<CodeDefinitionModel> | ErrorResult> {
+  queryCodeDefinitions(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CodeDefinitionModel>>> {
     const url = `/api/v1/CodeDefinitions/query`;
     const options = {
       params: {

@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { ApiKeyModel } from "../models/DataModels.js";
 import { FetchResult } from "../models/FetchResult.js";
 
@@ -33,9 +33,9 @@ export class ApiKeysClient {
    * An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the Lockstep API. When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot retrieve an API Key once it is created.  For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
    * 
    * @param id - The unique ID number of the API Key to retrieve
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future.
    */
-  retrieveAPIKey(id: string, include: string): Promise<ApiKeyModel | ErrorResult> {
+  retrieveAPIKey(id: string, include: string): Promise<LockstepResponse<ApiKeyModel>> {
     const url = `/api/v1/ApiKeys/${id}`;
     const options = {
       params: {
@@ -52,7 +52,7 @@ export class ApiKeysClient {
    * 
    * @param id - The unique Lockstep Platform ID number of this API Key
    */
-  revokeAPIKey(id: string): Promise<ApiKeyModel | ErrorResult> {
+  revokeAPIKey(id: string): Promise<LockstepResponse<ApiKeyModel>> {
     const url = `/api/v1/ApiKeys/${id}`;
     return this.client.request<ApiKeyModel>('delete', url, null, null);
   }
@@ -64,7 +64,7 @@ export class ApiKeysClient {
    * 
    * @param body - Metadata about the API Key to create.
    */
-  createAPIKey(body: ApiKeyModel): Promise<ApiKeyModel | ErrorResult> {
+  createAPIKey(body: ApiKeyModel): Promise<LockstepResponse<ApiKeyModel>> {
     const url = `/api/v1/ApiKeys`;
     return this.client.request<ApiKeyModel>('post', url, null, body);
   }
@@ -73,12 +73,12 @@ export class ApiKeysClient {
    * Queries API Keys for this user using the specified filtering, sorting, nested fetch, and pagination rules requested.  An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the Lockstep API. When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot retrieve an API Key once it is created.  For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future.
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryAPIKeys(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<ApiKeyModel> | ErrorResult> {
+  queryAPIKeys(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ApiKeyModel>>> {
     const url = `/api/v1/ApiKeys/query`;
     const options = {
       params: {

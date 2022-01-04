@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 import * as axios from "axios";
@@ -41,12 +41,13 @@ import { SyncClient } from "./clients/SyncClient.js";
 import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
 import { ErrorResult } from "./models/ErrorResult.js";
+import { LockstepResponse } from "./models/LockstepResponse.js";
 
 export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2021.39.690";
+  private readonly version: string = "2021.39";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
 
@@ -77,7 +78,6 @@ export class LockstepApi {
   public readonly Sync: SyncClient;
   public readonly UserAccounts: UserAccountsClient;
   public readonly UserRoles: UserRolesClient;
-
 
   /** 
    * Internal constructor for the Lockstep API client
@@ -185,7 +185,7 @@ export class LockstepApi {
   /**
    * Make a GET request using this client
    */
-  public async request<T>(method: axios.Method, path: string, options: any, body: any): Promise<T | ErrorResult> {
+  public async request<T>(method: axios.Method, path: string, options: any, body: any): Promise<LockstepResponse<T>> {
     const requestConfig = {
       url: new URL(path, this.serverUrl).href,
       method,
@@ -194,11 +194,14 @@ export class LockstepApi {
       headers: this.getHeaders(),
     };
     var result = await axios.default.request(requestConfig);
+    var response = new LockstepResponse<T>();
+    response.status = result.status;
     if (result.status >= 200 && result.status < 300) {
-      return result.data as T;
+      response.success = true;
+      response.value = result.data as T;
     } else {
-      return result.data as ErrorResult;
+      response.error = result.data as ErrorResult;
     }
+    return response;
   }
 }
-

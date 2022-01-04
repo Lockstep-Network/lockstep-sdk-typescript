@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { AttachmentModel } from "../models/DataModels.js";
 import { ActionResultModel } from "../models/ActionResultModel.js";
 import { UriModel } from "../models/ActionResultModel.js";
@@ -37,9 +37,9 @@ export class AttachmentsClient {
    * See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
    * 
    * @param id - The unique ID number of the Attachment to retrieve
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available for querying but may be available in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.
    */
-  retrieveAttachment(id: string, include: string): Promise<AttachmentModel | ErrorResult> {
+  retrieveAttachment(id: string, include: string): Promise<LockstepResponse<AttachmentModel>> {
     const url = `/api/v1/Attachments/${id}`;
     const options = {
       params: {
@@ -61,7 +61,7 @@ export class AttachmentsClient {
    * @param id - The unique Lockstep Platform ID number of the attachment to update
    * @param body - A list of changes to apply to this Attachment
    */
-  updateAttachment(id: string, body: object): Promise<AttachmentModel | ErrorResult> {
+  updateAttachment(id: string, body: object): Promise<LockstepResponse<AttachmentModel>> {
     const url = `/api/v1/Attachments/${id}`;
     return this.client.request<AttachmentModel>('patch', url, null, body);
   }
@@ -75,7 +75,7 @@ export class AttachmentsClient {
    * 
    * @param id - The unique ID number of the Attachment to be archived
    */
-  archiveAttachment(id: string): Promise<ActionResultModel | ErrorResult> {
+  archiveAttachment(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Attachments/${id}`;
     return this.client.request<ActionResultModel>('delete', url, null, null);
   }
@@ -89,7 +89,7 @@ export class AttachmentsClient {
    * 
    * @param id - The unique ID number of the Attachment whose URI will be returned
    */
-  downloadAttachment(id: string): Promise<UriModel | ErrorResult> {
+  downloadAttachment(id: string): Promise<LockstepResponse<UriModel>> {
     const url = `/api/v1/Attachments/${id}/download`;
     return this.client.request<UriModel>('get', url, null, null);
   }
@@ -104,7 +104,7 @@ export class AttachmentsClient {
    * @param tableName - The name of the type of object to which this Attachment will be linked
    * @param objectId - The unique ID of the object to which this Attachment will be linked
    */
-  uploadAttachment(tableName: string, objectId: string): Promise<AttachmentModel[] | ErrorResult> {
+  uploadAttachment(tableName: string, objectId: string): Promise<LockstepResponse<AttachmentModel[]>> {
     const url = `/api/v1/Attachments`;
     const options = {
       params: {
@@ -125,12 +125,12 @@ export class AttachmentsClient {
    * See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
    * 
    * @param filter - The filter to use to select from the list of available Attachments, in the [Searchlight query syntax](https://github.com/tspence/csharp-searchlight).
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available for querying but may be available in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.
    * @param order - The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
    * @param pageSize - The page size for results (default 200, maximum of 10,000)
    * @param pageNumber - The page number for results (default 0)
    */
-  queryAttachments(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<AttachmentModel> | ErrorResult> {
+  queryAttachments(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<AttachmentModel>>> {
     const url = `/api/v1/Attachments/query`;
     const options = {
       params: {

@@ -7,19 +7,20 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { CashflowReportModel } from "../models/DataModels.js";
 import { DailySalesOutstandingReportModel } from "../models/DataModels.js";
 import { RiskRateModel } from "../models/DataModels.js";
 import { ArHeaderInfoModel } from "../models/DataModels.js";
 import { AgingModel } from "../models/DataModels.js";
 import { ArAgingHeaderInfoModel } from "../models/DataModels.js";
+import { AttachmentHeaderInfoModel } from "../models/DataModels.js";
 
 export class ReportsClient {
   private readonly client: LockstepApi;
@@ -38,7 +39,7 @@ export class ReportsClient {
    * 
    * @param timeframe - Number of days of data to include for the Cash Flow Report (default is 30 days from today)
    */
-  cashFlow(timeframe: number): Promise<CashflowReportModel | ErrorResult> {
+  cashFlow(timeframe: number): Promise<LockstepResponse<CashflowReportModel>> {
     const url = `/api/v1/Reports/cashflow`;
     const options = {
       params: {
@@ -54,7 +55,7 @@ export class ReportsClient {
    * Daily Sales Outstanding, or DSO, is a metric that indicates the average number of days that it takes for an invoice to be fully paid.  You can use this report to identify whether a company is improving on its ability to collect on invoices.
    * 
    */
-  dailySalesOutstanding(): Promise<DailySalesOutstandingReportModel[] | ErrorResult> {
+  dailySalesOutstanding(): Promise<LockstepResponse<DailySalesOutstandingReportModel[]>> {
     const url = `/api/v1/Reports/dailysalesoutstanding`;
     return this.client.request<DailySalesOutstandingReportModel[]>('get', url, null, null);
   }
@@ -65,7 +66,7 @@ export class ReportsClient {
    * Risk Rate is a metric that indicates the percentage of total AR balance left unpaid after 90 days.  You can use this report to identify the percentage of invoice value that is not being collected in a timely manner.
    * 
    */
-  riskRates(): Promise<RiskRateModel[] | ErrorResult> {
+  riskRates(): Promise<LockstepResponse<RiskRateModel[]>> {
     const url = `/api/v1/Reports/riskrates`;
     return this.client.request<RiskRateModel[]>('get', url, null, null);
   }
@@ -76,7 +77,7 @@ export class ReportsClient {
    * @param reportDate - The date of the report.
    * @param companyId - Include a company to get AR data for a specific company, leave as null to include all Companies.
    */
-  accountsReceivableHeader(reportDate: string, companyId: string): Promise<ArHeaderInfoModel | ErrorResult> {
+  accountsReceivableHeader(reportDate: string, companyId: string): Promise<LockstepResponse<ArHeaderInfoModel>> {
     const url = `/api/v1/Reports/ar-header`;
     const options = {
       params: {
@@ -102,7 +103,7 @@ export class ReportsClient {
    * @param CurrencyProvider - Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)
    * @param Buckets - Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)
    */
-  invoiceagingreport(CompanyId: string, Recalculate: boolean, CurrencyCode: string, CurrencyProvider: string, Buckets: number[]): Promise<AgingModel[] | ErrorResult> {
+  invoiceagingreport(CompanyId: string, Recalculate: boolean, CurrencyCode: string, CurrencyProvider: string, Buckets: number[]): Promise<LockstepResponse<AgingModel[]>> {
     const url = `/api/v1/Reports/aging`;
     const options = {
       params: {
@@ -122,8 +123,25 @@ export class ReportsClient {
    * The AR Aging Header report contains aggregated information about the `TotalInvoicesPastDue`, `TotalCustomers`, and their respective `PercentageOfTotalAr` grouped by their aging `ReportBucket`.
    * 
    */
-  accountsReceivableAgingHeader(): Promise<ArAgingHeaderInfoModel[] | ErrorResult> {
+  accountsReceivableAgingHeader(): Promise<LockstepResponse<ArAgingHeaderInfoModel[]>> {
     const url = `/api/v1/Reports/ar-aging-header`;
     return this.client.request<ArAgingHeaderInfoModel[]>('get', url, null, null);
+  }
+
+  /**
+   * Retrieves Attachment Header information for the requested companyId.
+   * 
+   * The Attachment Header report contains aggregated information about the `TotalAttachments`, `TotalArchived`, and `TotalActive` attachment classifications.
+   * 
+   * @param companyId - Include a specific company to get Attachment data for, leave as null to include all Companies.
+   */
+  attachmentsHeaderInformation(companyId: string): Promise<LockstepResponse<AttachmentHeaderInfoModel>> {
+    const url = `/api/v1/Reports/attachments-header`;
+    const options = {
+      params: {
+        companyId,
+      },
+    };
+    return this.client.request<AttachmentHeaderInfoModel>('get', url, options, null);
   }
 }

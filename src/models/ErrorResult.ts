@@ -9,7 +9,7 @@
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2021 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 /**
