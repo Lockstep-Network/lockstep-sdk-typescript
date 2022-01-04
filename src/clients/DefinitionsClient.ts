@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { FetchResult } from "../models/FetchResult.js";
 import { CountryModel } from "../models/DataModels.js";
 import { CurrencyModel } from "../models/DataModels.js";
@@ -35,12 +35,12 @@ export class DefinitionsClient {
    * 
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.  Your program may want to show a list of countries. The ISO maintains a list of countries called [ISO3166](https://www.iso.org/iso-3166-country-codes.html). For convenience, this list is available in the API.
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available, but may be offered in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available, but may be offered in the future.
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryCountries(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<CountryModel> | ErrorResult> {
+  queryCountries(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CountryModel>>> {
     const url = `/api/v1/Definitions/countries`;
     const options = {
       params: {
@@ -61,12 +61,12 @@ export class DefinitionsClient {
    * 
    * Your app may wish to make use of a reference list that contains names and attributes for all ISO-4217 defined currency codes.  This information is provided via a query endpoint so that you can use this API to provide a user selection screen.
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available, but may be offered in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available, but may be offered in the future.
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryCurrencies(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<CurrencyModel> | ErrorResult> {
+  queryCurrencies(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CurrencyModel>>> {
     const url = `/api/v1/Definitions/currencies`;
     const options = {
       params: {
@@ -85,12 +85,12 @@ export class DefinitionsClient {
    * 
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.  Your app may wish to make use of a reference list that contains names and codes for all states in the United States.  This information is provided for the United States since many financial systems require mailing addresses that use codes for states.
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available, but may be offered in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available, but may be offered in the future.
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryStates(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<StateModel> | ErrorResult> {
+  queryStates(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<StateModel>>> {
     const url = `/api/v1/Definitions/states`;
     const options = {
       params: {
@@ -109,12 +109,12 @@ export class DefinitionsClient {
    * 
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.  Lockstep provides a list of financial systems that may be useful as a selection screen that allows customers to select from a list.  You can query these items by name or attributes and use this data source to help users complete a selection.
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available, but may be offered in the future.
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available, but may be offered in the future.
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryFinancialSystems(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<ErpModel> | ErrorResult> {
+  queryFinancialSystems(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ErpModel>>> {
     const url = `/api/v1/Definitions/financialsystems`;
     const options = {
       params: {

@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { SyncRequestModel } from "../models/DataModels.js";
 import { SyncSubmitModel } from "../models/DataModels.js";
 import { FetchResult } from "../models/FetchResult.js";
@@ -35,7 +35,7 @@ export class SyncClient {
    * 
    * @param body - Information about the Sync to execute
    */
-  createSync(body: SyncSubmitModel): Promise<SyncRequestModel | ErrorResult> {
+  createSync(body: SyncSubmitModel): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync`;
     return this.client.request<SyncRequestModel>('post', url, null, body);
   }
@@ -46,7 +46,7 @@ export class SyncClient {
    * A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
    * 
    */
-  uploadSyncFile(): Promise<SyncRequestModel | ErrorResult> {
+  uploadSyncFile(): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync/zip`;
     return this.client.request<SyncRequestModel>('post', url, null, null);
   }
@@ -61,7 +61,7 @@ export class SyncClient {
    * @param id - The unique ID number of the Sync to update
    * @param body - A list of changes to apply to this Application
    */
-  updateSync(id: string, body: object): Promise<SyncRequestModel | ErrorResult> {
+  updateSync(id: string, body: object): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync/${id}`;
     return this.client.request<SyncRequestModel>('patch', url, null, body);
   }
@@ -70,9 +70,9 @@ export class SyncClient {
    * Retrieves the status and information about a Sync operation by the requested ID.  Provides status and progress information about this task.  A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
    * 
    * @param id - The unique ID number of the Sync task to retrieve
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Details
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Details
    */
-  retrieveSync(id: string, include: string): Promise<SyncRequestModel | ErrorResult> {
+  retrieveSync(id: string, include: string): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync/${id}`;
     const options = {
       params: {
@@ -88,12 +88,12 @@ export class SyncClient {
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.  A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Details
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Details
    * @param order - The sort order for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  querySyncs(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<SyncRequestModel> | ErrorResult> {
+  querySyncs(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<SyncRequestModel>>> {
     const url = `/api/v1/Sync/query`;
     const options = {
       params: {

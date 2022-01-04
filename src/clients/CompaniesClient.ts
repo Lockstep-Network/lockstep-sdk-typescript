@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { CompanyModel } from "../models/DataModels.js";
 import { ActionResultModel } from "../models/ActionResultModel.js";
 import { FetchResult } from "../models/FetchResult.js";
@@ -36,9 +36,9 @@ export class CompaniesClient {
    * See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
    * 
    * @param id - The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification
    */
-  retrieveCompany(id: string, include: string): Promise<CompanyModel | ErrorResult> {
+  retrieveCompany(id: string, include: string): Promise<LockstepResponse<CompanyModel>> {
     const url = `/api/v1/Companies/${id}`;
     const options = {
       params: {
@@ -58,7 +58,7 @@ export class CompaniesClient {
    * @param id - The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
    * @param body - A list of changes to apply to this Company
    */
-  updateCompany(id: string, body: object): Promise<CompanyModel | ErrorResult> {
+  updateCompany(id: string, body: object): Promise<LockstepResponse<CompanyModel>> {
     const url = `/api/v1/Companies/${id}`;
     return this.client.request<CompanyModel>('patch', url, null, body);
   }
@@ -72,7 +72,7 @@ export class CompaniesClient {
    * 
    * @param id - The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
    */
-  disableCompany(id: string): Promise<ActionResultModel | ErrorResult> {
+  disableCompany(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Companies/${id}`;
     return this.client.request<ActionResultModel>('delete', url, null, null);
   }
@@ -84,7 +84,7 @@ export class CompaniesClient {
    * 
    * @param body - The Companies to create
    */
-  createCompanies(body: CompanyModel[]): Promise<CompanyModel[] | ErrorResult> {
+  createCompanies(body: CompanyModel[]): Promise<LockstepResponse<CompanyModel[]>> {
     const url = `/api/v1/Companies`;
     return this.client.request<CompanyModel[]>('post', url, null, body);
   }
@@ -97,12 +97,12 @@ export class CompaniesClient {
    * See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification
    * @param order - The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
    * @param pageSize - The page size for results (default 200, maximum of 10,000)
    * @param pageNumber - The page number for results (default 0)
    */
-  queryCompanies(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<CompanyModel> | ErrorResult> {
+  queryCompanies(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CompanyModel>>> {
     const url = `/api/v1/Companies/query`;
     const options = {
       params: {
@@ -122,12 +122,12 @@ export class CompaniesClient {
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.  The Customer Summary View represents a slightly different view of the data and includes some extra fields that might be useful. For more information, see the data format of the Customer Summary Model.  See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    * @param order - The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
    * @param pageSize - The page size for results (default 200, maximum of 10,000)
    * @param pageNumber - The page number for results (default 0)
    */
-  queryCustomerSummary(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<CustomerSummaryModel> | ErrorResult> {
+  queryCustomerSummary(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CustomerSummaryModel>>> {
     const url = `/api/v1/Companies/views/customer-summary`;
     const options = {
       params: {
@@ -146,7 +146,7 @@ export class CompaniesClient {
    * 
    * @param id - The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
    */
-  retrieveCustomerDetail(id: string): Promise<CustomerDetailsModel | ErrorResult> {
+  retrieveCustomerDetail(id: string): Promise<LockstepResponse<CustomerDetailsModel>> {
     const url = `/api/v1/Companies/views/customer-details/${id}`;
     return this.client.request<CustomerDetailsModel>('get', url, null, null);
   }

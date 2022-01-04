@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { ApplicationModel } from "../models/DataModels.js";
 import { ActionResultModel } from "../models/ActionResultModel.js";
 import { FetchResult } from "../models/FetchResult.js";
@@ -36,9 +36,9 @@ export class ApplicationsClient {
    * See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
    * 
    * @param id - The unique ID number of the Application to retrieve
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Notes, Attachments, CustomFields
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields
    */
-  retrieveApplication(id: string, include: string): Promise<ApplicationModel | ErrorResult> {
+  retrieveApplication(id: string, include: string): Promise<LockstepResponse<ApplicationModel>> {
     const url = `/api/v1/Applications/${id}`;
     const options = {
       params: {
@@ -58,7 +58,7 @@ export class ApplicationsClient {
    * @param id - The unique ID number of the Application to update
    * @param body - A list of changes to apply to this Application
    */
-  updateApplication(id: string, body: object): Promise<ApplicationModel | ErrorResult> {
+  updateApplication(id: string, body: object): Promise<LockstepResponse<ApplicationModel>> {
     const url = `/api/v1/Applications/${id}`;
     return this.client.request<ApplicationModel>('patch', url, null, body);
   }
@@ -70,7 +70,7 @@ export class ApplicationsClient {
    * 
    * @param id - The unique ID number of the Application to delete
    */
-  deleteApplication(id: string): Promise<ActionResultModel | ErrorResult> {
+  deleteApplication(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Applications/${id}`;
     return this.client.request<ActionResultModel>('delete', url, null, null);
   }
@@ -84,7 +84,7 @@ export class ApplicationsClient {
    * 
    * @param body - The Applications to create
    */
-  createApplications(body: ApplicationModel[]): Promise<ApplicationModel[] | ErrorResult> {
+  createApplications(body: ApplicationModel[]): Promise<LockstepResponse<ApplicationModel[]>> {
     const url = `/api/v1/Applications`;
     return this.client.request<ApplicationModel[]>('post', url, null, body);
   }
@@ -97,12 +97,12 @@ export class ApplicationsClient {
    * See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Notes, Attachments, CustomFields
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryApplications(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<ApplicationModel> | ErrorResult> {
+  queryApplications(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ApplicationModel>>> {
     const url = `/api/v1/Applications/query`;
     const options = {
       params: {

@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { UserRoleModel } from "../models/DataModels.js";
 import { FetchResult } from "../models/FetchResult.js";
 
@@ -31,9 +31,9 @@ export class UserRolesClient {
    * Retrieves the User Role with this identifier.
    * 
    * @param id - The unique ID number of the User Role to retrieve
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    */
-  retrieveUserRole(id: string, include: string): Promise<UserRoleModel | ErrorResult> {
+  retrieveUserRole(id: string, include: string): Promise<LockstepResponse<UserRoleModel>> {
     const url = `/api/v1/UserRoles/${id}`;
     const options = {
       params: {
@@ -47,12 +47,12 @@ export class UserRolesClient {
    * Queries User Roles for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryUserRoles(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<UserRoleModel> | ErrorResult> {
+  queryUserRoles(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<UserRoleModel>>> {
     const url = `/api/v1/UserRoles/query`;
     const options = {
       params: {

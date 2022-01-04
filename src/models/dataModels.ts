@@ -7,9 +7,9 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 
@@ -612,6 +612,33 @@ export type AtRiskInvoiceSummaryModel = {
    * The ids of the payments associated to this invoice.
    */
   paymentIds: string[] | null;
+};
+
+export type AttachmentHeaderInfoModel = {
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   * 
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+  /**
+   * The CompanyId associated with the attachment status report. Providing a null value will
+   * return an attachment summary for all attachments associated to the provided GroupKey
+   */
+  companyId: string | null;
+  /**
+   * The total number of attachments associated with the provided GroupKey and CompanyId.
+   */
+  totalAttachments: number;
+  /**
+   * The total number of archived attachments associated with the provided GroupKey and CompanyId.
+   */
+  totalArchived: number;
+  /**
+   * The total number of active attachments associated with the provided GroupKey and CompanyId.
+   */
+  totalActive: number;
 };
 
 export type AttachmentModel = {
@@ -1822,6 +1849,19 @@ export type EmailModel = {
    * The email address(es) for the BCC recipient(s) of this email
    */
   emailBcc: string | null;
+  /**
+   * The type message being sent (New, Reply, Forward) or null for messages not being sent.
+   */
+  sendType: string | null;
+  /**
+   * If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.
+   * Otherwise null.
+   */
+  responseOriginId: string | null;
+  /**
+   * The email object associated with the response origin id.
+   */
+  responseOrigin: EmailModel | null;
   /**
    * All notes attached to this email.
    * To retrieve this collection, specify `Notes` in the "Include" parameter for your query.

@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { ActivityModel } from "../models/DataModels.js";
 import { FetchResult } from "../models/FetchResult.js";
 
@@ -33,9 +33,9 @@ export class ActivitiesClient {
    * An Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.
    * 
    * @param id - The unique Lockstep Platform ID number of this Activity
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, CustomFields, and Notes
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes
    */
-  retrieveActivity(id: string, include: string): Promise<ActivityModel | ErrorResult> {
+  retrieveActivity(id: string, include: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
     const options = {
       params: {
@@ -55,7 +55,7 @@ export class ActivitiesClient {
    * @param id - The unique Lockstep Platform ID number of the Activity to update
    * @param body - A list of changes to apply to this Activity
    */
-  updateActivity(id: string, body: object): Promise<ActivityModel | ErrorResult> {
+  updateActivity(id: string, body: object): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
     return this.client.request<ActivityModel>('patch', url, null, body);
   }
@@ -67,7 +67,7 @@ export class ActivitiesClient {
    * 
    * @param id - The unique Lockstep Platform ID number of the Activity to delete
    */
-  deleteActivity(id: string): Promise<ActivityModel | ErrorResult> {
+  deleteActivity(id: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
     return this.client.request<ActivityModel>('delete', url, null, null);
   }
@@ -79,7 +79,7 @@ export class ActivitiesClient {
    * 
    * @param body - The Activities to create
    */
-  createActivities(body: ActivityModel[]): Promise<ActivityModel[] | ErrorResult> {
+  createActivities(body: ActivityModel[]): Promise<LockstepResponse<ActivityModel[]>> {
     const url = `/api/v1/Activities`;
     return this.client.request<ActivityModel[]>('post', url, null, body);
   }
@@ -92,12 +92,12 @@ export class ActivitiesClient {
    * An Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve.               Available collections: Attachments, CustomFields, and Notes
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryActivities(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<FetchResult<ActivityModel> | ErrorResult> {
+  queryActivities(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ActivityModel>>> {
     const url = `/api/v1/Activities/query`;
     const options = {
       params: {

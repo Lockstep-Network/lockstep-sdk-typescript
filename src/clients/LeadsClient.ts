@@ -7,13 +7,13 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-typescript
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../APIClient.js";
-import { ErrorResult } from "../models/ErrorResult.js";
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
 import { LeadModel } from "../models/DataModels.js";
 
 export class LeadsClient {
@@ -32,7 +32,7 @@ export class LeadsClient {
    * A Lead is a person who is interested in the Lockstep platform but needs certain new features in order to use it. If you are interested in the Lockstep platform, you can create a lead with your information and our team will prioritize the feature you need.
    * @param body - The Leads to create
    */
-  createLeads(body: LeadModel[]): Promise<LeadModel[] | ErrorResult> {
+  createLeads(body: LeadModel[]): Promise<LockstepResponse<LeadModel[]>> {
     const url = `/api/v1/Leads`;
     return this.client.request<LeadModel[]>('post', url, null, body);
   }
