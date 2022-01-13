@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2.63.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -47,7 +47,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2021.39";
+  private readonly version: string = "2022.2.63.0";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
 
@@ -194,10 +194,8 @@ export class LockstepApi {
       headers: this.getHeaders(),
     };
     var result = await axios.default.request(requestConfig);
-    var response = new LockstepResponse<T>();
-    response.status = result.status;
-    if (result.status >= 200 && result.status < 300) {
-      response.success = true;
+    var response = new LockstepResponse<T>(result.status >= 200 && result.status < 300, result.status);
+    if (response.success) {
       response.value = result.data as T;
     } else {
       response.error = result.data as ErrorResult;

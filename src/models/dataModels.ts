@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -113,6 +113,12 @@ export type ActivityModel = {
    * this flag is true, this activity should be hidden.
    */
   isArchived: boolean;
+  /**
+   * The company associated with the activity
+   * 
+   * To retrieve this collection, specify `Company` in the "Include" parameter for your query.
+   */
+  company: CompanyModel | null;
   /**
    * All attachments attached to applied activity.
    * 
@@ -1808,11 +1814,11 @@ export type EmailModel = {
   /**
    * The date on which this email was created.
    */
-  created: string | null;
+  created: string;
   /**
    * The ID number of the user who created this email.
    */
-  createdUserId: string | null;
+  createdUserId: string;
   /**
    * A status flag indicating if this email is to be sent.
    */
@@ -1853,6 +1859,16 @@ export type EmailModel = {
    * The type message being sent (New, Reply, Forward) or null for messages not being sent.
    */
   sendType: string | null;
+  /**
+   * The date on which this email was modified.
+   * Email modification should only be done by internal services.
+   */
+  modified: string;
+  /**
+   * The ID of the user who modified this email.
+   * Email modification should only be done by internal services.
+   */
+  modifiedUserId: string;
   /**
    * If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.
    * Otherwise null.
@@ -2284,6 +2300,10 @@ export type InvoiceLineModel = {
    * The ID number of the user who most recently modified this line.
    */
   modifiedUserId: string | null;
+  /**
+   * AppEnrollmentId for this record; used for mapping purposes.
+   */
+  appEnrollmentId: string | null;
   /**
    * All notes attached to this company.
    * To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
@@ -3295,6 +3315,10 @@ export type StatusModel = {
    * If authentication is successful, contains the user status of the logged-in user.
    */
   userStatus: string | null;
+  /**
+   * The environment currently being used
+   */
+  environment: string | null;
   /**
    * Statuses for the dependencies of this api.
    * OK if the dependency is working.

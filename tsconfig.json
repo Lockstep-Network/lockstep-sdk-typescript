@@ -6,9 +6,13 @@
       "removeComments": false,
       "sourceMap": true,
       "target": "es6",
-      "outDir": "dist"
+      "outDir": "./dist",
+      "declaration": true,
+      "strict": true,
     },
-    "include": [
-      "src/**/*"
+    "exclude": [
+      "tests",
+      "dist",
+      "node_modules"
     ]
   }

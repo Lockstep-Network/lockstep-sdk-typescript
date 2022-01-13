@@ -18,11 +18,18 @@ import { ErrorResult } from "./ErrorResult";
  * Represents a response to an API call.  The status value contains the HTTP status code returned from the request.
  * If successful, value will be non-null.  If failed, 
  */
-export class LockstepResponse<T>
-{
+export class LockstepResponse<T> {
     public success: boolean;
     public status: number;
     public value: T | null;
     public error: ErrorResult | null;
+
+    constructor(success: boolean, status: number)
+    {
+        this.success = success;
+        this.status = status;
+        this.value = null;
+        this.error = null;
+    }
 }
 

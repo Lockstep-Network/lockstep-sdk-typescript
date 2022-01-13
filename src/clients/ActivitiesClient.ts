@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -33,7 +33,7 @@ export class ActivitiesClient {
    * An Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.
    * 
    * @param id - The unique Lockstep Platform ID number of this Activity
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Company, Attachments, CustomFields, and Notes
    */
   retrieveActivity(id: string, include: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
@@ -92,7 +92,7 @@ export class ActivitiesClient {
    * An Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.
    * 
    * @param filter - The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes
+   * @param include - To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Company, Attachments, CustomFields, and Notes
    * @param order - The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize - The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber - The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
