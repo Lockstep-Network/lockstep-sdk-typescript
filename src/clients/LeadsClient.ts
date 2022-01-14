@@ -28,9 +28,10 @@ export class LeadsClient {
 
   /**
    * Creates one or more Leads within the Lockstep platform and returns the records as created.
-   * 
+   *
    * A Lead is a person who is interested in the Lockstep platform but needs certain new features in order to use it. If you are interested in the Lockstep platform, you can create a lead with your information and our team will prioritize the feature you need.
-   * @param body - The Leads to create
+   *
+   * @param body The Leads to create
    */
   createLeads(body: LeadModel[]): Promise<LockstepResponse<LeadModel[]>> {
     const url = `/api/v1/Leads`;
