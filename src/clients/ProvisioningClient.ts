@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -30,8 +30,8 @@ export class ProvisioningClient {
 
   /**
    * Creates a new User or updates an Invited user based on metadata provided by the User during the onboarding process
-   * 
-   * @param body - Represents a User and their related metadata
+   *
+   * @param body Represents a User and their related metadata
    */
   provisionUserAccount(body: ProvisioningModel): Promise<LockstepResponse<ProvisioningResponseModel>> {
     const url = `/api/v1/Provisioning`;
@@ -40,8 +40,8 @@ export class ProvisioningClient {
 
   /**
    * Updates user, company and group metadata for a User of status 'Onboarding' and finalizes a user's onboarding process by changing the user status to 'Active'
-   * 
-   * @param body - Represents a User and their related metadata
+   *
+   * @param body Represents a User and their related metadata
    */
   finalizeUserAccountProvisioning(body: ProvisioningFinalizeRequestModel): Promise<LockstepResponse<ProvisioningResponseModel>> {
     const url = `/api/v1/Provisioning/finalize`;

@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -22,7 +22,7 @@ export type ActivityModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -114,29 +114,81 @@ export type ActivityModel = {
    */
   isArchived: boolean;
   /**
+   * The company associated with the activity
+   *
+   * To retrieve this collection, specify `Company` in the "Include" parameter for your query.
+   */
+  company: CompanyModel | null;
+  /**
    * All attachments attached to applied activity.
-   * 
+   *
    * To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
    */
   attachments: AttachmentModel[] | null;
   /**
    * All notes attached to this applied activity.
-   * 
+   *
    * To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
    */
   notes: NoteModel[] | null;
   /**
    * All definitions attached to this applied activity.
-   * 
+   *
    * To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
    */
   customFieldDefinitions: CustomFieldDefinitionModel[] | null;
   /**
    * All values attached to this activity.
-   * 
+   *
    * To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
    */
   customFieldValues: CustomFieldValueModel[] | null;
+};
+
+export type ActivityStreamItemModel = {
+  /**
+   * The object key of the activity stream item.
+   */
+  objectKey: string;
+  /**
+   * The type code of the activity stream item.
+   */
+  activityType: string | null;
+  /**
+   * The text body description for this Activity Stream Item.
+   */
+  textValue: string | null;
+  /**
+   * The date on which this activity stream item was created.
+   */
+  created: string;
+  /**
+   * The ID of the user who created this activity.
+   */
+  createdUserId: string;
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+  /**
+   * The sender's email address if activity stream item is an Email.
+   */
+  fromEmailAddress: string | null;
+  /**
+   * The recipient's email address if activity stream item is an Email.
+   */
+  toEmailAddress: string | null;
+  /**
+   * The name of the contact sending the activity otherwise null.
+   */
+  fromContactName: string | null;
+  /**
+   * The name of the contact sending the activity otherwise null.
+   */
+  toContactName: string | null;
 };
 
 export type AgingModel = {
@@ -162,7 +214,7 @@ export type ApiKeyModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -173,7 +225,7 @@ export type ApiKeyModel = {
   /**
    * The API key to use for authentication. This will only be returned upon creation of the API key.
    * All other times, this value will be `null`.
-   * 
+   *
    * For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
    */
   apiKey: string | null;
@@ -224,7 +276,7 @@ export type AppEnrollmentCustomFieldModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -268,7 +320,7 @@ export type AppEnrollmentModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -304,25 +356,25 @@ export type AppEnrollmentModel = {
   /**
    * The Application to which this AppEnrollment belongs.  Contains general name, description,
    * logo, and other metadata about this application.
-   * 
+   *
    * To retrieve this object, specify `App` in the "Include" parameter for your query.
    */
   app: ApplicationModel | null;
   /**
    * All definitions attached to this app.
-   * 
+   *
    * To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
    */
   customFieldDefinitions: CustomFieldDefinitionModel[] | null;
   /**
    * All values attached to this app.
-   * 
+   *
    * To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
    */
   customFieldValues: CustomFieldValueModel[] | null;
   /**
    * Data about the last sync attached to this app enrollment
-   * 
+   *
    * To retrieve this collection, specify `LastSync` in the "Include" parameter for your query.
    */
   lastSync: SyncRequestModel | null;
@@ -393,7 +445,7 @@ export type ApplicationModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -423,7 +475,7 @@ export type ArAgingHeaderInfoModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -457,7 +509,7 @@ export type ArHeaderInfoModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -551,7 +603,7 @@ export type AtRiskInvoiceSummaryModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -618,7 +670,7 @@ export type AttachmentHeaderInfoModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -650,7 +702,7 @@ export type AttachmentModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -697,47 +749,6 @@ export type AttachmentModel = {
   createdUserId: string;
 };
 
-export type AvailableGroup = {
-  /**
-   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
-   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-   */
-  groupKey: string;
-  /**
-   * The number of invoices.
-   */
-  invoiceCount: number;
-  /**
-   * The number of invoice lines.
-   */
-  lineCount: number;
-  /**
-   * The number of companies.
-   */
-  companyCount: number;
-  /**
-   * The number of contacts.
-   */
-  contactCount: number;
-  /**
-   * The number of payments.
-   */
-  paymentCount: number;
-  /**
-   * The number of payments applied.
-   */
-  paymentAppliedCount: number;
-};
-
-export type AvailableMigrationsModel = {
-  /**
-   * Indicates which records are available for migration
-   */
-  migrations: AvailableGroup[] | null;
-};
-
 export type BulkCurrencyConversionModel = {
   /**
    * The date for the currency rate
@@ -781,7 +792,7 @@ export type CodeDefinitionModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -819,7 +830,7 @@ export type CompanyModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   companyId: string;
@@ -829,11 +840,11 @@ export type CompanyModel = {
   companyName: string | null;
   /**
    * The unique ID of this record as it was known in its originating financial system.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -841,7 +852,7 @@ export type CompanyModel = {
    * This field indicates the type of company.  It can be one of a limited number of values:
    * Company, Customer, Group, or Vendor.  A company that represents both a customer and a vendor
    * is identified as a CustomerVendor.
-   * 
+   *
    * * `Company` - This record represents a company that is part of the organization of the account holder.
    * * `Customer` - This record represents a business entity that purchases things from the account holder.
    * * `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.
@@ -858,7 +869,7 @@ export type CompanyModel = {
   /**
    * If this business entity is part of an organization, this value is non-null and it is set
    * to the `CompanyId` value of the parent company of this business entity.
-   * 
+   *
    * If this value is null, this business entity is a standalone.
    */
   parentCompanyId: string | null;
@@ -870,7 +881,7 @@ export type CompanyModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -882,7 +893,7 @@ export type CompanyModel = {
   /**
    * The default currency code used by this business entity.  This value can be overridden
    * for invoices in a different currency code.
-   * 
+   *
    * For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies)
    */
   defaultCurrencyCode: string | null;
@@ -955,7 +966,7 @@ export type CompanyModel = {
    */
   taxId: string | null;
   /**
-   * Dun & Bradstreet Number
+   * Dun and Bradstreet Number
    */
   dunsNumber: string | null;
   /**
@@ -992,43 +1003,43 @@ export type CompanyModel = {
   appEnrollmentId: string | null;
   /**
    * All notes attached to this company.
-   * 
+   *
    * To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
    */
   notes: NoteModel[] | null;
   /**
    * All attachments attached to this company.
-   * 
+   *
    * To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
    */
   attachments: AttachmentModel[] | null;
   /**
    * All contacts attached to this company.
-   * 
+   *
    * To retrieve this collection, specify `Contacts` in the "Include" parameter for your query.
    */
   contacts: ContactModel[] | null;
   /**
    * All invoices attached to this company.
-   * 
+   *
    * To retrieve this collection, specify `Invoices` in the "Include" parameter for your query. For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
    */
   invoices: object[] | null;
   /**
    * All definitions attached to this company.
-   * 
+   *
    * To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
    */
   customFieldDefinitions: CustomFieldDefinitionModel[] | null;
   /**
    * All values attached to this company.
-   * 
+   *
    * To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
    */
   customFieldValues: CustomFieldValueModel[] | null;
   /**
    * Classification code definition for this company.
-   * 
+   *
    * To retrieve this collection, specify `Classification` in the "Include" parameter for your query.
    */
   companyClassificationCodeDefinition: CodeDefinitionModel | null;
@@ -1058,7 +1069,7 @@ export type ContactModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   contactId: string;
@@ -1069,17 +1080,17 @@ export type ContactModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
   /**
    * The unique ID of this record as it was known in its originating financial system.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -1248,14 +1259,14 @@ export type CreditMemoAppliedModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   creditMemoAppliedId: string;
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1269,11 +1280,11 @@ export type CreditMemoAppliedModel = {
   creditMemoInvoiceId: string;
   /**
    * The unique ID of this record as it was known in its originating financial system.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -1335,7 +1346,7 @@ export type CreditMemoInvoiceModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1433,7 +1444,7 @@ export type CustomerDetailsModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1519,7 +1530,7 @@ export type CustomerDetailsPaymentModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1565,7 +1576,7 @@ export type CustomerSummaryModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1631,7 +1642,7 @@ export type CustomFieldDefinitionModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1686,7 +1697,7 @@ export type CustomFieldValueModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1761,7 +1772,7 @@ export type EmailModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -1808,11 +1819,11 @@ export type EmailModel = {
   /**
    * The date on which this email was created.
    */
-  created: string | null;
+  created: string;
   /**
    * The ID number of the user who created this email.
    */
-  createdUserId: string | null;
+  createdUserId: string;
   /**
    * A status flag indicating if this email is to be sent.
    */
@@ -1853,6 +1864,16 @@ export type EmailModel = {
    * The type message being sent (New, Reply, Forward) or null for messages not being sent.
    */
   sendType: string | null;
+  /**
+   * The date on which this email was modified.
+   * Email modification should only be done by internal services.
+   */
+  modified: string;
+  /**
+   * The ID of the user who modified this email.
+   * Email modification should only be done by internal services.
+   */
+  modifiedUserId: string;
   /**
    * If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.
    * Otherwise null.
@@ -1972,7 +1993,7 @@ export type InvoiceAddressModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2038,7 +2059,7 @@ export type InvoiceHistoryModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2049,7 +2070,7 @@ export type InvoiceHistoryModel = {
   /**
    * The unique ID of the Invoice represented by this history entry.  This ID was automatically assigned
    * by Lockstep to the Invoice record when it was added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   invoiceId: string;
@@ -2063,11 +2084,11 @@ export type InvoiceHistoryModel = {
   customerId: string;
   /**
    * The unique ID of this record as it was known in its originating financial system.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -2183,14 +2204,14 @@ export type InvoiceLineModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   invoiceLineId: string;
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2201,11 +2222,11 @@ export type InvoiceLineModel = {
   /**
    * The unique ID of this record as it was known in its originating financial system, if it was
    * different from the original `LineNumber`.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -2285,6 +2306,10 @@ export type InvoiceLineModel = {
    */
   modifiedUserId: string | null;
   /**
+   * AppEnrollmentId for this record; used for mapping purposes.
+   */
+  appEnrollmentId: string | null;
+  /**
    * All notes attached to this company.
    * To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
    */
@@ -2300,14 +2325,14 @@ export type InvoiceModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   invoiceId: string;
@@ -2321,11 +2346,11 @@ export type InvoiceModel = {
   customerId: string;
   /**
    * The unique ID of this record as it was known in its originating financial system.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -2511,7 +2536,7 @@ export type InvoicePaymentDetailModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2558,7 +2583,7 @@ export type InvoiceSummaryModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2645,57 +2670,6 @@ export type LeadModel = {
   erpSystem: string | null;
 };
 
-export type MigrationResultModel = {
-  /**
-   * If the API call produced messages, this element will contain a list of user-visible
-   * text strings that contain information about what work occurred in the API.
-   */
-  messages: string[] | null;
-  /**
-   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
-   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-   */
-  groupKey: string;
-  /**
-   * The number of invoices migrated
-   */
-  invoiceCount: number;
-  /**
-   * The number of addresses migrated
-   */
-  addressCount: number;
-  /**
-   * The number of invoice and invoice line fields migrated
-   */
-  invoiceFieldCount: number;
-  /**
-   * The number of invoice lines migrated
-   */
-  lineCount: number;
-  /**
-   * The number of contacts migrated
-   */
-  contactCount: number;
-  /**
-   * The number of companies migrated
-   */
-  companyCount: number;
-  /**
-   * The number of payments migrated
-   */
-  paymentCount: number;
-  /**
-   * The number of payment fields migrated
-   */
-  paymentFieldCount: number;
-  /**
-   * The number of payments applied migrated
-   */
-  paymentAppliedCount: number;
-};
-
 export type NoteModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -2705,7 +2679,7 @@ export type NoteModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2751,14 +2725,14 @@ export type PaymentAppliedModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   paymentAppliedId: string;
@@ -2772,11 +2746,11 @@ export type PaymentAppliedModel = {
   paymentId: string;
   /**
    * The unique ID of this record as it was known in its originating financial system.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -2822,7 +2796,7 @@ export type PaymentDetailHeaderModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2852,7 +2826,7 @@ export type PaymentDetailModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -2946,14 +2920,14 @@ export type PaymentModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * For the ID of this record in its originating financial system, see `ErpKey`.
    */
   paymentId: string;
@@ -2963,11 +2937,11 @@ export type PaymentModel = {
   companyId: string;
   /**
    * The unique ID of this record as it was known in its originating financial system.
-   * 
+   *
    * If this company record was imported from a financial system, it will have the value `ErpKey`
    * set to the original primary key number of the record as it was known in the originating financial
    * system.  If this record was not imported, this value will be `null`.
-   * 
+   *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
   erpKey: string | null;
@@ -3070,7 +3044,7 @@ export type PaymentSummaryModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -3197,7 +3171,7 @@ export type RiskRateModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -3296,6 +3270,14 @@ export type StatusModel = {
    */
   userStatus: string | null;
   /**
+   * The environment currently being used
+   */
+  environment: string | null;
+  /**
+   * The version currently being used
+   */
+  version: string | null;
+  /**
    * Statuses for the dependencies of this api.
    * OK if the dependency is working.
    */
@@ -3334,7 +3316,7 @@ export type SyncRequestModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -3398,14 +3380,14 @@ export type UserAccountModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
-   * 
+   *
    * This record provides a link to the user's Azure AD B2C OID.
    */
   userId: string;
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
@@ -3512,8 +3494,8 @@ export type UserAccountModel = {
   /**
    * The default currency code used by this user entity.  This value can be overridden
    * for invoices in a different currency code.
-   * 
-   * For a list of defined currency codes, see [TODO]()
+   *
+   * For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
    */
   defaultCurrencyCode: string | null;
   /**
@@ -3547,7 +3529,7 @@ export type UserRoleModel = {
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
+   *
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;

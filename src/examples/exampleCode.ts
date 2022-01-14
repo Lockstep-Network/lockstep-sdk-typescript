@@ -1,4 +1,4 @@
-import { LockstepApi } from "../APIClient.js"
+import { LockstepApi } from "../LockstepApi"
 
 // Using an API key
 console.log("Creating client");

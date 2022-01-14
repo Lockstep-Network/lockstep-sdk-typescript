@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -29,13 +29,13 @@ export class CurrenciesClient {
 
   /**
    * Retrieve a currency conversation rate from one currency to another as of the specified date.              Optionally, you can specify which currency data provider to use.
-   * 
+   *
    *              The currency rate model contains all of the information used to make the API call, plus the rate to              use for the conversion.
-   * 
-   * @param sourceCurrency - The ISO 4217 currency code of the origin currency. For a list of currency codes, call List Currencies.
-   * @param destinationCurrency - The ISO 4217 currency code of the target currency. For a list of currency codes, call List Currencies.
-   * @param date - The date for which we should cto use for this currency conversion.
-   * @param dataProvider - Optionally, you can specify a data provider.
+   *
+   * @param sourceCurrency The ISO 4217 currency code of the origin currency. For a list of currency codes, call List Currencies.
+   * @param destinationCurrency The ISO 4217 currency code of the target currency. For a list of currency codes, call List Currencies.
+   * @param date The date for which we should cto use for this currency conversion.
+   * @param dataProvider Optionally, you can specify a data provider.
    */
   retrievecurrencyrate(sourceCurrency: string, destinationCurrency: string, date: string, dataProvider: string): Promise<LockstepResponse<CurrencyRateModel>> {
     const url = `/api/v1/Currencies/${sourceCurrency}/${destinationCurrency}`;
@@ -50,9 +50,9 @@ export class CurrenciesClient {
 
   /**
    * Receives an array of dates and currencies and a destination currency and returns an array of the corresponding currency rates to the given destination currency (Limit X).
-   * 
-   * @param destinationCurrency - The currency to convert to.
-   * @param body - A list of dates and source currencies.
+   *
+   * @param destinationCurrency The currency to convert to.
+   * @param body A list of dates and source currencies.
    */
   bulkcurrencydata(destinationCurrency: string, body: BulkCurrencyConversionModel[]): Promise<LockstepResponse<CurrencyRateModel[]>> {
     const url = `/api/v1/Currencies/bulk`;
