@@ -145,6 +145,52 @@ export type ActivityModel = {
   customFieldValues: CustomFieldValueModel[] | null;
 };
 
+export type ActivityStreamItemModel = {
+  /**
+   * The object key of the activity stream item.
+   */
+  objectKey: string;
+  /**
+   * The type code of the activity stream item.
+   */
+  activityType: string | null;
+  /**
+   * The text body description for this Activity Stream Item.
+   */
+  textValue: string | null;
+  /**
+   * The date on which this activity stream item was created.
+   */
+  created: string;
+  /**
+   * The ID of the user who created this activity.
+   */
+  createdUserId: string;
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   * 
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+  /**
+   * The sender's email address if activity stream item is an Email.
+   */
+  fromEmailAddress: string | null;
+  /**
+   * The recipient's email address if activity stream item is an Email.
+   */
+  toEmailAddress: string | null;
+  /**
+   * The name of the contact sending the activity otherwise null.
+   */
+  fromContactName: string | null;
+  /**
+   * The name of the contact sending the activity otherwise null.
+   */
+  toContactName: string | null;
+};
+
 export type AgingModel = {
   /**
    * Aging bucket of outstanding balance data (days past due date of invoice)
@@ -701,47 +747,6 @@ export type AttachmentModel = {
    * Id of the user who made the file
    */
   createdUserId: string;
-};
-
-export type AvailableGroup = {
-  /**
-   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
-   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-   */
-  groupKey: string;
-  /**
-   * The number of invoices.
-   */
-  invoiceCount: number;
-  /**
-   * The number of invoice lines.
-   */
-  lineCount: number;
-  /**
-   * The number of companies.
-   */
-  companyCount: number;
-  /**
-   * The number of contacts.
-   */
-  contactCount: number;
-  /**
-   * The number of payments.
-   */
-  paymentCount: number;
-  /**
-   * The number of payments applied.
-   */
-  paymentAppliedCount: number;
-};
-
-export type AvailableMigrationsModel = {
-  /**
-   * Indicates which records are available for migration
-   */
-  migrations: AvailableGroup[] | null;
 };
 
 export type BulkCurrencyConversionModel = {
@@ -2665,57 +2670,6 @@ export type LeadModel = {
   erpSystem: string | null;
 };
 
-export type MigrationResultModel = {
-  /**
-   * If the API call produced messages, this element will contain a list of user-visible
-   * text strings that contain information about what work occurred in the API.
-   */
-  messages: string[] | null;
-  /**
-   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   * 
-   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-   */
-  groupKey: string;
-  /**
-   * The number of invoices migrated
-   */
-  invoiceCount: number;
-  /**
-   * The number of addresses migrated
-   */
-  addressCount: number;
-  /**
-   * The number of invoice and invoice line fields migrated
-   */
-  invoiceFieldCount: number;
-  /**
-   * The number of invoice lines migrated
-   */
-  lineCount: number;
-  /**
-   * The number of contacts migrated
-   */
-  contactCount: number;
-  /**
-   * The number of companies migrated
-   */
-  companyCount: number;
-  /**
-   * The number of payments migrated
-   */
-  paymentCount: number;
-  /**
-   * The number of payment fields migrated
-   */
-  paymentFieldCount: number;
-  /**
-   * The number of payments applied migrated
-   */
-  paymentAppliedCount: number;
-};
-
 export type NoteModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -3320,6 +3274,10 @@ export type StatusModel = {
    */
   environment: string | null;
   /**
+   * The version currently being used
+   */
+  version: string | null;
+  /**
    * Statuses for the dependencies of this api.
    * OK if the dependency is working.
    */
@@ -3537,7 +3495,7 @@ export type UserAccountModel = {
    * The default currency code used by this user entity.  This value can be overridden
    * for invoices in a different currency code.
    * 
-   * For a list of defined currency codes, see [TODO]()
+   * For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
    */
   defaultCurrencyCode: string | null;
   /**

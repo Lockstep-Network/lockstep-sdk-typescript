@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2.63.0
+ * @version    2022.2.93.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -30,7 +30,6 @@ import { EmailsClient } from "./clients/EmailsClient.js";
 import { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient.js";
 import { InvoicesClient } from "./clients/InvoicesClient.js";
 import { LeadsClient } from "./clients/LeadsClient.js";
-import { MigrationClient } from "./clients/MigrationClient.js";
 import { NotesClient } from "./clients/NotesClient.js";
 import { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient.js";
 import { PaymentsClient } from "./clients/PaymentsClient.js";
@@ -47,7 +46,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.2.63.0";
+  private readonly version: string = "2022.2.93.0";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
 
@@ -68,7 +67,6 @@ export class LockstepApi {
   public readonly InvoiceHistory: InvoiceHistoryClient;
   public readonly Invoices: InvoicesClient;
   public readonly Leads: LeadsClient;
-  public readonly Migration: MigrationClient;
   public readonly Notes: NotesClient;
   public readonly PaymentApplications: PaymentApplicationsClient;
   public readonly Payments: PaymentsClient;
@@ -102,7 +100,6 @@ export class LockstepApi {
     this.InvoiceHistory = new InvoiceHistoryClient(this);
     this.Invoices = new InvoicesClient(this);
     this.Leads = new LeadsClient(this);
-    this.Migration = new MigrationClient(this);
     this.Notes = new NotesClient(this);
     this.PaymentApplications = new PaymentApplicationsClient(this);
     this.Payments = new PaymentsClient(this);

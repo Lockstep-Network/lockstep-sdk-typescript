@@ -16,6 +16,7 @@ import { LockstepApi } from "../LockstepApi.js";
 import { LockstepResponse } from "../models/LockstepResponse.js";
 import { ActivityModel } from "../models/DataModels.js";
 import { FetchResult } from "../models/FetchResult.js";
+import { ActivityStreamItemModel } from "../models/DataModels.js";
 
 export class ActivitiesClient {
   private readonly client: LockstepApi;
@@ -109,5 +110,17 @@ export class ActivitiesClient {
       },
     };
     return this.client.request<FetchResult<ActivityModel>>('get', url, options, null);
+  }
+
+  /**
+   * Retrieves a list of items representing the activity stream for the supplied activity id.
+   * 
+   * An Activity contains information about work being done on a specific accounting task. You can use Activities to track information about who has been assigned a specific task, the current status of the task, the name and description given for the particular task, the priority of the task, and any amounts collected, paid, or credited for the task.
+   * 
+   * @param id - The unique Lockstep Platform ID number of this Activity
+   */
+  retrieveActivityStream(id: string): Promise<LockstepResponse<ActivityStreamItemModel[]>> {
+    const url = `/api/v1/Activities/${id}/stream`;
+    return this.client.request<ActivityStreamItemModel[]>('get', url, null, null);
   }
 }
