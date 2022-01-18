@@ -8,16 +8,16 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2
+ * @version    2022.3.23
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { AppEnrollmentModel } from "../models/DataModels.js";
-import { ActionResultModel } from "../models/ActionResultModel.js";
-import { FetchResult } from "../models/FetchResult.js";
-import { AppEnrollmentCustomFieldModel } from "../models/DataModels.js";
+require('../LockstepApi.js');
+require('../models/LockstepResponse.js');
+require('../models/DataModels.js');
+require('../models/ActionResultModel.js');
+require('../models/FetchResult.js');
+require('../models/DataModels.js');
 
 export class AppEnrollmentsClient {
   private readonly client: LockstepApi;
@@ -37,7 +37,7 @@ export class AppEnrollmentsClient {
    * See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
    *
    * @param id The unique ID number of the App Enrollment to retrieve
-   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync
    */
   retrieveAppEnrollment(id: string, include: string): Promise<LockstepResponse<AppEnrollmentModel>> {
     const url = `/api/v1/AppEnrollments/${id}`;
@@ -108,7 +108,7 @@ export class AppEnrollmentsClient {
    * See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
    *
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync
    * @param order The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)

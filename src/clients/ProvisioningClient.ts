@@ -8,15 +8,17 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2
+ * @version    2022.3.23
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { ProvisioningResponseModel } from "../models/DataModels.js";
-import { ProvisioningModel } from "../models/DataModels.js";
-import { ProvisioningFinalizeRequestModel } from "../models/DataModels.js";
+require('../LockstepApi.js');
+require('../models/LockstepResponse.js');
+require('../models/DataModels.js');
+require('../models/DataModels.js');
+require('../models/DataModels.js');
+require('../models/ActionResultModel.js');
+require('../models/DataModels.js');
 
 export class ProvisioningClient {
   private readonly client: LockstepApi;
@@ -46,5 +48,14 @@ export class ProvisioningClient {
   finalizeUserAccountProvisioning(body: ProvisioningFinalizeRequestModel): Promise<LockstepResponse<ProvisioningResponseModel>> {
     const url = `/api/v1/Provisioning/finalize`;
     return this.client.request<ProvisioningResponseModel>('post', url, null, body);
+  }
+
+  /**
+   *
+   * @param body
+   */
+  provisionFreeDeveloperAccount(body: DeveloperAccountSubmitModel): Promise<LockstepResponse<ActionResultModel>> {
+    const url = `/api/v1/Provisioning/free-account`;
+    return this.client.request<ActionResultModel>('post', url, null, body);
   }
 }
