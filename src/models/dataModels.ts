@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2
+ * @version    2022.3.23
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -120,6 +120,10 @@ export type ActivityModel = {
    */
   company: CompanyModel | null;
   /**
+   * The name of the user the activity is assigned to
+   */
+  userAssignedToName: string | null;
+  /**
    * All attachments attached to applied activity.
    *
    * To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
@@ -143,6 +147,12 @@ export type ActivityModel = {
    * To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
    */
   customFieldValues: CustomFieldValueModel[] | null;
+  /**
+   * All references attached to this applied activity.
+   *
+   * To retrieve this collection, specify `References` in the "Include" parameter for your query.
+   */
+  references: ActivityXRefModel[] | null;
 };
 
 export type ActivityStreamItemModel = {
@@ -153,7 +163,7 @@ export type ActivityStreamItemModel = {
   /**
    * The type code of the activity stream item.
    */
-  activityType: string | null;
+  activityStreamType: string | null;
   /**
    * The text body description for this Activity Stream Item.
    */
@@ -189,6 +199,33 @@ export type ActivityStreamItemModel = {
    * The name of the contact sending the activity otherwise null.
    */
   toContactName: string | null;
+};
+
+export type ActivityXRefModel = {
+  /**
+   * The unique ID of this record, automatically assigned by Lockstep when this is
+   * added to the Lockstep platform.
+   */
+  activityXRefId: string;
+  /**
+   * The ID of the activity to which this reference belongs.
+   */
+  activityId: string;
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+  /**
+   * The name of the table the activity reference is associated with
+   */
+  tableKey: string | null;
+  /**
+   * The ID of the object the activity reference is associated with
+   */
+  objectKey: string | null;
 };
 
 export type AgingModel = {
@@ -378,6 +415,10 @@ export type AppEnrollmentModel = {
    * To retrieve this collection, specify `LastSync` in the "Include" parameter for your query.
    */
   lastSync: SyncRequestModel | null;
+  /**
+   * Data about the last successful sync associated with this enrollment
+   */
+  lastSuccessfulSync: SyncRequestModel | null;
   /**
    * Optional data necessary to create an app enrollment for a supported connector.
    * Only enter relevant fields for the given connector.
@@ -1759,6 +1800,21 @@ export type DailySalesOutstandingReportModel = {
   dailySalesOutstanding: number;
 };
 
+export type DeveloperAccountSubmitModel = {
+  /**
+   * The name of the developer.
+   */
+  name: string;
+  /**
+   * The email address of the developer.
+   */
+  email: string;
+  /**
+   * The company name of the developer.
+   */
+  companyName: string;
+};
+
 export type EmailModel = {
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -2719,6 +2775,10 @@ export type NoteModel = {
    * AppEnrollmentId for this record; used for mapping purposes.
    */
   appEnrollmentId: string | null;
+  /**
+   * The person to whom this note is intended for.
+   */
+  recipientName: string | null;
 };
 
 export type PaymentAppliedModel = {
