@@ -12,10 +12,10 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-require('../LockstepApi.js');
-require('../models/LockstepResponse.js');
-require('../models/DataModels.js');
-require('../models/ErrorResult.js');
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
+import { StatusModel } from "../models/DataModels.js";
+import { TestTimeoutException } from "../models/ErrorResult.js";
 
 export class StatusClient {
   private readonly client: LockstepApi;

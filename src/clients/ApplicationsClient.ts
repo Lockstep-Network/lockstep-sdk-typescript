@@ -12,11 +12,11 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-require('../LockstepApi.js');
-require('../models/LockstepResponse.js');
-require('../models/DataModels.js');
-require('../models/ActionResultModel.js');
-require('../models/FetchResult.js');
+import { LockstepApi } from "../LockstepApi.js";
+import { LockstepResponse } from "../models/LockstepResponse.js";
+import { ApplicationModel } from "../models/DataModels.js";
+import { ActionResultModel } from "../models/ActionResultModel.js";
+import { FetchResult } from "../models/FetchResult.js";
 
 export class ApplicationsClient {
   private readonly client: LockstepApi;

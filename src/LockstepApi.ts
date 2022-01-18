@@ -12,35 +12,35 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-const axios = require('axios');
-require('./clients/ActivitiesClient.js');
-require('./clients/ApiKeysClient.js');
-require('./clients/AppEnrollmentsClient.js');
-require('./clients/ApplicationsClient.js');
-require('./clients/AttachmentsClient.js');
-require('./clients/CodeDefinitionsClient.js');
-require('./clients/CompaniesClient.js');
-require('./clients/ContactsClient.js');
-require('./clients/CreditMemoAppliedClient.js');
-require('./clients/CurrenciesClient.js');
-require('./clients/CustomFieldDefinitionsClient.js');
-require('./clients/CustomFieldValuesClient.js');
-require('./clients/DefinitionsClient.js');
-require('./clients/EmailsClient.js');
-require('./clients/InvoiceHistoryClient.js');
-require('./clients/InvoicesClient.js');
-require('./clients/LeadsClient.js');
-require('./clients/NotesClient.js');
-require('./clients/PaymentApplicationsClient.js');
-require('./clients/PaymentsClient.js');
-require('./clients/ProvisioningClient.js');
-require('./clients/ReportsClient.js');
-require('./clients/StatusClient.js');
-require('./clients/SyncClient.js');
-require('./clients/UserAccountsClient.js');
-require('./clients/UserRolesClient.js');
-require('./models/ErrorResult.js');
-require('./models/LockstepResponse.js');
+import * as axios from "axios";
+import { ActivitiesClient } from "./clients/ActivitiesClient.js";
+import { ApiKeysClient } from "./clients/ApiKeysClient.js";
+import { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient.js";
+import { ApplicationsClient } from "./clients/ApplicationsClient.js";
+import { AttachmentsClient } from "./clients/AttachmentsClient.js";
+import { CodeDefinitionsClient } from "./clients/CodeDefinitionsClient.js";
+import { CompaniesClient } from "./clients/CompaniesClient.js";
+import { ContactsClient } from "./clients/ContactsClient.js";
+import { CreditMemoAppliedClient } from "./clients/CreditMemoAppliedClient.js";
+import { CurrenciesClient } from "./clients/CurrenciesClient.js";
+import { CustomFieldDefinitionsClient } from "./clients/CustomFieldDefinitionsClient.js";
+import { CustomFieldValuesClient } from "./clients/CustomFieldValuesClient.js";
+import { DefinitionsClient } from "./clients/DefinitionsClient.js";
+import { EmailsClient } from "./clients/EmailsClient.js";
+import { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient.js";
+import { InvoicesClient } from "./clients/InvoicesClient.js";
+import { LeadsClient } from "./clients/LeadsClient.js";
+import { NotesClient } from "./clients/NotesClient.js";
+import { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient.js";
+import { PaymentsClient } from "./clients/PaymentsClient.js";
+import { ProvisioningClient } from "./clients/ProvisioningClient.js";
+import { ReportsClient } from "./clients/ReportsClient.js";
+import { StatusClient } from "./clients/StatusClient.js";
+import { SyncClient } from "./clients/SyncClient.js";
+import { UserAccountsClient } from "./clients/UserAccountsClient.js";
+import { UserRolesClient } from "./clients/UserRolesClient.js";
+import { ErrorResult } from "./models/ErrorResult.js";
+import { LockstepResponse } from "./models/LockstepResponse.js";
 
 export class LockstepApi {
 
