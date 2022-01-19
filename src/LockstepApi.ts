@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.23
+ * @version    2022.3.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -46,7 +46,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.3.23";
+  private readonly version: string = "2022.3.32";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
 
