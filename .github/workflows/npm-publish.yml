@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # Commentting this our as it will not push to NPM with the way we have the publish configured.
+  # workflow_dispatch:
   
 
 jobs:
