@@ -41,8 +41,7 @@
  import { UserRolesClient } from "./clients/UserRolesClient.js";
  import { ErrorResult } from "./models/ErrorResult.js";
  import { LockstepResponse } from "./models/LockstepResponse.js";
- import { hostname as _hostname } from "os";
-
+ 
  export class LockstepApi {
  
    // The URL of the environment we will use
@@ -50,10 +49,6 @@
    private readonly version: string = "2022.3.32";
    private bearerToken: string | null = null;
    private apiKey: string | null = null;
-   private sdkName = "TypeScript";
-   private machineName: string | null = null;
-   private appName: string | null = null;
-   
  
    public readonly Activities: ActivitiesClient;
    public readonly ApiKeys: ApiKeysClient;
@@ -154,16 +149,7 @@
      this.apiKey = null;
      return this;
    }
-
-   public withApplicationName (appName: string): LockstepApi {
-     this.appName = appName;
-     return this;
-   }
-   
-
-   public getAppName(): any {
-     return this.appName;
-   }
+ 
    /**
     * Configures this Lockstep API client to use an API Key.
     * More documentation is available on [API Keys](https://developer.lockstep.io/docs/api-keys).
@@ -180,46 +166,17 @@
     * Construct headers for a request
     */
    private getHeaders(): any {
-    const hostName = _hostname();
-     if (hostName!==null) {
+     if (this.apiKey !== null) {
        return {
-         
-         "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName,
-         "ApiKey": this.apiKey,
-         
+         "Api-Key": this.apiKey,
        };
      }
      if (this.bearerToken !== null) {
        return {
-        "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName, 
          "Authorization": `Bearer ${this.bearerToken}`,
        };
      }
-     if (this.appName!==null && this.apiKey!==null) {
-      return {
-        
-         "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName,
-         "ApiKey": this.apiKey, 
-         "ApplciationName": this.appName
-       };
-     }
-     if (this.appName!==null && this.bearerToken!==null) {
-      return {
-         "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName, 
-         "Authorization": `Bearer ${this.bearerToken}`,
-         "ApplciationName": this.appName
-       };
-     }
-
-    return {};
+     return {};
    }
  
    /**
@@ -233,9 +190,7 @@
        data: body,
        headers: this.getHeaders(),
      };
-    console.log(requestConfig.headers);
      const result = await axios.default.request(requestConfig);
-     
      const response = new LockstepResponse<T>(result.status >= 200 && result.status < 300, result.status);
      if (response.success) {
        response.value = result.data as T;
@@ -244,9 +199,4 @@
      }
      return response;
    }
-   
  }
- 
- 
- 
-
