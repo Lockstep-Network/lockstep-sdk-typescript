@@ -41,6 +41,7 @@ import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
 import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
+import { hostname as _hostname } from "os";
 
 export class LockstepApi {
 
@@ -49,6 +50,9 @@ export class LockstepApi {
   private readonly version: string = "2022.3.32";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
+  private sdkName = "TypeScript";
+  private machineName: string | null = null;
+  private appName: string | null = null;
 
   public readonly Activities: ActivitiesClient;
   public readonly ApiKeys: ApiKeysClient;
@@ -118,7 +122,7 @@ export class LockstepApi {
    * @returns The Lockstep API client to use
    */
   public static withEnvironment(env: "prd" | "sbx"): LockstepApi {
-    var url = "https://api.lockstep.io";
+    let url = "https://api.lockstep.io";
     switch (env) {
       case "prd": url = "https://api.lockstep.io"; break;
       case "sbx": url = "https://api.sbx.lockstep.io"; break;
@@ -163,19 +167,66 @@ export class LockstepApi {
   }
 
   /**
+   * Configures this Lockstep API client to use an application name
+   * 
+   * @param appName The Application Name to use for this API session
+   */
+  public withApplicationName(appName: string): LockstepApi {
+    this.appName = appName;
+    return this;
+    
+  }
+
+  /**
+   * Returns the currently selected application name 
+   */
+  public getAppName(): any {
+    return this.appName;
+  }
+
+  /**
    * Construct headers for a request
    */
   private getHeaders(): any {
-    if (this.apiKey !== null) {
+    const hostName = _hostname();
+     if (hostName!==null) {
+       return {
+         
+         "SdkName": this.sdkName,
+         "SdkVersion": this.version,
+         "MachineName": hostName,
+         "ApiKey": this.apiKey,
+         
+       };
+     }
+     if (this.bearerToken !== null) {
+       return {
+        "SdkName": this.sdkName,
+         "SdkVersion": this.version,
+         "MachineName": hostName, 
+         "Authorization": `Bearer ${this.bearerToken}`,
+       };
+     }
+     if (this.appName!==null && this.apiKey!==null) {
       return {
-        'Api-Key': this.apiKey,
-      };
-    }
-    if (this.bearerToken !== null) {
+        
+         "SdkName": this.sdkName,
+         "SdkVersion": this.version,
+         "MachineName": hostName,
+         "ApiKey": this.apiKey, 
+         "ApplciationName": this.appName
+       };
+     }
+     if (this.appName!==null && this.bearerToken!==null) {
       return {
-        'Authorization': `Bearer ${this.bearerToken}`,
-      };
-    }
+         "SdkName": this.sdkName,
+         "SdkVersion": this.version,
+         "MachineName": hostName, 
+         "Authorization": `Bearer ${this.bearerToken}`,
+         "ApplciationName": this.appName
+       };
+     }
+
     return {};
   }
 
@@ -190,8 +241,8 @@ export class LockstepApi {
       data: body,
       headers: this.getHeaders(),
     };
-    var result = await axios.default.request(requestConfig);
-    var response = new LockstepResponse<T>(result.status >= 200 && result.status < 300, result.status);
+    const result = await axios.default.request(requestConfig);
+    const response = new LockstepResponse<T>(result.status >= 200 && result.status < 300, result.status);
     if (response.success) {
       response.value = result.data as T;
     } else {
