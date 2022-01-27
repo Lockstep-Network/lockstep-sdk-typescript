@@ -189,45 +189,22 @@ export class LockstepApi {
    */
   private getHeaders(): any {
     const hostName = _hostname();
-     if (hostName!==null) {
-       return {
-         
-         "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName,
-         "ApiKey": this.apiKey,
-         
-       };
-     }
-     if (this.bearerToken !== null) {
-       return {
-        "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName, 
-         "Authorization": `Bearer ${this.bearerToken}`,
-       };
-     }
-     if (this.appName!==null && this.apiKey!==null) {
-      return {
-        
-         "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName,
-         "ApiKey": this.apiKey, 
-         "ApplciationName": this.appName
-       };
-     }
-     if (this.appName!==null && this.bearerToken!==null) {
-      return {
-         "SdkName": this.sdkName,
-         "SdkVersion": this.version,
-         "MachineName": hostName, 
-         "Authorization": `Bearer ${this.bearerToken}`,
-         "ApplciationName": this.appName
-       };
-     }
-
-    return {};
+    const headers = { 
+      "SdkName": this.sdkName,
+      "SdkVersion": this.version, 
+      "MachineName": hostName, 
+    };
+    if (this.appName !== null) {
+      headers["ApplicationName"] = this.appName;
+    } 
+    if (this.bearerToken !== null) {
+      headers["Authorization"] = `Bearer ${this.bearerToken}`;
+    } 
+    else if (this.apiKey !== null) {
+      headers["ApiKey"] = this.apiKey;
+    }
+     
+    return headers;
   }
 
   /**
