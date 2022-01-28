@@ -41,7 +41,7 @@ import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
 import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
-import { hostname as _hostname } from "os";
+import * as os from 'os';
 
 export class LockstepApi {
 
@@ -184,7 +184,7 @@ export class LockstepApi {
     const headers = { 
       "SdkName": this.sdkName,
       "SdkVersion": this.version, 
-      "MachineName": _hostName(), 
+      "MachineName": os.hostname(), 
     };
     if (this.appName !== null) {
       headers["ApplicationName"] = this.appName;
