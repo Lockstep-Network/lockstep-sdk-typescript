@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -39,7 +39,7 @@ export class ReportsClient {
    *
    * @param timeframe Number of days of data to include for the Cash Flow Report (default is 30 days from today)
    */
-  cashFlow(timeframe: number): Promise<LockstepResponse<CashflowReportModel>> {
+  cashFlow(timeframe?: number): Promise<LockstepResponse<CashflowReportModel>> {
     const url = `/api/v1/Reports/cashflow`;
     const options = {
       params: {
@@ -77,7 +77,7 @@ export class ReportsClient {
    * @param reportDate The date of the report.
    * @param companyId Include a company to get AR data for a specific company, leave as null to include all Companies.
    */
-  accountsReceivableHeader(reportDate: string, companyId: string): Promise<LockstepResponse<ArHeaderInfoModel>> {
+  accountsReceivableHeader(reportDate: string, companyId?: string): Promise<LockstepResponse<ArHeaderInfoModel>> {
     const url = `/api/v1/Reports/ar-header`;
     const options = {
       params: {
@@ -103,7 +103,7 @@ export class ReportsClient {
    * @param CurrencyProvider Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)
    * @param Buckets Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)
    */
-  invoiceagingreport(CompanyId: string, Recalculate: boolean, CurrencyCode: string, CurrencyProvider: string, Buckets: number[]): Promise<LockstepResponse<AgingModel[]>> {
+  invoiceagingreport(CompanyId?: string, Recalculate?: boolean, CurrencyCode?: string, CurrencyProvider?: string, Buckets?: number[]): Promise<LockstepResponse<AgingModel[]>> {
     const url = `/api/v1/Reports/aging`;
     const options = {
       params: {
@@ -135,7 +135,7 @@ export class ReportsClient {
    *
    * @param companyId Include a specific company to get Attachment data for, leave as null to include all Companies.
    */
-  attachmentsHeaderInformation(companyId: string): Promise<LockstepResponse<AttachmentHeaderInfoModel>> {
+  attachmentsHeaderInformation(companyId?: string): Promise<LockstepResponse<AttachmentHeaderInfoModel>> {
     const url = `/api/v1/Reports/attachments-header`;
     const options = {
       params: {

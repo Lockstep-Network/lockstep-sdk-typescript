@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -47,7 +47,7 @@ export class StatusClient {
    *
    * @param err The type of error test to execute. Supported error types: 500, timeout
    */
-  errorTest(err: string): Promise<LockstepResponse<TestTimeoutException>> {
+  errorTest(err?: string): Promise<LockstepResponse<TestTimeoutException>> {
     const url = `/api/v1/Status/testing`;
     const options = {
       params: {

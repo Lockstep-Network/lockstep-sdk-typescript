@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -39,7 +39,7 @@ export class AttachmentsClient {
    * @param id The unique ID number of the Attachment to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.
    */
-  retrieveAttachment(id: string, include: string): Promise<LockstepResponse<AttachmentModel>> {
+  retrieveAttachment(id: string, include?: string): Promise<LockstepResponse<AttachmentModel>> {
     const url = `/api/v1/Attachments/${id}`;
     const options = {
       params: {
@@ -130,7 +130,7 @@ export class AttachmentsClient {
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
    */
-  queryAttachments(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<AttachmentModel>>> {
+  queryAttachments(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<AttachmentModel>>> {
     const url = `/api/v1/Attachments/query`;
     const options = {
       params: {

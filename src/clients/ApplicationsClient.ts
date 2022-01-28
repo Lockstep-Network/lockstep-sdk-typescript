@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -38,7 +38,7 @@ export class ApplicationsClient {
    * @param id The unique ID number of the Application to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields
    */
-  retrieveApplication(id: string, include: string): Promise<LockstepResponse<ApplicationModel>> {
+  retrieveApplication(id: string, include?: string): Promise<LockstepResponse<ApplicationModel>> {
     const url = `/api/v1/Applications/${id}`;
     const options = {
       params: {
@@ -102,7 +102,7 @@ export class ApplicationsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryApplications(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ApplicationModel>>> {
+  queryApplications(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<ApplicationModel>>> {
     const url = `/api/v1/Applications/query`;
     const options = {
       params: {

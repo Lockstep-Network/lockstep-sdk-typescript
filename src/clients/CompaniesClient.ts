@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -38,7 +38,7 @@ export class CompaniesClient {
    * @param id The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification
    */
-  retrieveCompany(id: string, include: string): Promise<LockstepResponse<CompanyModel>> {
+  retrieveCompany(id: string, include?: string): Promise<LockstepResponse<CompanyModel>> {
     const url = `/api/v1/Companies/${id}`;
     const options = {
       params: {
@@ -102,7 +102,7 @@ export class CompaniesClient {
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
    */
-  queryCompanies(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CompanyModel>>> {
+  queryCompanies(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CompanyModel>>> {
     const url = `/api/v1/Companies/query`;
     const options = {
       params: {
@@ -127,7 +127,7 @@ export class CompaniesClient {
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
    */
-  queryCustomerSummary(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CustomerSummaryModel>>> {
+  queryCustomerSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CustomerSummaryModel>>> {
     const url = `/api/v1/Companies/views/customer-summary`;
     const options = {
       params: {

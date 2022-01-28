@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -35,7 +35,7 @@ export class CreditMemoAppliedClient {
    * @param id The unique Lockstep Platform ID number of this Credit Memo Application; NOT the customer's ERP key
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes
    */
-  retrieveCreditMemoApplication(id: string, include: string): Promise<LockstepResponse<CreditMemoAppliedModel>> {
+  retrieveCreditMemoApplication(id: string, include?: string): Promise<LockstepResponse<CreditMemoAppliedModel>> {
     const url = `/api/v1/CreditMemoApplied/${id}`;
     const options = {
       params: {
@@ -93,7 +93,7 @@ export class CreditMemoAppliedClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryCreditMemoApplications(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CreditMemoAppliedModel>>> {
+  queryCreditMemoApplications(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CreditMemoAppliedModel>>> {
     const url = `/api/v1/CreditMemoApplied/query`;
     const options = {
       params: {

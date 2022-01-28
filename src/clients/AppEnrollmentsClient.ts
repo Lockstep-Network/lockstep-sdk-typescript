@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -39,7 +39,7 @@ export class AppEnrollmentsClient {
    * @param id The unique ID number of the App Enrollment to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync
    */
-  retrieveAppEnrollment(id: string, include: string): Promise<LockstepResponse<AppEnrollmentModel>> {
+  retrieveAppEnrollment(id: string, include?: string): Promise<LockstepResponse<AppEnrollmentModel>> {
     const url = `/api/v1/AppEnrollments/${id}`;
     const options = {
       params: {
@@ -74,7 +74,7 @@ export class AppEnrollmentsClient {
    * @param id The unique ID number of the App Enrollment to delete
    * @param removeEnrollmentData Option to remove all associated app enrollment data when deleting app enrollment (default false)
    */
-  deleteAppEnrollment(id: string, removeEnrollmentData: boolean): Promise<LockstepResponse<ActionResultModel>> {
+  deleteAppEnrollment(id: string, removeEnrollmentData?: boolean): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/AppEnrollments/${id}`;
     const options = {
       params: {
@@ -113,7 +113,7 @@ export class AppEnrollmentsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryAppEnrollments(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<AppEnrollmentModel>>> {
+  queryAppEnrollments(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<AppEnrollmentModel>>> {
     const url = `/api/v1/AppEnrollments/query`;
     const options = {
       params: {

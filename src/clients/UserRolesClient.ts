@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -33,7 +33,7 @@ export class UserRolesClient {
    * @param id The unique ID number of the User Role to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    */
-  retrieveUserRole(id: string, include: string): Promise<LockstepResponse<UserRoleModel>> {
+  retrieveUserRole(id: string, include?: string): Promise<LockstepResponse<UserRoleModel>> {
     const url = `/api/v1/UserRoles/${id}`;
     const options = {
       params: {
@@ -52,7 +52,7 @@ export class UserRolesClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryUserRoles(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<UserRoleModel>>> {
+  queryUserRoles(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<UserRoleModel>>> {
     const url = `/api/v1/UserRoles/query`;
     const options = {
       params: {

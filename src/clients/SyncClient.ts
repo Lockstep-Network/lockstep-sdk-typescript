@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -76,7 +76,7 @@ export class SyncClient {
    * @param id The unique ID number of the Sync task to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Details
    */
-  retrieveSync(id: string, include: string): Promise<LockstepResponse<SyncRequestModel>> {
+  retrieveSync(id: string, include?: string): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync/${id}`;
     const options = {
       params: {
@@ -99,7 +99,7 @@ export class SyncClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  querySyncs(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<SyncRequestModel>>> {
+  querySyncs(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<SyncRequestModel>>> {
     const url = `/api/v1/Sync/query`;
     const options = {
       params: {

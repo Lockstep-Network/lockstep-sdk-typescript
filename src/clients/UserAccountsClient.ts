@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -41,7 +41,7 @@ export class UserAccountsClient {
    * @param id The unique ID number of the User to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields, AccountingRole
    */
-  retrieveUser(id: string, include: string): Promise<LockstepResponse<UserAccountModel>> {
+  retrieveUser(id: string, include?: string): Promise<LockstepResponse<UserAccountModel>> {
     const url = `/api/v1/UserAccounts/${id}`;
     const options = {
       params: {
@@ -85,7 +85,7 @@ export class UserAccountsClient {
    *
    * @param id The unique Lockstep Platform ID number of this User
    */
-  reenableUser(id: string): Promise<LockstepResponse<ActionResultModel>> {
+  reenableUser(id?: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/UserAccounts/reenable`;
     const options = {
       params: {
@@ -114,7 +114,7 @@ export class UserAccountsClient {
    *
    * @param code The code of the invite
    */
-  retrieveInviteData(code: string): Promise<LockstepResponse<InviteDataModel>> {
+  retrieveInviteData(code?: string): Promise<LockstepResponse<InviteDataModel>> {
     const url = `/api/v1/UserAccounts/invite`;
     const options = {
       params: {
@@ -145,7 +145,7 @@ export class UserAccountsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryUsers(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<UserAccountModel>>> {
+  queryUsers(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<UserAccountModel>>> {
     const url = `/api/v1/UserAccounts/query`;
     const options = {
       params: {
