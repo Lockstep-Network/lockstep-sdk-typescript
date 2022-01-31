@@ -22,7 +22,7 @@ jobs:
       - name: npm install
         run: npm install
       - name: npm build
-        run: mpn run build
+        run: npm run build
       # Would be good to have tests, but apparently we do not currently have any
       #- name: npm test
       #  run: npm test
