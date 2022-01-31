@@ -11,9 +11,9 @@ const config = [
     output: {
       file: 'lockstep-api.js',
       format: 'cjs',
-      sourcemap: true,
-      external: ['axios', 'os', 'url'],
+      sourcemap: true,      
     },
+    external: ['axios', 'os', 'url'],
     plugins: [typescript()]
   }, {
     input: 'build/compiled/LockstepApi.d.ts',
