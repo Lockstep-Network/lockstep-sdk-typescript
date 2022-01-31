@@ -1,6 +1,6 @@
 {
     "name": "lockstep-sdk",
-    "version": "2022.4.32",
+    "version": "2022.4.32-beta1",
     "description": "API Client to use the Lockstep Platform API",
     "repository": "https://github.com/Lockstep-Network/lockstep-sdk-typescript",
     "license": "MIT",
@@ -18,7 +18,9 @@
         "axios": "^0.24.0"
     },
     "files": [
-        "dist"
+        "lockstep-api.d.ts",
+        "lockstep-api.js",
+        "lockstep-api.js.map"
     ],
     "scripts": {
         "compile": "tsc",
@@ -30,8 +32,8 @@
         "build": "run-s _clear _tsc _make-bundle",
         "watch": "tsc --watch"
     },
-    "main": "lockstep-sdk.min.js",
-    "types": "lockstep-sdk.d.ts",
+    "main": "lockstep-api.js",
+    "types": "lockstep-api.d.ts",
     "devDependencies": {
         "@open-wc/building-rollup": "^2.0.1",
         "@rollup/plugin-typescript": "^8.3.0",
