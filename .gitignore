@@ -108,3 +108,5 @@ src/ApiClientList.txt
 /build/compiled
 /lockstep-api.d.ts
 /lockstep-api.min.js
+/lockstep-api.js.map
+/lockstep-api.js
