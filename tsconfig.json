@@ -1,17 +1,12 @@
 {
     "compilerOptions": {
       "moduleResolution": "node",
-      "noImplicitAny": false,
-      "noEmitOnError": true,
       "removeComments": false,
       "sourceMap": true,
-      "target": "es6",
-      "outDir": "./dist/",
+      "target": "es2017",
+      "outDir": "build/compiled",
       "declaration": true,
       "strict": true,
     },
-    "include": ["src/**/*"],
-    "ts-node": {
-      "transpileOnly": true
-    }
+    "include": ["src"]
   }

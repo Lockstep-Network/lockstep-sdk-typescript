@@ -12,6 +12,6 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "./LockstepApi";
+import { LockstepApi } from "./LockstepApi.js";
 
 export default LockstepApi

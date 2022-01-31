@@ -43,6 +43,22 @@ import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
 import * as os from 'os';
 
+/**
+ * List of headers used by the Lockstep API
+ */
+export type LockstepApiHeaders =
+  {
+    SdkName?: string,
+    SdkVersion?: string,
+    MachineName?: string,
+    ApplicationName?: string,
+    Authorization?: string,
+    ApiKey?: string 
+  };
+
+/**
+ * Client object used to communicate with the Lockstep Platform API
+ */
 export class LockstepApi {
 
   // The URL of the environment we will use
@@ -180,11 +196,11 @@ export class LockstepApi {
   /**
    * Construct headers for a request
    */
-  private getHeaders(): any {
-    const headers = { 
-      "SdkName": this.sdkName,
-      "SdkVersion": this.version, 
-      "MachineName": os.hostname(), 
+  private getHeaders(): LockstepApiHeaders {
+    const headers: LockstepApiHeaders = {
+      SdkName: this.sdkName,
+      SdkVersion: this.version, 
+      MachineName: os.hostname(), 
     };
     if (this.appName !== null) {
       headers["ApplicationName"] = this.appName;
@@ -202,7 +218,7 @@ export class LockstepApi {
   /**
    * Make a GET request using this client
    */
-  public async request<T>(method: axios.Method, path: string, options: any, body: any): Promise<LockstepResponse<T>> {
+  public async request<T>(method: axios.Method, path: string, options: unknown, body: unknown): Promise<LockstepResponse<T>> {
     const requestConfig = {
       url: new URL(path, this.serverUrl).href,
       method,

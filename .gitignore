@@ -103,3 +103,8 @@ dist
 # TernJS port file
 .tern-port
 src/ApiClientList.txt
+
+# Build folder
+/build/compiled
+/lockstep-api.d.ts
+/lockstep-api.min.js
