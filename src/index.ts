@@ -41,10 +41,8 @@ import { StatusClient } from "./clients/StatusClient.js";
 import { SyncClient } from "./clients/SyncClient.js";
 import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
-import * as DataModels from "./models/DataModels.js";
 
 module.exports = {
-    DataModels,
     ErrorResult,
     LockstepApi,
     LockstepResponse,
