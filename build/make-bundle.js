@@ -2,7 +2,7 @@ const { promisify } = require("util")
 const fs = require("fs")
 const path = require("path")
 const rollup = require("rollup")
-const uglifyEs = require("uglify-es")
+const uglifyEs = require("uglify-js")
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 const packageName = "my-npm-package"
@@ -13,14 +13,15 @@ async function build() {
   let bundle = await rollup.rollup({
     input: path.join(compiledPath, "index.js")
   })
-  let { code } = await bundle.generate({
+  let { output } = await bundle.generate({
     format: "cjs",
-    sourcemap: false
+    sourcemap: false,
+    exports: "named"
   })
-  let minified = uglifyEs.minify(code)
-  if (minified.error)
-    throw minified.error
-  await writeFile(path.join(distNpmPath, `${packageName}.min.js`), minified.code)
+  // let minified = uglifyEs.minify(output)
+  // if (minified.error)
+  //   throw minified.error
+  await writeFile(path.join(distNpmPath, `${packageName}.min.js`), output)
   await writeFile(path.join(distNpmPath, `${packageName}.d.ts`), await makeDefinitionsCode())
 }
 async function makeDefinitionsCode() {

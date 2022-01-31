@@ -46,7 +46,7 @@ export class AppEnrollmentsClient {
         include,
       },
     };
-    return this.client.request<AppEnrollmentModel>('get', url, options, null);
+    return this.client.request<AppEnrollmentModel>("get", url, options, null);
   }
 
   /**
@@ -63,7 +63,7 @@ export class AppEnrollmentsClient {
    */
   updateAppEnrollment(id: string, body: object): Promise<LockstepResponse<AppEnrollmentModel>> {
     const url = `/api/v1/AppEnrollments/${id}`;
-    return this.client.request<AppEnrollmentModel>('patch', url, null, body);
+    return this.client.request<AppEnrollmentModel>("patch", url, null, body);
   }
 
   /**
@@ -81,7 +81,7 @@ export class AppEnrollmentsClient {
         removeEnrollmentData,
       },
     };
-    return this.client.request<ActionResultModel>('delete', url, options, null);
+    return this.client.request<ActionResultModel>("delete", url, options, null);
   }
 
   /**
@@ -95,7 +95,7 @@ export class AppEnrollmentsClient {
    */
   createAppEnrollments(body: AppEnrollmentModel[]): Promise<LockstepResponse<AppEnrollmentModel[]>> {
     const url = `/api/v1/AppEnrollments`;
-    return this.client.request<AppEnrollmentModel[]>('post', url, null, body);
+    return this.client.request<AppEnrollmentModel[]>("post", url, null, body);
   }
 
   /**
@@ -124,7 +124,7 @@ export class AppEnrollmentsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<AppEnrollmentModel>>('get', url, options, null);
+    return this.client.request<FetchResult<AppEnrollmentModel>>("get", url, options, null);
   }
 
   /**
@@ -140,6 +140,6 @@ export class AppEnrollmentsClient {
    */
   queryEnrollmentFields(id: string): Promise<LockstepResponse<FetchResult<AppEnrollmentCustomFieldModel>>> {
     const url = `/api/v1/AppEnrollments/settings/${id}`;
-    return this.client.request<FetchResult<AppEnrollmentCustomFieldModel>>('get', url, null, null);
+    return this.client.request<FetchResult<AppEnrollmentCustomFieldModel>>("get", url, null, null);
   }
 }

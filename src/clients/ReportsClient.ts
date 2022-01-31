@@ -46,7 +46,7 @@ export class ReportsClient {
         timeframe,
       },
     };
-    return this.client.request<CashflowReportModel>('get', url, options, null);
+    return this.client.request<CashflowReportModel>("get", url, options, null);
   }
 
   /**
@@ -57,7 +57,7 @@ export class ReportsClient {
    */
   dailySalesOutstanding(): Promise<LockstepResponse<DailySalesOutstandingReportModel[]>> {
     const url = `/api/v1/Reports/dailysalesoutstanding`;
-    return this.client.request<DailySalesOutstandingReportModel[]>('get', url, null, null);
+    return this.client.request<DailySalesOutstandingReportModel[]>("get", url, null, null);
   }
 
   /**
@@ -68,7 +68,7 @@ export class ReportsClient {
    */
   riskRates(): Promise<LockstepResponse<RiskRateModel[]>> {
     const url = `/api/v1/Reports/riskrates`;
-    return this.client.request<RiskRateModel[]>('get', url, null, null);
+    return this.client.request<RiskRateModel[]>("get", url, null, null);
   }
 
   /**
@@ -85,7 +85,7 @@ export class ReportsClient {
         companyId,
       },
     };
-    return this.client.request<ArHeaderInfoModel>('get', url, options, null);
+    return this.client.request<ArHeaderInfoModel>("get", url, options, null);
   }
 
   /**
@@ -114,7 +114,7 @@ export class ReportsClient {
         Buckets,
       },
     };
-    return this.client.request<AgingModel[]>('get', url, options, null);
+    return this.client.request<AgingModel[]>("get", url, options, null);
   }
 
   /**
@@ -125,7 +125,7 @@ export class ReportsClient {
    */
   accountsReceivableAgingHeader(): Promise<LockstepResponse<ArAgingHeaderInfoModel[]>> {
     const url = `/api/v1/Reports/ar-aging-header`;
-    return this.client.request<ArAgingHeaderInfoModel[]>('get', url, null, null);
+    return this.client.request<ArAgingHeaderInfoModel[]>("get", url, null, null);
   }
 
   /**
@@ -142,6 +142,6 @@ export class ReportsClient {
         companyId,
       },
     };
-    return this.client.request<AttachmentHeaderInfoModel>('get', url, options, null);
+    return this.client.request<AttachmentHeaderInfoModel>("get", url, options, null);
   }
 }

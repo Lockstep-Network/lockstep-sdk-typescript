@@ -42,7 +42,7 @@ export class CustomFieldDefinitionsClient {
         include,
       },
     };
-    return this.client.request<CustomFieldDefinitionModel>('get', url, options, null);
+    return this.client.request<CustomFieldDefinitionModel>("get", url, options, null);
   }
 
   /**
@@ -57,7 +57,7 @@ export class CustomFieldDefinitionsClient {
    */
   updateFieldDefinition(id: string, body: object): Promise<LockstepResponse<CustomFieldDefinitionModel>> {
     const url = `/api/v1/CustomFieldDefinitions/${id}`;
-    return this.client.request<CustomFieldDefinitionModel>('patch', url, null, body);
+    return this.client.request<CustomFieldDefinitionModel>("patch", url, null, body);
   }
 
   /**
@@ -69,7 +69,7 @@ export class CustomFieldDefinitionsClient {
    */
   deleteFieldDefinition(id: string): Promise<LockstepResponse<CustomFieldDefinitionModel>> {
     const url = `/api/v1/CustomFieldDefinitions/${id}`;
-    return this.client.request<CustomFieldDefinitionModel>('delete', url, null, null);
+    return this.client.request<CustomFieldDefinitionModel>("delete", url, null, null);
   }
 
   /**
@@ -79,7 +79,7 @@ export class CustomFieldDefinitionsClient {
    */
   createFieldDefinitions(body: CustomFieldDefinitionModel[]): Promise<LockstepResponse<CustomFieldDefinitionModel[]>> {
     const url = `/api/v1/CustomFieldDefinitions`;
-    return this.client.request<CustomFieldDefinitionModel[]>('post', url, null, body);
+    return this.client.request<CustomFieldDefinitionModel[]>("post", url, null, body);
   }
 
   /**
@@ -106,6 +106,6 @@ export class CustomFieldDefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CustomFieldDefinitionModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CustomFieldDefinitionModel>>("get", url, options, null);
   }
 }

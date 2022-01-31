@@ -37,7 +37,7 @@ export class ProvisioningClient {
    */
   provisionUserAccount(body: ProvisioningModel): Promise<LockstepResponse<ProvisioningResponseModel>> {
     const url = `/api/v1/Provisioning`;
-    return this.client.request<ProvisioningResponseModel>('post', url, null, body);
+    return this.client.request<ProvisioningResponseModel>("post", url, null, body);
   }
 
   /**
@@ -47,7 +47,7 @@ export class ProvisioningClient {
    */
   finalizeUserAccountProvisioning(body: ProvisioningFinalizeRequestModel): Promise<LockstepResponse<ProvisioningResponseModel>> {
     const url = `/api/v1/Provisioning/finalize`;
-    return this.client.request<ProvisioningResponseModel>('post', url, null, body);
+    return this.client.request<ProvisioningResponseModel>("post", url, null, body);
   }
 
   /**
@@ -56,6 +56,6 @@ export class ProvisioningClient {
    */
   provisionFreeDeveloperAccount(body: DeveloperAccountSubmitModel): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Provisioning/free-account`;
-    return this.client.request<ActionResultModel>('post', url, null, body);
+    return this.client.request<ActionResultModel>("post", url, null, body);
   }
 }

@@ -35,6 +35,6 @@ export class LeadsClient {
    */
   createLeads(body: LeadModel[]): Promise<LockstepResponse<LeadModel[]>> {
     const url = `/api/v1/Leads`;
-    return this.client.request<LeadModel[]>('post', url, null, body);
+    return this.client.request<LeadModel[]>("post", url, null, body);
   }
 }

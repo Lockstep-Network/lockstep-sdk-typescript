@@ -42,7 +42,7 @@ export class ApiKeysClient {
         include,
       },
     };
-    return this.client.request<ApiKeyModel>('get', url, options, null);
+    return this.client.request<ApiKeyModel>("get", url, options, null);
   }
 
   /**
@@ -54,7 +54,7 @@ export class ApiKeysClient {
    */
   revokeAPIKey(id: string): Promise<LockstepResponse<ApiKeyModel>> {
     const url = `/api/v1/ApiKeys/${id}`;
-    return this.client.request<ApiKeyModel>('delete', url, null, null);
+    return this.client.request<ApiKeyModel>("delete", url, null, null);
   }
 
   /**
@@ -66,7 +66,7 @@ export class ApiKeysClient {
    */
   createAPIKey(body: ApiKeyModel): Promise<LockstepResponse<ApiKeyModel>> {
     const url = `/api/v1/ApiKeys`;
-    return this.client.request<ApiKeyModel>('post', url, null, body);
+    return this.client.request<ApiKeyModel>("post", url, null, body);
   }
 
   /**
@@ -89,6 +89,6 @@ export class ApiKeysClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<ApiKeyModel>>('get', url, options, null);
+    return this.client.request<FetchResult<ApiKeyModel>>("get", url, options, null);
   }
 }

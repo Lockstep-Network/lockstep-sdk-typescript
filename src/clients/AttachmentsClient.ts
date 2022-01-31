@@ -46,7 +46,7 @@ export class AttachmentsClient {
         include,
       },
     };
-    return this.client.request<AttachmentModel>('get', url, options, null);
+    return this.client.request<AttachmentModel>("get", url, options, null);
   }
 
   /**
@@ -63,7 +63,7 @@ export class AttachmentsClient {
    */
   updateAttachment(id: string, body: object): Promise<LockstepResponse<AttachmentModel>> {
     const url = `/api/v1/Attachments/${id}`;
-    return this.client.request<AttachmentModel>('patch', url, null, body);
+    return this.client.request<AttachmentModel>("patch", url, null, body);
   }
 
   /**
@@ -77,7 +77,7 @@ export class AttachmentsClient {
    */
   archiveAttachment(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Attachments/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -91,7 +91,7 @@ export class AttachmentsClient {
    */
   downloadAttachment(id: string): Promise<LockstepResponse<UriModel>> {
     const url = `/api/v1/Attachments/${id}/download`;
-    return this.client.request<UriModel>('get', url, null, null);
+    return this.client.request<UriModel>("get", url, null, null);
   }
 
   /**
@@ -112,7 +112,7 @@ export class AttachmentsClient {
         objectId,
       },
     };
-    return this.client.request<AttachmentModel[]>('post', url, options, null);
+    return this.client.request<AttachmentModel[]>("post", url, options, null);
   }
 
   /**
@@ -141,6 +141,6 @@ export class AttachmentsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<AttachmentModel>>('get', url, options, null);
+    return this.client.request<FetchResult<AttachmentModel>>("get", url, options, null);
   }
 }

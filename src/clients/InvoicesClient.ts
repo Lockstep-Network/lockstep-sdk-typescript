@@ -45,7 +45,7 @@ export class InvoicesClient {
         include,
       },
     };
-    return this.client.request<InvoiceModel>('get', url, options, null);
+    return this.client.request<InvoiceModel>("get", url, options, null);
   }
 
   /**
@@ -58,7 +58,7 @@ export class InvoicesClient {
    */
   updateInvoice(id: string, body: object): Promise<LockstepResponse<InvoiceModel>> {
     const url = `/api/v1/Invoices/${id}`;
-    return this.client.request<InvoiceModel>('patch', url, null, body);
+    return this.client.request<InvoiceModel>("patch", url, null, body);
   }
 
   /**
@@ -68,7 +68,7 @@ export class InvoicesClient {
    */
   deleteInvoice(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Invoices/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -80,7 +80,7 @@ export class InvoicesClient {
    */
   createInvoices(body: InvoiceModel[]): Promise<LockstepResponse<InvoiceModel[]>> {
     const url = `/api/v1/Invoices`;
-    return this.client.request<InvoiceModel[]>('post', url, null, body);
+    return this.client.request<InvoiceModel[]>("post", url, null, body);
   }
 
   /**
@@ -105,7 +105,7 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<InvoiceModel>>('get', url, options, null);
+    return this.client.request<FetchResult<InvoiceModel>>("get", url, options, null);
   }
 
   /**
@@ -132,7 +132,7 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<InvoiceSummaryModel>>('get', url, options, null);
+    return this.client.request<FetchResult<InvoiceSummaryModel>>("get", url, options, null);
   }
 
   /**
@@ -159,6 +159,6 @@ export class InvoicesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<AtRiskInvoiceSummaryModel>>('get', url, options, null);
+    return this.client.request<FetchResult<AtRiskInvoiceSummaryModel>>("get", url, options, null);
   }
 }

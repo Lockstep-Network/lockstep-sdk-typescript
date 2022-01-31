@@ -43,7 +43,7 @@ export class PaymentApplicationsClient {
         include,
       },
     };
-    return this.client.request<PaymentAppliedModel>('get', url, options, null);
+    return this.client.request<PaymentAppliedModel>("get", url, options, null);
   }
 
   /**
@@ -56,7 +56,7 @@ export class PaymentApplicationsClient {
    */
   updatePaymentApplication(id: string, body: object): Promise<LockstepResponse<PaymentAppliedModel>> {
     const url = `/api/v1/PaymentApplications/${id}`;
-    return this.client.request<PaymentAppliedModel>('patch', url, null, body);
+    return this.client.request<PaymentAppliedModel>("patch", url, null, body);
   }
 
   /**
@@ -68,7 +68,7 @@ export class PaymentApplicationsClient {
    */
   deletePaymentApplication(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/PaymentApplications/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -80,7 +80,7 @@ export class PaymentApplicationsClient {
    */
   createPaymentApplications(body: PaymentAppliedModel[]): Promise<LockstepResponse<PaymentAppliedModel[]>> {
     const url = `/api/v1/PaymentApplications`;
-    return this.client.request<PaymentAppliedModel[]>('post', url, null, body);
+    return this.client.request<PaymentAppliedModel[]>("post", url, null, body);
   }
 
   /**
@@ -105,6 +105,6 @@ export class PaymentApplicationsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<PaymentAppliedModel>>('get', url, options, null);
+    return this.client.request<FetchResult<PaymentAppliedModel>>("get", url, options, null);
   }
 }

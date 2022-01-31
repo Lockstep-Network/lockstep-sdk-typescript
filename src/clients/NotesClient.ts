@@ -43,7 +43,7 @@ export class NotesClient {
         include,
       },
     };
-    return this.client.request<NoteModel>('get', url, options, null);
+    return this.client.request<NoteModel>("get", url, options, null);
   }
 
   /**
@@ -55,7 +55,7 @@ export class NotesClient {
    */
   archiveNote(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Notes/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -69,7 +69,7 @@ export class NotesClient {
    */
   createNotes(body: NoteModel[]): Promise<LockstepResponse<NoteModel[]>> {
     const url = `/api/v1/Notes`;
-    return this.client.request<NoteModel[]>('post', url, null, body);
+    return this.client.request<NoteModel[]>("post", url, null, body);
   }
 
   /**
@@ -96,6 +96,6 @@ export class NotesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<NoteModel>>('get', url, options, null);
+    return this.client.request<FetchResult<NoteModel>>("get", url, options, null);
   }
 }

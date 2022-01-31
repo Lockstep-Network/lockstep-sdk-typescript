@@ -41,7 +41,7 @@ import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
 import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
-import * as os from 'os';
+import * as os from "os";
 
 /**
  * List of headers used by the Lockstep API

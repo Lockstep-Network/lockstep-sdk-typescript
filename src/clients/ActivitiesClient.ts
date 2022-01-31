@@ -43,7 +43,7 @@ export class ActivitiesClient {
         include,
       },
     };
-    return this.client.request<ActivityModel>('get', url, options, null);
+    return this.client.request<ActivityModel>("get", url, options, null);
   }
 
   /**
@@ -58,7 +58,7 @@ export class ActivitiesClient {
    */
   updateActivity(id: string, body: object): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
-    return this.client.request<ActivityModel>('patch', url, null, body);
+    return this.client.request<ActivityModel>("patch", url, null, body);
   }
 
   /**
@@ -70,7 +70,7 @@ export class ActivitiesClient {
    */
   deleteActivity(id: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
-    return this.client.request<ActivityModel>('delete', url, null, null);
+    return this.client.request<ActivityModel>("delete", url, null, null);
   }
 
   /**
@@ -82,7 +82,7 @@ export class ActivitiesClient {
    */
   createActivities(body: ActivityModel[]): Promise<LockstepResponse<ActivityModel[]>> {
     const url = `/api/v1/Activities`;
-    return this.client.request<ActivityModel[]>('post', url, null, body);
+    return this.client.request<ActivityModel[]>("post", url, null, body);
   }
 
   /**
@@ -109,7 +109,7 @@ export class ActivitiesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<ActivityModel>>('get', url, options, null);
+    return this.client.request<FetchResult<ActivityModel>>("get", url, options, null);
   }
 
   /**
@@ -121,7 +121,7 @@ export class ActivitiesClient {
    */
   retrieveActivityStream(id: string): Promise<LockstepResponse<ActivityStreamItemModel[]>> {
     const url = `/api/v1/Activities/${id}/stream`;
-    return this.client.request<ActivityStreamItemModel[]>('get', url, null, null);
+    return this.client.request<ActivityStreamItemModel[]>("get", url, null, null);
   }
 
   /**
@@ -134,6 +134,6 @@ export class ActivitiesClient {
    */
   forwardActivity(activityId: string, userId: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${activityId}/forward/${userId}`;
-    return this.client.request<ActivityModel>('post', url, null, null);
+    return this.client.request<ActivityModel>("post", url, null, null);
   }
 }

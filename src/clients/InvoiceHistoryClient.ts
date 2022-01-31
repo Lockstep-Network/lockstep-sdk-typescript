@@ -36,7 +36,7 @@ export class InvoiceHistoryClient {
    */
   retrieveInvoiceHistory(id: string): Promise<LockstepResponse<FetchResult<InvoiceHistoryModel>>> {
     const url = `/api/v1/InvoiceHistory/${id}`;
-    return this.client.request<FetchResult<InvoiceHistoryModel>>('get', url, null, null);
+    return this.client.request<FetchResult<InvoiceHistoryModel>>("get", url, null, null);
   }
 
   /**
@@ -61,6 +61,6 @@ export class InvoiceHistoryClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<InvoiceHistoryModel>>('get', url, options, null);
+    return this.client.request<FetchResult<InvoiceHistoryModel>>("get", url, options, null);
   }
 }

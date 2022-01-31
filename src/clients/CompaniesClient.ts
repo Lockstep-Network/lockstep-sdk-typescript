@@ -45,7 +45,7 @@ export class CompaniesClient {
         include,
       },
     };
-    return this.client.request<CompanyModel>('get', url, options, null);
+    return this.client.request<CompanyModel>("get", url, options, null);
   }
 
   /**
@@ -60,7 +60,7 @@ export class CompaniesClient {
    */
   updateCompany(id: string, body: object): Promise<LockstepResponse<CompanyModel>> {
     const url = `/api/v1/Companies/${id}`;
-    return this.client.request<CompanyModel>('patch', url, null, body);
+    return this.client.request<CompanyModel>("patch", url, null, body);
   }
 
   /**
@@ -74,7 +74,7 @@ export class CompaniesClient {
    */
   disableCompany(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Companies/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -86,7 +86,7 @@ export class CompaniesClient {
    */
   createCompanies(body: CompanyModel[]): Promise<LockstepResponse<CompanyModel[]>> {
     const url = `/api/v1/Companies`;
-    return this.client.request<CompanyModel[]>('post', url, null, body);
+    return this.client.request<CompanyModel[]>("post", url, null, body);
   }
 
   /**
@@ -113,7 +113,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CompanyModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CompanyModel>>("get", url, options, null);
   }
 
   /**
@@ -138,7 +138,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CustomerSummaryModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CustomerSummaryModel>>("get", url, options, null);
   }
 
   /**
@@ -148,6 +148,6 @@ export class CompaniesClient {
    */
   retrieveCustomerDetail(id: string): Promise<LockstepResponse<CustomerDetailsModel>> {
     const url = `/api/v1/Companies/views/customer-details/${id}`;
-    return this.client.request<CustomerDetailsModel>('get', url, null, null);
+    return this.client.request<CustomerDetailsModel>("get", url, null, null);
   }
 }

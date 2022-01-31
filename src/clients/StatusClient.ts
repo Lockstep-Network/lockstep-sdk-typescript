@@ -35,7 +35,7 @@ export class StatusClient {
    */
   ping(): Promise<LockstepResponse<StatusModel>> {
     const url = `/api/v1/Status`;
-    return this.client.request<StatusModel>('get', url, null, null);
+    return this.client.request<StatusModel>("get", url, null, null);
   }
 
   /**
@@ -54,6 +54,6 @@ export class StatusClient {
         err,
       },
     };
-    return this.client.request<TestTimeoutException>('get', url, options, null);
+    return this.client.request<TestTimeoutException>("get", url, options, null);
   }
 }

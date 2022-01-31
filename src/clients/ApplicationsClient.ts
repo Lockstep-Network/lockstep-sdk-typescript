@@ -45,7 +45,7 @@ export class ApplicationsClient {
         include,
       },
     };
-    return this.client.request<ApplicationModel>('get', url, options, null);
+    return this.client.request<ApplicationModel>("get", url, options, null);
   }
 
   /**
@@ -60,7 +60,7 @@ export class ApplicationsClient {
    */
   updateApplication(id: string, body: object): Promise<LockstepResponse<ApplicationModel>> {
     const url = `/api/v1/Applications/${id}`;
-    return this.client.request<ApplicationModel>('patch', url, null, body);
+    return this.client.request<ApplicationModel>("patch", url, null, body);
   }
 
   /**
@@ -72,7 +72,7 @@ export class ApplicationsClient {
    */
   deleteApplication(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Applications/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -86,7 +86,7 @@ export class ApplicationsClient {
    */
   createApplications(body: ApplicationModel[]): Promise<LockstepResponse<ApplicationModel[]>> {
     const url = `/api/v1/Applications`;
-    return this.client.request<ApplicationModel[]>('post', url, null, body);
+    return this.client.request<ApplicationModel[]>("post", url, null, body);
   }
 
   /**
@@ -113,6 +113,6 @@ export class ApplicationsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<ApplicationModel>>('get', url, options, null);
+    return this.client.request<FetchResult<ApplicationModel>>("get", url, options, null);
   }
 }
