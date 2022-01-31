@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -35,14 +35,14 @@ export class CodeDefinitionsClient {
    * @param id The unique Lockstep Platform ID number of this CodeDefinition
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    */
-  retrieveCodeDefinition(id: string, include: string): Promise<LockstepResponse<CodeDefinitionModel>> {
+  retrieveCodeDefinition(id: string, include?: string): Promise<LockstepResponse<CodeDefinitionModel>> {
     const url = `/api/v1/CodeDefinitions/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<CodeDefinitionModel>('get', url, options, null);
+    return this.client.request<CodeDefinitionModel>("get", url, options, null);
   }
 
   /**
@@ -58,7 +58,7 @@ export class CodeDefinitionsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryCodeDefinitions(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CodeDefinitionModel>>> {
+  queryCodeDefinitions(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CodeDefinitionModel>>> {
     const url = `/api/v1/CodeDefinitions/query`;
     const options = {
       params: {
@@ -69,6 +69,6 @@ export class CodeDefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CodeDefinitionModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CodeDefinitionModel>>("get", url, options, null);
   }
 }

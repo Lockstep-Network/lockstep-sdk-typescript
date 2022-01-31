@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -38,7 +38,7 @@ export type ActivityModel = {
    * The name of the activity.  The name is a short name provided by the
    * person who created the activity that can be displayed in a list.
    */
-  activityName: string | null;
+  activityName: string;
   /**
    * A description of the activity.  This field contains more detailed text about the
    * activity and can be lengthy.
@@ -259,6 +259,12 @@ export type ApiKeyModel = {
    * The name of the API key.
    */
   name: string;
+  /**
+   * For convenience, a call to createApiKey will contain the name of the environment for this API key,
+   * typically SBX or PRD. This can help you distinguish between keys created on the Sandbox environment
+   * from those created on Production.
+   */
+  environment: string | null;
   /**
    * The API key to use for authentication. This will only be returned upon creation of the API key.
    * All other times, this value will be `null`.
@@ -891,13 +897,14 @@ export type CompanyModel = {
   erpKey: string | null;
   /**
    * This field indicates the type of company.  It can be one of a limited number of values:
-   * Company, Customer, Group, or Vendor.  A company that represents both a customer and a vendor
+   * Company, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor
    * is identified as a CustomerVendor.
    *
    * * `Company` - This record represents a company that is part of the organization of the account holder.
    * * `Customer` - This record represents a business entity that purchases things from the account holder.
    * * `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.
    * * `Vendor` - This record represents a business entity that sells things to the account holder.
+   * * `Third Party` - This record represents a business entity that is neither a customer nor vendor.
    * * `CustomerVendor` - Both a customer and a vendor.
    */
   companyType: string | null;

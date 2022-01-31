@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -35,6 +35,6 @@ export class LeadsClient {
    */
   createLeads(body: LeadModel[]): Promise<LockstepResponse<LeadModel[]>> {
     const url = `/api/v1/Leads`;
-    return this.client.request<LeadModel[]>('post', url, null, body);
+    return this.client.request<LeadModel[]>("post", url, null, body);
   }
 }

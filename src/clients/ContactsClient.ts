@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -34,14 +34,14 @@ export class ContactsClient {
    * @param id The unique Lockstep Platform ID number of this Contact; NOT the customer's ERP key
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes
    */
-  retrieveContact(id: string, include: string): Promise<LockstepResponse<ContactModel>> {
+  retrieveContact(id: string, include?: string): Promise<LockstepResponse<ContactModel>> {
     const url = `/api/v1/Contacts/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<ContactModel>('get', url, options, null);
+    return this.client.request<ContactModel>("get", url, options, null);
   }
 
   /**
@@ -54,7 +54,7 @@ export class ContactsClient {
    */
   updateContact(id: string, body: object): Promise<LockstepResponse<ContactModel>> {
     const url = `/api/v1/Contacts/${id}`;
-    return this.client.request<ContactModel>('patch', url, null, body);
+    return this.client.request<ContactModel>("patch", url, null, body);
   }
 
   /**
@@ -66,7 +66,7 @@ export class ContactsClient {
    */
   disableContact(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Contacts/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -78,7 +78,7 @@ export class ContactsClient {
    */
   createContacts(body: ContactModel[]): Promise<LockstepResponse<ContactModel[]>> {
     const url = `/api/v1/Contacts`;
-    return this.client.request<ContactModel[]>('post', url, null, body);
+    return this.client.request<ContactModel[]>("post", url, null, body);
   }
 
   /**
@@ -92,7 +92,7 @@ export class ContactsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryContacts(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ContactModel>>> {
+  queryContacts(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<ContactModel>>> {
     const url = `/api/v1/Contacts/query`;
     const options = {
       params: {
@@ -103,6 +103,6 @@ export class ContactsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<ContactModel>>('get', url, options, null);
+    return this.client.request<FetchResult<ContactModel>>("get", url, options, null);
   }
 }

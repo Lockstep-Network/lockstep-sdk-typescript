@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -36,14 +36,14 @@ export class ActivitiesClient {
    * @param id The unique Lockstep Platform ID number of this Activity
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Company, Attachments, CustomFields, Notes, References, and UserAssignedToName
    */
-  retrieveActivity(id: string, include: string): Promise<LockstepResponse<ActivityModel>> {
+  retrieveActivity(id: string, include?: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<ActivityModel>('get', url, options, null);
+    return this.client.request<ActivityModel>("get", url, options, null);
   }
 
   /**
@@ -58,7 +58,7 @@ export class ActivitiesClient {
    */
   updateActivity(id: string, body: object): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
-    return this.client.request<ActivityModel>('patch', url, null, body);
+    return this.client.request<ActivityModel>("patch", url, null, body);
   }
 
   /**
@@ -70,7 +70,7 @@ export class ActivitiesClient {
    */
   deleteActivity(id: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${id}`;
-    return this.client.request<ActivityModel>('delete', url, null, null);
+    return this.client.request<ActivityModel>("delete", url, null, null);
   }
 
   /**
@@ -82,7 +82,7 @@ export class ActivitiesClient {
    */
   createActivities(body: ActivityModel[]): Promise<LockstepResponse<ActivityModel[]>> {
     const url = `/api/v1/Activities`;
-    return this.client.request<ActivityModel[]>('post', url, null, body);
+    return this.client.request<ActivityModel[]>("post", url, null, body);
   }
 
   /**
@@ -98,7 +98,7 @@ export class ActivitiesClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryActivities(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ActivityModel>>> {
+  queryActivities(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<ActivityModel>>> {
     const url = `/api/v1/Activities/query`;
     const options = {
       params: {
@@ -109,7 +109,7 @@ export class ActivitiesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<ActivityModel>>('get', url, options, null);
+    return this.client.request<FetchResult<ActivityModel>>("get", url, options, null);
   }
 
   /**
@@ -121,7 +121,7 @@ export class ActivitiesClient {
    */
   retrieveActivityStream(id: string): Promise<LockstepResponse<ActivityStreamItemModel[]>> {
     const url = `/api/v1/Activities/${id}/stream`;
-    return this.client.request<ActivityStreamItemModel[]>('get', url, null, null);
+    return this.client.request<ActivityStreamItemModel[]>("get", url, null, null);
   }
 
   /**
@@ -134,6 +134,6 @@ export class ActivitiesClient {
    */
   forwardActivity(activityId: string, userId: string): Promise<LockstepResponse<ActivityModel>> {
     const url = `/api/v1/Activities/${activityId}/forward/${userId}`;
-    return this.client.request<ActivityModel>('post', url, null, null);
+    return this.client.request<ActivityModel>("post", url, null, null);
   }
 }

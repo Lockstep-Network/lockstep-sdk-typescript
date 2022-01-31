@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -41,14 +41,14 @@ export class UserAccountsClient {
    * @param id The unique ID number of the User to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields, AccountingRole
    */
-  retrieveUser(id: string, include: string): Promise<LockstepResponse<UserAccountModel>> {
+  retrieveUser(id: string, include?: string): Promise<LockstepResponse<UserAccountModel>> {
     const url = `/api/v1/UserAccounts/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<UserAccountModel>('get', url, options, null);
+    return this.client.request<UserAccountModel>("get", url, options, null);
   }
 
   /**
@@ -63,7 +63,7 @@ export class UserAccountsClient {
    */
   updateUser(id: string, body: object): Promise<LockstepResponse<UserAccountModel>> {
     const url = `/api/v1/UserAccounts/${id}`;
-    return this.client.request<UserAccountModel>('patch', url, null, body);
+    return this.client.request<UserAccountModel>("patch", url, null, body);
   }
 
   /**
@@ -75,7 +75,7 @@ export class UserAccountsClient {
    */
   disableUser(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/UserAccounts/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -85,14 +85,14 @@ export class UserAccountsClient {
    *
    * @param id The unique Lockstep Platform ID number of this User
    */
-  reenableUser(id: string): Promise<LockstepResponse<ActionResultModel>> {
+  reenableUser(id?: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/UserAccounts/reenable`;
     const options = {
       params: {
         id,
       },
     };
-    return this.client.request<ActionResultModel>('post', url, options, null);
+    return this.client.request<ActionResultModel>("post", url, options, null);
   }
 
   /**
@@ -104,7 +104,7 @@ export class UserAccountsClient {
    */
   inviteUser(body: InviteSubmitModel[]): Promise<LockstepResponse<InviteModel[]>> {
     const url = `/api/v1/UserAccounts/invite`;
-    return this.client.request<InviteModel[]>('post', url, null, body);
+    return this.client.request<InviteModel[]>("post", url, null, body);
   }
 
   /**
@@ -114,14 +114,14 @@ export class UserAccountsClient {
    *
    * @param code The code of the invite
    */
-  retrieveInviteData(code: string): Promise<LockstepResponse<InviteDataModel>> {
+  retrieveInviteData(code?: string): Promise<LockstepResponse<InviteDataModel>> {
     const url = `/api/v1/UserAccounts/invite`;
     const options = {
       params: {
         code,
       },
     };
-    return this.client.request<InviteDataModel>('get', url, options, null);
+    return this.client.request<InviteDataModel>("get", url, options, null);
   }
 
   /**
@@ -133,7 +133,7 @@ export class UserAccountsClient {
    */
   transferOwner(body: TransferOwnerSubmitModel): Promise<LockstepResponse<TransferOwnerModel>> {
     const url = `/api/v1/UserAccounts/transfer-owner`;
-    return this.client.request<TransferOwnerModel>('post', url, null, body);
+    return this.client.request<TransferOwnerModel>("post", url, null, body);
   }
 
   /**
@@ -145,7 +145,7 @@ export class UserAccountsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryUsers(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<UserAccountModel>>> {
+  queryUsers(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<UserAccountModel>>> {
     const url = `/api/v1/UserAccounts/query`;
     const options = {
       params: {
@@ -156,6 +156,6 @@ export class UserAccountsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<UserAccountModel>>('get', url, options, null);
+    return this.client.request<FetchResult<UserAccountModel>>("get", url, options, null);
   }
 }

@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -37,7 +37,7 @@ export class CurrenciesClient {
    * @param date The date for which we should cto use for this currency conversion.
    * @param dataProvider Optionally, you can specify a data provider.
    */
-  retrievecurrencyrate(sourceCurrency: string, destinationCurrency: string, date: string, dataProvider: string): Promise<LockstepResponse<CurrencyRateModel>> {
+  retrievecurrencyrate(sourceCurrency: string, destinationCurrency: string, date?: string, dataProvider?: string): Promise<LockstepResponse<CurrencyRateModel>> {
     const url = `/api/v1/Currencies/${sourceCurrency}/${destinationCurrency}`;
     const options = {
       params: {
@@ -45,7 +45,7 @@ export class CurrenciesClient {
         dataProvider,
       },
     };
-    return this.client.request<CurrencyRateModel>('get', url, options, null);
+    return this.client.request<CurrencyRateModel>("get", url, options, null);
   }
 
   /**
@@ -54,13 +54,13 @@ export class CurrenciesClient {
    * @param destinationCurrency The currency to convert to.
    * @param body A list of dates and source currencies.
    */
-  bulkcurrencydata(destinationCurrency: string, body: BulkCurrencyConversionModel[]): Promise<LockstepResponse<CurrencyRateModel[]>> {
+  bulkcurrencydata(body: BulkCurrencyConversionModel[], destinationCurrency?: string): Promise<LockstepResponse<CurrencyRateModel[]>> {
     const url = `/api/v1/Currencies/bulk`;
     const options = {
       params: {
         destinationCurrency,
       },
     };
-    return this.client.request<CurrencyRateModel[]>('post', url, options, body);
+    return this.client.request<CurrencyRateModel[]>("post", url, options, body);
   }
 }

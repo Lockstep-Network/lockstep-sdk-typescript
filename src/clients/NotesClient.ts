@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -36,14 +36,14 @@ export class NotesClient {
    * @param id The unique ID number of the Note to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    */
-  retrieveNote(id: string, include: string): Promise<LockstepResponse<NoteModel>> {
+  retrieveNote(id: string, include?: string): Promise<LockstepResponse<NoteModel>> {
     const url = `/api/v1/Notes/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<NoteModel>('get', url, options, null);
+    return this.client.request<NoteModel>("get", url, options, null);
   }
 
   /**
@@ -55,7 +55,7 @@ export class NotesClient {
    */
   archiveNote(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Notes/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -69,7 +69,7 @@ export class NotesClient {
    */
   createNotes(body: NoteModel[]): Promise<LockstepResponse<NoteModel[]>> {
     const url = `/api/v1/Notes`;
-    return this.client.request<NoteModel[]>('post', url, null, body);
+    return this.client.request<NoteModel[]>("post", url, null, body);
   }
 
   /**
@@ -85,7 +85,7 @@ export class NotesClient {
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
    */
-  queryNotes(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<NoteModel>>> {
+  queryNotes(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<NoteModel>>> {
     const url = `/api/v1/Notes/query`;
     const options = {
       params: {
@@ -96,6 +96,6 @@ export class NotesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<NoteModel>>('get', url, options, null);
+    return this.client.request<FetchResult<NoteModel>>("get", url, options, null);
   }
 }

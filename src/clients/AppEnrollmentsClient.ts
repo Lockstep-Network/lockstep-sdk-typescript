@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -39,14 +39,14 @@ export class AppEnrollmentsClient {
    * @param id The unique ID number of the App Enrollment to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync
    */
-  retrieveAppEnrollment(id: string, include: string): Promise<LockstepResponse<AppEnrollmentModel>> {
+  retrieveAppEnrollment(id: string, include?: string): Promise<LockstepResponse<AppEnrollmentModel>> {
     const url = `/api/v1/AppEnrollments/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<AppEnrollmentModel>('get', url, options, null);
+    return this.client.request<AppEnrollmentModel>("get", url, options, null);
   }
 
   /**
@@ -63,7 +63,7 @@ export class AppEnrollmentsClient {
    */
   updateAppEnrollment(id: string, body: object): Promise<LockstepResponse<AppEnrollmentModel>> {
     const url = `/api/v1/AppEnrollments/${id}`;
-    return this.client.request<AppEnrollmentModel>('patch', url, null, body);
+    return this.client.request<AppEnrollmentModel>("patch", url, null, body);
   }
 
   /**
@@ -74,14 +74,14 @@ export class AppEnrollmentsClient {
    * @param id The unique ID number of the App Enrollment to delete
    * @param removeEnrollmentData Option to remove all associated app enrollment data when deleting app enrollment (default false)
    */
-  deleteAppEnrollment(id: string, removeEnrollmentData: boolean): Promise<LockstepResponse<ActionResultModel>> {
+  deleteAppEnrollment(id: string, removeEnrollmentData?: boolean): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/AppEnrollments/${id}`;
     const options = {
       params: {
         removeEnrollmentData,
       },
     };
-    return this.client.request<ActionResultModel>('delete', url, options, null);
+    return this.client.request<ActionResultModel>("delete", url, options, null);
   }
 
   /**
@@ -95,7 +95,7 @@ export class AppEnrollmentsClient {
    */
   createAppEnrollments(body: AppEnrollmentModel[]): Promise<LockstepResponse<AppEnrollmentModel[]>> {
     const url = `/api/v1/AppEnrollments`;
-    return this.client.request<AppEnrollmentModel[]>('post', url, null, body);
+    return this.client.request<AppEnrollmentModel[]>("post", url, null, body);
   }
 
   /**
@@ -113,7 +113,7 @@ export class AppEnrollmentsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryAppEnrollments(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<AppEnrollmentModel>>> {
+  queryAppEnrollments(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<AppEnrollmentModel>>> {
     const url = `/api/v1/AppEnrollments/query`;
     const options = {
       params: {
@@ -124,7 +124,7 @@ export class AppEnrollmentsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<AppEnrollmentModel>>('get', url, options, null);
+    return this.client.request<FetchResult<AppEnrollmentModel>>("get", url, options, null);
   }
 
   /**
@@ -140,6 +140,6 @@ export class AppEnrollmentsClient {
    */
   queryEnrollmentFields(id: string): Promise<LockstepResponse<FetchResult<AppEnrollmentCustomFieldModel>>> {
     const url = `/api/v1/AppEnrollments/settings/${id}`;
-    return this.client.request<FetchResult<AppEnrollmentCustomFieldModel>>('get', url, null, null);
+    return this.client.request<FetchResult<AppEnrollmentCustomFieldModel>>("get", url, null, null);
   }
 }

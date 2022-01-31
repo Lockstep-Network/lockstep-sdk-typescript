@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -41,17 +41,33 @@ import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
 import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
-import { hostname as _hostname } from "os";
+import * as os from "os";
+import * as url from "url";
 
+/**
+ * List of headers used by the Lockstep API
+ */
+export type LockstepApiHeaders =
+  {
+    SdkName?: string,
+    SdkVersion?: string,
+    MachineName?: string,
+    ApplicationName?: string,
+    Authorization?: string,
+    ApiKey?: string 
+  };
+
+/**
+ * Client object used to communicate with the Lockstep Platform API
+ */
 export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.3.32";
+  private readonly version: string = "2022.4.32";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
-  private machineName: string | null = null;
   private appName: string | null = null;
 
   public readonly Activities: ActivitiesClient;
@@ -165,7 +181,7 @@ export class LockstepApi {
     this.bearerToken = null;
     return this;
   }
-
+  
   /**
    * Configures this Lockstep API client to use an application name
    * 
@@ -174,25 +190,17 @@ export class LockstepApi {
   public withApplicationName(appName: string): LockstepApi {
     this.appName = appName;
     return this;
-    
+      
   }
-
-  /**
-   * Returns the currently selected application name 
-   */
-  public getAppName(): any {
-    return this.appName;
-  }
-
+  
   /**
    * Construct headers for a request
    */
-  private getHeaders(): any {
-    const hostName = _hostname();
-    const headers = { 
-      "SdkName": this.sdkName,
-      "SdkVersion": this.version, 
-      "MachineName": hostName, 
+  private getHeaders(): LockstepApiHeaders {
+    const headers: LockstepApiHeaders = {
+      SdkName: this.sdkName,
+      SdkVersion: this.version, 
+      MachineName: os.hostname(), 
     };
     if (this.appName !== null) {
       headers["ApplicationName"] = this.appName;
@@ -203,16 +211,16 @@ export class LockstepApi {
     else if (this.apiKey !== null) {
       headers["ApiKey"] = this.apiKey;
     }
-     
+         
     return headers;
   }
 
   /**
    * Make a GET request using this client
    */
-  public async request<T>(method: axios.Method, path: string, options: any, body: any): Promise<LockstepResponse<T>> {
+  public async request<T>(method: axios.Method, path: string, options: unknown, body: unknown): Promise<LockstepResponse<T>> {
     const requestConfig = {
-      url: new URL(path, this.serverUrl).href,
+      url: new url.URL(path, this.serverUrl).href,
       method,
       params: options,
       data: body,

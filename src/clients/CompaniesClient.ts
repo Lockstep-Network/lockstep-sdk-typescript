@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -38,14 +38,14 @@ export class CompaniesClient {
    * @param id The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification
    */
-  retrieveCompany(id: string, include: string): Promise<LockstepResponse<CompanyModel>> {
+  retrieveCompany(id: string, include?: string): Promise<LockstepResponse<CompanyModel>> {
     const url = `/api/v1/Companies/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<CompanyModel>('get', url, options, null);
+    return this.client.request<CompanyModel>("get", url, options, null);
   }
 
   /**
@@ -60,7 +60,7 @@ export class CompaniesClient {
    */
   updateCompany(id: string, body: object): Promise<LockstepResponse<CompanyModel>> {
     const url = `/api/v1/Companies/${id}`;
-    return this.client.request<CompanyModel>('patch', url, null, body);
+    return this.client.request<CompanyModel>("patch", url, null, body);
   }
 
   /**
@@ -74,7 +74,7 @@ export class CompaniesClient {
    */
   disableCompany(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Companies/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -86,7 +86,7 @@ export class CompaniesClient {
    */
   createCompanies(body: CompanyModel[]): Promise<LockstepResponse<CompanyModel[]>> {
     const url = `/api/v1/Companies`;
-    return this.client.request<CompanyModel[]>('post', url, null, body);
+    return this.client.request<CompanyModel[]>("post", url, null, body);
   }
 
   /**
@@ -102,7 +102,7 @@ export class CompaniesClient {
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
    */
-  queryCompanies(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CompanyModel>>> {
+  queryCompanies(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CompanyModel>>> {
     const url = `/api/v1/Companies/query`;
     const options = {
       params: {
@@ -113,7 +113,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CompanyModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CompanyModel>>("get", url, options, null);
   }
 
   /**
@@ -127,7 +127,7 @@ export class CompaniesClient {
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
    */
-  queryCustomerSummary(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CustomerSummaryModel>>> {
+  queryCustomerSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CustomerSummaryModel>>> {
     const url = `/api/v1/Companies/views/customer-summary`;
     const options = {
       params: {
@@ -138,7 +138,7 @@ export class CompaniesClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CustomerSummaryModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CustomerSummaryModel>>("get", url, options, null);
   }
 
   /**
@@ -148,6 +148,6 @@ export class CompaniesClient {
    */
   retrieveCustomerDetail(id: string): Promise<LockstepResponse<CustomerDetailsModel>> {
     const url = `/api/v1/Companies/views/customer-details/${id}`;
-    return this.client.request<CustomerDetailsModel>('get', url, null, null);
+    return this.client.request<CustomerDetailsModel>("get", url, null, null);
   }
 }

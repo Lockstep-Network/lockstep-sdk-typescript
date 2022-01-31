@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -36,14 +36,14 @@ export class EmailsClient {
    * @param id The unique ID number of the Email to retrieve.
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes, ResponseOrigin
    */
-  retrieveEmail(id: string, include: string): Promise<LockstepResponse<EmailModel>> {
+  retrieveEmail(id: string, include?: string): Promise<LockstepResponse<EmailModel>> {
     const url = `/api/v1/Emails/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<EmailModel>('get', url, options, null);
+    return this.client.request<EmailModel>("get", url, options, null);
   }
 
   /**
@@ -58,7 +58,7 @@ export class EmailsClient {
    */
   updateEmail(id: string, body: object): Promise<LockstepResponse<EmailModel>> {
     const url = `/api/v1/Emails/${id}`;
-    return this.client.request<EmailModel>('patch', url, null, body);
+    return this.client.request<EmailModel>("patch", url, null, body);
   }
 
   /**
@@ -70,7 +70,7 @@ export class EmailsClient {
    */
   deleteEmail(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Emails/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -81,9 +81,9 @@ export class EmailsClient {
    * @param emailId The unique ID number of the Email to retrieve.
    * @param nonce The random nonce applied at time of url creation.
    */
-  retrieveEmailLogo(emailId: string, nonce: string): Promise<LockstepResponse<File>> {
+  retrieveEmailLogo(emailId: string, nonce: string): Promise<LockstepResponse<Uint8Array>> {
     const url = `/api/v1/Emails/${emailId}/logo/${nonce}`;
-    return this.client.request<File>('get', url, null, null);
+    return this.client.request<Uint8Array>("get", url, null, null);
   }
 
   /**
@@ -95,7 +95,7 @@ export class EmailsClient {
    */
   createEmails(body: EmailModel[]): Promise<LockstepResponse<EmailModel[]>> {
     const url = `/api/v1/Emails`;
-    return this.client.request<EmailModel[]>('post', url, null, body);
+    return this.client.request<EmailModel[]>("post", url, null, body);
   }
 
   /**
@@ -111,7 +111,7 @@ export class EmailsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryEmails(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<EmailModel>>> {
+  queryEmails(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<EmailModel>>> {
     const url = `/api/v1/Emails/query`;
     const options = {
       params: {
@@ -122,6 +122,6 @@ export class EmailsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<EmailModel>>('get', url, options, null);
+    return this.client.request<FetchResult<EmailModel>>("get", url, options, null);
   }
 }

@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -41,7 +41,7 @@ export class DefinitionsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryCountries(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CountryModel>>> {
+  queryCountries(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CountryModel>>> {
     const url = `/api/v1/Definitions/countries`;
     const options = {
       params: {
@@ -52,7 +52,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CountryModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CountryModel>>("get", url, options, null);
   }
 
   /**
@@ -68,7 +68,7 @@ export class DefinitionsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryCurrencies(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CurrencyModel>>> {
+  queryCurrencies(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CurrencyModel>>> {
     const url = `/api/v1/Definitions/currencies`;
     const options = {
       params: {
@@ -79,7 +79,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CurrencyModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CurrencyModel>>("get", url, options, null);
   }
 
   /**
@@ -93,7 +93,7 @@ export class DefinitionsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryStates(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<StateModel>>> {
+  queryStates(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<StateModel>>> {
     const url = `/api/v1/Definitions/states`;
     const options = {
       params: {
@@ -104,7 +104,7 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<StateModel>>('get', url, options, null);
+    return this.client.request<FetchResult<StateModel>>("get", url, options, null);
   }
 
   /**
@@ -118,7 +118,7 @@ export class DefinitionsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryFinancialSystems(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<ErpModel>>> {
+  queryFinancialSystems(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<ErpModel>>> {
     const url = `/api/v1/Definitions/financialsystems`;
     const options = {
       params: {
@@ -129,6 +129,6 @@ export class DefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<ErpModel>>('get', url, options, null);
+    return this.client.request<FetchResult<ErpModel>>("get", url, options, null);
   }
 }

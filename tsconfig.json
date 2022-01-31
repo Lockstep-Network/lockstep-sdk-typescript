@@ -1,17 +1,20 @@
 {
-    "compilerOptions": {
-      "moduleResolution": "node",
-      "noImplicitAny": false,
-      "noEmitOnError": true,
-      "removeComments": false,
-      "sourceMap": true,
-      "target": "es6",
-      "outDir": "./dist/",
-      "declaration": true,
-      "strict": true,
-    },
-    "include": ["src/**/*"],
-    "ts-node": {
-      "transpileOnly": true
-    }
-  }
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2018",
+    "outDir": "build/compiled",
+    "declaration": true,
+    "strict": true,
+    "module": "esnext",
+    "noEmitOnError": true,
+    "lib": [
+      "es2017"
+    ],
+    "esModuleInterop": false,
+  },
+  "include": [
+    "src"
+  ]
+}

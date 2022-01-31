@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -35,14 +35,14 @@ export class CustomFieldDefinitionsClient {
    * @param id The unique Lockstep Platform ID number of this Custom Field Definition
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No additional data collections are currently defined on this object, but may be supported in the future.
    */
-  retrieveFieldDefinition(id: string, include: string): Promise<LockstepResponse<CustomFieldDefinitionModel>> {
+  retrieveFieldDefinition(id: string, include?: string): Promise<LockstepResponse<CustomFieldDefinitionModel>> {
     const url = `/api/v1/CustomFieldDefinitions/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<CustomFieldDefinitionModel>('get', url, options, null);
+    return this.client.request<CustomFieldDefinitionModel>("get", url, options, null);
   }
 
   /**
@@ -57,7 +57,7 @@ export class CustomFieldDefinitionsClient {
    */
   updateFieldDefinition(id: string, body: object): Promise<LockstepResponse<CustomFieldDefinitionModel>> {
     const url = `/api/v1/CustomFieldDefinitions/${id}`;
-    return this.client.request<CustomFieldDefinitionModel>('patch', url, null, body);
+    return this.client.request<CustomFieldDefinitionModel>("patch", url, null, body);
   }
 
   /**
@@ -69,7 +69,7 @@ export class CustomFieldDefinitionsClient {
    */
   deleteFieldDefinition(id: string): Promise<LockstepResponse<CustomFieldDefinitionModel>> {
     const url = `/api/v1/CustomFieldDefinitions/${id}`;
-    return this.client.request<CustomFieldDefinitionModel>('delete', url, null, null);
+    return this.client.request<CustomFieldDefinitionModel>("delete", url, null, null);
   }
 
   /**
@@ -79,7 +79,7 @@ export class CustomFieldDefinitionsClient {
    */
   createFieldDefinitions(body: CustomFieldDefinitionModel[]): Promise<LockstepResponse<CustomFieldDefinitionModel[]>> {
     const url = `/api/v1/CustomFieldDefinitions`;
-    return this.client.request<CustomFieldDefinitionModel[]>('post', url, null, body);
+    return this.client.request<CustomFieldDefinitionModel[]>("post", url, null, body);
   }
 
   /**
@@ -95,7 +95,7 @@ export class CustomFieldDefinitionsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryFieldDefinitions(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> {
+  queryFieldDefinitions(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> {
     const url = `/api/v1/CustomFieldDefinitions/query`;
     const options = {
       params: {
@@ -106,6 +106,6 @@ export class CustomFieldDefinitionsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<CustomFieldDefinitionModel>>('get', url, options, null);
+    return this.client.request<FetchResult<CustomFieldDefinitionModel>>("get", url, options, null);
   }
 }

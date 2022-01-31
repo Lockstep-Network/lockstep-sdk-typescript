@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -36,14 +36,14 @@ export class PaymentApplicationsClient {
    * @param id The unique Lockstep Platform ID number of this Payment Application; NOT the customer's ERP key
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice
    */
-  retrievePaymentApplication(id: string, include: string): Promise<LockstepResponse<PaymentAppliedModel>> {
+  retrievePaymentApplication(id: string, include?: string): Promise<LockstepResponse<PaymentAppliedModel>> {
     const url = `/api/v1/PaymentApplications/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<PaymentAppliedModel>('get', url, options, null);
+    return this.client.request<PaymentAppliedModel>("get", url, options, null);
   }
 
   /**
@@ -56,7 +56,7 @@ export class PaymentApplicationsClient {
    */
   updatePaymentApplication(id: string, body: object): Promise<LockstepResponse<PaymentAppliedModel>> {
     const url = `/api/v1/PaymentApplications/${id}`;
-    return this.client.request<PaymentAppliedModel>('patch', url, null, body);
+    return this.client.request<PaymentAppliedModel>("patch", url, null, body);
   }
 
   /**
@@ -68,7 +68,7 @@ export class PaymentApplicationsClient {
    */
   deletePaymentApplication(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/PaymentApplications/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -80,7 +80,7 @@ export class PaymentApplicationsClient {
    */
   createPaymentApplications(body: PaymentAppliedModel[]): Promise<LockstepResponse<PaymentAppliedModel[]>> {
     const url = `/api/v1/PaymentApplications`;
-    return this.client.request<PaymentAppliedModel[]>('post', url, null, body);
+    return this.client.request<PaymentAppliedModel[]>("post", url, null, body);
   }
 
   /**
@@ -94,7 +94,7 @@ export class PaymentApplicationsClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryPaymentApplications(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<PaymentAppliedModel>>> {
+  queryPaymentApplications(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<PaymentAppliedModel>>> {
     const url = `/api/v1/PaymentApplications/query`;
     const options = {
       params: {
@@ -105,6 +105,6 @@ export class PaymentApplicationsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<PaymentAppliedModel>>('get', url, options, null);
+    return this.client.request<FetchResult<PaymentAppliedModel>>("get", url, options, null);
   }
 }

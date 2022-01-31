@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3.32
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -39,14 +39,14 @@ export class AttachmentsClient {
    * @param id The unique ID number of the Attachment to retrieve
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.
    */
-  retrieveAttachment(id: string, include: string): Promise<LockstepResponse<AttachmentModel>> {
+  retrieveAttachment(id: string, include?: string): Promise<LockstepResponse<AttachmentModel>> {
     const url = `/api/v1/Attachments/${id}`;
     const options = {
       params: {
         include,
       },
     };
-    return this.client.request<AttachmentModel>('get', url, options, null);
+    return this.client.request<AttachmentModel>("get", url, options, null);
   }
 
   /**
@@ -63,7 +63,7 @@ export class AttachmentsClient {
    */
   updateAttachment(id: string, body: object): Promise<LockstepResponse<AttachmentModel>> {
     const url = `/api/v1/Attachments/${id}`;
-    return this.client.request<AttachmentModel>('patch', url, null, body);
+    return this.client.request<AttachmentModel>("patch", url, null, body);
   }
 
   /**
@@ -77,7 +77,7 @@ export class AttachmentsClient {
    */
   archiveAttachment(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Attachments/${id}`;
-    return this.client.request<ActionResultModel>('delete', url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -91,7 +91,7 @@ export class AttachmentsClient {
    */
   downloadAttachment(id: string): Promise<LockstepResponse<UriModel>> {
     const url = `/api/v1/Attachments/${id}/download`;
-    return this.client.request<UriModel>('get', url, null, null);
+    return this.client.request<UriModel>("get", url, null, null);
   }
 
   /**
@@ -112,7 +112,7 @@ export class AttachmentsClient {
         objectId,
       },
     };
-    return this.client.request<AttachmentModel[]>('post', url, options, null);
+    return this.client.request<AttachmentModel[]>("post", url, options, null);
   }
 
   /**
@@ -130,7 +130,7 @@ export class AttachmentsClient {
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
    */
-  queryAttachments(filter: string, include: string, order: string, pageSize: number, pageNumber: number): Promise<LockstepResponse<FetchResult<AttachmentModel>>> {
+  queryAttachments(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<AttachmentModel>>> {
     const url = `/api/v1/Attachments/query`;
     const options = {
       params: {
@@ -141,6 +141,6 @@ export class AttachmentsClient {
         pageNumber,
       },
     };
-    return this.client.request<FetchResult<AttachmentModel>>('get', url, options, null);
+    return this.client.request<FetchResult<AttachmentModel>>("get", url, options, null);
   }
 }

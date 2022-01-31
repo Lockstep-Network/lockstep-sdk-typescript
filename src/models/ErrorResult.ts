@@ -15,15 +15,16 @@
 /**
  * Represents a failed request.
  */
-export type ErrorResult = {
-    type: string | null;
-    title: string | null;
-    status: number | null;
-    detail: string | null;
-    instance: string | null;
+export class ErrorResult {
+    type?: string;
+    title?: string;
+    status?: number;
+    detail?: string;
+    instance?: string;
 }
 
 /**
  * Not intended to be used
  */
-export type TestTimeoutException = ErrorResult;
+export class TestTimeoutException extends ErrorResult {
+}
