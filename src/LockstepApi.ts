@@ -68,7 +68,6 @@ export class LockstepApi {
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
-  private machineName: string | null = null;
   private appName: string | null = null;
 
   public readonly Activities: ActivitiesClient;
