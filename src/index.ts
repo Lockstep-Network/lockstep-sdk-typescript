@@ -8,11 +8,13 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2.93.0
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 import { LockstepApi } from "./LockstepApi.js";
+import { ErrorResult, TestTimeoutException } from "./models/ErrorResult.js";
+import { LockstepResponse } from "./models/LockstepResponse.js";
 import { ActivitiesClient } from "./clients/ActivitiesClient.js";
 import { ApiKeysClient } from "./clients/ApiKeysClient.js";
 import { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient.js";
@@ -39,14 +41,14 @@ import { StatusClient } from "./clients/StatusClient.js";
 import { SyncClient } from "./clients/SyncClient.js";
 import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
-import * as ErrorResults from "./models/ErrorResult.js";
-import { LockstepResponse } from "./models/LockstepResponse.js";
-import * as DataModels from "./models/dataModels.js";
+import * as DataModels from "./models/DataModels.js";
 
 module.exports = {
     DataModels,
-    ErrorResults,
+    ErrorResult,
     LockstepApi,
+    LockstepResponse,
+    TestTimeoutException,
     ActivitiesClient,
     ApiKeysClient,
     AppEnrollmentsClient,
@@ -73,5 +75,4 @@ module.exports = {
     SyncClient,
     UserAccountsClient,
     UserRolesClient,
-    LockstepResponse,
-} 
+}

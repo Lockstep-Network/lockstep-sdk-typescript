@@ -2,6 +2,7 @@
 
 var axios = require('axios');
 var os = require('os');
+var url = require('url');
 
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
@@ -23,6 +24,7 @@ function _interopNamespace(e) {
 
 var axios__namespace = /*#__PURE__*/_interopNamespace(axios);
 var os__namespace = /*#__PURE__*/_interopNamespace(os);
+var url__namespace = /*#__PURE__*/_interopNamespace(url);
 
 /**
  * Lockstep Software Development Kit for JavaScript / TypeScript
@@ -2756,7 +2758,7 @@ class LockstepApi {
      */
     async request(method, path, options, body) {
         const requestConfig = {
-            url: new URL(path, this.serverUrl).href,
+            url: new url__namespace.URL(path, this.serverUrl).href,
             method,
             params: options,
             data: body,
@@ -2783,12 +2785,58 @@ class LockstepApi {
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
+ * @copyright  2021-2021 Lockstep, Inc.
+ * @version    2021.39
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
+ */
+/**
+ * Represents a failed request.
+ */
+class ErrorResult {
+}
+/**
+ * Not intended to be used
+ */
+class TestTimeoutException extends ErrorResult {
+}
+
+/**
+ * Lockstep Software Development Kit for JavaScript / TypeScript
+ *
+ * (c) 2021-2022 Lockstep, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2.93.0
+ * @version    2022.4.32
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
+ */
+
+var DataModels = /*#__PURE__*/Object.freeze({
+    __proto__: null
+});
+
+/**
+ * Lockstep Software Development Kit for JavaScript / TypeScript
+ *
+ * (c) 2021-2022 Lockstep, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author     Ted Spence <tspence@lockstep.io>
+ * @copyright  2021-2022 Lockstep, Inc.
+ * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 module.exports = {
+    DataModels,
+    ErrorResult,
     LockstepApi,
+    LockstepResponse,
+    TestTimeoutException,
     ActivitiesClient,
     ApiKeysClient,
     AppEnrollmentsClient,

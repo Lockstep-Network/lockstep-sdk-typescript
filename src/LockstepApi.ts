@@ -42,6 +42,7 @@ import { UserRolesClient } from "./clients/UserRolesClient.js";
 import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
 import * as os from "os";
+import * as url from "url";
 
 /**
  * List of headers used by the Lockstep API
@@ -220,7 +221,7 @@ export class LockstepApi {
    */
   public async request<T>(method: axios.Method, path: string, options: unknown, body: unknown): Promise<LockstepResponse<T>> {
     const requestConfig = {
-      url: new URL(path, this.serverUrl).href,
+      url: new url.URL(path, this.serverUrl).href,
       method,
       params: options,
       data: body,

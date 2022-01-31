@@ -26,13 +26,14 @@
         "lint": "eslint \"**\\*.ts\"",
         "_clear": "rimraf build/compiled/*",
         "_tsc": "tsc",
-        "_make-bundle": "node build/make-bundle",
+        "_make-bundle": "rollup --config",
         "build": "run-s _clear _tsc _make-bundle",
         "watch": "tsc --watch"
     },
     "main": "lockstep-sdk.min.js",
     "types": "lockstep-sdk.d.ts",
     "devDependencies": {
+        "@open-wc/building-rollup": "^2.0.1",
         "@typescript-eslint/eslint-plugin": "^5.9.1",
         "@typescript-eslint/parser": "^5.9.1",
         "eslint": "^8.6.0",
