@@ -8,12 +8,12 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4.32
+ * @version    2022.5.7
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 import { LockstepApi } from "./LockstepApi.js";
-import { ErrorResult, TestTimeoutException } from "./models/ErrorResult.js";
+import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
 import { ActivitiesClient } from "./clients/ActivitiesClient.js";
 import { ApiKeysClient } from "./clients/ApiKeysClient.js";
