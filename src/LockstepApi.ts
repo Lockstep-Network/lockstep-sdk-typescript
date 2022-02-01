@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4.32
+ * @version    2022.5.7
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -39,7 +39,6 @@ import { StatusClient } from "./clients/StatusClient.js";
 import { SyncClient } from "./clients/SyncClient.js";
 import { UserAccountsClient } from "./clients/UserAccountsClient.js";
 import { UserRolesClient } from "./clients/UserRolesClient.js";
-import { ErrorResult } from "./models/ErrorResult.js";
 import { LockstepResponse } from "./models/LockstepResponse.js";
 import * as os from "os";
 import * as url from "url";
@@ -64,7 +63,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.4.32";
+  private readonly version: string = "2022.5.7";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -227,12 +226,6 @@ export class LockstepApi {
       headers: this.getHeaders(),
     };
     const result = await axios.default.request(requestConfig);
-    const response = new LockstepResponse<T>(result.status >= 200 && result.status < 300, result.status);
-    if (response.success) {
-      response.value = result.data as T;
-    } else {
-      response.error = result.data as ErrorResult;
-    }
-    return response;
+    return new LockstepResponse<T>(result.status, result.data);
   }
 }
