@@ -68,7 +68,6 @@
    private apiKey: string | null = null;
    private sdkName = "TypeScript";
    private appName: string | null = null;
- 
    public readonly Activities: ActivitiesClient;
    public readonly ApiKeys: ApiKeysClient;
    public readonly AppEnrollments: AppEnrollmentsClient;
