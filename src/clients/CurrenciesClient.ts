@@ -11,10 +11,10 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { CurrencyRateModel } from "../models/DataModels.js";
-import { BulkCurrencyConversionModel } from "../models/DataModels.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { CurrencyRateModel } from "..";
+import { BulkCurrencyConversionModel } from "..";
 
 export class CurrenciesClient {
   private readonly client: LockstepApi;

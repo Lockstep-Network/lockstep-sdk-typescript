@@ -11,16 +11,16 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { UserAccountModel } from "../models/DataModels.js";
-import { ActionResultModel } from "../models/ActionResultModel.js";
-import { InviteModel } from "../models/DataModels.js";
-import { InviteSubmitModel } from "../models/DataModels.js";
-import { InviteDataModel } from "../models/DataModels.js";
-import { TransferOwnerModel } from "../models/DataModels.js";
-import { TransferOwnerSubmitModel } from "../models/DataModels.js";
-import { FetchResult } from "../models/FetchResult.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { UserAccountModel } from "..";
+import { ActionResultModel } from "..";
+import { InviteModel } from "..";
+import { InviteSubmitModel } from "..";
+import { InviteDataModel } from "..";
+import { TransferOwnerModel } from "..";
+import { TransferOwnerSubmitModel } from "..";
+import { FetchResult } from "..";
 
 export class UserAccountsClient {
   private readonly client: LockstepApi;

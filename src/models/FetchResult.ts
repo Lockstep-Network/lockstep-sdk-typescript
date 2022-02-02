@@ -35,12 +35,11 @@ export class FetchResult<T> {
      * To get the next page of results, make a new request with the same pageSize but add one to the pageNumber.
      */
     pageNumber: number;
-    
+
     /**
      * Create a new query result object
      */
-    constructor()
-    {
+    constructor() {
         this.records = null;
         this.totalCount = 0;
         this.pageNumber = 0;

@@ -11,10 +11,10 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { CustomFieldDefinitionModel } from "../models/DataModels.js";
-import { FetchResult } from "../models/FetchResult.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { FetchResult } from "..";
 
 export class CustomFieldDefinitionsClient {
   private readonly client: LockstepApi;

@@ -11,13 +11,13 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { InvoiceModel } from "../models/DataModels.js";
-import { ActionResultModel } from "../models/ActionResultModel.js";
-import { FetchResult } from "../models/FetchResult.js";
-import { InvoiceSummaryModel } from "../models/DataModels.js";
-import { AtRiskInvoiceSummaryModel } from "../models/DataModels.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { InvoiceModel } from "..";
+import { ActionResultModel } from "..";
+import { FetchResult } from "..";
+import { InvoiceSummaryModel } from "..";
+import { AtRiskInvoiceSummaryModel } from "..";
 
 export class InvoicesClient {
   private readonly client: LockstepApi;

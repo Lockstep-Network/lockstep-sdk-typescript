@@ -13,9 +13,9 @@
  */
 
 export { ActionResultModel } from "./models/ActionResultModel.js";
-export { LockstepApi } from "./LockstepApi.js";
 export { ErrorResult } from "./models/ErrorResult.js";
 export { FetchResult } from "./models/FetchResult.js";
+export { LockstepApi } from "./LockstepApi.js";
 export { LockstepResponse } from "./models/LockstepResponse.js";
 
 export { ActivitiesClient } from "./clients/ActivitiesClient.js";

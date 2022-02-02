@@ -16,7 +16,7 @@ const config = [
     external: ['axios', 'os', 'url'],
     plugins: [typescript()]
   }, {
-    input: 'build/compiled/LockstepApi.d.ts',
+    input: 'build/compiled/index.d.ts',
     output: {
       file: 'lockstep-api.d.ts',
       format: 'es'

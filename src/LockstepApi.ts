@@ -12,34 +12,35 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { ActivitiesClient } from ".";
+import { ApiKeysClient } from ".";
+import { AppEnrollmentsClient } from ".";
+import { ApplicationsClient } from ".";
+import { AttachmentsClient } from ".";
+import { CodeDefinitionsClient } from ".";
+import { CompaniesClient } from ".";
+import { ContactsClient } from ".";
+import { CreditMemoAppliedClient } from ".";
+import { CurrenciesClient } from ".";
+import { CustomFieldDefinitionsClient } from ".";
+import { CustomFieldValuesClient } from ".";
+import { DefinitionsClient } from ".";
+import { EmailsClient } from ".";
+import { InvoiceHistoryClient } from ".";
+import { InvoicesClient } from ".";
+import { LeadsClient } from ".";
+import { NotesClient } from ".";
+import { PaymentApplicationsClient } from ".";
+import { PaymentsClient } from ".";
+import { ProvisioningClient } from ".";
+import { ReportsClient } from ".";
+import { StatusClient } from ".";
+import { SyncClient } from ".";
+import { UserAccountsClient } from ".";
+import { UserRolesClient } from ".";
+import { LockstepResponse } from ".";
+
 import * as axios from "axios";
-import { ActivitiesClient } from "./clients/ActivitiesClient.js";
-import { ApiKeysClient } from "./clients/ApiKeysClient.js";
-import { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient.js";
-import { ApplicationsClient } from "./clients/ApplicationsClient.js";
-import { AttachmentsClient } from "./clients/AttachmentsClient.js";
-import { CodeDefinitionsClient } from "./clients/CodeDefinitionsClient.js";
-import { CompaniesClient } from "./clients/CompaniesClient.js";
-import { ContactsClient } from "./clients/ContactsClient.js";
-import { CreditMemoAppliedClient } from "./clients/CreditMemoAppliedClient.js";
-import { CurrenciesClient } from "./clients/CurrenciesClient.js";
-import { CustomFieldDefinitionsClient } from "./clients/CustomFieldDefinitionsClient.js";
-import { CustomFieldValuesClient } from "./clients/CustomFieldValuesClient.js";
-import { DefinitionsClient } from "./clients/DefinitionsClient.js";
-import { EmailsClient } from "./clients/EmailsClient.js";
-import { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient.js";
-import { InvoicesClient } from "./clients/InvoicesClient.js";
-import { LeadsClient } from "./clients/LeadsClient.js";
-import { NotesClient } from "./clients/NotesClient.js";
-import { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient.js";
-import { PaymentsClient } from "./clients/PaymentsClient.js";
-import { ProvisioningClient } from "./clients/ProvisioningClient.js";
-import { ReportsClient } from "./clients/ReportsClient.js";
-import { StatusClient } from "./clients/StatusClient.js";
-import { SyncClient } from "./clients/SyncClient.js";
-import { UserAccountsClient } from "./clients/UserAccountsClient.js";
-import { UserRolesClient } from "./clients/UserRolesClient.js";
-import { LockstepResponse } from "./models/LockstepResponse.js";
 import * as os from "os";
 import * as url from "url";
 

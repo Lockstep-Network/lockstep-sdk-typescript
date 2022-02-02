@@ -11,12 +11,12 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { AttachmentModel } from "../models/DataModels.js";
-import { ActionResultModel } from "../models/ActionResultModel.js";
-import { UriModel } from "../models/DataModels.js";
-import { FetchResult } from "../models/FetchResult.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { AttachmentModel } from "..";
+import { ActionResultModel } from "..";
+import { UriModel } from "..";
+import { FetchResult } from "..";
 
 export class AttachmentsClient {
   private readonly client: LockstepApi;

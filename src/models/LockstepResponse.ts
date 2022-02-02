@@ -12,7 +12,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { ErrorResult } from "./ErrorResult";
+import { ErrorResult } from "..";
 
 /**
  * Represents a response to an API call.  The status value contains the HTTP status code returned from the request.
@@ -44,8 +44,7 @@ export class LockstepResponse<T> {
      * @param status The HTTP status code for this response.
      * @param data The contents of the HTTP response.
      */
-    constructor(status: number, data: unknown)
-    {
+    constructor(status: number, data: unknown) {
         this.success = status >= 200 && status < 300;
         this.status = status;
         if (this.success) {
@@ -57,4 +56,3 @@ export class LockstepResponse<T> {
         }
     }
 }
-
