@@ -13,6 +13,7 @@ const config = [
       format: 'cjs',
       sourcemap: true,
     },
+    external: ['axios', 'os', 'url'],
     plugins: [typescript()]
   }, {
     input: 'build/compiled/LockstepApi.d.ts',
