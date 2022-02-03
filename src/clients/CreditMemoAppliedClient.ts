@@ -8,14 +8,13 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { CreditMemoAppliedModel } from "../models/DataModels.js";
-import { FetchResult } from "../models/FetchResult.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { CreditMemoAppliedModel } from "..";
+import { FetchResult } from "..";
 
 export class CreditMemoAppliedClient {
   private readonly client: LockstepApi;

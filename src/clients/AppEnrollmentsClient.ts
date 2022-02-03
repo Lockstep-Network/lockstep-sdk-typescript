@@ -8,16 +8,15 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { AppEnrollmentModel } from "../models/DataModels.js";
-import { ActionResultModel } from "../models/ActionResultModel.js";
-import { FetchResult } from "../models/FetchResult.js";
-import { AppEnrollmentCustomFieldModel } from "../models/DataModels.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { AppEnrollmentModel } from "..";
+import { ActionResultModel } from "..";
+import { FetchResult } from "..";
+import { AppEnrollmentCustomFieldModel } from "..";
 
 export class AppEnrollmentsClient {
   private readonly client: LockstepApi;

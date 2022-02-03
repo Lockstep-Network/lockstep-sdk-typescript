@@ -13,10 +13,12 @@
  */
 
 /**
- * Represents a failed request.
+ * Represents a response to an API action that does not return data
  */
 export type ActionResultModel = {
+
+    /**
+     * A list of messages returned by this API call
+     */
     messages: string[] | null;
 }
-
-export type UriModel = string;

@@ -8,18 +8,17 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { PaymentModel } from "../models/DataModels.js";
-import { ActionResultModel } from "../models/ActionResultModel.js";
-import { FetchResult } from "../models/FetchResult.js";
-import { PaymentSummaryModel } from "../models/DataModels.js";
-import { PaymentDetailHeaderModel } from "../models/DataModels.js";
-import { PaymentDetailModel } from "../models/DataModels.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { PaymentModel } from "..";
+import { ActionResultModel } from "..";
+import { FetchResult } from "..";
+import { PaymentSummaryModel } from "..";
+import { PaymentDetailHeaderModel } from "..";
+import { PaymentDetailModel } from "..";
 
 export class PaymentsClient {
   private readonly client: LockstepApi;

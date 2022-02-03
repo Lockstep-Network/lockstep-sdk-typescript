@@ -8,19 +8,18 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4.32
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { LockstepApi } from "../LockstepApi.js";
-import { LockstepResponse } from "../models/LockstepResponse.js";
-import { CashflowReportModel } from "../models/DataModels.js";
-import { DailySalesOutstandingReportModel } from "../models/DataModels.js";
-import { RiskRateModel } from "../models/DataModels.js";
-import { ArHeaderInfoModel } from "../models/DataModels.js";
-import { AgingModel } from "../models/DataModels.js";
-import { ArAgingHeaderInfoModel } from "../models/DataModels.js";
-import { AttachmentHeaderInfoModel } from "../models/DataModels.js";
+import { LockstepApi } from "..";
+import { LockstepResponse } from "..";
+import { CashflowReportModel } from "..";
+import { DailySalesOutstandingReportModel } from "..";
+import { RiskRateModel } from "..";
+import { ArHeaderInfoModel } from "..";
+import { AgingModel } from "..";
+import { ArAgingHeaderInfoModel } from "..";
+import { AttachmentHeaderInfoModel } from "..";
 
 export class ReportsClient {
   private readonly client: LockstepApi;
