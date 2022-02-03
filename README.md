@@ -1,5 +1,7 @@
 # Lockstep Platform API SDK for Typescript and Javascript
 
+![npm](https://img.shields.io/npm/v/lockstep-sdk)
+
 This SDK allows you to work with the [Lockstep Platform API](https://developer.lockstep.io) in JavaScript and TypeScript.  JavaScript developers will find a fully featured library with convenient functions to automate most of the method calls within the Lockstep API; developers using TypeScript will find a rich definition of strict types.  Both languages will have access to docblocks, hover, autocomplete, and convenience features to make your code easier to write.
 
 Dependencies:
