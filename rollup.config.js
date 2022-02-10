@@ -1,9 +1,6 @@
 // rollup.config.js
-import { createBasicConfig } from '@open-wc/building-rollup';
 import typescript from '@rollup/plugin-typescript';
 import dts from "rollup-plugin-dts";
-
-const baseConfig = createBasicConfig();
 
 const config = [
   {
