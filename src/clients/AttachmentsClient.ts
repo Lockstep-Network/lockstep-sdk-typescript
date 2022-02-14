@@ -102,8 +102,9 @@ export class AttachmentsClient {
    *
    * @param tableName The name of the type of object to which this Attachment will be linked
    * @param objectId The unique ID of the object to which this Attachment will be linked
+   * @param filename The full path of a file to upload to the API
    */
-  uploadAttachment(tableName: string, objectId: string): Promise<LockstepResponse<AttachmentModel[]>> {
+  uploadAttachment(tableName: string, objectId: string, filename: Uint8Array): Promise<LockstepResponse<AttachmentModel[]>> {
     const url = `/api/v1/Attachments`;
     const options = {
       params: {

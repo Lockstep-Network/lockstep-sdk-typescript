@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.5.19
+ * @version    2022.6.48
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -38,6 +38,7 @@ import { StatusClient } from ".";
 import { SyncClient } from ".";
 import { UserAccountsClient } from ".";
 import { UserRolesClient } from ".";
+import { WebhooksClient } from ".";
 import { LockstepResponse } from ".";
 
 import * as axios from "axios";
@@ -64,7 +65,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.5.19";
+  private readonly version: string = "2022.6.48";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -96,6 +97,7 @@ export class LockstepApi {
   public readonly Sync: SyncClient;
   public readonly UserAccounts: UserAccountsClient;
   public readonly UserRoles: UserRolesClient;
+  public readonly Webhooks: WebhooksClient;
 
   /** 
    * Internal constructor for the Lockstep API client
@@ -129,6 +131,7 @@ export class LockstepApi {
     this.Sync = new SyncClient(this);
     this.UserAccounts = new UserAccountsClient(this);
     this.UserRoles = new UserRolesClient(this);
+    this.Webhooks = new WebhooksClient(this);
   }
 
   /**
