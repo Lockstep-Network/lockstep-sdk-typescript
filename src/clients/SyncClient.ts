@@ -15,6 +15,7 @@ import { LockstepApi } from "..";
 import { LockstepResponse } from "..";
 import { SyncRequestModel } from "..";
 import { SyncSubmitModel } from "..";
+import { BatchSyncModel } from "..";
 import { FetchResult } from "..";
 
 export class SyncClient {
@@ -40,12 +41,27 @@ export class SyncClient {
   }
 
   /**
+   * Creates a new batch import Sync task that imports all the models provided to this API call.
+   *
+   * A Sync task represents ingestion of data from a source.  For each data model in the source, the Sync process will determine whether the data is new, updated, or unchanged from data that already exists within the Lockstep Platform.  For records that are new, the Sync process will add them to the Lockstep Platform data.  For records that are updated, the Sync process will update existing data to match the newly uploaded records.  If records have not changed, no action will be taken.
+   *
+   * You can use this Batch Import process to load data in bulk directly into the Lockstep Platform.
+   *
+   * @param body Information about the Sync to execute
+   */
+  createBatchImport(body: BatchSyncModel): Promise<LockstepResponse<SyncRequestModel>> {
+    const url = `/api/v1/Sync/batch`;
+    return this.client.request<SyncRequestModel>("post", url, null, body);
+  }
+
+  /**
    * Requests a new Sync task from a ZIP file you provide.  This ZIP file can contain one or more files with data from the customer's platform.  Individual files can be in the format CSV or JSONL (JSON with Lines).
    *
    * A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
    *
+   * @param filename The full path of a file to upload to the API
    */
-  uploadSyncFile(): Promise<LockstepResponse<SyncRequestModel>> {
+  uploadSyncFile(filename: Uint8Array): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync/zip`;
     return this.client.request<SyncRequestModel>("post", url, null, null);
   }
