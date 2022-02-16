@@ -50,8 +50,9 @@ export class ProvisioningClient {
   }
 
   /**
+   * Creates a new account for a developer, sending an email with information on how to access the API.
    *
-   * @param body
+   * @param body Documentation pending
    */
   provisionFreeDeveloperAccount(body: DeveloperAccountSubmitModel): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/Provisioning/free-account`;
