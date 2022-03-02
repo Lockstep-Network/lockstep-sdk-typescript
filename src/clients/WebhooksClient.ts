@@ -16,6 +16,7 @@ import { LockstepResponse } from "..";
 import { WebhookModel } from "..";
 import { ActionResultModel } from "..";
 import { FetchResult } from "..";
+import { WebhookHistoryTableStorageModel } from "..";
 
 export class WebhooksClient {
   private readonly client: LockstepApi;
@@ -101,5 +102,26 @@ export class WebhooksClient {
       },
     };
     return this.client.request<FetchResult<WebhookModel>>("get", url, options, null);
+  }
+
+  /**
+   *
+   * @param webhookId The unique Lockstep Platform ID number of this Webhook
+   * @param filter The filter for this query. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)
+   * @param select The selection for this query. Selection is the desired properties of an entity to pull from the set. If a property is not selected, it will either return as null or empty. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)
+   * @param pageSize The page size for results (default 200).
+   * @param pageNumber The page number for results (default 0).
+   */
+  queryWebhookHistory(webhookId: string, filter?: string, select?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> {
+    const url = `/api/v1/Webhooks/${webhookId}/history/query`;
+    const options = {
+      params: {
+        filter,
+        select,
+        pageSize,
+        pageNumber,
+      },
+    };
+    return this.client.request<FetchResult<WebhookHistoryTableStorageModel>>("get", url, options, null);
   }
 }
