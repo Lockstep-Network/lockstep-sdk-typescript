@@ -2831,14 +2831,9 @@ export type CustomFieldSyncModel = {
   customFieldLabel: string;
 
   /**
-   * The value of this custom field, if it is stored in string format.
+   * The value of this custom field.
    */
-  stringValue: string | null;
-
-  /**
-   * The value of this custom field, if it is stored in numeric format.
-   */
-  numericValue: number | null;
+  value: string | null;
 
   /**
    * If known, the date when this record was created according to the originating financial system
@@ -2885,16 +2880,6 @@ export type CustomFieldValueModel = {
   recordKey: string;
 
   /**
-   * String of data for field
-   */
-  stringValue: string | null;
-
-  /**
-   * Number data for field
-   */
-  numericValue: number | null;
-
-  /**
    * Date created
    */
   created: string;
@@ -2921,6 +2906,11 @@ export type CustomFieldValueModel = {
    * was not loaded from an external ERP or financial system.
    */
   appEnrollmentId: string | null;
+
+  /**
+   * The value of this custom field.
+   */
+  value: string | null;
 
   /**
    * Definition of the value
@@ -3232,6 +3222,255 @@ export type ErpModel = {
    * Flag to indicate if ERP is supported
    */
   isSupported: boolean;
+};
+
+/**
+ * Represents a balance for a financial account for a given period of time.
+ */
+export type FinancialAccountBalanceHistoryModel = {
+
+  /**
+   * The unique ID of this record, automatically assigned by Lockstep when this record is
+   * added to the Lockstep platform.
+   */
+  financialAccountBalanceHistoryId: string;
+
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+
+  /**
+   * The id of the Financial Account that this balance history is for.
+   */
+  financialAccountId: string;
+
+  /**
+   * The AppEnrollmentId of the application that imported this record.  For accounts
+   * with more than one financial system connected, this field identifies the originating
+   * financial system that produced this record.  This value is null if this record
+   * was not loaded from an external ERP or financial system.
+   */
+  appEnrollmentId: string | null;
+
+  /**
+   * The financial year that this period falls under
+   */
+  financialYear: number;
+
+  /**
+   * The period number (1-12 or 1-13) that this balance history is for
+   */
+  periodNumber: number;
+
+  /**
+   * The start date of this period.
+   */
+  periodStartDate: string;
+
+  /**
+   * The end date of this period.
+   */
+  periodEndDate: string;
+
+  /**
+   * The status of this period. The status should be Closed if the books for this period have been closed,
+   * if not the status should be Open. The status can also be Deleted if there was a recalculation that needed
+   * to occur, for example due to a change in financial year settings.
+   */
+  status: string | null;
+
+  /**
+   * The current or end balance of this period.
+   */
+  balance: number;
+
+  /**
+   * The date on which this financial account balance history record was created.
+   */
+  created: string;
+
+  /**
+   * The ID number of the user who created this financial account balance history.
+   */
+  createdUserId: string;
+
+  /**
+   * The date on which this financial account balance history record was modified.
+   */
+  modified: string;
+
+  /**
+   * The ID number of the user who most recently modified this financial account balance history.
+   */
+  modifiedUserId: string;
+};
+
+/**
+ * An Financial account refers to records of assets, liabilities, income, expenses, and equity.
+ */
+export type FinancialAccountModel = {
+
+  /**
+   * The unique identifier for the Financial Account.
+   */
+  financialAccountId: string;
+
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+
+  /**
+   * The code for the Financial Account. Can either be a general ledger or
+   * an account code.
+   */
+  code: string | null;
+
+  /**
+   * The External Id for the Financial Account.
+   */
+  erpKey: string | null;
+
+  /**
+   * The App Enrollment Id for the Financial Account.
+   */
+  appEnrollmentId: string | null;
+
+  /**
+   * The name of the Financial Account.
+   */
+  name: string | null;
+
+  /**
+   * The status of the Financial Account. Possible values are active,
+   * inactive, deleted or archived.
+   */
+  status: string | null;
+
+  /**
+   * The cashflow type for the Financial Account. Examples include cash, financing, investment
+   * or operation.
+   */
+  cashflowType: string | null;
+
+  /**
+   * The description for the Financial Account.
+   */
+  description: string | null;
+
+  /**
+   * The classification for the Financial Account. Possible values are Asset, Equity,
+   * Expense, Liability or Revenue.
+   */
+  classification: string | null;
+
+  /**
+   * The category for the Financial Account. Examples include Current Asset, Current Liability, Common Stock
+   */
+  category: string | null;
+
+  /**
+   * The subcategory for the Financial Account. Examples include Cash, Property, Bank Loan, etc.
+   */
+  subcategory: string | null;
+
+  /**
+   * The date the FinancialAccount was created.
+   */
+  created: string;
+
+  /**
+   * The user that has created the Financial Account.
+   */
+  createdUserId: string;
+
+  /**
+   * The date the Financial Account was modified.
+   */
+  modified: string;
+
+  /**
+   * The user that has modified the Financial Account.
+   */
+  modifiedUserId: string;
+};
+
+/**
+ * A Financial Year Setting is used to to set the type, beginning, end, and number of periods of a year used to
+ * calculate accounting reports. The financial setting can either be for a specific app enrollment id via a sync
+ * or, when the financial year setting is manually created, will cover all account data without an app enrollment id.
+ */
+export type FinancialYearSettingModel = {
+
+  /**
+   * The unique ID of this record, automatically assigned by Lockstep when this record is
+   * added to the Lockstep platform.
+   */
+  financialYearSettingId: string;
+
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+
+  /**
+   * The AppEnrollmentId of the application that imported this record.  For accounts
+   * with more than one financial system connected, this field identifies the originating
+   * financial system that produced this record.  This value is null if this record
+   * was not loaded from an external ERP or financial system.
+   */
+  appEnrollmentId: string | null;
+
+  /**
+   * The type of financial year, either Calendar or Fiscal.
+   */
+  yearType: string | null;
+
+  /**
+   * Total number of periods in the year. For Calendar year types this should always be 12. For Fiscal year types
+   * this can either be 12 or 13 for a 4 week 13 period year.
+   */
+  totalPeriods: number;
+
+  /**
+   * The start date of the financial year. Should be entered in MM-DD format.
+   */
+  startDate: string | null;
+
+  /**
+   * The end date of the financial year. Should be entered in MM-DD format.
+   */
+  endDate: string | null;
+
+  /**
+   * The date on which this financial year setting record was created.
+   */
+  created: string;
+
+  /**
+   * The ID number of the user who created this financial year setting.
+   */
+  createdUserId: string;
+
+  /**
+   * The date on which this financial year setting record was last modified.
+   */
+  modified: string;
+
+  /**
+   * The ID number of the user who most recently modified this financial year setting.
+   */
+  modifiedUserId: string;
 };
 
 /**
@@ -4147,22 +4386,22 @@ export type InvoiceModel = {
   primaryShipToAddressId: string | null;
 
   /**
-   * The date on which this address record was created.
+   * The date on which this invoice record was created.
    */
   created: string | null;
 
   /**
-   * The ID number of the user who created this address.
+   * The ID number of the user who created this invoice.
    */
   createdUserId: string | null;
 
   /**
-   * The date on which this address record was last modified.
+   * The date on which this invoice record was last modified.
    */
   modified: string | null;
 
   /**
-   * The ID number of the user who most recently modified this address.
+   * The ID number of the user who most recently modified this invoice.
    */
   modifiedUserId: string | null;
 
@@ -6238,10 +6477,15 @@ export type WebhookHistoryTableStorageModel = {
   groupKey: string;
 
   /**
+   * The WebhookId uniquely identifies the webhook used to send notification that an event action has taken place.
+   */
+  webhookId: string;
+
+  /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
    */
-  webhookId: string;
+  webhookHistoryId: string;
 
   /**
    * Event type which fired webhook
@@ -6256,9 +6500,20 @@ export type WebhookHistoryTableStorageModel = {
   requestSent: boolean;
 
   /**
+   * Flag whether webhook notification was successful overall (if webhook disabled should always return true otherwise
+   * depends on the response from the callback url)
+   */
+  isSuccessful: boolean;
+
+  /**
    * Response status code that is returned when calling a callback url.
    */
   responseStatusCode: string | null;
+
+  /**
+   * Message containing information about the webhook callback results
+   */
+  processResultMessage: string | null;
 
   /**
    * Number of times message failed to be sent over to callback url before succeeding or failing out.
@@ -6367,4 +6622,9 @@ export type WebhookModel = {
    * The ID of the user who last modified this webhook
    */
   modifiedUserId: string;
+
+  /**
+   * The partition key used for the webhook callback history
+   */
+  partitionKey: string | null;
 };

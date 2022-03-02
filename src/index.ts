@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.7.31
+ * @version    2022.9.6
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -32,6 +32,9 @@ export { CustomFieldDefinitionsClient } from "./clients/CustomFieldDefinitionsCl
 export { CustomFieldValuesClient } from "./clients/CustomFieldValuesClient";
 export { DefinitionsClient } from "./clients/DefinitionsClient";
 export { EmailsClient } from "./clients/EmailsClient";
+export { FinancialAccountClient } from "./clients/FinancialAccountClient";
+export { FinancialAccountBalanceHistoryClient } from "./clients/FinancialAccountBalanceHistoryClient";
+export { FinancialYearSettingsClient } from "./clients/FinancialYearSettingsClient";
 export { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient";
 export { InvoicesClient } from "./clients/InvoicesClient";
 export { LeadsClient } from "./clients/LeadsClient";
@@ -86,6 +89,9 @@ export { EmailModel } from "./models/DataModels";
 export { ErpInfoDataModel } from "./models/DataModels";
 export { ErpInfoModel } from "./models/DataModels";
 export { ErpModel } from "./models/DataModels";
+export { FinancialAccountBalanceHistoryModel } from "./models/DataModels";
+export { FinancialAccountModel } from "./models/DataModels";
+export { FinancialYearSettingModel } from "./models/DataModels";
 export { InviteDataModel } from "./models/DataModels";
 export { InviteModel } from "./models/DataModels";
 export { InviteSubmitModel } from "./models/DataModels";

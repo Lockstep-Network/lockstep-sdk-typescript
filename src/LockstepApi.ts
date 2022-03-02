@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.7.31
+ * @version    2022.9.6
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -26,6 +26,9 @@ import { CustomFieldDefinitionsClient } from ".";
 import { CustomFieldValuesClient } from ".";
 import { DefinitionsClient } from ".";
 import { EmailsClient } from ".";
+import { FinancialAccountClient } from ".";
+import { FinancialAccountBalanceHistoryClient } from ".";
+import { FinancialYearSettingsClient } from ".";
 import { InvoiceHistoryClient } from ".";
 import { InvoicesClient } from ".";
 import { LeadsClient } from ".";
@@ -65,7 +68,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.7.31";
+  private readonly version: string = "2022.9.6";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -85,6 +88,9 @@ export class LockstepApi {
   public readonly CustomFieldValues: CustomFieldValuesClient;
   public readonly Definitions: DefinitionsClient;
   public readonly Emails: EmailsClient;
+  public readonly FinancialAccount: FinancialAccountClient;
+  public readonly FinancialAccountBalanceHistory: FinancialAccountBalanceHistoryClient;
+  public readonly FinancialYearSettings: FinancialYearSettingsClient;
   public readonly InvoiceHistory: InvoiceHistoryClient;
   public readonly Invoices: InvoicesClient;
   public readonly Leads: LeadsClient;
@@ -119,6 +125,9 @@ export class LockstepApi {
     this.CustomFieldValues = new CustomFieldValuesClient(this);
     this.Definitions = new DefinitionsClient(this);
     this.Emails = new EmailsClient(this);
+    this.FinancialAccount = new FinancialAccountClient(this);
+    this.FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
+    this.FinancialYearSettings = new FinancialYearSettingsClient(this);
     this.InvoiceHistory = new InvoiceHistoryClient(this);
     this.Invoices = new InvoicesClient(this);
     this.Leads = new LeadsClient(this);
