@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.9.6
+ * @version    2022.10.63
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -47,6 +47,7 @@ import { LockstepResponse } from ".";
 import * as axios from "axios";
 import * as os from "os";
 import * as url from "url";
+import { Blob } from "buffer";
 
 /**
  * List of headers used by the Lockstep API
@@ -68,7 +69,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.9.6";
+  private readonly version: string = "2022.10.63";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -240,5 +241,22 @@ export class LockstepApi {
     };
     const result = await axios.default.request(requestConfig);
     return new LockstepResponse<T>(result.status, result.data);
+  }
+
+  /**
+   * Make a GET request using this client and download the results as a blob
+   */
+  public async requestBlob(method: axios.Method, path: string, options: unknown, body: unknown): Promise<LockstepResponse<Blob>> {
+    const responseType: axios.ResponseType = 'blob';
+    const requestConfig = {
+      url: new url.URL(path, this.serverUrl).href,
+      method,
+      params: options,
+      data: body,
+      headers: this.getHeaders(),
+      responseType,
+    };
+    const result = await axios.default.request(requestConfig);
+    return new LockstepResponse<Blob>(result.status, new Blob(result.data));
   }
 }

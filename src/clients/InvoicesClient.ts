@@ -16,6 +16,7 @@ import { LockstepResponse } from "..";
 import { InvoiceModel } from "..";
 import { ActionResultModel } from "..";
 import { FetchResult } from "..";
+import { Blob } from "buffer";
 import { InvoiceSummaryModel } from "..";
 import { AtRiskInvoiceSummaryModel } from "..";
 
@@ -109,6 +110,20 @@ export class InvoicesClient {
       },
     };
     return this.client.request<FetchResult<InvoiceModel>>("get", url, options, null);
+  }
+
+  /**
+   * Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.
+   *
+   * Supported apps: Quickbooks Online, Xero
+   *
+   * Supported invoice types: Invoice, Credit Memo
+   *
+   * @param id The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key
+   */
+  retrieveinvoicePDF(id: string): Promise<LockstepResponse<Blob>> {
+    const url = `/api/v1/Invoices/${id}/pdf`;
+    return this.client.requestBlob("get", url, null, null);
   }
 
   /**
