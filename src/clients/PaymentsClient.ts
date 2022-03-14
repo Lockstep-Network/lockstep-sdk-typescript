@@ -16,6 +16,7 @@ import { LockstepResponse } from "..";
 import { PaymentModel } from "..";
 import { ActionResultModel } from "..";
 import { FetchResult } from "..";
+import { Blob } from "buffer";
 import { PaymentSummaryModel } from "..";
 import { PaymentDetailHeaderModel } from "..";
 import { PaymentDetailModel } from "..";
@@ -112,6 +113,18 @@ export class PaymentsClient {
       },
     };
     return this.client.request<FetchResult<PaymentModel>>("get", url, options, null);
+  }
+
+  /**
+   * Retrieves a PDF file for this payment if it has been synced using an app enrollment to one of the supported apps.
+   *
+   * Supported apps: Quickbooks Online
+   *
+   * @param id The unique Lockstep Platform ID number of this payment; NOT the customer's ERP key
+   */
+  retrievepaymentPDF(id: string): Promise<LockstepResponse<Blob>> {
+    const url = `/api/v1/Payments/${id}/pdf`;
+    return this.client.requestBlob("get", url, null, null);
   }
 
   /**

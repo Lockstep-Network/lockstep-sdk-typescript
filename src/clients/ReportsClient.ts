@@ -20,6 +20,7 @@ import { ArHeaderInfoModel } from "..";
 import { AgingModel } from "..";
 import { ArAgingHeaderInfoModel } from "..";
 import { AttachmentHeaderInfoModel } from "..";
+import { FinancialReportModel } from "..";
 
 export class ReportsClient {
   private readonly client: LockstepApi;
@@ -142,5 +143,24 @@ export class ReportsClient {
       },
     };
     return this.client.request<AttachmentHeaderInfoModel>("get", url, options, null);
+  }
+
+  /**
+   * Generates a Trial Balance Report for the given time range.
+   *
+   * The Attachment Header report contains aggregated information about the `TotalAttachments`, `TotalArchived`, and `TotalActive` attachment classifications.
+   *
+   * @param startDate Documentation pending
+   * @param endDate Documentation pending
+   */
+  trialBalanceReport(startDate?: string, endDate?: string): Promise<LockstepResponse<FinancialReportModel>> {
+    const url = `/api/v1/Reports/trial-balance`;
+    const options = {
+      params: {
+        startDate,
+        endDate,
+      },
+    };
+    return this.client.request<FinancialReportModel>("get", url, options, null);
   }
 }

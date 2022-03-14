@@ -446,14 +446,9 @@ export type AppEnrollmentCustomFieldModel = {
   sortOrder: number;
 
   /**
-   * String of data for field
+   * Value for the field
    */
-  stringValue: string | null;
-
-  /**
-   * Number data for field
-   */
-  numericValue: number | null;
+  value: string | null;
 };
 
 /**
@@ -985,7 +980,12 @@ export type AttachmentHeaderInfoModel = {
 };
 
 /**
- * Represents a user uploaded attachment
+ * An Attachment is a file that can be attached to various account attributes within Lockstep.
+ * This data model contains metadata about the attachment.  You can upload and download attachments
+ * into the Lockstep Platform along with this metadata.  Attachments can be used for invoices, payments,
+ * legal documents, or any other external files that you wish to track.
+ *
+ * See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
  */
 export type AttachmentModel = {
 
@@ -1004,37 +1004,57 @@ export type AttachmentModel = {
   groupKey: string;
 
   /**
-   * The name of the table the attachment is associated with
+   * An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+   * `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
+   * `Invoice` and an `ObjectKey` value of `12345`.
+   *
+   * The `TableKey` value contains the name of the table within the Lockstep Platform to which this Attachment
+   * is connected.
+   *
+   * For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   tableKey: string | null;
 
   /**
-   * The ID of the object the attachment is associated with
+   * An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+   * `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
+   * `Invoice` and an `ObjectKey` value of `12345`.
+   *
+   * The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+   * Attachment is connected.
+   *
+   * For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   objectKey: string;
 
   /**
-   * Name of the file
+   * An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+   * name of the file on disk, without its extension.
    */
   fileName: string | null;
 
   /**
-   * Extension type of the file
+   * An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+   * extension name of the file on disk.
    */
   fileExt: string | null;
 
   /**
-   * Corresponding AttachmentType object to describe this attachment
+   * DEPRECATED: This field is replaced by `AttachmentType`.
    */
   attachmentTypeId: string;
 
   /**
-   * Flag indicating the attachment was archived
+   * A flag indicating whether this Attachment is archived (also known as hidden or deleted).  When you call
+   * [ArchiveAttachment](https://developer.lockstep.io/reference/delete_api-v1-attachments-id) this field will
+   * be set to true.
+   *
+   * You should avoid displaying Attachments with the IsArchived field set to true in your user interface.
    */
   isArchived: boolean;
 
   /**
-   * Tracks the original record for this attachment, not currently used.
+   * DEPRECATED - Do not use
    */
   originAttachmentId: string;
 
@@ -1068,14 +1088,20 @@ export type AttachmentModel = {
   appEnrollmentId: string | null;
 
   /**
-   * The date the attachment was created
+   * The date the attachment was created.
    */
   created: string;
 
   /**
-   * Id of the user who made the file
+   * The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+   * who created this Attachment.
    */
   createdUserId: string;
+
+  /**
+   * A text string describing the type of this Attachment.
+   */
+  attachmentType: string | null;
 };
 
 /**
@@ -1711,6 +1737,26 @@ export type ConnectorInfoModel = {
    * The email an email connection is being created for.
    */
   email: string | null;
+
+  /**
+   * The username of the web services account with access permissions.
+   */
+  username: string | null;
+
+  /**
+   * The password for the web services account with access permissions.
+   */
+  password: string | null;
+
+  /**
+   * The server name a connection is being created for.
+   */
+  serverName: string | null;
+
+  /**
+   * The port number of the server a connection is being created for.
+   */
+  serverPort: number | null;
 };
 
 /**
@@ -2447,6 +2493,226 @@ export type CurrencyRateModel = {
 };
 
 /**
+ * A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
+ * core definition for each object.  The core definition is intended to represent a level of compatibility
+ * that provides support across most accounting systems and products.  When a user or developer requires
+ * information beyond this core definition, you can use Custom Fields to represent this information.
+ *
+ * See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+ */
+export type CustomFieldDefinitionModel = {
+
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+
+  /**
+   * The unique ID of this record, automatically assigned by Lockstep when this record is
+   * added to the Lockstep platform.
+   */
+  customFieldDefinitionId: string;
+
+  /**
+   * Table to which this definition belongs
+   */
+  tableKey: string | null;
+
+  /**
+   * Id of app this definition belongs to
+   */
+  appId: string | null;
+
+  /**
+   * Text to display in-application for custom field
+   */
+  customFieldLabel: string | null;
+
+  /**
+   * Data type of this definition
+   */
+  dataType: string | null;
+
+  /**
+   * Used for display logic when multiple custom fields exist
+   */
+  sortOrder: number;
+
+  /**
+   * Date created
+   */
+  created: string;
+
+  /**
+   * Id of user who created this definition
+   */
+  createdUserId: string;
+
+  /**
+   * Date modified
+   */
+  modified: string;
+
+  /**
+   * Id of user who modified this definition
+   */
+  modifiedUserId: string;
+
+  /**
+   * The AppEnrollmentId of the application that imported this record.  For accounts
+   * with more than one financial system connected, this field identifies the originating
+   * financial system that produced this record.  This value is null if this record
+   * was not loaded from an external ERP or financial system.
+   */
+  appEnrollmentId: string | null;
+};
+
+/**
+ * The CustomFieldSyncModel represents information coming into Lockstep from an external financial system or other
+ * enterprise resource planning system.  [Custom Fields](https://developer.lockstep.io/docs/custom-fields#custom-fields)
+ * represent custom data extensions that you can use with the Lockstep Platform.  If you need to store extra
+ * information about an object that does not match Lockstep's official schema, you can store it in the Custom
+ * Field system using CustomFieldSyncModel.
+ *
+ * To store a custom field for an object, create a CustomFieldSyncModel record containing the `EntityType` and
+ * `ErpKey` of the entity to which you will attach a custom field. Next specify the field's `CustomFieldLabel`
+ * and either a `StringValue` or `NumericValue`.
+ *
+ * Once imported, this record will be available in the Lockstep API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).
+ *
+ * For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+ */
+export type CustomFieldSyncModel = {
+
+  /**
+   * This is the primary key of the record to which you will attach this custom field. You should provide the
+   * identifying number as it is stored in the originating financial system. Search for a unique, non-changing
+   * number within the originating financial system for this record.
+   *
+   * Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+   *
+   * Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+   * invoice named "ApprovalStatusCode".  For the `ErpKey` field, specify the value `100047878`.
+   *
+   * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+   */
+  erpKey: string;
+
+  /**
+   * Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+   *
+   * Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+   * invoice named "ApprovalStatusCode".  For the `EntityType` field, specify the value `Invoice`.
+   *
+   * Recognized types include:
+   * * `Company` - Link this custom field to a CompanySyncModel
+   * * `Contact` - Link this custom field to a ContactSyncModel
+   * * `Invoice` - Link this custom field to an InvoiceSyncModel
+   * * `InvoiceLine` - Link this custom field to an InvoiceLineSyncModel
+   * * `Payment` - Link this custom field to a PaymentSyncModel
+   */
+  entityType: string;
+
+  /**
+   * A label that uniquely identifies this custom field within your software.
+   *
+   * Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+   * invoice named "ApprovalStatusCode".  For the `CustomFieldLabel` field, specify the value `ApprovalStatusCode`.
+   */
+  customFieldLabel: string;
+
+  /**
+   * The value of this custom field.
+   */
+  value: string | null;
+
+  /**
+   * If known, the date when this record was created according to the originating financial system
+   * in which this record is maintained.  If the originating financial system does not maintain a
+   * created-date, leave this field null.
+   */
+  created: string | null;
+
+  /**
+   * If known, the date when this record was most recently modified according to the originating
+   * financial system in which this record is maintained.  If the originating financial system does
+   * not maintain a most-recently-modified-date, leave this field null.
+   */
+  modified: string | null;
+};
+
+/**
+ * A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
+ * core definition for each object.  The core definition is intended to represent a level of compatibility
+ * that provides support across most accounting systems and products.  When a user or developer requires
+ * information beyond this core definition, you can use Custom Fields to represent this information.
+ *
+ * See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+ */
+export type CustomFieldValueModel = {
+
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+
+  /**
+   * The unique ID of this record, automatically assigned by Lockstep when this record is
+   * added to the Lockstep platform.
+   */
+  customFieldDefinitionId: string;
+
+  /**
+   * Additional key if source table doesn't have a unique id
+   */
+  recordKey: string;
+
+  /**
+   * Date created
+   */
+  created: string;
+
+  /**
+   * Id of user who created this value
+   */
+  createdUserId: string;
+
+  /**
+   * Date modified
+   */
+  modified: string;
+
+  /**
+   * Id of user who modified this value
+   */
+  modifiedUserId: string;
+
+  /**
+   * The AppEnrollmentId of the application that imported this attachment record.  For accounts
+   * with more than one financial system connected, this field identifies the originating
+   * financial system that produced this record.  This value is null if this record
+   * was not loaded from an external ERP or financial system.
+   */
+  appEnrollmentId: string | null;
+
+  /**
+   * The value of this custom field.
+   */
+  value: string | null;
+
+  /**
+   * Definition of the value
+   */
+  customFieldDefinition: CustomFieldDefinitionModel | null;
+};
+
+/**
  * Contains customer details data
  */
 export type CustomerDetailsModel = {
@@ -2699,226 +2965,6 @@ export type CustomerSummaryModel = {
 };
 
 /**
- * A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
- * core definition for each object.  The core definition is intended to represent a level of compatibility
- * that provides support across most accounting systems and products.  When a user or developer requires
- * information beyond this core definition, you can use Custom Fields to represent this information.
- *
- * See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
- */
-export type CustomFieldDefinitionModel = {
-
-  /**
-   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   *
-   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-   */
-  groupKey: string;
-
-  /**
-   * The unique ID of this record, automatically assigned by Lockstep when this record is
-   * added to the Lockstep platform.
-   */
-  customFieldDefinitionId: string;
-
-  /**
-   * Table to which this definition belongs
-   */
-  tableKey: string | null;
-
-  /**
-   * Id of app this definition belongs to
-   */
-  appId: string | null;
-
-  /**
-   * Text to display in-application for custom field
-   */
-  customFieldLabel: string | null;
-
-  /**
-   * Data type of this definition
-   */
-  dataType: string | null;
-
-  /**
-   * Used for display logic when multiple custom fields exist
-   */
-  sortOrder: number;
-
-  /**
-   * Date created
-   */
-  created: string;
-
-  /**
-   * Id of user who created this definition
-   */
-  createdUserId: string;
-
-  /**
-   * Date modified
-   */
-  modified: string;
-
-  /**
-   * Id of user who modified this definition
-   */
-  modifiedUserId: string;
-
-  /**
-   * The AppEnrollmentId of the application that imported this record.  For accounts
-   * with more than one financial system connected, this field identifies the originating
-   * financial system that produced this record.  This value is null if this record
-   * was not loaded from an external ERP or financial system.
-   */
-  appEnrollmentId: string | null;
-};
-
-/**
- * The CustomFieldSyncModel represents information coming into Lockstep from an external financial system or other
- * enterprise resource planning system.  [Custom Fields](https://developer.lockstep.io/docs/custom-fields#custom-fields)
- * represent custom data extensions that you can use with the Lockstep Platform.  If you need to store extra
- * information about an object that does not match Lockstep's official schema, you can store it in the Custom
- * Field system using CustomFieldSyncModel.
- *
- * To store a custom field for an object, create a CustomFieldSyncModel record containing the `EntityType` and
- * `ErpKey` of the entity to which you will attach a custom field. Next specify the field's `CustomFieldLabel`
- * and either a `StringValue` or `NumericValue`.
- *
- * Once imported, this record will be available in the Lockstep API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).
- *
- * For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
- */
-export type CustomFieldSyncModel = {
-
-  /**
-   * This is the primary key of the record to which you will attach this custom field. You should provide the
-   * identifying number as it is stored in the originating financial system. Search for a unique, non-changing
-   * number within the originating financial system for this record.
-   *
-   * Custom Fields are identified by the `EntityType` and `ErpKey` values together.
-   *
-   * Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
-   * invoice named "ApprovalStatusCode".  For the `ErpKey` field, specify the value `100047878`.
-   *
-   * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
-   */
-  erpKey: string;
-
-  /**
-   * Custom Fields are identified by the `EntityType` and `ErpKey` values together.
-   *
-   * Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
-   * invoice named "ApprovalStatusCode".  For the `EntityType` field, specify the value `Invoice`.
-   *
-   * Recognized types include:
-   * * `Company` - Link this custom field to a CompanySyncModel
-   * * `Contact` - Link this custom field to a ContactSyncModel
-   * * `Invoice` - Link this custom field to an InvoiceSyncModel
-   * * `InvoiceLine` - Link this custom field to an InvoiceLineSyncModel
-   * * `Payment` - Link this custom field to a PaymentSyncModel
-   */
-  entityType: string;
-
-  /**
-   * A label that uniquely identifies this custom field within your software.
-   *
-   * Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
-   * invoice named "ApprovalStatusCode".  For the `CustomFieldLabel` field, specify the value `ApprovalStatusCode`.
-   */
-  customFieldLabel: string;
-
-  /**
-   * The value of this custom field.
-   */
-  value: string | null;
-
-  /**
-   * If known, the date when this record was created according to the originating financial system
-   * in which this record is maintained.  If the originating financial system does not maintain a
-   * created-date, leave this field null.
-   */
-  created: string | null;
-
-  /**
-   * If known, the date when this record was most recently modified according to the originating
-   * financial system in which this record is maintained.  If the originating financial system does
-   * not maintain a most-recently-modified-date, leave this field null.
-   */
-  modified: string | null;
-};
-
-/**
- * A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
- * core definition for each object.  The core definition is intended to represent a level of compatibility
- * that provides support across most accounting systems and products.  When a user or developer requires
- * information beyond this core definition, you can use Custom Fields to represent this information.
- *
- * See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
- */
-export type CustomFieldValueModel = {
-
-  /**
-   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-   *
-   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-   */
-  groupKey: string;
-
-  /**
-   * The unique ID of this record, automatically assigned by Lockstep when this record is
-   * added to the Lockstep platform.
-   */
-  customFieldDefinitionId: string;
-
-  /**
-   * Additional key if source table doesn't have a unique id
-   */
-  recordKey: string;
-
-  /**
-   * Date created
-   */
-  created: string;
-
-  /**
-   * Id of user who created this value
-   */
-  createdUserId: string;
-
-  /**
-   * Date modified
-   */
-  modified: string;
-
-  /**
-   * Id of user who modified this value
-   */
-  modifiedUserId: string;
-
-  /**
-   * The AppEnrollmentId of the application that imported this attachment record.  For accounts
-   * with more than one financial system connected, this field identifies the originating
-   * financial system that produced this record.  This value is null if this record
-   * was not loaded from an external ERP or financial system.
-   */
-  appEnrollmentId: string | null;
-
-  /**
-   * The value of this custom field.
-   */
-  value: string | null;
-
-  /**
-   * Definition of the value
-   */
-  customFieldDefinition: CustomFieldDefinitionModel | null;
-};
-
-/**
  * Represents the daily sales outstanding report
  */
 export type DailySalesOutstandingReportModel = {
@@ -3165,29 +3211,6 @@ export type EmailModel = {
 };
 
 /**
- * Represents all the possible data sent as a part of the provisioning post.
- * Only send required fields for the given connector.
- */
-export type ErpInfoDataModel = {
-
-  /**
-   * The authorization code returned from the first step of the OAuth2 flow
-   * https://oauth.net/2/grant-types/authorization-code/
-   */
-  authCode: string | null;
-
-  /**
-   * The realm id of the account being granted permissions to access
-   */
-  realmId: string | null;
-
-  /**
-   * The redirect uri used for step one of the OAuth2.0 flow.
-   */
-  redirectUri: string | null;
-};
-
-/**
  * Represents the ERP object sent in a provisioning request
  */
 export type ErpInfoModel = {
@@ -3400,6 +3423,82 @@ export type FinancialAccountModel = {
    * The user that has modified the Financial Account.
    */
   modifiedUserId: string;
+};
+
+/**
+ * Represents a cell of a financial report
+ */
+export type FinancialReportCellModel = {
+
+  /**
+   * The value of the financial report cell
+   */
+  value: string | null;
+};
+
+/**
+ * Represents a Financial Report
+ */
+export type FinancialReportModel = {
+
+  /**
+   * The name of the report ("*Report Type* for *Company*")
+   */
+  reportName: string | null;
+
+  /**
+   * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+   * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+   *
+   * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+   */
+  groupKey: string;
+
+  /**
+   * The start date of the financial report
+   */
+  reportStartDate: string;
+
+  /**
+   * The end date of the financial report
+   */
+  reportEndDate: string;
+
+  /**
+   * The created date of the financial report
+   */
+  reportCreatedDate: string;
+
+  /**
+   * The rows of the financial report
+   */
+  rows: FinancialReportRowModel[] | null;
+};
+
+/**
+ * Represents a row of a financial Report report
+ */
+export type FinancialReportRowModel = {
+
+  /**
+   * Describes what type of row this row is (Header, Summary, Classification, Category, Subcategory, Data)
+   */
+  rowType: string | null;
+
+  /**
+   * The label for the row if it is a Classification, Category, or Subcategory.
+   */
+  label: string | null;
+
+  /**
+   * The sub rows of this row if it is a Classification, Category, or Subcategory.
+   */
+  rows: FinancialReportRowModel[] | null;
+
+  /**
+   * The cells of the row
+   */
+  cells: FinancialReportCellModel[] | null;
 };
 
 /**
@@ -5032,17 +5131,31 @@ export type NoteModel = {
   groupKey: string;
 
   /**
-   * The name of the table the note is associated with
+   * A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+   * `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
+   * `Invoice` and an `ObjectKey` value of `12345`.
+   *
+   * The `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata
+   * is connected.
+   *
+   * For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   tableKey: string | null;
 
   /**
-   * The ID of the object the note is associated with
+   * A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+   * `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
+   * `Invoice` and an `ObjectKey` value of `12345`.
+   *
+   * The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+   * metadata is connected.
+   *
+   * For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   objectKey: string;
 
   /**
-   * The text of the note
+   * The full text of the note
    */
   noteText: string | null;
 
@@ -5052,7 +5165,11 @@ export type NoteModel = {
   noteType: string | null;
 
   /**
-   * Flag indicating if the note has been archived
+   * A flag indicating whether this Note is archived (also known as hidden or deleted).  When you call
+   * [ArchiveNote](https://developer.lockstep.io/reference/delete_api-v1-notes-id) this field will
+   * be set to true.
+   *
+   * You should avoid displaying Notes with the IsArchived field set to true in your user interface.
    */
   isArchived: boolean;
 
@@ -5062,7 +5179,8 @@ export type NoteModel = {
   created: string | null;
 
   /**
-   * The ID of the user who created the note
+   * The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+   * who created this Note.
    */
   createdUserId: string;
 

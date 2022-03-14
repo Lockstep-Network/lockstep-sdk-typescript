@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.9.6
+ * @version    2022.10.63
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -77,20 +77,22 @@ export { CreditMemoAppliedSyncModel } from "./models/DataModels";
 export { CreditMemoInvoiceModel } from "./models/DataModels";
 export { CurrencyModel } from "./models/DataModels";
 export { CurrencyRateModel } from "./models/DataModels";
-export { CustomerDetailsModel } from "./models/DataModels";
-export { CustomerDetailsPaymentModel } from "./models/DataModels";
-export { CustomerSummaryModel } from "./models/DataModels";
 export { CustomFieldDefinitionModel } from "./models/DataModels";
 export { CustomFieldSyncModel } from "./models/DataModels";
 export { CustomFieldValueModel } from "./models/DataModels";
+export { CustomerDetailsModel } from "./models/DataModels";
+export { CustomerDetailsPaymentModel } from "./models/DataModels";
+export { CustomerSummaryModel } from "./models/DataModels";
 export { DailySalesOutstandingReportModel } from "./models/DataModels";
 export { DeveloperAccountSubmitModel } from "./models/DataModels";
 export { EmailModel } from "./models/DataModels";
-export { ErpInfoDataModel } from "./models/DataModels";
 export { ErpInfoModel } from "./models/DataModels";
 export { ErpModel } from "./models/DataModels";
 export { FinancialAccountBalanceHistoryModel } from "./models/DataModels";
 export { FinancialAccountModel } from "./models/DataModels";
+export { FinancialReportCellModel } from "./models/DataModels";
+export { FinancialReportModel } from "./models/DataModels";
+export { FinancialReportRowModel } from "./models/DataModels";
 export { FinancialYearSettingModel } from "./models/DataModels";
 export { InviteDataModel } from "./models/DataModels";
 export { InviteModel } from "./models/DataModels";

@@ -73,9 +73,9 @@ export class FinancialAccountBalanceHistoryClient {
    *
    * @param body The Financial Account Balance Histories to create
    */
-  createFinancialAccountBalanceHistory(body: FinancialAccountBalanceHistoryModel[]): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel>> {
+  createFinancialAccountBalanceHistory(body: FinancialAccountBalanceHistoryModel[]): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel[]>> {
     const url = `/api/v1/FinancialAccountBalanceHistory`;
-    return this.client.request<FinancialAccountBalanceHistoryModel>("post", url, null, body);
+    return this.client.request<FinancialAccountBalanceHistoryModel[]>("post", url, null, body);
   }
 
   /**
