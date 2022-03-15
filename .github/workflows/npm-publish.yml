@@ -23,10 +23,10 @@ jobs:
         run: npm install
       - name: npm audit
         run: npm audit
-      - name: eslint
-        uses: mrdivyansh/eslint-action@v1.0.7
       - name: npm build
-        run: npm run build
+        run: |
+          npm run build
+          npm run lint
       - name: Publish NPM Package
         if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
         uses: JS-DevTools/npm-publish@v1
