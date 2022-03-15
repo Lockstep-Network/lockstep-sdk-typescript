@@ -18,12 +18,12 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 16.14.0
       - name: npm install
         run: npm install
       - name: npm audit
         run: npm audit
-      - name: eslint
+      - name: ESLint
         run: npm run lint
       - name: npm build
         run: npm run build

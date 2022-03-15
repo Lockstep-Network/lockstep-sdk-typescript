@@ -45,9 +45,11 @@ import { WebhooksClient } from ".";
 import { LockstepResponse } from ".";
 
 import * as axios from "axios";
+import * as blob from "buffer";
+import * as FormData from "form-data";
+import * as fs from "fs";
 import * as os from "os";
 import * as url from "url";
-import { Blob } from "buffer";
 
 /**
  * List of headers used by the Lockstep API
@@ -244,10 +246,28 @@ export class LockstepApi {
   }
 
   /**
+   * Upload a file to a REST endpoint and retrieve results as JSON
+   */
+  public async fileUpload<T>(method: axios.Method, path: string, options: unknown, filename: string): Promise<LockstepResponse<T>> {
+    const fileBuffer = fs.readFileSync(filename);
+    const formData = new FormData();
+    formData.append("file", fileBuffer);
+    const requestConfig: axios.AxiosRequestConfig = {
+      url: new url.URL(path, this.serverUrl).href,
+      method,
+      data: formData,
+      params: options,
+      headers: this.getHeaders(),
+    };
+    const result = await axios.default.request(requestConfig);
+    return new LockstepResponse<T>(result.status, result.data);
+  }
+
+  /**
    * Make a GET request using this client and download the results as a blob
    */
   public async requestBlob(method: axios.Method, path: string, options: unknown, body: unknown): Promise<LockstepResponse<Blob>> {
-    const responseType: axios.ResponseType = 'blob';
+    const responseType: axios.ResponseType = "blob";
     const requestConfig = {
       url: new url.URL(path, this.serverUrl).href,
       method,
@@ -257,6 +277,6 @@ export class LockstepApi {
       responseType,
     };
     const result = await axios.default.request(requestConfig);
-    return new LockstepResponse<Blob>(result.status, new Blob(result.data));
+    return new LockstepResponse<Blob>(result.status, new blob.Blob(result.data));
   }
 }
