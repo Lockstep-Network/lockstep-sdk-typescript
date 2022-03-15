@@ -26,7 +26,7 @@
     "scripts": {
         "compile": "tsc",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "eslint \"**\\*.ts\"",
+        "lint": "eslint \"**/*.ts\"",
         "_clear": "rimraf build/compiled/*",
         "_tsc": "tsc",
         "_make-bundle": "rollup --config",
