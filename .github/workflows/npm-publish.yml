@@ -21,11 +21,12 @@ jobs:
           node-version: 10
       - name: npm install
         run: npm install
+      - name: npm audit
+        run: npm audit
+      - name: eslint
+        run: npm run lint
       - name: npm build
         run: npm run build
-      # Would be good to have tests, but apparently we do not currently have any
-      #- name: npm test
-      #  run: npm test
       - name: Publish NPM Package
         if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
         uses: JS-DevTools/npm-publish@v1
