@@ -24,7 +24,7 @@ jobs:
       - name: npm audit
         run: npm audit
       - name: eslint
-        run: npm run lint
+        uses: mrdivyansh/eslint-action@v1.0.7
       - name: npm build
         run: npm run build
       - name: Publish NPM Package
