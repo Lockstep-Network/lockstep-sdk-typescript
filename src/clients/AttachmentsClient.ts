@@ -105,7 +105,7 @@ export class AttachmentsClient {
    * @param attachmentType The type of this attachment
    * @param filename The full path of a file to upload to the API
    */
-  uploadAttachment(tableName: string, objectId: string, filename: Uint8Array, attachmentType?: string): Promise<LockstepResponse<AttachmentModel[]>> {
+  uploadAttachment(tableName: string, objectId: string, filename: string, attachmentType?: string): Promise<LockstepResponse<AttachmentModel[]>> {
     const url = `/api/v1/Attachments`;
     const options = {
       params: {
@@ -114,7 +114,7 @@ export class AttachmentsClient {
         attachmentType,
       },
     };
-    return this.client.request<AttachmentModel[]>("post", url, options, null);
+    return this.client.fileUpload("post", url, options, filename);
   }
 
   /**

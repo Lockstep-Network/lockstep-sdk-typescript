@@ -15,7 +15,8 @@
     "homepage": "https://developer.lockstep.io",
     "dependencies": {
         "@types/node": "^17.0.13",
-        "axios": "^0.24.0"
+        "axios": "^0.24.0",
+        "form-data": "^4.0.0"
     },
     "files": [
         "lockstep-api.d.ts",
@@ -36,9 +37,9 @@
     "types": "lockstep-api.d.ts",
     "devDependencies": {
         "@rollup/plugin-typescript": "^8.3.0",
-        "@typescript-eslint/eslint-plugin": "^5.9.1",
-        "@typescript-eslint/parser": "^5.9.1",
-        "eslint": "^8.6.0",
+        "@typescript-eslint/eslint-plugin": "^5.14.0",
+        "@typescript-eslint/parser": "^5.14.0",
+        "eslint": "^8.11.0",
         "npm-run-all": "^4.1.5",
         "rimraf": "^3.0.2",
         "rollup": "^2.67.0",

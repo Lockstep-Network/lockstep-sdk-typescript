@@ -80,9 +80,9 @@ export class EmailsClient {
    * @param emailId The unique ID number of the Email to retrieve.
    * @param nonce The random nonce applied at time of url creation.
    */
-  retrieveEmailLogo(emailId: string, nonce: string): Promise<LockstepResponse<Uint8Array>> {
+  retrieveEmailLogo(emailId: string, nonce: string): Promise<LockstepResponse<string>> {
     const url = `/api/v1/Emails/${emailId}/logo/${nonce}`;
-    return this.client.request<Uint8Array>("get", url, null, null);
+    return this.client.request<string>("get", url, null, null);
   }
 
   /**

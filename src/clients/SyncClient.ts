@@ -61,9 +61,9 @@ export class SyncClient {
    *
    * @param filename The full path of a file to upload to the API
    */
-  uploadSyncFile(filename: Uint8Array): Promise<LockstepResponse<SyncRequestModel>> {
+  uploadSyncFile(filename: string): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync/zip`;
-    return this.client.request<SyncRequestModel>("post", url, null, null);
+    return this.client.fileUpload("post", url, null, filename);
   }
 
   /**
