@@ -23,10 +23,10 @@ jobs:
         run: npm install
       - name: npm audit
         run: npm audit
+      - name: ESLint
+        run: npm run lint
       - name: npm build
-        run: |
-          npm run build
-          npm run lint
+        run: npm run build
       - name: Publish NPM Package
         if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
         uses: JS-DevTools/npm-publish@v1
