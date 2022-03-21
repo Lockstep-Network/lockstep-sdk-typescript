@@ -21,7 +21,6 @@ import { AgingModel } from "..";
 import { ArAgingHeaderInfoModel } from "..";
 import { AttachmentHeaderInfoModel } from "..";
 import { FinancialReportModel } from "..";
-import { ReportDepth } from "..";
 
 export class ReportsClient {
   private readonly client: LockstepApi;
