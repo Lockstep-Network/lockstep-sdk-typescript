@@ -171,7 +171,7 @@ export class ReportsClient {
    * @param columnOption The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates
    * @param displayDepth The desired row splitting of the report data. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts
    */
-  incomeStatementReport(startDate?: string, endDate?: string, columnOption?: string, displayDepth?: ReportDepth): Promise<LockstepResponse<FinancialReportModel>> {
+  incomeStatementReport(startDate?: string, endDate?: string, columnOption?: string, displayDepth?: number): Promise<LockstepResponse<FinancialReportModel>> {
     const url = `/api/v1/Reports/income-statement`;
     const options = {
       params: {

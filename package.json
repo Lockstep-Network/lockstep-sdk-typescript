@@ -1,6 +1,6 @@
 {
     "name": "lockstep-sdk",
-    "version": "2022.11.55",
+    "version": "2022.11.60",
     "description": "API Client to use the Lockstep Platform API",
     "repository": "https://github.com/Lockstep-Network/lockstep-sdk-typescript",
     "license": "MIT",

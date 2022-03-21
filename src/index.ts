@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.11.55
+ * @version    2022.11.60
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -117,6 +117,7 @@ export { PaymentSyncModel } from "./models/DataModels";
 export { ProvisioningFinalizeRequestModel } from "./models/DataModels";
 export { ProvisioningModel } from "./models/DataModels";
 export { ProvisioningResponseModel } from "./models/DataModels";
+export { ReportDepth } from "./models/DataModels";
 export { RiskRateModel } from "./models/DataModels";
 export { StateModel } from "./models/DataModels";
 export { StatusModel } from "./models/DataModels";
