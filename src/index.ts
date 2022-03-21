@@ -117,7 +117,6 @@ export { PaymentSyncModel } from "./models/DataModels";
 export { ProvisioningFinalizeRequestModel } from "./models/DataModels";
 export { ProvisioningModel } from "./models/DataModels";
 export { ProvisioningResponseModel } from "./models/DataModels";
-export { ReportDepth } from "./models/DataModels";
 export { RiskRateModel } from "./models/DataModels";
 export { StateModel } from "./models/DataModels";
 export { StatusModel } from "./models/DataModels";
