@@ -166,7 +166,7 @@ export class InvoicesClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryAtRiskInvoiceSummaryView(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<AtRiskInvoiceSummaryModel>>> {
+  queryAtRiskView(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<AtRiskInvoiceSummaryModel>>> {
     const url = `/api/v1/Invoices/views/at-risk-summary`;
     const options = {
       params: {

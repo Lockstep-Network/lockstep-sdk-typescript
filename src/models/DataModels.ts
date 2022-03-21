@@ -1169,7 +1169,7 @@ export type BulkCurrencyConversionModel = {
   date: string;
 
   /**
-   * The currency code This will be validated by the /api/v1/currencies data set
+   * The currency code This will be validated by the /api/v1/definitions/currencies data set
    */
   sourceCurrency: string;
 };
@@ -1614,7 +1614,7 @@ export type CompanySyncModel = {
 
   /**
    * The default currency code for transactions related to this company.  For a list of currency codes, see
-   * [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+   * [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
    */
   defaultCurrencyCode: string | null;
 
@@ -1660,7 +1660,7 @@ export type CompanySyncModel = {
   postalCode: string | null;
 
   /**
-   * The company's primary mailing address information This will be validated by the /api/v1/countries data set
+   * The company's primary mailing address information This will be validated by the /api/v1/definitions/countries data set
    */
   country: string | null;
 
@@ -1865,7 +1865,7 @@ export type ContactModel = {
   postalCode: string | null;
 
   /**
-   * The two character country code of the address. This will be validated by the /api/v1/countries data set
+   * The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set
    */
   countryCode: string | null;
 
@@ -2051,7 +2051,7 @@ export type ContactSyncModel = {
   postalCode: string | null;
 
   /**
-   * The mailing address information for this contact. This will be validated by the /api/v1/countries data set
+   * The mailing address information for this contact. This will be validated by the /api/v1/definitions/countries data set
    */
   countryCode: string | null;
 
@@ -3390,7 +3390,7 @@ export type FinancialAccountModel = {
 
   /**
    * The classification for the Financial Account. Possible values are Asset, Equity,
-   * Expense, Liability or Revenue.
+   * Expense, Liability or Income.
    */
   classification: string | null;
 
@@ -3814,7 +3814,7 @@ export type InvoiceHistoryModel = {
   specialTerms: string | null;
 
   /**
-   * The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
+   * The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/definitions/currencies data set
    */
   currencyCode: string | null;
 
@@ -4194,7 +4194,7 @@ export type InvoiceLineSyncModel = {
   originAddressPostalCode: string | null;
 
   /**
-   * Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/countries data set
+   * Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/definitions/countries data set
    */
   originAddressCountry: string | null;
 
@@ -4239,7 +4239,7 @@ export type InvoiceLineSyncModel = {
   billToAddressPostalCode: string | null;
 
   /**
-   * Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/countries data set
+   * Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/definitions/countries data set
    */
   billToAddressCountry: string | null;
 
@@ -4284,7 +4284,7 @@ export type InvoiceLineSyncModel = {
   shipToAddressPostalCode: string | null;
 
   /**
-   * Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/countries data set
+   * Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/definitions/countries data set
    */
   shipToAddressCountry: string | null;
 
@@ -4859,7 +4859,7 @@ export type InvoiceSyncModel = {
   specialTerms: string | null;
 
   /**
-   * The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
+   * The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/definitions/currencies data set
    */
   currencyCode: string | null;
 
@@ -4945,7 +4945,7 @@ export type InvoiceSyncModel = {
   originAddressPostalCode: string | null;
 
   /**
-   * The origination address for this invoice This will be validated by the /api/v1/countries data set
+   * The origination address for this invoice This will be validated by the /api/v1/definitions/countries data set
    */
   originAddressCountry: string | null;
 
@@ -4990,7 +4990,7 @@ export type InvoiceSyncModel = {
   billToAddressPostalCode: string | null;
 
   /**
-   * The billing address for this invoice This will be validated by the /api/v1/countries data set
+   * The billing address for this invoice This will be validated by the /api/v1/definitions/countries data set
    */
   billToAddressCountry: string | null;
 
@@ -5035,7 +5035,7 @@ export type InvoiceSyncModel = {
   shipToAddressPostalCode: string | null;
 
   /**
-   * The shipping address for this invoice This will be validated by the /api/v1/countries data set
+   * The shipping address for this invoice This will be validated by the /api/v1/definitions/countries data set
    */
   shipToAddressCountry: string | null;
 
@@ -5638,7 +5638,7 @@ export type PaymentModel = {
   /**
    * The ISO 4217 currency code for this payment.
    *
-   * For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+   * For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
    */
   currencyCode: string | null;
 
@@ -5901,7 +5901,7 @@ export type PaymentSyncModel = {
   /**
    * The ISO 4217 currency code for this payment.
    *
-   * For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+   * For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
    */
   currencyCode: string | null;
 
@@ -6472,7 +6472,7 @@ export type UserAccountModel = {
   postalCode: string | null;
 
   /**
-   * Country for this User This will be validated by the /api/v1/countries data set
+   * Country for this User This will be validated by the /api/v1/definitions/countries data set
    */
   country: string | null;
 
@@ -6495,7 +6495,7 @@ export type UserAccountModel = {
    * The default currency code used by this user entity.  This value can be overridden
    * for invoices in a different currency code.
    *
-   * For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
+   * For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/definitions/currencies data set
    */
   defaultCurrencyCode: string | null;
 

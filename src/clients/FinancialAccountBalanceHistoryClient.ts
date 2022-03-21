@@ -34,7 +34,7 @@ export class FinancialAccountBalanceHistoryClient {
    *
    * @param id The unique Lockstep Platform ID number of this Financial Account Balance History
    */
-  retrieveFinancialAccountBalanceHistory(id: string): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel>> {
+  retrieveBalanceHistory(id: string): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel>> {
     const url = `/api/v1/FinancialAccountBalanceHistory/${id}`;
     return this.client.request<FinancialAccountBalanceHistoryModel>("get", url, null, null);
   }
@@ -49,7 +49,7 @@ export class FinancialAccountBalanceHistoryClient {
    * @param id The unique Lockstep Platform ID number of the Financial Account Balance History to update
    * @param body A list of changes to apply to this Financial Account Balance History
    */
-  updateFinancialAccountBalanceHistory(id: string, body: object): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel>> {
+  updateBalanceHistory(id: string, body: object): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel>> {
     const url = `/api/v1/FinancialAccountBalanceHistory/${id}`;
     return this.client.request<FinancialAccountBalanceHistoryModel>("patch", url, null, body);
   }
@@ -61,7 +61,7 @@ export class FinancialAccountBalanceHistoryClient {
    *
    * @param id The unique Lockstep Platform ID number of the Financial Account Balance History to disable
    */
-  deleteFinancialAccountBalanceHistory(id: string): Promise<LockstepResponse<ActionResultModel>> {
+  deleteBalanceHistory(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/FinancialAccountBalanceHistory/${id}`;
     return this.client.request<ActionResultModel>("delete", url, null, null);
   }
@@ -73,7 +73,7 @@ export class FinancialAccountBalanceHistoryClient {
    *
    * @param body The Financial Account Balance Histories to create
    */
-  createFinancialAccountBalanceHistory(body: FinancialAccountBalanceHistoryModel[]): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel[]>> {
+  createBalanceHistory(body: FinancialAccountBalanceHistoryModel[]): Promise<LockstepResponse<FinancialAccountBalanceHistoryModel[]>> {
     const url = `/api/v1/FinancialAccountBalanceHistory`;
     return this.client.request<FinancialAccountBalanceHistoryModel[]>("post", url, null, body);
   }
@@ -90,7 +90,7 @@ export class FinancialAccountBalanceHistoryClient {
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryFinancialAccountBalanceHistory(filter?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<FinancialAccountBalanceHistoryModel>>> {
+  queryBalanceHistory(filter?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<FinancialAccountBalanceHistoryModel>>> {
     const url = `/api/v1/FinancialAccountBalanceHistory/query`;
     const options = {
       params: {
