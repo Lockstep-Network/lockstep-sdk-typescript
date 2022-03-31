@@ -1397,6 +1397,11 @@ export type CompanyModel = {
   country: string | null;
 
   /**
+   * Time zone
+   */
+  timeZone: string | null;
+
+  /**
    * Phone number
    */
   phoneNumber: string | null;
@@ -6475,6 +6480,11 @@ export type UserAccountModel = {
    * Country for this User This will be validated by the /api/v1/definitions/countries data set
    */
   country: string | null;
+
+  /**
+   * Time zone for this user
+   */
+  timeZone: string | null;
 
   /**
    * Image URL for this User
