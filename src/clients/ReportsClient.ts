@@ -168,9 +168,12 @@ export class ReportsClient {
    * @param startDate The start date of the report
    * @param endDate The end date of the report
    * @param columnOption The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates
-   * @param displayDepth The desired row splitting of the report data. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts
+   * @param displayDepth The desired row splitting of the report data. For Income Statements, the minimum report depth is 1. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts
+   * @param comparisonPeriod Add a column for historical data with the following options and use showCurrencyDifference and/or show percentageDifference to display a comparison of that historical data to the report period. Options are as follows (note for YTD the data will be compared as a percentage of YTD and showCurrencyDifference and showPercentageDifference should not be used): "PP" - previous period (will show the previous quarter or year if Quarterly or Annually is chosen for columnOption) "PY" - previous year (the same date range as the report, but for the year prior) "YTD" - year to date (the current financial year to the current period)
+   * @param showCurrencyDifference A boolean to turn on a currency based difference between the reporting period and the comparison period.
+   * @param showPercentageDifference A boolean to turn on a percent based difference between the reporting period and the comparison period.
    */
-  incomeStatementReport(startDate?: string, endDate?: string, columnOption?: string, displayDepth?: number): Promise<LockstepResponse<FinancialReportModel>> {
+  incomeStatementReport(startDate?: string, endDate?: string, columnOption?: string, displayDepth?: number, comparisonPeriod?: string, showCurrencyDifference?: boolean, showPercentageDifference?: boolean): Promise<LockstepResponse<FinancialReportModel>> {
     const url = `/api/v1/Reports/income-statement`;
     const options = {
       params: {
@@ -178,6 +181,9 @@ export class ReportsClient {
         endDate,
         columnOption,
         displayDepth,
+        comparisonPeriod,
+        showCurrencyDifference,
+        showPercentageDifference,
       },
     };
     return this.client.request<FinancialReportModel>("get", url, options, null);
