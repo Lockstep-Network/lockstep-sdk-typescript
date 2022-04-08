@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { UserAccountModel } from "..";
 
 /**
  * Model from the User invite process

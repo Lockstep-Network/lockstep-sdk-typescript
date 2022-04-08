@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { FinancialReportCellModel } from "..";
 
 /**
  * Represents a row of a financial Report report

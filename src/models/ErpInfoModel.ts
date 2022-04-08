@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { ConnectorInfoModel } from "..";
 
 /**
  * Represents the ERP object sent in a provisioning request

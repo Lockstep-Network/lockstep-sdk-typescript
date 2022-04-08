@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { ErpInfoModel } from "..";
 
 /**
  * Represents the data sent during the onboarding flow

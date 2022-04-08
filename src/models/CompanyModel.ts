@@ -11,6 +11,12 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { NoteModel } from "..";
+import { AttachmentModel } from "..";
+import { ContactModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { CustomFieldValueModel } from "..";
+import { CodeDefinitionModel } from "..";
 
 /**
  * A Company represents a customer, a vendor, or a company within the organization of the account holder.

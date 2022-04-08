@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { InvoiceModel } from "..";
 
 /**
  * A Payment Application is created by a business who receives a Payment from a customer.  A customer may make

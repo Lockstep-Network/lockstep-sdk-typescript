@@ -11,6 +11,14 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { CompanySyncModel } from "..";
+import { ContactSyncModel } from "..";
+import { CreditMemoAppliedSyncModel } from "..";
+import { InvoiceSyncModel } from "..";
+import { InvoiceLineSyncModel } from "..";
+import { CustomFieldSyncModel } from "..";
+import { PaymentSyncModel } from "..";
+import { PaymentAppliedSyncModel } from "..";
 
 /**
  * A BatchSyncModel contains a collection of records to load into the Lockstep Platform.  Data contained

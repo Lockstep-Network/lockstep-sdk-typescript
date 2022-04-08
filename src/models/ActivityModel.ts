@@ -11,6 +11,12 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { CompanyModel } from "..";
+import { AttachmentModel } from "..";
+import { NoteModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { CustomFieldValueModel } from "..";
+import { ActivityXRefModel } from "..";
 
 /**
  * An Activity contains information about work being done on a specific accounting task.

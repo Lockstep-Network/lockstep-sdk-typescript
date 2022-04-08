@@ -11,6 +11,16 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { InvoiceAddressModel } from "..";
+import { InvoiceLineModel } from "..";
+import { InvoicePaymentDetailModel } from "..";
+import { NoteModel } from "..";
+import { AttachmentModel } from "..";
+import { CompanyModel } from "..";
+import { ContactModel } from "..";
+import { CreditMemoInvoiceModel } from "..";
+import { CustomFieldValueModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
 
 /**
  * An Invoice represents a bill sent from one company to another.  The creator of the invoice is identified

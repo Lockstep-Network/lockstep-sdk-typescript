@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { CustomerDetailsPaymentModel } from "..";
 
 /**
  * Contains customer details data

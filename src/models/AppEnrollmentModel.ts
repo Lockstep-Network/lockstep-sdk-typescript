@@ -11,6 +11,11 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { ApplicationModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { CustomFieldValueModel } from "..";
+import { SyncRequestModel } from "..";
+import { ConnectorInfoModel } from "..";
 
 /**
  * An AppEnrollment represents an app that has been enrolled to the current account.  When you sign up for an

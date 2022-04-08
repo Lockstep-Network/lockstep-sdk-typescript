@@ -11,6 +11,10 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { NoteModel } from "..";
+import { AttachmentModel } from "..";
+import { CustomFieldValueModel } from "..";
+import { CodeDefinitionModel } from "..";
 
 /**
  * A User represents a person who has the ability to authenticate against the Lockstep Platform and use

@@ -11,6 +11,8 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { NoteModel } from "..";
+import { AttachmentModel } from "..";
 
 /**
  * Represents a line in an invoice

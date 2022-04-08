@@ -11,6 +11,10 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { NoteModel } from "..";
+import { AttachmentModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { CustomFieldValueModel } from "..";
 
 /**
  * An Application represents a feature available to customers within the Lockstep Platform.  You can create

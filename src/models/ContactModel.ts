@@ -11,6 +11,10 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { NoteModel } from "..";
+import { AttachmentModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { CustomFieldValueModel } from "..";
 
 /**
  * A Contact contains information about a person or role within a Company.

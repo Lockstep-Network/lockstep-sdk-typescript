@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { CustomFieldDefinitionModel } from "..";
 
 /**
  * A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a

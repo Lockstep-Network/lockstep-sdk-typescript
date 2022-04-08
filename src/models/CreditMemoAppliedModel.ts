@@ -11,6 +11,10 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { AttachmentModel } from "..";
+import { NoteModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { CustomFieldValueModel } from "..";
 
 /**
  * Credit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds.

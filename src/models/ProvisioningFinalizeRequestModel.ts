@@ -11,6 +11,8 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { CompanyModel } from "..";
+import { ErpInfoModel } from "..";
 
 /**
  * Represents the data to finalize onboarding for a user

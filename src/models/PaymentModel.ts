@@ -11,6 +11,11 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { PaymentAppliedModel } from "..";
+import { NoteModel } from "..";
+import { AttachmentModel } from "..";
+import { CustomFieldDefinitionModel } from "..";
+import { CustomFieldValueModel } from "..";
 
 /**
  * A Payment represents money sent from one company to another.  A single payment may contain payments for
