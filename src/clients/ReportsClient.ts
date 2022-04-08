@@ -1,12 +1,12 @@
 /**
- * Lockstep Software Development Kit for JavaScript / TypeScript
+ * Lockstep Platform SDK for TypeScript
  *
  * (c) 2021-2022 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Ted Spence <tspence@lockstep.io>
+ * @author     Lockstep Network <support@lockstep.io
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -175,6 +175,33 @@ export class ReportsClient {
    */
   incomeStatementReport(startDate?: string, endDate?: string, columnOption?: string, displayDepth?: number, comparisonPeriod?: string, showCurrencyDifference?: boolean, showPercentageDifference?: boolean): Promise<LockstepResponse<FinancialReportModel>> {
     const url = `/api/v1/Reports/income-statement`;
+    const options = {
+      params: {
+        startDate,
+        endDate,
+        columnOption,
+        displayDepth,
+        comparisonPeriod,
+        showCurrencyDifference,
+        showPercentageDifference,
+      },
+    };
+    return this.client.request<FinancialReportModel>("get", url, options, null);
+  }
+
+  /**
+   * Generates a balance sheet for the given time range.
+   *
+   * @param startDate The start date of the report
+   * @param endDate The end date of the report
+   * @param columnOption The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates
+   * @param displayDepth The desired row splitting of the report data. For Balance Sheets, the minimum report depth is 1. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts
+   * @param comparisonPeriod Add a column for historical data with the following options and use showCurrencyDifference and/or show percentageDifference to display a comparison of that historical data to the report period. "PP" - previous period (will show the previous quarter or year if Quarterly or Annually is chosen for columnOption) "PY" - previous year (the same date range as the report, but for the year prior)
+   * @param showCurrencyDifference A boolean to turn on a currency based difference between the reporting period and the comparison period.
+   * @param showPercentageDifference A boolean to turn on a percent based difference between the reporting period and the comparison period.
+   */
+  balanceSheetReport(startDate?: string, endDate?: string, columnOption?: string, displayDepth?: number, comparisonPeriod?: string, showCurrencyDifference?: boolean, showPercentageDifference?: boolean): Promise<LockstepResponse<FinancialReportModel>> {
+    const url = `/api/v1/Reports/balance-sheet`;
     const options = {
       params: {
         startDate,
