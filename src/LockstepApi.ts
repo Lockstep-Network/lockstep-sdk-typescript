@@ -1,14 +1,14 @@
-/**
- * Lockstep Software Development Kit for JavaScript / TypeScript
+/***
+ * Lockstep Platform SDK for TypeScript
  *
  * (c) 2021-2022 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Ted Spence <tspence@lockstep.io>
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.13.29
+ * @version    2022.14.30
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -52,9 +52,9 @@ import * as os from "os";
 import * as url from "url";
 
 /**
- * List of headers used by the Lockstep API
+ * List of headers used by the API
  */
-export type LockstepApiHeaders =
+export type ApiHeaders =
   {
     SdkName?: string,
     SdkVersion?: string,
@@ -65,17 +65,18 @@ export type LockstepApiHeaders =
   };
 
 /**
- * Client object used to communicate with the Lockstep Platform API
+ * Client object used to communicate with the API
  */
 export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.13.29";
+  private readonly version: string = "2022.14.30";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
   private appName: string | null = null;
+  private customHeaderFunc: ((headers: unknown) => Promise<unknown>) | null = null;
 
   public readonly Activities: ActivitiesClient;
   public readonly ApiKeys: ApiKeysClient;
@@ -109,7 +110,7 @@ export class LockstepApi {
   public readonly Webhooks: WebhooksClient;
 
   /** 
-   * Internal constructor for the Lockstep API client
+   * Internal constructor for the API client
    */
   private constructor(customUrl: string) {
     this.serverUrl = customUrl;
@@ -147,16 +148,19 @@ export class LockstepApi {
   }
 
   /**
-   * Construct a new Lockstep API client to target the specific environment.
+   * Construct a new API client to target the specific environment.
+   *
+   *   * sbx - https://api.sbx.lockstep.io/
+   *   * prd - https://api.lockstep.io/
    * 
-   * @param env The environment to use, either "prd" for production or "sbx" for sandbox.
-   * @returns The Lockstep API client to use
+   * @param env The name of the environment to use
+   * @returns The API client to use
    */
-  public static withEnvironment(env: "prd" | "sbx"): LockstepApi {
-    let url = "https://api.lockstep.io";
+  public static withEnvironment(env: string): LockstepApi {
+    let url = "https://api.lockstep.io/";
     switch (env) {
-      case "prd": url = "https://api.lockstep.io"; break;
-      case "sbx": url = "https://api.sbx.lockstep.io"; break;
+      case "sbx": url = "https://api.sbx.lockstep.io/"; break;
+      case "prd": url = "https://api.lockstep.io/"; break;
     }
     return new LockstepApi(url);
   }
@@ -166,16 +170,17 @@ export class LockstepApi {
    * when using proxy servers or an API gateway.  Please be careful when using this
    * mode.  You should prefer to use `withEnvironment()` instead wherever possible.
    * 
-   * @param unsafeUrl The non-Lockstep URL to use for this client
-   * @returns The Lockstep API client to use
+   * @param unsafeUrl The custom environment URL to use for this client
+   * @returns The API client to use
    */
   public static withCustomEnvironment(unsafeUrl: string): LockstepApi {
     return new LockstepApi(unsafeUrl);
   }
 
   /**
-   * Configure this Lockstep API client to use a JWT bearer token.
-   * More documentation is available on [JWT Bearer Tokens](https://developer.lockstep.io/docs/jwt-bearer-tokens).
+   * Configure this API client to use a JWT bearer token.
+   *
+   * Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
    * 
    * @param token The JWT bearer token to use for this API session
    */
@@ -186,8 +191,9 @@ export class LockstepApi {
   }
 
   /**
-   * Configures this Lockstep API client to use an API Key.
-   * More documentation is available on [API Keys](https://developer.lockstep.io/docs/api-keys).
+   * Configures this API client to use an API Key.
+   *
+   * Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
    * 
    * @param apiKey The API key to use for this API session
    */
@@ -198,21 +204,34 @@ export class LockstepApi {
   }
   
   /**
-   * Configures this Lockstep API client to use an application name
+   * Configure a custom header function that will be called before all requests.
+   * 
+   * This function can modify the request headers.
+   * 
+   * @param func The async function to be called to modify headers before any request
+   * @returns The API client for function chaining
+   */
+  public withCustomHeaderFunc(func: (headers: unknown) => Promise<unknown>): LockstepApi
+  {
+    this.customHeaderFunc = func;
+    return this;
+  }
+  
+  /**
+   * Configures this API client to use an application name
    * 
    * @param appName The Application Name to use for this API session
    */
   public withApplicationName(appName: string): LockstepApi {
     this.appName = appName;
     return this;
-      
   }
   
   /**
    * Construct headers for a request
    */
-  private getHeaders(): LockstepApiHeaders {
-    const headers: LockstepApiHeaders = {
+  private async getHeaders(): Promise<ApiHeaders> {
+    const headers: ApiHeaders = {
       SdkName: this.sdkName,
       SdkVersion: this.version, 
       MachineName: os.hostname(), 
@@ -223,11 +242,14 @@ export class LockstepApi {
     if (this.bearerToken !== null) {
       headers["Authorization"] = `Bearer ${this.bearerToken}`;
     } 
-    else if (this.apiKey !== null) {
+    if (this.apiKey !== null) {
       headers["ApiKey"] = this.apiKey;
     }
-         
-    return headers;
+    if (this.customHeaderFunc != null) {
+      return (await this.customHeaderFunc(headers)) as ApiHeaders;
+    } else {
+      return headers;
+    }
   }
 
   /**
@@ -239,7 +261,7 @@ export class LockstepApi {
       method,
       params: options,
       data: body,
-      headers: this.getHeaders(),
+      headers: await this.getHeaders(),
     };
     const result = await axios.default.request(requestConfig);
     return new LockstepResponse<T>(result.status, result.data);
@@ -257,7 +279,7 @@ export class LockstepApi {
       method,
       data: formData,
       params: options,
-      headers: this.getHeaders(),
+      headers: await this.getHeaders(),
     };
     const result = await axios.default.request(requestConfig);
     return new LockstepResponse<T>(result.status, result.data);
@@ -268,12 +290,12 @@ export class LockstepApi {
    */
   public async requestBlob(method: axios.Method, path: string, options: unknown, body: unknown): Promise<LockstepResponse<Blob>> {
     const responseType: axios.ResponseType = "blob";
-    const requestConfig = {
+    const requestConfig: axios.AxiosRequestConfig = {
       url: new url.URL(path, this.serverUrl).href,
       method,
       params: options,
       data: body,
-      headers: this.getHeaders(),
+      headers: await this.getHeaders(),
       responseType,
     };
     const result = await axios.default.request(requestConfig);
