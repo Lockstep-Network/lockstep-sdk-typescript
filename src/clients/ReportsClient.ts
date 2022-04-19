@@ -148,8 +148,8 @@ export class ReportsClient {
   /**
    * Generates a Trial Balance Report for the given time range.
    *
-   * @param startDate Documentation pending
-   * @param endDate Documentation pending
+   * @param startDate The start date of the report
+   * @param endDate The end date of the report
    */
   trialBalanceReport(startDate?: string, endDate?: string): Promise<LockstepResponse<FinancialReportModel>> {
     const url = `/api/v1/Reports/trial-balance`;
