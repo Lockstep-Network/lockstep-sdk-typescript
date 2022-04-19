@@ -18,9 +18,14 @@
 export type DeveloperAccountSubmitModel = {
 
   /**
-   * The name of the developer.
+   * The first name of the person requesting the developer account.
    */
-  name: string;
+  firstName: string | null;
+
+  /**
+   * The last name of the person requesting the developer account.
+   */
+  lastName: string | null;
 
   /**
    * The email address of the developer.
