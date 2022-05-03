@@ -98,6 +98,17 @@ export class AppEnrollmentsClient {
   }
 
   /**
+   * Updates the OAuth settings associated with this App Enrollment
+   *
+   * @param id Documentation pending
+   * @param body Documentation pending
+   */
+  reconnectAppEnrollmentOAuth(id: string, body: string): Promise<LockstepResponse<AppEnrollmentModel>> {
+    const url = `/api/v1/AppEnrollments/${id}/reconnect`;
+    return this.client.request<AppEnrollmentModel>("patch", url, null, body);
+  }
+
+  /**
    * Queries App Enrollments for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
    *
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.

@@ -178,4 +178,9 @@ export type CompanySyncModel = {
    * address where you would send questions to the company if you owed this company money.
    */
   arEmailAddress: string | null;
+
+  /**
+   * Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
+   */
+  preferredDeliveryMethod: string | null;
 };

@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.15.31
+ * @version    2022.17.35
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -84,6 +84,7 @@ export { CustomFieldValueModel } from "./models/DataModels";
 export { CustomerDetailsModel } from "./models/DataModels";
 export { CustomerDetailsPaymentModel } from "./models/DataModels";
 export { CustomerSummaryModel } from "./models/DataModels";
+export { DailyPayableOutstandingReportModel } from "./models/DataModels";
 export { DailySalesOutstandingReportModel } from "./models/DataModels";
 export { DeveloperAccountSubmitModel } from "./models/DataModels";
 export { EmailModel } from "./models/DataModels";
@@ -129,5 +130,6 @@ export { TransferOwnerSubmitModel } from "./models/DataModels";
 export { UriModel } from "./models/DataModels";
 export { UserAccountModel } from "./models/DataModels";
 export { UserRoleModel } from "./models/DataModels";
+export { VendorSummaryModel } from "./models/DataModels";
 export { WebhookHistoryTableStorageModel } from "./models/DataModels";
 export { WebhookModel } from "./models/DataModels";

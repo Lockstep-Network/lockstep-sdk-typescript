@@ -214,6 +214,11 @@ export type CompanyModel = {
   arEmailAddress: string | null;
 
   /**
+   * Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
+   */
+  preferredDeliveryMethod: string | null;
+
+  /**
    * For companies that use a custom domain name for their email system, this is
    * the domain name used by this company.  If this value is known, new emails that
    * come in from this domain will be connected to this company.
