@@ -45,11 +45,11 @@ export type PaymentSyncModel = {
   companyErpKey: string;
 
   /**
-   * The type of payment, cash or check.
+   * The type of payment, AR Payment or AP Payment.
    *
    * Recognized PaymentType values are:
-   * * `Cash` - A cash payment or other direct transfer.
-   * * `Check` - A check payment.
+   * * `AR Payment` - A payment made by a Customer to the Company
+   * * `AP Payment` - A payment made by the Company to a Vendor
    */
   paymentType: string | null;
 
