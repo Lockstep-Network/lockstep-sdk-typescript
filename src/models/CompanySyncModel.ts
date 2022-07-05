@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -129,7 +129,7 @@ export type CompanySyncModel = {
   postalCode: string | null;
 
   /**
-   * The company's primary mailing address information This will be validated by the /api/v1/definitions/countries data set
+   * The company's primary mailing address information
    */
   country: string | null;
 
@@ -183,4 +183,9 @@ export type CompanySyncModel = {
    * Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
    */
   preferredDeliveryMethod: string | null;
+
+  /**
+   * An external reference that identifies the Company from the originating ERP system, separate from the ErpKey.
+   */
+  externalReference: string | null;
 };

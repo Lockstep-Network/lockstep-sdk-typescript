@@ -8,7 +8,7 @@
  *
  * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.17.35
+ * @version    2022.26.12
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -29,6 +29,7 @@ import { EmailsClient } from ".";
 import { FinancialAccountClient } from ".";
 import { FinancialAccountBalanceHistoryClient } from ".";
 import { FinancialYearSettingsClient } from ".";
+import { GroupAccountsClient } from ".";
 import { InvoiceHistoryClient } from ".";
 import { InvoicesClient } from ".";
 import { LeadsClient } from ".";
@@ -41,6 +42,7 @@ import { StatusClient } from ".";
 import { SyncClient } from ".";
 import { UserAccountsClient } from ".";
 import { UserRolesClient } from ".";
+import { WebhookRulesClient } from ".";
 import { WebhooksClient } from ".";
 import { LockstepResponse } from ".";
 
@@ -71,7 +73,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.17.35";
+  private readonly version: string = "2022.26.12";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -95,6 +97,7 @@ export class LockstepApi {
   public readonly FinancialAccount: FinancialAccountClient;
   public readonly FinancialAccountBalanceHistory: FinancialAccountBalanceHistoryClient;
   public readonly FinancialYearSettings: FinancialYearSettingsClient;
+  public readonly GroupAccounts: GroupAccountsClient;
   public readonly InvoiceHistory: InvoiceHistoryClient;
   public readonly Invoices: InvoicesClient;
   public readonly Leads: LeadsClient;
@@ -107,6 +110,7 @@ export class LockstepApi {
   public readonly Sync: SyncClient;
   public readonly UserAccounts: UserAccountsClient;
   public readonly UserRoles: UserRolesClient;
+  public readonly WebhookRules: WebhookRulesClient;
   public readonly Webhooks: WebhooksClient;
 
   /** 
@@ -132,6 +136,7 @@ export class LockstepApi {
     this.FinancialAccount = new FinancialAccountClient(this);
     this.FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
     this.FinancialYearSettings = new FinancialYearSettingsClient(this);
+    this.GroupAccounts = new GroupAccountsClient(this);
     this.InvoiceHistory = new InvoiceHistoryClient(this);
     this.Invoices = new InvoicesClient(this);
     this.Leads = new LeadsClient(this);
@@ -144,6 +149,7 @@ export class LockstepApi {
     this.Sync = new SyncClient(this);
     this.UserAccounts = new UserAccountsClient(this);
     this.UserRoles = new UserRolesClient(this);
+    this.WebhookRules = new WebhookRulesClient(this);
     this.Webhooks = new WebhooksClient(this);
   }
 

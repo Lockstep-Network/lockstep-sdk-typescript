@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -18,7 +18,7 @@ import { ActionResultModel } from "..";
 import { FetchResult } from "..";
 import { CustomerSummaryModel } from "..";
 import { VendorSummaryModel } from "..";
-import { CustomerDetailsModel } from "..";
+import { CompanyDetailsModel } from "..";
 
 export class CompaniesClient {
   private readonly client: LockstepApi;
@@ -183,16 +183,16 @@ export class CompaniesClient {
   }
 
   /**
-   * Retrieves the Customer Details specified by this unique identifier, optionally including nested data sets.
+   * Retrieves the Company Details specified by this unique identifier, optionally including nested data sets.
    *
-   * The Customer Detail View represents a slightly different view of the data and includes some extra fields that might be useful. For more information, see the data format of the Customer Detail Model.
+   * The Company Detail View represents a slightly different view of the data and includes some extra fields that might be useful. For more information, see the data format of the Company Detail Model.
    *
    * See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
    *
-   * @param id The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
+   * @param id The unique Lockstep Platform ID number of this Company; NOT the company's ERP key
    */
-  retrieveCustomerDetail(id: string): Promise<LockstepResponse<CustomerDetailsModel>> {
-    const url = `/api/v1/Companies/views/customer-details/${id}`;
-    return this.client.request<CustomerDetailsModel>("get", url, null, null);
+  retrieveCompanyDetail(id: string): Promise<LockstepResponse<CompanyDetailsModel>> {
+    const url = `/api/v1/Companies/views/details/${id}`;
+    return this.client.request<CompanyDetailsModel>("get", url, null, null);
   }
 }

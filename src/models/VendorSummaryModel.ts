@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -56,6 +56,11 @@ export type VendorSummaryModel = {
   amountPaidLast30: number | null;
 
   /**
+   * The outstanding advance pay balance on payments in the last 30 days
+   */
+  advancePayLast30: number | null;
+
+  /**
    * The outstanding advance pay balance with this Vendor
    */
   advancePayOutstanding: number | null;
@@ -66,9 +71,24 @@ export type VendorSummaryModel = {
   amountBilledLast30: number | null;
 
   /**
+   * The outstanding balance with this Vendor for bills in the last 30 days
+   */
+  amountBilledOutstandingLast30: number | null;
+
+  /**
    * The outstanding balance with this Vendor
    */
   amountBilledOutstanding: number | null;
+
+  /**
+   * The number of bills received from this Vendor in the last 30 days
+   */
+  billCountLast30: number | null;
+
+  /**
+   * The number of bills from this Vendor that were paid in full in the last 30 days
+   */
+  paidBillCountLast30: number | null;
 
   /**
    * The number of open bills with this Vendor
@@ -76,12 +96,12 @@ export type VendorSummaryModel = {
   openBillCount: number | null;
 
   /**
-   * The number of bills paid to this Vendor in the last 30 days
+   * The number of bills paid to this Vendor
    */
   paidBillCount: number | null;
 
   /**
-   * The total count of open bills and those paid in the last 30 days
+   * The total count of open and closed bills.
    */
   totalBillCount: number | null;
 };

@@ -11,7 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { ErrorResult } from "..";
+import { ErrorResult } from "./models/ErrorResult";
 
 /**
  * Represents a response to an API call.  The status value contains the HTTP status code returned from the request.
