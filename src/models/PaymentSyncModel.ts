@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -61,6 +61,7 @@ export type PaymentSyncModel = {
    * * `Check` - A check payment.
    * * `Credit Card` - A payment made via a credit card.
    * * `Wire Transfer` - A payment made via wire transfer from another financial institution.
+   * * `Other` - A payment made via another method not listed above.
    */
   tenderType: string | null;
 

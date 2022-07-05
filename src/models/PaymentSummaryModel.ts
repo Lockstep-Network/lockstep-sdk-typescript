@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -41,7 +41,12 @@ export type PaymentSummaryModel = {
   referenceCode: string | null;
 
   /**
-   * The type of payment, Payment or AP Payment.
+   * The tender type of payment (Cash, Check, etc.)
+   */
+  tenderType: string | null;
+
+  /**
+   * The type of payment, AR Payment or AP Payment.
    */
   paymentType: string | null;
 
@@ -59,6 +64,12 @@ export type PaymentSummaryModel = {
    * Unapplied balance of this payment.
    */
   unappliedAmount: number;
+
+  /**
+   * True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
+   * value is true, the field `UnappliedAmount` will be nonzero.
+   */
+  isOpen: boolean;
 
   /**
    * The number of invoices associated to this payment.
@@ -81,12 +92,32 @@ export type PaymentSummaryModel = {
   invoiceIdList: string[] | null;
 
   /**
-   * The name of the customer for this payment.
+   * The id of the company for this payment.
    */
-  customerName: string | null;
+  paymentCompanyId: string | null;
 
   /**
-   * The id of the customer for this payment.
+   * The name of the company for this payment.
    */
-  customerId: string | null;
+  paymentCompanyName: string | null;
+
+  /**
+   * The ids of the customer for the associated invoices.
+   */
+  customerIds: string[] | null;
+
+  /**
+   * The names of the customer for the associated invoices.
+   */
+  customerNames: string[] | null;
+
+  /**
+   * The ids of the company for the associated invoices.
+   */
+  companyIds: string[] | null;
+
+  /**
+   * The names of the company for the associated invoices.
+   */
+  companyNames: string[] | null;
 };

@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -111,17 +111,47 @@ export type ArHeaderInfoModel = {
   totalPaymentAmountCurrentYear: number;
 
   /**
-   * The total amount of payments received in the last 30 days
-   */
-  totalCollectedPastThirtyDays: number;
-
-  /**
-   * The total amount of Invoices paid in the last 30 days
-   */
-  totalInvoicesPaidPastThirtyDays: number;
-
-  /**
    * Portion of Total AR that is 90+ days Past due.
    */
   percentageOfTotalAr90DaysPastDue: number;
+
+  /**
+   * The number of customers who paid within the past thirty days.
+   */
+  customersPaidPastThirtyDays: number;
+
+  /**
+   * The total amount collected over the past thirty days.
+   */
+  amountCollectedPastThirtyDays: number;
+
+  /**
+   * The amount unapplied from the payments collected over the past thirty days.
+   */
+  unappliedAmountPastThirtyDays: number;
+
+  /**
+   * The number of invoices paid over the past thirty days.
+   */
+  invoicesPaidPastThirtyDays: number;
+
+  /**
+   * The number of customers invoiced over the the past thirty days.
+   */
+  customersInvoicedPastThirtyDays: number;
+
+  /**
+   * The total amount invoiced over the past thirty days.
+   */
+  amountInvoicedPastThirtyDays: number;
+
+  /**
+   * The amount outstanding on the invoices invoiced over the past thirty days.
+   */
+  amountDuePastThirtyDays: number;
+
+  /**
+   * The number of invoices invoiced over the past thirty days.
+   */
+  invoicesPastThirtyDays: number;
 };

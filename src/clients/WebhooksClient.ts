@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -87,15 +87,17 @@ export class WebhooksClient {
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
    *
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collection: WebhookRules
    * @param order The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
-  queryWebhooks(filter?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<WebhookModel>>> {
+  queryWebhooks(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<WebhookModel>>> {
     const url = `/api/v1/Webhooks/query`;
     const options = {
       params: {
         filter,
+        include,
         order,
         pageSize,
         pageNumber,
@@ -123,5 +125,15 @@ export class WebhooksClient {
       },
     };
     return this.client.request<FetchResult<WebhookHistoryTableStorageModel>>("get", url, options, null);
+  }
+
+  /**
+   *
+   * @param webhookId The unique Lockstep Platform ID number of this Webhook
+   * @param webhookHistoryId The unique Lockstep Platform ID number of the Webhook History to be retried. Note: the webhook history supplied must have a isSuccessful status of false to be retried.
+   */
+  retryFailedWebhookHistory(webhookId: string, webhookHistoryId: string): Promise<LockstepResponse<string>> {
+    const url = `/api/v1/Webhooks/${webhookId}/history/${webhookHistoryId}/retry`;
+    return this.client.request<string>("get", url, null, null);
   }
 }

@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -34,9 +34,9 @@ export type ContactSyncModel = {
    * in the database should be the "ErpKey".
    *
    * As some ERP systems don't maintain a unique key for Contacts, we also support syncing Contacts with ERP keys
-   * of the form {CompanyErpKey}|{index}, for example CompanyErpKey|1, CompanyErpKey|2 and so on.
+   * of the form {prefix}|{index}, for example ContactPrefix|1, ContactPrefix|2 and so on.
    *
-   * For this reason, please ensure that your Company/Contact ERP keys don't contain the '|' symbol or that it
+   * For this reason, please ensure that your Contact ERP keys don't otherwise contain the '|' symbol or that it
    * is replaced by an alternate symbol if they do.
    *
    * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
@@ -53,7 +53,7 @@ export type ContactSyncModel = {
   /**
    * The name of the contact.
    */
-  contactName: string;
+  contactName: string | null;
 
   /**
    * A friendly human-readable code that describes this Contact.
@@ -116,7 +116,7 @@ export type ContactSyncModel = {
   postalCode: string | null;
 
   /**
-   * The mailing address information for this contact. This will be validated by the /api/v1/definitions/countries data set
+   * The mailing address information for this contact.
    */
   countryCode: string | null;
 

@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -25,9 +25,24 @@ export type ConnectorInfoModel = {
   authCode: string | null;
 
   /**
+   * The access token id for the connector enrollment.
+   */
+  tokenId: string | null;
+
+  /**
+   * The access token secret for the connector enrollment.
+   */
+  tokenSecret: string | null;
+
+  /**
    * The realm id of the account being granted permissions to access
    */
   realmId: string | null;
+
+  /**
+   * The subsidiary id that corresponds to a legal entity.
+   */
+  subsidiaryId: string | null;
 
   /**
    * The redirect uri used for step one of the OAuth2.0 flow.

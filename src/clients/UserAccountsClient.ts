@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -156,5 +156,22 @@ export class UserAccountsClient {
       },
     };
     return this.client.request<FetchResult<UserAccountModel>>("get", url, options, null);
+  }
+
+  /**
+   * Change the active GroupKey of the calling user.
+   *
+   * A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
+   *
+   * @param groupKey Documentation pending
+   */
+  changeUserGroup(groupKey: string): Promise<LockstepResponse<UserAccountModel>> {
+    const url = `/api/v1/UserAccounts/change-group`;
+    const options = {
+      params: {
+        groupKey,
+      },
+    };
+    return this.client.request<UserAccountModel>("post", url, options, null);
   }
 }
