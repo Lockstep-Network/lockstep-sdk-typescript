@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -133,7 +133,7 @@ export type InvoiceLineSyncModel = {
   originAddressPostalCode: string | null;
 
   /**
-   * Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/definitions/countries data set
+   * Origination address for this invoice line, if this line item was originated from a different address
    */
   originAddressCountry: string | null;
 
@@ -178,7 +178,7 @@ export type InvoiceLineSyncModel = {
   billToAddressPostalCode: string | null;
 
   /**
-   * Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/definitions/countries data set
+   * Billing address for this invoice line, if this line item is to be billed to a different address
    */
   billToAddressCountry: string | null;
 
@@ -223,7 +223,7 @@ export type InvoiceLineSyncModel = {
   shipToAddressPostalCode: string | null;
 
   /**
-   * Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/definitions/countries data set
+   * Shipping address for this invoice line, if this line item is to be shipped to a different address
    */
   shipToAddressCountry: string | null;
 

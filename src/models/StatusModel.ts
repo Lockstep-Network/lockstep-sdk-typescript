@@ -6,11 +6,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { UserGroupModel } from "..";
 
 /**
  * Represents the status of a user's credentials
@@ -83,8 +84,19 @@ export type StatusModel = {
   version: string | null;
 
   /**
+   * If authentication is successful, contains the onboarding session status of the logged-in user's group account.
+   */
+  onboardingScheduled: boolean | null;
+
+  /**
    * Statuses for the dependencies of this api.
    * OK if the dependency is working.
    */
   dependencies: object | null;
+
+  /**
+   * The set of Groups that the user has access to.
+   * You can use the /api/v1/useraccounts/change-group endpoint to change your active group.
+   */
+  userGroups: UserGroupModel[] | null;
 };

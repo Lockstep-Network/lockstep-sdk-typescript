@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -14,14 +14,23 @@
 import { LockstepApi } from "..";
 import { LockstepResponse } from "..";
 import { CashflowReportModel } from "..";
+import { PayablesSummaryReportModel } from "..";
 import { DailySalesOutstandingReportModel } from "..";
 import { DailyPayableOutstandingReportModel } from "..";
+import { PayablesComingDueWidgetModel } from "..";
+import { FetchResult } from "..";
+import { PayablesComingDueModel } from "..";
+import { PayablesComingDueHeaderModel } from "..";
 import { RiskRateModel } from "..";
 import { ArHeaderInfoModel } from "..";
+import { ApHeaderInfoModel } from "..";
 import { AgingModel } from "..";
 import { ArAgingHeaderInfoModel } from "..";
+import { ApAgingHeaderInfoModel } from "..";
 import { AttachmentHeaderInfoModel } from "..";
 import { FinancialReportModel } from "..";
+import { DpoSummaryModel } from "..";
+import { DpoSummaryGroupTotalModel } from "..";
 
 export class ReportsClient {
   private readonly client: LockstepApi;
@@ -51,6 +60,23 @@ export class ReportsClient {
   }
 
   /**
+   * Retrieves a current Payables Summary report for this account.
+   *
+   * The Payables Summary report indicates the amount of payments sent and bills received within a given timeframe.  You can use this report to determine the overall balance of money coming into and out of your accounts receivable and accounts payable businesses.
+   *
+   * @param timeframe Number of days of data to include for the Payables Summary Report (default is 30 days from today)
+   */
+  payablesSummaryReport(timeframe?: number): Promise<LockstepResponse<PayablesSummaryReportModel>> {
+    const url = `/api/v1/Reports/payables-summary`;
+    const options = {
+      params: {
+        timeframe,
+      },
+    };
+    return this.client.request<PayablesSummaryReportModel>("get", url, options, null);
+  }
+
+  /**
    * Retrieves a current Daily Sales Outstanding (DSO) report for this account.
    *
    * Daily Sales Outstanding, or DSO, is a metric that indicates the average number of days that it takes for an invoice to be fully paid.  You can use this report to identify whether a company is improving on its ability to collect on invoices.
@@ -70,6 +96,53 @@ export class ReportsClient {
   daysPayableOutstanding(): Promise<LockstepResponse<DailyPayableOutstandingReportModel[]>> {
     const url = `/api/v1/Reports/daily-payable-outstanding`;
     return this.client.request<DailyPayableOutstandingReportModel[]>("get", url, null, null);
+  }
+
+  /**
+   * Retrieves payable amount due for 4 time buckets (Today, 7 Days from Today, 14 Days from Today, and 30 Days from Today).
+   *
+   */
+  payablesComingDue(): Promise<LockstepResponse<PayablesComingDueWidgetModel[]>> {
+    const url = `/api/v1/Reports/payables-coming-due`;
+    return this.client.request<PayablesComingDueWidgetModel[]>("get", url, null, null);
+  }
+
+  /**
+   * Payables coming due represents the amount of cash required to pay vendor bills based on the due dates of the bills. Each bucket represents total amount due within the time period based on open Payables as of today.
+   *
+   * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
+   * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
+   * @param pageSize The page size for results (default 200, maximum of 10,000)
+   * @param pageNumber The page number for results (default 0)
+   */
+  payablesComingDueSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<PayablesComingDueModel>>> {
+    const url = `/api/v1/Reports/payables-coming-due-summary`;
+    const options = {
+      params: {
+        filter,
+        include,
+        order,
+        pageSize,
+        pageNumber,
+      },
+    };
+    return this.client.request<FetchResult<PayablesComingDueModel>>("get", url, options, null);
+  }
+
+  /**
+   * Retrieves total number of vendors, bills, the total amount outstanding, for a group.
+   *
+   * @param reportDate The date the outstanding values are calculated on. Should be either the current day, 7 days after the current day, 14 days after the current day, or 30 days after the current day.
+   */
+  payablesComingDueHeader(reportDate: string): Promise<LockstepResponse<PayablesComingDueHeaderModel[]>> {
+    const url = `/api/v1/Reports/payables-coming-due-header`;
+    const options = {
+      params: {
+        reportDate,
+      },
+    };
+    return this.client.request<PayablesComingDueHeaderModel[]>("get", url, options, null);
   }
 
   /**
@@ -98,6 +171,23 @@ export class ReportsClient {
       },
     };
     return this.client.request<ArHeaderInfoModel>("get", url, options, null);
+  }
+
+  /**
+   * Retrieves AP header information up to the date specified.
+   *
+   * @param reportDate The date of the report.
+   * @param companyId Include a company to get AP data for a specific company, leave as null to include all Companies.
+   */
+  accountsPayableHeader(reportDate: string, companyId?: string): Promise<LockstepResponse<ApHeaderInfoModel>> {
+    const url = `/api/v1/Reports/ap-header`;
+    const options = {
+      params: {
+        reportDate,
+        companyId,
+      },
+    };
+    return this.client.request<ApHeaderInfoModel>("get", url, options, null);
   }
 
   /**
@@ -140,6 +230,17 @@ export class ReportsClient {
   accountsReceivableAgingHeader(): Promise<LockstepResponse<ArAgingHeaderInfoModel[]>> {
     const url = `/api/v1/Reports/ar-aging-header`;
     return this.client.request<ArAgingHeaderInfoModel[]>("get", url, null, null);
+  }
+
+  /**
+   * Retrieves AP Aging Header information report broken down by aging bucket.
+   *
+   * The AP Aging Header report contains aggregated information about the `TotalBillsPastDue`, `TotalVendors`, and their respective `PercentageOfTotalAp` grouped by their aging `ReportBucket`.
+   *
+   */
+  accountsPayableAgingHeader(): Promise<LockstepResponse<ApAgingHeaderInfoModel[]>> {
+    const url = `/api/v1/Reports/ap-aging-header`;
+    return this.client.request<ApAgingHeaderInfoModel[]>("get", url, null, null);
   }
 
   /**
@@ -257,5 +358,51 @@ export class ReportsClient {
       },
     };
     return this.client.request<FinancialReportModel>("get", url, options, null);
+  }
+
+  /**
+   * Retrieves a summary for each vendor that includes a count of their outstanding bills, the total amount outstanding, and their daily payable outstanding value.
+   *
+   * Days payable outstanding (DPO) is a financial ratio that indicates the average time (in days) that a company takes to pay its bills to its trade creditors, which may include suppliers, vendors, or financiers.
+   *
+   * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+   *
+   * @param reportDate The date the outstanding values are calculated on. Should be either the current day or the end of a previous quarter.
+   * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
+   * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
+   * @param pageSize The page size for results (default 200, maximum of 10,000)
+   * @param pageNumber The page number for results (default 0)
+   */
+  daysPayableOutstandingSummary(reportDate: string, filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<DpoSummaryModel[]>> {
+    const url = `/api/v1/Reports/daily-payable-outstanding-summary`;
+    const options = {
+      params: {
+        reportDate,
+        filter,
+        include,
+        order,
+        pageSize,
+        pageNumber,
+      },
+    };
+    return this.client.request<DpoSummaryModel[]>("get", url, options, null);
+  }
+
+  /**
+   * Retrieves total number of vendors, bills, the total amount outstanding, and the daily payable outstanding value for a group.
+   *
+   * Days payable outstanding (DPO) is a financial ratio that indicates the average time (in days) that a company takes to pay its bills to its trade creditors, which may include suppliers, vendors, or financiers.
+   *
+   * @param reportDate The date the outstanding values are calculated on. Should be either the current day or the end of a previous quarter.
+   */
+  daysPayableOutstandingSummaryTotal(reportDate: string): Promise<LockstepResponse<DpoSummaryGroupTotalModel[]>> {
+    const url = `/api/v1/Reports/daily-payable-outstanding-summary-total`;
+    const options = {
+      params: {
+        reportDate,
+      },
+    };
+    return this.client.request<DpoSummaryGroupTotalModel[]>("get", url, options, null);
   }
 }

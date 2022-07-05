@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -71,9 +71,25 @@ export type PaymentDetailModel = {
   unappliedAmount: number;
 
   /**
-   * The type of payment, Payment or AP Payment.
+   * The type of payment, AR Payment or AP Payment.
+   *
+   * Recognized PaymentType values are:
+   * * `AR Payment` - A payment made by a Customer to the Company
+   * * `AP Payment` - A payment made by the Company to a Vendor
    */
   paymentType: string | null;
+
+  /**
+   * Cash, check, credit card, wire transfer.
+   *
+   * Recognized TenderType values are:
+   * * `Cash` - A cash payment or other direct transfer.
+   * * `Check` - A check payment.
+   * * `Credit Card` - A payment made via a credit card.
+   * * `Wire Transfer` - A payment made via wire transfer from another financial institution.
+   * * `Other` - A payment made via another method not listed above.
+   */
+  tenderType: string | null;
 
   /**
    * The date of this Payment.

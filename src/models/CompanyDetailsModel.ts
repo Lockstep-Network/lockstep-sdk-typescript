@@ -6,17 +6,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { CustomerDetailsPaymentModel } from "..";
+import { CompanyDetailsPaymentModel } from "..";
 
 /**
- * Contains customer details data
+ * Contains company details data
  */
-export type CustomerDetailsModel = {
+export type CompanyDetailsModel = {
 
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -27,97 +27,97 @@ export type CustomerDetailsModel = {
   groupKey: string;
 
   /**
-   * The unique ID of this customer
+   * The unique ID of this company
    */
   customerId: string;
 
   /**
-   * The unique ID of this customer
+   * The unique ID of this company
    */
   name: string | null;
 
   /**
-   * Customer address info
+   * Company address info
    */
   address1: string | null;
 
   /**
-   * Customer address info
+   * Company address info
    */
   address2: string | null;
 
   /**
-   * Customer address info
+   * Company address info
    */
   address3: string | null;
 
   /**
-   * Customer address info
+   * Company address info
    */
   city: string | null;
 
   /**
-   * Customer address info
+   * Company address info
    */
   state: string | null;
 
   /**
-   * Customer address info
+   * Company address info
    */
   postalCode: string | null;
 
   /**
-   * Customer address country
+   * Company address country
    */
   country: string | null;
 
   /**
-   * Customer phone number
+   * Company phone number
    */
   phoneNumber: string | null;
 
   /**
-   * Customer fax number
+   * Company fax number
    */
   faxNumber: string | null;
 
   /**
-   * Customer AR email address
+   * Company email address
    */
   email: string | null;
 
   /**
-   * Customer primary contact id
+   * Company primary contact id
    */
   contactId: string;
 
   /**
-   * Customer primary contact name
+   * Company primary contact name
    */
   contactName: string | null;
 
   /**
-   * Customer primary contact email address
+   * Company primary contact email address
    */
   contactEmail: string | null;
 
   /**
-   * Customer number of outstanding invoices
+   * Company number of outstanding invoices
    */
   outstandingInvoices: number;
 
   /**
-   * Customer total outstanding invoice amount
+   * Company total outstanding invoice amount
    */
   outstandingAmount: number;
 
   /**
-   * Customer total past due amount
+   * Company total past due amount
    */
   amountPastDue: number;
 
   /**
-   * Customer payments collected
+   * Company payments collected
    */
-  payments: CustomerDetailsPaymentModel[] | null;
+  payments: CompanyDetailsPaymentModel[] | null;
 };

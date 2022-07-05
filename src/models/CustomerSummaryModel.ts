@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -61,14 +61,39 @@ export type CustomerSummaryModel = {
   closedInvoices: number | null;
 
   /**
+   * The number of closed invoices for this customer in the past thirty days.
+   */
+  closedInvoicesPastThirtyDays: number | null;
+
+  /**
    * The total from collected payments.
    */
   amountCollected: number | null;
 
   /**
+   * The total from collected payments in the past thirty days.
+   */
+  amountCollectedPastThirtyDays: number | null;
+
+  /**
    * The total balance of outstanding invoices.
    */
   outstandingAmount: number | null;
+
+  /**
+   * The total amount invoiced in the past thirty days.
+   */
+  invoicedAmountPastThirtyDays: number | null;
+
+  /**
+   * The total amount outstanding from the invoices invoiced in the past thirty days.
+   */
+  outstandingAmountPastThirtyDays: number | null;
+
+  /**
+   * The number of invoices invoiced in the past thirty days.
+   */
+  invoicesPastThirtyDays: number | null;
 
   /**
    * The total amount past due for this customer.
@@ -79,6 +104,11 @@ export type CustomerSummaryModel = {
    * The total value of unapplied Payments for this Customer.
    */
   unappliedPayments: number | null;
+
+  /**
+   * The total value of unapplied Payments for this Customer in the past thirty days.
+   */
+  unappliedAmountPastThirtyDays: number | null;
 
   /**
    * Portion of Total AR for this Customer that is Past due. (TotalPastDue / Total AR).

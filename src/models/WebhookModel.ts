@@ -6,11 +6,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { WebhookRuleModel } from "..";
 
 /**
  * A Webhook is a subscription to receive notifications automatically to the supplied
@@ -57,7 +58,7 @@ export type WebhookModel = {
   clientSecret: string | null;
 
   /**
-   * The format of the content to be returned in the webhook notifications. Options TBD.
+   * The format of the content to be returned in the webhook notifications. Current options are 'Full' or 'Id'.
    */
   requestContentType: string;
 
@@ -106,6 +107,11 @@ export type WebhookModel = {
    * The ID of the user who last modified this webhook
    */
   modifiedUserId: string;
+
+  /**
+   * A list of Webhook Rules associated with this Webhook.
+   */
+  webhookRules: WebhookRuleModel[] | null;
 
   /**
    * The partition key used for the webhook callback history

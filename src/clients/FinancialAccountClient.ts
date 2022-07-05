@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -62,7 +62,7 @@ export class FinancialAccountClient {
    *
    * @param id The unique Lockstep Platform ID number of the Financial Account to disable; NOT the customer's ERP key
    */
-  deletesFinancialAccount(id: string): Promise<LockstepResponse<ActionResultModel>> {
+  deleteFinancialAccount(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/FinancialAccount/${id}`;
     return this.client.request<ActionResultModel>("delete", url, null, null);
   }

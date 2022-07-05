@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Lockstep Network <support@lockstep.io
+ * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
@@ -39,6 +39,21 @@ export type ArAgingHeaderInfoModel = {
    * The total number of invoices outstanding.
    */
   totalInvoicesOutstanding: number;
+
+  /**
+   * The total amount outstanding on invoices.
+   */
+  totalInvoiceOutstandingAmount: number;
+
+  /**
+   * The total amount outstanding on credit memos.
+   */
+  totalCreditMemoOutstandingAmount: number;
+
+  /**
+   * The total amount of unapplied payments.
+   */
+  totalUnappliedPaymentAmount: number;
 
   /**
    * The total amount outstanding.
