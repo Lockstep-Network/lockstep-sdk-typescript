@@ -58,6 +58,12 @@ export type SyncRequestModel = {
   processResultMessage: string | null;
 
   /**
+   * A boolean indicating whether a sync from an ERP system should process all the data from the ERP
+   * as opposed to just the delta of changes since the previous sync run
+   */
+  runFullSync: string | null;
+
+  /**
    * The AppEnrollmentId of the AppEnrollment object that executed this sync request
    */
   appEnrollmentId: string | null;

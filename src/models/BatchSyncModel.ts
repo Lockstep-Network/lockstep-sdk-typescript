@@ -19,6 +19,9 @@ import { InvoiceLineSyncModel } from "..";
 import { CustomFieldSyncModel } from "..";
 import { PaymentSyncModel } from "..";
 import { PaymentAppliedSyncModel } from "..";
+import { FinancialYearSettingSyncModel } from "..";
+import { FinancialAccountSyncModel } from "..";
+import { FinancialAccountBalanceHistorySyncModel } from "..";
 
 /**
  * A BatchSyncModel contains a collection of records to load into the Lockstep Platform.  Data contained
@@ -72,4 +75,19 @@ export type BatchSyncModel = {
    * A list of PaymentApplied records to merge with your Lockstep Platform data
    */
   paymentApplications: PaymentAppliedSyncModel[] | null;
+
+  /**
+   * A list of FinancialYearSetting records to merge with your Lockstep Platform data
+   */
+  financialYearSettings: FinancialYearSettingSyncModel[] | null;
+
+  /**
+   * A list of FinancialAccount records to merge with your Lockstep Platform data
+   */
+  financialAccounts: FinancialAccountSyncModel[] | null;
+
+  /**
+   * A list of FinancialAccountBalanceHistory records to merge with your Lockstep Platform data
+   */
+  financialAccountBalanceHistories: FinancialAccountBalanceHistorySyncModel[] | null;
 };

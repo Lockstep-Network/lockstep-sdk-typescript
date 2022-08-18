@@ -41,6 +41,11 @@ export type CustomerSummaryModel = {
   primaryContact: string | null;
 
   /**
+   * The app enrollment ID this Customer is associated with
+   */
+  appEnrollmentId: string | null;
+
+  /**
    * The number of outstanding invoices for this customer.
    */
   outstandingInvoices: number | null;

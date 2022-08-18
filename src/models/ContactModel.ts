@@ -144,7 +144,7 @@ export type ContactModel = {
   /**
    * The date on which this record was created.
    */
-  created: string | null;
+  created: string;
 
   /**
    * The ID of the user who created this contact.
@@ -154,7 +154,7 @@ export type ContactModel = {
   /**
    * The date on which this record was last modified.
    */
-  modified: string | null;
+  modified: string;
 
   /**
    * The ID of the user who last modified this contact.

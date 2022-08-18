@@ -104,4 +104,9 @@ export type VendorSummaryModel = {
    * The total count of open and closed bills.
    */
   totalBillCount: number | null;
+
+  /**
+   * The days payabale outstanding.
+   */
+  dpo: number | null;
 };

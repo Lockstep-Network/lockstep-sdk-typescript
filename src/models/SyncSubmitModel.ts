@@ -29,4 +29,11 @@ export type SyncSubmitModel = {
    * The unique identifier of the app enrollment that is creating this sync request.
    */
   appEnrollmentId: string;
+
+  /**
+   * A boolean indicating whether a sync from an ERP system should process all the data from the ERP
+   * as opposed to just the delta of changes since the previous sync run. For the Demo Data Connector, setting this
+   * to True refreshes the data with new dates as opposed to leaving it unchanged.
+   */
+  runFullSync: boolean;
 };

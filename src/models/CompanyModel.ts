@@ -171,7 +171,7 @@ export type CompanyModel = {
   /**
    * The date this company was created
    */
-  created: string | null;
+  created: string;
 
   /**
    * The ID of the user who created this company
@@ -181,7 +181,7 @@ export type CompanyModel = {
   /**
    * The date this company was last modified
    */
-  modified: string | null;
+  modified: string;
 
   /**
    * The ID of the user who last modified this company
@@ -202,16 +202,6 @@ export type CompanyModel = {
    * Dun and Bradstreet Number
    */
   dunsNumber: string | null;
-
-  /**
-   * AP (Accounts Payable) Email Address
-   */
-  apEmailAddress: string | null;
-
-  /**
-   * AR (Accounts Receivable) Email Address
-   */
-  arEmailAddress: string | null;
 
   /**
    * Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
@@ -247,6 +237,11 @@ export type CompanyModel = {
    * was not loaded from an external ERP or financial system.
    */
   appEnrollmentId: string | null;
+
+  /**
+   * Company Email Address
+   */
+  emailAddress: string | null;
 
   /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

@@ -138,8 +138,9 @@ export class CompaniesClient {
    * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
+   * @param reportDate The date to calculate the fields on. If no date is entered the current UTC date will be used.
    */
-  queryCustomerSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CustomerSummaryModel>>> {
+  queryCustomerSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number, reportDate?: string): Promise<LockstepResponse<FetchResult<CustomerSummaryModel>>> {
     const url = `/api/v1/Companies/views/customer-summary`;
     const options = {
       params: {
@@ -148,6 +149,7 @@ export class CompaniesClient {
         order,
         pageSize,
         pageNumber,
+        reportDate,
       },
     };
     return this.client.request<FetchResult<CustomerSummaryModel>>("get", url, options, null);
@@ -167,8 +169,9 @@ export class CompaniesClient {
    * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
    * @param pageSize The page size for results (default 200, maximum of 10,000)
    * @param pageNumber The page number for results (default 0)
+   * @param reportDate The date to calculate the fields on. If no date is entered the current UTC date will be used.
    */
-  queryVendorSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<VendorSummaryModel>>> {
+  queryVendorSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number, reportDate?: string): Promise<LockstepResponse<FetchResult<VendorSummaryModel>>> {
     const url = `/api/v1/Companies/views/vendor-summary`;
     const options = {
       params: {
@@ -177,6 +180,7 @@ export class CompaniesClient {
         order,
         pageSize,
         pageNumber,
+        reportDate,
       },
     };
     return this.client.request<FetchResult<VendorSummaryModel>>("get", url, options, null);
@@ -194,5 +198,22 @@ export class CompaniesClient {
   retrieveCompanyDetail(id: string): Promise<LockstepResponse<CompanyDetailsModel>> {
     const url = `/api/v1/Companies/views/details/${id}`;
     return this.client.request<CompanyDetailsModel>("get", url, null, null);
+  }
+
+  /**
+   * Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.
+   *
+   * .jpg, .jpeg, and .png are supported. 5MB maximum. If no logo is uploaded, the existing logo will be deleted.
+   *
+   * A Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.
+   *
+   * See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
+   *
+   * @param id The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key
+   * @param filename The full path of a file to upload to the API
+   */
+  setCompanyLogo(id: string, filename: string): Promise<LockstepResponse<CompanyModel>> {
+    const url = `/api/v1/Companies/${id}/logo`;
+    return this.client.fileUpload("post", url, null, filename);
   }
 }

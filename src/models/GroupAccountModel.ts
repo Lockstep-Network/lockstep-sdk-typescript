@@ -28,7 +28,7 @@ export type GroupAccountModel = {
   /**
    * The name of the group
    */
-  groupName: string | null;
+  groupName: string;
 
   /**
    * The primary user for the group
