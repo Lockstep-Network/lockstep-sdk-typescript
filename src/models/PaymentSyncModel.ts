@@ -51,7 +51,7 @@ export type PaymentSyncModel = {
    * * `AR Payment` - A payment made by a Customer to the Company
    * * `AP Payment` - A payment made by the Company to a Vendor
    */
-  paymentType: string | null;
+  paymentType: string;
 
   /**
    * Cash, check, credit card, wire transfer.
@@ -103,7 +103,7 @@ export type PaymentSyncModel = {
   /**
    * The ISO 4217 currency code for this payment.
    *
-   * For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
+   * For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).
    */
   currencyCode: string | null;
 
@@ -131,10 +131,10 @@ export type PaymentSyncModel = {
   /**
    * True if this payment was voided.
    */
-  isVoided: boolean;
+  isVoided: boolean | null;
 
   /**
    * True if this payment is in dispute.
    */
-  inDispute: boolean;
+  inDispute: boolean | null;
 };

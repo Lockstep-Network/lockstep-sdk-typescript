@@ -84,22 +84,22 @@ export type InvoiceAddressModel = {
   /**
    * The date on which this address record was created.
    */
-  created: string | null;
+  created: string;
 
   /**
    * The ID number of the user who created this address.
    */
-  createdUserId: string | null;
+  createdUserId: string;
 
   /**
    * The date on which this address record was last modified.
    */
-  modified: string | null;
+  modified: string;
 
   /**
    * The ID number of the user who most recently modified this address.
    */
-  modifiedUserId: string | null;
+  modifiedUserId: string;
 
   /**
    * The AppEnrollmentId of the application that imported this record.  For accounts

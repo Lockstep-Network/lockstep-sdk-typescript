@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.26.12
+ * @version    2022.33.14
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -60,6 +60,7 @@ export { ApHeaderInfoModel } from "./models/ApHeaderInfoModel";
 export { ApiKeyModel } from "./models/ApiKeyModel";
 export { AppEnrollmentCustomFieldModel } from "./models/AppEnrollmentCustomFieldModel";
 export { AppEnrollmentModel } from "./models/AppEnrollmentModel";
+export { AppEnrollmentReconnectRequest } from "./models/AppEnrollmentReconnectRequest";
 export { ApplicationModel } from "./models/ApplicationModel";
 export { ArAgingHeaderInfoModel } from "./models/ArAgingHeaderInfoModel";
 export { ArHeaderInfoModel } from "./models/ArHeaderInfoModel";
@@ -97,11 +98,14 @@ export { ErpInfoModel } from "./models/ErpInfoModel";
 export { ErpModel } from "./models/ErpModel";
 export { ErrorResult } from "./models/ErrorResult";
 export { FinancialAccountBalanceHistoryModel } from "./models/FinancialAccountBalanceHistoryModel";
+export { FinancialAccountBalanceHistorySyncModel } from "./models/FinancialAccountBalanceHistorySyncModel";
 export { FinancialAccountModel } from "./models/FinancialAccountModel";
+export { FinancialAccountSyncModel } from "./models/FinancialAccountSyncModel";
 export { FinancialReportCellModel } from "./models/FinancialReportCellModel";
 export { FinancialReportModel } from "./models/FinancialReportModel";
 export { FinancialReportRowModel } from "./models/FinancialReportRowModel";
 export { FinancialYearSettingModel } from "./models/FinancialYearSettingModel";
+export { FinancialYearSettingSyncModel } from "./models/FinancialYearSettingSyncModel";
 export { GroupAccountModel } from "./models/GroupAccountModel";
 export { InviteDataModel } from "./models/InviteDataModel";
 export { InviteModel } from "./models/InviteModel";

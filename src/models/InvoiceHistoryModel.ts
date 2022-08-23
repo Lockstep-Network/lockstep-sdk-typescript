@@ -176,22 +176,22 @@ export type InvoiceHistoryModel = {
   /**
    * The date on which this invoice record was created.
    */
-  created: string | null;
+  created: string;
 
   /**
    * The ID number of the user who created this invoice.
    */
-  createdUserId: string | null;
+  createdUserId: string;
 
   /**
    * The date on which this invoice record was last modified.
    */
-  modified: string | null;
+  modified: string;
 
   /**
    * The ID number of the user who most recently modified this invoice.
    */
-  modifiedUserId: string | null;
+  modifiedUserId: string;
 
   /**
    * The AppEnrollmentId of the application that imported this record.  For accounts

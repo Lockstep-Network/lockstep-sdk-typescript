@@ -15,6 +15,7 @@ import { AttachmentModel } from "..";
 import { NoteModel } from "..";
 import { CustomFieldDefinitionModel } from "..";
 import { CustomFieldValueModel } from "..";
+import { InvoiceModel } from "..";
 
 /**
  * Credit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds.
@@ -153,4 +154,14 @@ export type CreditMemoAppliedModel = {
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   customFieldValues: CustomFieldValueModel[] | null;
+
+  /**
+   * The credit memo invoice associated with this applied credit memo
+   */
+  creditMemoInvoice: InvoiceModel | null;
+
+  /**
+   * The invoice associated with this applied credit memo
+   */
+  invoice: InvoiceModel | null;
 };

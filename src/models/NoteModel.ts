@@ -46,7 +46,7 @@ export type NoteModel = {
    *
    * For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
-  tableKey: string | null;
+  tableKey: string;
 
   /**
    * A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
@@ -63,7 +63,7 @@ export type NoteModel = {
   /**
    * The full text of the note
    */
-  noteText: string | null;
+  noteText: string;
 
   /**
    * The type of the note
@@ -82,7 +82,7 @@ export type NoteModel = {
   /**
    * The date the note was created
    */
-  created: string | null;
+  created: string;
 
   /**
    * The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user

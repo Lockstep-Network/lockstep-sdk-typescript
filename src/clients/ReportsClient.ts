@@ -81,10 +81,16 @@ export class ReportsClient {
    *
    * Daily Sales Outstanding, or DSO, is a metric that indicates the average number of days that it takes for an invoice to be fully paid.  You can use this report to identify whether a company is improving on its ability to collect on invoices.
    *
+   * @param reportDate Optional: Specify the specific report date to generate the from (default UTC now)
    */
-  dailySalesOutstanding(): Promise<LockstepResponse<DailySalesOutstandingReportModel[]>> {
+  dailySalesOutstanding(reportDate?: string): Promise<LockstepResponse<DailySalesOutstandingReportModel[]>> {
     const url = `/api/v1/Reports/dailysalesoutstanding`;
-    return this.client.request<DailySalesOutstandingReportModel[]>("get", url, null, null);
+    const options = {
+      params: {
+        reportDate,
+      },
+    };
+    return this.client.request<DailySalesOutstandingReportModel[]>("get", url, options, null);
   }
 
   /**

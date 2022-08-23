@@ -75,4 +75,19 @@ export type WebhookHistoryTableStorageModel = {
    * Contains the last time message is sent if failures occur.
    */
   timestamp: string | null;
+
+  /**
+   * The records sent with the webhook.
+   */
+  records: string | null;
+
+  /**
+   * The request message sent with the webhook.
+   */
+  requestMessage: string | null;
+
+  /**
+   * The response received back from the webhook.
+   */
+  responseMessage: string | null;
 };

@@ -15,6 +15,8 @@ import { LockstepApi } from "..";
 import { LockstepResponse } from "..";
 import { AppEnrollmentModel } from "..";
 import { ActionResultModel } from "..";
+import { CustomFieldValueModel } from "..";
+import { AppEnrollmentReconnectRequest } from "..";
 import { FetchResult } from "..";
 import { AppEnrollmentCustomFieldModel } from "..";
 
@@ -90,22 +92,28 @@ export class AppEnrollmentsClient {
    *
    * See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
    *
+   * @param startSync Option to start sync immediately after creation of app enrollments (default false)
    * @param body The App Enrollments to create
    */
-  createAppEnrollments(body: AppEnrollmentModel[]): Promise<LockstepResponse<AppEnrollmentModel[]>> {
+  createAppEnrollments(body: AppEnrollmentModel[], startSync?: boolean): Promise<LockstepResponse<AppEnrollmentModel[]>> {
     const url = `/api/v1/AppEnrollments`;
-    return this.client.request<AppEnrollmentModel[]>("post", url, null, body);
+    const options = {
+      params: {
+        startSync,
+      },
+    };
+    return this.client.request<AppEnrollmentModel[]>("post", url, options, body);
   }
 
   /**
    * Updates the OAuth settings associated with this App Enrollment
    *
-   * @param id Documentation pending
-   * @param body Documentation pending
+   * @param id The unique ID number of the App Enrollment to reconnect
+   * @param body Information to reconnect the App Enrollment
    */
-  reconnectAppEnrollmentOAuth(id: string, body: string): Promise<LockstepResponse<AppEnrollmentModel>> {
+  reconnectAppEnrollmentOAuth(id: string, body: AppEnrollmentReconnectRequest): Promise<LockstepResponse<CustomFieldValueModel[]>> {
     const url = `/api/v1/AppEnrollments/${id}/reconnect`;
-    return this.client.request<AppEnrollmentModel>("patch", url, null, body);
+    return this.client.request<CustomFieldValueModel[]>("post", url, null, body);
   }
 
   /**
