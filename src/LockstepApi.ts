@@ -8,7 +8,7 @@
  *
  * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.33.14
+ * @version    2022.35.5
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -36,6 +36,7 @@ import { LeadsClient } from ".";
 import { NotesClient } from ".";
 import { PaymentApplicationsClient } from ".";
 import { PaymentsClient } from ".";
+import { ProfilesClient } from ".";
 import { ProvisioningClient } from ".";
 import { ReportsClient } from ".";
 import { StatusClient } from ".";
@@ -73,7 +74,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.33.14";
+  private readonly version: string = "2022.35.5";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -104,6 +105,7 @@ export class LockstepApi {
   public readonly Notes: NotesClient;
   public readonly PaymentApplications: PaymentApplicationsClient;
   public readonly Payments: PaymentsClient;
+  public readonly Profiles: ProfilesClient;
   public readonly Provisioning: ProvisioningClient;
   public readonly Reports: ReportsClient;
   public readonly Status: StatusClient;
@@ -143,6 +145,7 @@ export class LockstepApi {
     this.Notes = new NotesClient(this);
     this.PaymentApplications = new PaymentApplicationsClient(this);
     this.Payments = new PaymentsClient(this);
+    this.Profiles = new ProfilesClient(this);
     this.Provisioning = new ProvisioningClient(this);
     this.Reports = new ReportsClient(this);
     this.Status = new StatusClient(this);
