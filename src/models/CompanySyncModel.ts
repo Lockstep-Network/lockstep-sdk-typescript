@@ -173,18 +173,6 @@ export type CompanySyncModel = {
   dunsNumber: string | null;
 
   /**
-   * If you know the AP (accounts payable) email address of this company, fill it in here. This is the email
-   * address where you would send questions to the company if the company owed you money.
-   */
-  apEmailAddress: string | null;
-
-  /**
-   * If you know the AR (accounts receivable) email address of this company, fill it in here. This is the email
-   * address where you would send questions to the company if you owed this company money.
-   */
-  arEmailAddress: string | null;
-
-  /**
    * Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
    */
   preferredDeliveryMethod: string | null;

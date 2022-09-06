@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.33.14
+ * @version    2022.35.5
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -41,6 +41,7 @@ export { LeadsClient } from "./clients/LeadsClient";
 export { NotesClient } from "./clients/NotesClient";
 export { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient";
 export { PaymentsClient } from "./clients/PaymentsClient";
+export { ProfilesClient } from "./clients/ProfilesClient";
 export { ProvisioningClient } from "./clients/ProvisioningClient";
 export { ReportsClient } from "./clients/ReportsClient";
 export { StatusClient } from "./clients/StatusClient";
@@ -134,6 +135,7 @@ export { PaymentSyncModel } from "./models/PaymentSyncModel";
 export { ProvisioningFinalizeRequestModel } from "./models/ProvisioningFinalizeRequestModel";
 export { ProvisioningModel } from "./models/ProvisioningModel";
 export { ProvisioningResponseModel } from "./models/ProvisioningResponseModel";
+export { PublicCompanyProfileModel } from "./models/PublicCompanyProfileModel";
 export { RiskRateModel } from "./models/RiskRateModel";
 export { StateModel } from "./models/StateModel";
 export { StatusModel } from "./models/StatusModel";
