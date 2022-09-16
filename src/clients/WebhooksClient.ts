@@ -77,7 +77,7 @@ export class WebhooksClient {
    * @param id The unique Lockstep Platform ID number of the Webhook to update.
    */
   regenerateClientSecret(id: string): Promise<LockstepResponse<WebhookModel>> {
-    const url = `/api/v1/Webhooks/${id}/regenerateclientsecret`;
+    const url = `/api/v1/Webhooks/${id}/regenerate-client-secret`;
     return this.client.request<WebhookModel>("patch", url, null, null);
   }
 

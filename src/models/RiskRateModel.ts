@@ -28,7 +28,7 @@ export type RiskRateModel = {
   /**
    * The month the risk rate was calculated for
    */
-  reportPeriod: string;
+  reportDate: string;
 
   /**
    * The string name of the month the risk rate was calculated for

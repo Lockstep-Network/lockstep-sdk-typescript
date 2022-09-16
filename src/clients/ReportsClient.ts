@@ -84,7 +84,7 @@ export class ReportsClient {
    * @param reportDate Optional: Specify the specific report date to generate the from (default UTC now)
    */
   dailySalesOutstanding(reportDate?: string): Promise<LockstepResponse<DailySalesOutstandingReportModel[]>> {
-    const url = `/api/v1/Reports/dailysalesoutstanding`;
+    const url = `/api/v1/Reports/daily-sales-outstanding`;
     const options = {
       params: {
         reportDate,
@@ -158,7 +158,7 @@ export class ReportsClient {
    *
    */
   riskRates(): Promise<LockstepResponse<RiskRateModel[]>> {
-    const url = `/api/v1/Reports/riskrates`;
+    const url = `/api/v1/Reports/risk-rates`;
     return this.client.request<RiskRateModel[]>("get", url, null, null);
   }
 
