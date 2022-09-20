@@ -28,7 +28,7 @@ export type ArHeaderInfoModel = {
   /**
    * The date of the report
    */
-  reportPeriod: string | null;
+  reportDate: string | null;
 
   /**
    * The total number of customers.

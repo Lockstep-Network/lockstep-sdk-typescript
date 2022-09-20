@@ -20,5 +20,25 @@ export type AppEnrollmentReconnectRequest = {
   /**
    * The OAuth authentication code.
    */
-  authCode: string;
+  authCode: string | null;
+
+  /**
+   * The OAuth authentication code.
+   */
+  username: string | null;
+
+  /**
+   * The password for the web services account with access permissions.
+   */
+  password: string | null;
+
+  /**
+   * The access token id for the connector enrollment.
+   */
+  tokenId: string | null;
+
+  /**
+   * The access token secret for the connector enrollment.
+   */
+  tokenSecret: string | null;
 };

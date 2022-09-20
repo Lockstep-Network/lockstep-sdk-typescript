@@ -28,7 +28,7 @@ export type ApHeaderInfoModel = {
   /**
    * The date of the report
    */
-  reportPeriod: string;
+  reportDate: string;
 
   /**
    * The total number of vendors.

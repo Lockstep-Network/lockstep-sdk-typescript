@@ -106,12 +106,12 @@ export class AppEnrollmentsClient {
   }
 
   /**
-   * Updates the OAuth settings associated with this App Enrollment
+   * Updates the settings associated with this App Enrollment
    *
    * @param id The unique ID number of the App Enrollment to reconnect
    * @param body Information to reconnect the App Enrollment
    */
-  reconnectAppEnrollmentOAuth(id: string, body: AppEnrollmentReconnectRequest): Promise<LockstepResponse<CustomFieldValueModel[]>> {
+  reconnectAppEnrollment(id: string, body: AppEnrollmentReconnectRequest): Promise<LockstepResponse<CustomFieldValueModel[]>> {
     const url = `/api/v1/AppEnrollments/${id}/reconnect`;
     return this.client.request<CustomFieldValueModel[]>("post", url, null, body);
   }

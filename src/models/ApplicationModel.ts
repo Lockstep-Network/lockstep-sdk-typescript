@@ -108,6 +108,11 @@ export type ApplicationModel = {
   groupKey: string;
 
   /**
+   * The B2C Client ID of the application
+   */
+  b2CClientId: string | null;
+
+  /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
    * `include` parameter when retrieving data.
    *

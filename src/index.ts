@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.35.5
+ * @version    2022.37.24
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -95,7 +95,6 @@ export { DeveloperAccountSubmitModel } from "./models/DeveloperAccountSubmitMode
 export { DpoSummaryGroupTotalModel } from "./models/DpoSummaryGroupTotalModel";
 export { DpoSummaryModel } from "./models/DpoSummaryModel";
 export { EmailModel } from "./models/EmailModel";
-export { ErpInfoModel } from "./models/ErpInfoModel";
 export { ErpModel } from "./models/ErpModel";
 export { ErrorResult } from "./models/ErrorResult";
 export { FinancialAccountBalanceHistoryModel } from "./models/FinancialAccountBalanceHistoryModel";
@@ -132,9 +131,6 @@ export { PaymentDetailModel } from "./models/PaymentDetailModel";
 export { PaymentModel } from "./models/PaymentModel";
 export { PaymentSummaryModel } from "./models/PaymentSummaryModel";
 export { PaymentSyncModel } from "./models/PaymentSyncModel";
-export { ProvisioningFinalizeRequestModel } from "./models/ProvisioningFinalizeRequestModel";
-export { ProvisioningModel } from "./models/ProvisioningModel";
-export { ProvisioningResponseModel } from "./models/ProvisioningResponseModel";
 export { PublicCompanyProfileModel } from "./models/PublicCompanyProfileModel";
 export { RiskRateModel } from "./models/RiskRateModel";
 export { StateModel } from "./models/StateModel";
