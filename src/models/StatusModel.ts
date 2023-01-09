@@ -1,16 +1,17 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { MagicLinkStatusModel } from "..";
 import { UserGroupModel } from "..";
 
 /**
@@ -22,6 +23,11 @@ export type StatusModel = {
    * If authentication is successful, contains the username of the logged-in user.
    */
   userName: string | null;
+
+  /**
+   * If authentication is successful, contains the email address of the logged-in user.
+   */
+  emailAddress: string | null;
 
   /**
    * If authentication is successful, contains subscription account name of logged-in user.
@@ -89,6 +95,11 @@ export type StatusModel = {
   onboardingScheduled: boolean | null;
 
   /**
+   * Magic link information about the user
+   */
+  magicLink: MagicLinkStatusModel | null;
+
+  /**
    * Statuses for the dependencies of this api.
    * OK if the dependency is working.
    */
@@ -99,4 +110,9 @@ export type StatusModel = {
    * You can use the /api/v1/useraccounts/change-group endpoint to change your active group.
    */
   userGroups: UserGroupModel[] | null;
+
+  /**
+   * Base Currency of the group
+   */
+  baseCurrencyCode: string | null;
 };

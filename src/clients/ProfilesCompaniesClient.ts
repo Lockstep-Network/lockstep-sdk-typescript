@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -16,7 +16,7 @@ import { LockstepResponse } from "..";
 import { PublicCompanyProfileModel } from "..";
 import { FetchResult } from "..";
 
-export class ProfilesClient {
+export class ProfilesCompaniesClient {
   private readonly client: LockstepApi;
 
   /**
@@ -34,7 +34,7 @@ export class ProfilesClient {
    * @param urlSlug Documentation pending
    */
   retrievePublicCompanyProfile(urlSlug: string): Promise<LockstepResponse<PublicCompanyProfileModel>> {
-    const url = `/api/v1/Profiles/companies/${urlSlug}`;
+    const url = `/api/v1/profiles/companies/${urlSlug}`;
     return this.client.request<PublicCompanyProfileModel>("get", url, null, null);
   }
 
@@ -49,11 +49,11 @@ export class ProfilesClient {
    *
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
-   * @param pageSize The page size for results (default 200, maximum of 10,000)
+   * @param pageSize The page size for results (default 250, maximum of 500)
    * @param pageNumber The page number for results (default 0)
    */
   queryPublicCompanyProfiles(filter?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<PublicCompanyProfileModel>>> {
-    const url = `/api/v1/Profiles/companies/query`;
+    const url = `/api/v1/profiles/companies/query`;
     const options = {
       params: {
         filter,

@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -56,6 +56,11 @@ export type PaymentSummaryModel = {
   paymentDate: string | null;
 
   /**
+   * The currency code of the payment.
+   */
+  currencyCode: string | null;
+
+  /**
    * Total amount of this payment.
    */
   paymentAmount: number;
@@ -64,6 +69,21 @@ export type PaymentSummaryModel = {
    * Unapplied balance of this payment.
    */
   unappliedAmount: number;
+
+  /**
+   * The base currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * The payment amount in the group's base currency.
+   */
+  baseCurrencyPaymentAmount: number;
+
+  /**
+   * The unapplied amount in the group's base currency.
+   */
+  baseCurrencyUnappliedAmount: number;
 
   /**
    * True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
@@ -102,6 +122,12 @@ export type PaymentSummaryModel = {
   paymentCompanyName: string | null;
 
   /**
+   * Specific payments have support for pdf retrieval from their respective erp. When this flag is true, an additional
+   * call to Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
+   */
+  supportsErpPdfRetrieval: boolean;
+
+  /**
    * The ids of the customer for the associated invoices.
    */
   customerIds: string[] | null;
@@ -120,4 +146,9 @@ export type PaymentSummaryModel = {
    * The names of the company for the associated invoices.
    */
   companyNames: string[] | null;
+
+  /**
+   * The modified date of the payment
+   */
+  modified: string;
 };

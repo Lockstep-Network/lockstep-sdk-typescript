@@ -1,15 +1,15 @@
 /***
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
  *             
- * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.37.24
+ * @copyright  2021-2023 Lockstep, Inc.
+ * @version    2023.1.3
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -17,7 +17,6 @@ export { FetchResult } from "./FetchResult";
 export { LockstepApi } from "./LockstepApi";
 export { LockstepResponse } from "./LockstepResponse";
 
-export { ActivitiesClient } from "./clients/ActivitiesClient";
 export { ApiKeysClient } from "./clients/ApiKeysClient";
 export { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient";
 export { ApplicationsClient } from "./clients/ApplicationsClient";
@@ -25,43 +24,49 @@ export { AttachmentsClient } from "./clients/AttachmentsClient";
 export { CodeDefinitionsClient } from "./clients/CodeDefinitionsClient";
 export { CompaniesClient } from "./clients/CompaniesClient";
 export { ContactsClient } from "./clients/ContactsClient";
-export { CreditMemoAppliedClient } from "./clients/CreditMemoAppliedClient";
+export { CreditMemosAppliedClient } from "./clients/CreditMemosAppliedClient";
 export { CurrenciesClient } from "./clients/CurrenciesClient";
 export { CustomFieldDefinitionsClient } from "./clients/CustomFieldDefinitionsClient";
 export { CustomFieldValuesClient } from "./clients/CustomFieldValuesClient";
 export { DefinitionsClient } from "./clients/DefinitionsClient";
-export { EmailsClient } from "./clients/EmailsClient";
+export { FeatureFlagsClient } from "./clients/FeatureFlagsClient";
 export { FinancialAccountClient } from "./clients/FinancialAccountClient";
 export { FinancialAccountBalanceHistoryClient } from "./clients/FinancialAccountBalanceHistoryClient";
 export { FinancialYearSettingsClient } from "./clients/FinancialYearSettingsClient";
 export { GroupAccountsClient } from "./clients/GroupAccountsClient";
+export { InvoiceAddressesClient } from "./clients/InvoiceAddressesClient";
 export { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient";
+export { InvoiceLinesClient } from "./clients/InvoiceLinesClient";
 export { InvoicesClient } from "./clients/InvoicesClient";
 export { LeadsClient } from "./clients/LeadsClient";
+export { MagicLinksClient } from "./clients/MagicLinksClient";
 export { NotesClient } from "./clients/NotesClient";
-export { PaymentApplicationsClient } from "./clients/PaymentApplicationsClient";
 export { PaymentsClient } from "./clients/PaymentsClient";
-export { ProfilesClient } from "./clients/ProfilesClient";
+export { PaymentsAppliedClient } from "./clients/PaymentsAppliedClient";
+export { ProfilesAccountingClient } from "./clients/ProfilesAccountingClient";
+export { ProfilesAccountingContactsClient } from "./clients/ProfilesAccountingContactsClient";
+export { ProfilesCompaniesClient } from "./clients/ProfilesCompaniesClient";
 export { ProvisioningClient } from "./clients/ProvisioningClient";
 export { ReportsClient } from "./clients/ReportsClient";
 export { StatusClient } from "./clients/StatusClient";
 export { SyncClient } from "./clients/SyncClient";
+export { TransactionsClient } from "./clients/TransactionsClient";
+export { TranscriptionsClient } from "./clients/TranscriptionsClient";
 export { UserAccountsClient } from "./clients/UserAccountsClient";
 export { UserRolesClient } from "./clients/UserRolesClient";
 export { WebhookRulesClient } from "./clients/WebhookRulesClient";
 export { WebhooksClient } from "./clients/WebhooksClient";
 
+export { AccountingProfileContactModel } from "./models/AccountingProfileContactModel";
+export { AccountingProfileModel } from "./models/AccountingProfileModel";
 export { ActionResultModel } from "./models/ActionResultModel";
-export { ActivityModel } from "./models/ActivityModel";
-export { ActivityStreamItemModel } from "./models/ActivityStreamItemModel";
-export { ActivityXRefModel } from "./models/ActivityXRefModel";
 export { AgingModel } from "./models/AgingModel";
 export { ApAgingHeaderInfoModel } from "./models/ApAgingHeaderInfoModel";
 export { ApHeaderInfoModel } from "./models/ApHeaderInfoModel";
 export { ApiKeyModel } from "./models/ApiKeyModel";
 export { AppEnrollmentCustomFieldModel } from "./models/AppEnrollmentCustomFieldModel";
 export { AppEnrollmentModel } from "./models/AppEnrollmentModel";
-export { AppEnrollmentReconnectRequest } from "./models/AppEnrollmentReconnectRequest";
+export { AppEnrollmentReconnectInfo } from "./models/AppEnrollmentReconnectInfo";
 export { ApplicationModel } from "./models/ApplicationModel";
 export { ArAgingHeaderInfoModel } from "./models/ArAgingHeaderInfoModel";
 export { ArHeaderInfoModel } from "./models/ArHeaderInfoModel";
@@ -70,6 +75,7 @@ export { AttachmentHeaderInfoModel } from "./models/AttachmentHeaderInfoModel";
 export { AttachmentModel } from "./models/AttachmentModel";
 export { BatchSyncModel } from "./models/BatchSyncModel";
 export { BulkCurrencyConversionModel } from "./models/BulkCurrencyConversionModel";
+export { BulkDeleteRequestModel } from "./models/BulkDeleteRequestModel";
 export { CashflowReportModel } from "./models/CashflowReportModel";
 export { CodeDefinitionModel } from "./models/CodeDefinitionModel";
 export { CompanyDetailsModel } from "./models/CompanyDetailsModel";
@@ -91,12 +97,14 @@ export { CustomFieldSyncModel } from "./models/CustomFieldSyncModel";
 export { CustomFieldValueModel } from "./models/CustomFieldValueModel";
 export { DailyPayableOutstandingReportModel } from "./models/DailyPayableOutstandingReportModel";
 export { DailySalesOutstandingReportModel } from "./models/DailySalesOutstandingReportModel";
+export { DeleteResult } from "./models/DeleteResult";
 export { DeveloperAccountSubmitModel } from "./models/DeveloperAccountSubmitModel";
 export { DpoSummaryGroupTotalModel } from "./models/DpoSummaryGroupTotalModel";
 export { DpoSummaryModel } from "./models/DpoSummaryModel";
-export { EmailModel } from "./models/EmailModel";
 export { ErpModel } from "./models/ErpModel";
 export { ErrorResult } from "./models/ErrorResult";
+export { FeatureFlagsRequestModel } from "./models/FeatureFlagsRequestModel";
+export { FeatureFlagsResponseModel } from "./models/FeatureFlagsResponseModel";
 export { FinancialAccountBalanceHistoryModel } from "./models/FinancialAccountBalanceHistoryModel";
 export { FinancialAccountBalanceHistorySyncModel } from "./models/FinancialAccountBalanceHistorySyncModel";
 export { FinancialAccountModel } from "./models/FinancialAccountModel";
@@ -117,8 +125,12 @@ export { InvoiceLineSyncModel } from "./models/InvoiceLineSyncModel";
 export { InvoiceModel } from "./models/InvoiceModel";
 export { InvoicePaymentDetailModel } from "./models/InvoicePaymentDetailModel";
 export { InvoiceSummaryModel } from "./models/InvoiceSummaryModel";
+export { InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult } from "./models/InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult";
+export { InvoiceSummaryTotalsModel } from "./models/InvoiceSummaryTotalsModel";
 export { InvoiceSyncModel } from "./models/InvoiceSyncModel";
 export { LeadModel } from "./models/LeadModel";
+export { MagicLinkModel } from "./models/MagicLinkModel";
+export { MagicLinkStatusModel } from "./models/MagicLinkStatusModel";
 export { NoteModel } from "./models/NoteModel";
 export { PayablesComingDueHeaderModel } from "./models/PayablesComingDueHeaderModel";
 export { PayablesComingDueModel } from "./models/PayablesComingDueModel";
@@ -130,21 +142,33 @@ export { PaymentDetailHeaderModel } from "./models/PaymentDetailHeaderModel";
 export { PaymentDetailModel } from "./models/PaymentDetailModel";
 export { PaymentModel } from "./models/PaymentModel";
 export { PaymentSummaryModel } from "./models/PaymentSummaryModel";
+export { PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult } from "./models/PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult";
+export { PaymentSummaryTotalsModel } from "./models/PaymentSummaryTotalsModel";
 export { PaymentSyncModel } from "./models/PaymentSyncModel";
 export { PublicCompanyProfileModel } from "./models/PublicCompanyProfileModel";
 export { RiskRateModel } from "./models/RiskRateModel";
 export { StateModel } from "./models/StateModel";
 export { StatusModel } from "./models/StatusModel";
+export { SummaryAgingTotalsModel } from "./models/SummaryAgingTotalsModel";
 export { SyncEntityResultModel } from "./models/SyncEntityResultModel";
 export { SyncRequestModel } from "./models/SyncRequestModel";
 export { SyncSubmitModel } from "./models/SyncSubmitModel";
+export { TransactionDetailModel } from "./models/TransactionDetailModel";
+export { TransactionModel } from "./models/TransactionModel";
+export { TransactionModelTransactionSummaryTotalModelSummaryFetchResult } from "./models/TransactionModelTransactionSummaryTotalModelSummaryFetchResult";
+export { TransactionSummaryTotalModel } from "./models/TransactionSummaryTotalModel";
+export { TranscriptionRequestSubmit } from "./models/TranscriptionRequestSubmit";
+export { TranscriptionValidationRequest } from "./models/TranscriptionValidationRequest";
+export { TranscriptionValidationRequestItem } from "./models/TranscriptionValidationRequestItem";
 export { TransferOwnerModel } from "./models/TransferOwnerModel";
 export { TransferOwnerSubmitModel } from "./models/TransferOwnerSubmitModel";
 export { UriModel } from "./models/UriModel";
 export { UserAccountModel } from "./models/UserAccountModel";
+export { UserDataResponseModel } from "./models/UserDataResponseModel";
 export { UserGroupModel } from "./models/UserGroupModel";
 export { UserRoleModel } from "./models/UserRoleModel";
 export { VendorSummaryModel } from "./models/VendorSummaryModel";
+export { ViewBoxSettingsModel } from "./models/ViewBoxSettingsModel";
 export { WebhookHistoryTableStorageModel } from "./models/WebhookHistoryTableStorageModel";
 export { WebhookModel } from "./models/WebhookModel";
 export { WebhookRuleModel } from "./models/WebhookRuleModel";

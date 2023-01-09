@@ -1,18 +1,17 @@
 /***
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.37.24
+ * @copyright  2021-2023 Lockstep, Inc.
+ * @version    2023.1.3
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { ActivitiesClient } from ".";
 import { ApiKeysClient } from ".";
 import { AppEnrollmentsClient } from ".";
 import { ApplicationsClient } from ".";
@@ -20,27 +19,34 @@ import { AttachmentsClient } from ".";
 import { CodeDefinitionsClient } from ".";
 import { CompaniesClient } from ".";
 import { ContactsClient } from ".";
-import { CreditMemoAppliedClient } from ".";
+import { CreditMemosAppliedClient } from ".";
 import { CurrenciesClient } from ".";
 import { CustomFieldDefinitionsClient } from ".";
 import { CustomFieldValuesClient } from ".";
 import { DefinitionsClient } from ".";
-import { EmailsClient } from ".";
+import { FeatureFlagsClient } from ".";
 import { FinancialAccountClient } from ".";
 import { FinancialAccountBalanceHistoryClient } from ".";
 import { FinancialYearSettingsClient } from ".";
 import { GroupAccountsClient } from ".";
+import { InvoiceAddressesClient } from ".";
 import { InvoiceHistoryClient } from ".";
+import { InvoiceLinesClient } from ".";
 import { InvoicesClient } from ".";
 import { LeadsClient } from ".";
+import { MagicLinksClient } from ".";
 import { NotesClient } from ".";
-import { PaymentApplicationsClient } from ".";
 import { PaymentsClient } from ".";
-import { ProfilesClient } from ".";
+import { PaymentsAppliedClient } from ".";
+import { ProfilesAccountingClient } from ".";
+import { ProfilesAccountingContactsClient } from ".";
+import { ProfilesCompaniesClient } from ".";
 import { ProvisioningClient } from ".";
 import { ReportsClient } from ".";
 import { StatusClient } from ".";
 import { SyncClient } from ".";
+import { TransactionsClient } from ".";
+import { TranscriptionsClient } from ".";
 import { UserAccountsClient } from ".";
 import { UserRolesClient } from ".";
 import { WebhookRulesClient } from ".";
@@ -74,14 +80,13 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2022.37.24";
+  private readonly version: string = "2023.1.3";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
   private appName: string | null = null;
   private customHeaderFunc: ((headers: unknown) => Promise<unknown>) | null = null;
 
-  public readonly Activities: ActivitiesClient;
   public readonly ApiKeys: ApiKeysClient;
   public readonly AppEnrollments: AppEnrollmentsClient;
   public readonly Applications: ApplicationsClient;
@@ -89,27 +94,34 @@ export class LockstepApi {
   public readonly CodeDefinitions: CodeDefinitionsClient;
   public readonly Companies: CompaniesClient;
   public readonly Contacts: ContactsClient;
-  public readonly CreditMemoApplied: CreditMemoAppliedClient;
+  public readonly CreditMemosApplied: CreditMemosAppliedClient;
   public readonly Currencies: CurrenciesClient;
   public readonly CustomFieldDefinitions: CustomFieldDefinitionsClient;
   public readonly CustomFieldValues: CustomFieldValuesClient;
   public readonly Definitions: DefinitionsClient;
-  public readonly Emails: EmailsClient;
+  public readonly FeatureFlags: FeatureFlagsClient;
   public readonly FinancialAccount: FinancialAccountClient;
   public readonly FinancialAccountBalanceHistory: FinancialAccountBalanceHistoryClient;
   public readonly FinancialYearSettings: FinancialYearSettingsClient;
   public readonly GroupAccounts: GroupAccountsClient;
+  public readonly InvoiceAddresses: InvoiceAddressesClient;
   public readonly InvoiceHistory: InvoiceHistoryClient;
+  public readonly InvoiceLines: InvoiceLinesClient;
   public readonly Invoices: InvoicesClient;
   public readonly Leads: LeadsClient;
+  public readonly MagicLinks: MagicLinksClient;
   public readonly Notes: NotesClient;
-  public readonly PaymentApplications: PaymentApplicationsClient;
   public readonly Payments: PaymentsClient;
-  public readonly Profiles: ProfilesClient;
+  public readonly PaymentsApplied: PaymentsAppliedClient;
+  public readonly ProfilesAccounting: ProfilesAccountingClient;
+  public readonly ProfilesAccountingContacts: ProfilesAccountingContactsClient;
+  public readonly ProfilesCompanies: ProfilesCompaniesClient;
   public readonly Provisioning: ProvisioningClient;
   public readonly Reports: ReportsClient;
   public readonly Status: StatusClient;
   public readonly Sync: SyncClient;
+  public readonly Transactions: TransactionsClient;
+  public readonly Transcriptions: TranscriptionsClient;
   public readonly UserAccounts: UserAccountsClient;
   public readonly UserRoles: UserRolesClient;
   public readonly WebhookRules: WebhookRulesClient;
@@ -121,7 +133,6 @@ export class LockstepApi {
   private constructor(customUrl: string) {
     this.serverUrl = customUrl;
 
-    this.Activities = new ActivitiesClient(this);
     this.ApiKeys = new ApiKeysClient(this);
     this.AppEnrollments = new AppEnrollmentsClient(this);
     this.Applications = new ApplicationsClient(this);
@@ -129,27 +140,34 @@ export class LockstepApi {
     this.CodeDefinitions = new CodeDefinitionsClient(this);
     this.Companies = new CompaniesClient(this);
     this.Contacts = new ContactsClient(this);
-    this.CreditMemoApplied = new CreditMemoAppliedClient(this);
+    this.CreditMemosApplied = new CreditMemosAppliedClient(this);
     this.Currencies = new CurrenciesClient(this);
     this.CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
     this.CustomFieldValues = new CustomFieldValuesClient(this);
     this.Definitions = new DefinitionsClient(this);
-    this.Emails = new EmailsClient(this);
+    this.FeatureFlags = new FeatureFlagsClient(this);
     this.FinancialAccount = new FinancialAccountClient(this);
     this.FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
     this.FinancialYearSettings = new FinancialYearSettingsClient(this);
     this.GroupAccounts = new GroupAccountsClient(this);
+    this.InvoiceAddresses = new InvoiceAddressesClient(this);
     this.InvoiceHistory = new InvoiceHistoryClient(this);
+    this.InvoiceLines = new InvoiceLinesClient(this);
     this.Invoices = new InvoicesClient(this);
     this.Leads = new LeadsClient(this);
+    this.MagicLinks = new MagicLinksClient(this);
     this.Notes = new NotesClient(this);
-    this.PaymentApplications = new PaymentApplicationsClient(this);
     this.Payments = new PaymentsClient(this);
-    this.Profiles = new ProfilesClient(this);
+    this.PaymentsApplied = new PaymentsAppliedClient(this);
+    this.ProfilesAccounting = new ProfilesAccountingClient(this);
+    this.ProfilesAccountingContacts = new ProfilesAccountingContactsClient(this);
+    this.ProfilesCompanies = new ProfilesCompaniesClient(this);
     this.Provisioning = new ProvisioningClient(this);
     this.Reports = new ReportsClient(this);
     this.Status = new StatusClient(this);
     this.Sync = new SyncClient(this);
+    this.Transactions = new TransactionsClient(this);
+    this.Transcriptions = new TranscriptionsClient(this);
     this.UserAccounts = new UserAccountsClient(this);
     this.UserRoles = new UserRolesClient(this);
     this.WebhookRules = new WebhookRulesClient(this);

@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -24,6 +24,16 @@ export type CreditMemoInvoiceModel = {
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
+
+  /**
+   * The base currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * The currency code of the credit memo invoice.
+   */
+  currencyCode: string | null;
 
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -50,6 +60,11 @@ export type CreditMemoInvoiceModel = {
    * Amount applied to credit memo.
    */
   creditMemoAppliedAmount: number;
+
+  /**
+   * The amount applied to credit memo in the group's base currency.
+   */
+  baseCurrencyCreditMemoAppliedAmount: number;
 
   /**
    * An additional reference code that is sometimes used to identify this invoice.
@@ -81,4 +96,14 @@ export type CreditMemoInvoiceModel = {
    * The remaining balance value of this invoice.
    */
   outstandingBalanceAmount: number | null;
+
+  /**
+   * The total value of this invoice, inclusive of all taxes and line items in the group's base currency.
+   */
+  baseCurrencyTotalAmount: number | null;
+
+  /**
+   * The remaining balance value of this invoice in the group's base currency.
+   */
+  baseCurrencyOutstandingBalanceAmount: number | null;
 };

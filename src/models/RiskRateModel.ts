@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -26,6 +26,11 @@ export type RiskRateModel = {
   groupKey: string;
 
   /**
+   * The base currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
    * The month the risk rate was calculated for
    */
   reportDate: string;
@@ -41,7 +46,7 @@ export type RiskRateModel = {
   totalInvoiceCount: number;
 
   /**
-   * The sum of the total amount for invoices in the calculation month
+   * The sum of the total amount for invoices in the calculation month in the group's base currency.
    */
   totalInvoiceAmount: number;
 
@@ -51,7 +56,7 @@ export type RiskRateModel = {
   atRiskCount: number;
 
   /**
-   * The sum of the outstanding balance of open invoices over 90 days from the calculation month
+   * The sum of the outstanding balance of open invoices over 90 days from the calculation month in the group's base currency.
    */
   atRiskAmount: number;
 
