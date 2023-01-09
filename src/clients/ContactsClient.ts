@@ -1,20 +1,21 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 import { LockstepApi } from "..";
 import { LockstepResponse } from "..";
 import { ContactModel } from "..";
-import { ActionResultModel } from "..";
+import { DeleteResult } from "..";
+import { BulkDeleteRequestModel } from "..";
 import { FetchResult } from "..";
 
 export class ContactsClient {
@@ -61,15 +62,15 @@ export class ContactsClient {
   }
 
   /**
-   * Disable the Contact referred to by this unique identifier.
+   * Delete the Contact referred to by this unique identifier.
    *
    * A Contact contains information about a person or role within a Company. You can use Contacts to track information about who is responsible for a specific project, who handles invoices, or information about which role at a particular customer or vendor you should speak with about invoices.
    *
-   * @param id The unique Lockstep Platform ID number of the Contact to disable; NOT the customer's ERP key
+   * @param id The unique Lockstep Platform ID number of the Contact to delete; NOT the customer's ERP key
    */
-  disableContact(id: string): Promise<LockstepResponse<ActionResultModel>> {
+  deleteContact(id: string): Promise<LockstepResponse<DeleteResult>> {
     const url = `/api/v1/Contacts/${id}`;
-    return this.client.request<ActionResultModel>("delete", url, null, null);
+    return this.client.request<DeleteResult>("delete", url, null, null);
   }
 
   /**
@@ -85,6 +86,18 @@ export class ContactsClient {
   }
 
   /**
+   * Delete the Contacts referred to by these unique identifiers.
+   *
+   * A Contact contains information about a person or role within a Company. You can use Contacts to track information about who is responsible for a specific project, who handles invoices, or information about which role at a particular customer or vendor you should speak with about invoices.
+   *
+   * @param body The unique Lockstep Platform ID numbers of the Contacts to delete; NOT the customer's ERP keys
+   */
+  deleteContacts(body: BulkDeleteRequestModel): Promise<LockstepResponse<DeleteResult>> {
+    const url = `/api/v1/Contacts`;
+    return this.client.request<DeleteResult>("delete", url, null, body);
+  }
+
+  /**
    * Queries Contacts for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
    *
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
@@ -94,7 +107,7 @@ export class ContactsClient {
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes
    * @param order The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+   * @param pageSize The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
   queryContacts(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<ContactModel>>> {

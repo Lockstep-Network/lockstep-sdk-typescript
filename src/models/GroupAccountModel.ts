@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -39,6 +39,11 @@ export type GroupAccountModel = {
    * The CompanyId of the Company the group is associated with
    */
   groupCompanyId: string;
+
+  /**
+   * Base Currency of the group
+   */
+  baseCurrencyCode: string | null;
 
   /**
    * The active status of the group

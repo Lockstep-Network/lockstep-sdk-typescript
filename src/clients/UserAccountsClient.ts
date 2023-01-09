@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -21,6 +21,7 @@ import { InviteDataModel } from "..";
 import { TransferOwnerModel } from "..";
 import { TransferOwnerSubmitModel } from "..";
 import { FetchResult } from "..";
+import { UserDataResponseModel } from "..";
 
 export class UserAccountsClient {
   private readonly client: LockstepApi;
@@ -78,23 +79,6 @@ export class UserAccountsClient {
   }
 
   /**
-   * Reenable the user referred to by this unique identifier.
-   *
-   * A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
-   *
-   * @param id The unique Lockstep Platform ID number of this User
-   */
-  reenableUser(id?: string): Promise<LockstepResponse<ActionResultModel>> {
-    const url = `/api/v1/UserAccounts/reenable`;
-    const options = {
-      params: {
-        id,
-      },
-    };
-    return this.client.request<ActionResultModel>("post", url, options, null);
-  }
-
-  /**
    * Invite a user with the specified email to join your accounting group. The user will receive an email to set up their account.
    *
    * A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
@@ -141,7 +125,7 @@ export class UserAccountsClient {
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields, AccountingRole
    * @param order The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+   * @param pageSize The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
   queryUsers(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<UserAccountModel>>> {
@@ -173,5 +157,20 @@ export class UserAccountsClient {
       },
     };
     return this.client.request<UserAccountModel>("post", url, options, null);
+  }
+
+  /**
+   * Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.
+   *
+   * @param include The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case in storage. Possible values are: UTM
+   */
+  getUserData(include: string[]): Promise<LockstepResponse<UserDataResponseModel>> {
+    const url = `/api/v1/UserAccounts/user-data`;
+    const options = {
+      params: {
+        include,
+      },
+    };
+    return this.client.request<UserDataResponseModel>("get", url, options, null);
   }
 }

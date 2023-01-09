@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -119,7 +119,7 @@ export class ReportsClient {
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
-   * @param pageSize The page size for results (default 200, maximum of 10,000)
+   * @param pageSize The page size for results (default 250, maximum of 500)
    * @param pageNumber The page number for results (default 0)
    */
   payablesComingDueSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<PayablesComingDueModel>>> {
@@ -377,10 +377,10 @@ export class ReportsClient {
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
    * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
-   * @param pageSize The page size for results (default 200, maximum of 10,000)
+   * @param pageSize The page size for results (default 250, maximum of 500)
    * @param pageNumber The page number for results (default 0)
    */
-  daysPayableOutstandingSummary(reportDate: string, filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<DpoSummaryModel[]>> {
+  daysPayableOutstandingSummary(reportDate: string, filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<DpoSummaryModel>>> {
     const url = `/api/v1/Reports/daily-payable-outstanding-summary`;
     const options = {
       params: {
@@ -392,7 +392,7 @@ export class ReportsClient {
         pageNumber,
       },
     };
-    return this.client.request<DpoSummaryModel[]>("get", url, options, null);
+    return this.client.request<FetchResult<DpoSummaryModel>>("get", url, options, null);
   }
 
   /**
@@ -402,13 +402,13 @@ export class ReportsClient {
    *
    * @param reportDate The date the outstanding values are calculated on. Should be either the current day or the end of a previous quarter.
    */
-  daysPayableOutstandingSummaryTotal(reportDate: string): Promise<LockstepResponse<DpoSummaryGroupTotalModel[]>> {
+  daysPayableOutstandingSummaryTotal(reportDate: string): Promise<LockstepResponse<DpoSummaryGroupTotalModel>> {
     const url = `/api/v1/Reports/daily-payable-outstanding-summary-total`;
     const options = {
       params: {
         reportDate,
       },
     };
-    return this.client.request<DpoSummaryGroupTotalModel[]>("get", url, options, null);
+    return this.client.request<DpoSummaryGroupTotalModel>("get", url, options, null);
   }
 }

@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -82,6 +82,11 @@ export type AppEnrollmentModel = {
    * Flag indicating if the Sync process should be ran on the specified schedule
    */
   syncScheduleIsActive: boolean;
+
+  /**
+   * Flag indicating if the App Enrollment is currently being deleted from the Platform.
+   */
+  isDeleted: boolean;
 
   /**
    * The Application to which this AppEnrollment belongs.  Contains general name, description,

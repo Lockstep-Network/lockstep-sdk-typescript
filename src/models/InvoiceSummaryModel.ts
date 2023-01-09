@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -68,6 +68,11 @@ export type InvoiceSummaryModel = {
   paymentDueDate: string | null;
 
   /**
+   * The currency code for the invoice.
+   */
+  currencyCode: string | null;
+
+  /**
    * The total amount of the Invoice.
    */
   invoiceAmount: number | null;
@@ -76,6 +81,21 @@ export type InvoiceSummaryModel = {
    * The remaining balance value of this invoice.
    */
   outstandingBalance: number | null;
+
+  /**
+   * The group's base currency code.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * The invoice amount in the group's base currency
+   */
+  baseCurrencyInvoiceAmount: number | null;
+
+  /**
+   * The outstanding balance amount in the group's base currency
+   */
+  baseCurrencyOutstandingBalance: number | null;
 
   /**
    * A code identifying the type of this Invoice.
@@ -93,6 +113,17 @@ export type InvoiceSummaryModel = {
   daysPastDue: number | null;
 
   /**
+   * The number of payments associated to this invoice.
+   */
+  paymentCount: number;
+
+  /**
+   * Specific invoices have support for pdf retrieval from their respective erp. When this flag is true, an additional
+   * call to Invoices/{id}/pdf can be made to retrieve a pdf directly from the erp.
+   */
+  supportsErpPdfRetrieval: boolean;
+
+  /**
    * The memo text of the payments associated to this invoice.
    */
   paymentNumbers: string[] | null;
@@ -101,4 +132,9 @@ export type InvoiceSummaryModel = {
    * The ids of the payments associated to this invoice.
    */
   paymentIds: string[] | null;
+
+  /**
+   * The modified date of the invoice.
+   */
+  modified: string;
 };

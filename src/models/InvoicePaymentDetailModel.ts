@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -24,6 +24,16 @@ export type InvoicePaymentDetailModel = {
    * For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
    */
   groupKey: string;
+
+  /**
+   * The base currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * The payment's currency code.
+   */
+  currencyCode: string | null;
 
   /**
    * The unique identifier of this PaymentApplied record.
@@ -51,6 +61,11 @@ export type InvoicePaymentDetailModel = {
   paymentAppliedAmount: number;
 
   /**
+   * Amount applied to Invoice in the group's base currency.
+   */
+  baseCurrencyPaymentAppliedAmount: number;
+
+  /**
    * An additional reference code that is sometimes used to identify this Payment.
    * The meaning of this field is specific to the ERP or accounting system used by the user.
    */
@@ -70,4 +85,14 @@ export type InvoicePaymentDetailModel = {
    * The remaining balance value of this Payment.
    */
   unappliedAmount: number | null;
+
+  /**
+   * The total value of this Payment in the group's base currency.
+   */
+  baseCurrencyPaymentAmount: number | null;
+
+  /**
+   * The remaining balance value of this Payment in the group's base currency.
+   */
+  baseCurrencyUnappliedAmount: number | null;
 };

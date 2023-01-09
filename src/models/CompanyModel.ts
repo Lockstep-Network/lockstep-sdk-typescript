@@ -1,16 +1,17 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { ViewBoxSettingsModel } from "..";
 import { NoteModel } from "..";
 import { AttachmentModel } from "..";
 import { ContactModel } from "..";
@@ -64,13 +65,6 @@ export type CompanyModel = {
    * * `CustomerVendor` - Both a customer and a vendor.
    */
   companyType: string | null;
-
-  /**
-   * The status of the company.  Companies can be either `Active` or `Inactive`.  When matched to a
-   * Lockstep corporate profile, this value will change to reflect that this record will be kept
-   * in sync with that company's identity.
-   */
-  companyStatus: string | null;
 
   /**
    * If this business entity is part of an organization, this value is non-null and it is set
@@ -247,6 +241,11 @@ export type CompanyModel = {
    * The public url slug for the Company.
    */
   publicUrlSlug: string | null;
+
+  /**
+   * View box settings for the company logo.
+   */
+  viewBoxSettings: ViewBoxSettingsModel | null;
 
   /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

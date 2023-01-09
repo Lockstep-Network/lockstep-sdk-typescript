@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -61,6 +61,11 @@ export type PaymentDetailModel = {
   email: string | null;
 
   /**
+   * The currency code of the payment.
+   */
+  currencyCode: string | null;
+
+  /**
    * Total amount of this Payment.
    */
   paymentAmount: number;
@@ -69,6 +74,21 @@ export type PaymentDetailModel = {
    * Unapplied balance of this Payment.
    */
   unappliedAmount: number;
+
+  /**
+   * The base currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * The payment amount in the group's base currency.
+   */
+  baseCurrencyPaymentAmount: number;
+
+  /**
+   * The payment amount in the group's base currency.
+   */
+  baseCurrencyUnappliedAmount: number;
 
   /**
    * The type of payment, AR Payment or AP Payment.

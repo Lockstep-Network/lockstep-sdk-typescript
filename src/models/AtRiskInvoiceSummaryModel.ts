@@ -1,13 +1,13 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -67,6 +67,11 @@ export type AtRiskInvoiceSummaryModel = {
   paymentDueDate: string | null;
 
   /**
+   * The currency code of the invoice
+   */
+  currencyCode: string | null;
+
+  /**
    * The total amount of the Invoice.
    */
   invoiceAmount: number | null;
@@ -75,6 +80,21 @@ export type AtRiskInvoiceSummaryModel = {
    * The remaining balance value of this invoice.
    */
   outstandingBalance: number | null;
+
+  /**
+   * The currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * The total amount of the Invoice in the group's currency.
+   */
+  baseCurrencyInvoiceAmount: number | null;
+
+  /**
+   * The remaining balance value of this invoice in the group's currency.
+   */
+  baseCurrencyOutstandingBalance: number | null;
 
   /**
    * A code identifying the type of this Invoice.

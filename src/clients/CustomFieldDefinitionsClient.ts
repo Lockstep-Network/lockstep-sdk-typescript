@@ -1,19 +1,20 @@
 /**
  * Lockstep Platform SDK for TypeScript
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 import { LockstepApi } from "..";
 import { LockstepResponse } from "..";
 import { CustomFieldDefinitionModel } from "..";
+import { ActionResultModel } from "..";
 import { FetchResult } from "..";
 
 export class CustomFieldDefinitionsClient {
@@ -72,9 +73,9 @@ export class CustomFieldDefinitionsClient {
    *
    * @param id The unique Lockstep Platform ID number of the Custom Field Definition to delete
    */
-  deleteFieldDefinition(id: string): Promise<LockstepResponse<CustomFieldDefinitionModel>> {
+  deleteFieldDefinition(id: string): Promise<LockstepResponse<ActionResultModel>> {
     const url = `/api/v1/CustomFieldDefinitions/${id}`;
-    return this.client.request<CustomFieldDefinitionModel>("delete", url, null, null);
+    return this.client.request<ActionResultModel>("delete", url, null, null);
   }
 
   /**
@@ -103,7 +104,7 @@ export class CustomFieldDefinitionsClient {
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param include To fetch additional data on this object, specify the list of elements to retrieve. No additional data collections are currently defined on this object, but may be supported in the future.
    * @param order The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param pageSize The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+   * @param pageSize The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    */
   queryFieldDefinitions(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> {
