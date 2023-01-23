@@ -31,7 +31,12 @@ export type PayablesSummaryReportModel = {
   timeframe: number;
 
   /**
-   * Amount of payments made based in the timeframe
+   * The base currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * Amount of payments made based in the timeframe in the group's base currency.
    */
   totalPaymentsAmount: number;
 
@@ -41,7 +46,7 @@ export type PayablesSummaryReportModel = {
   totalPaymentsCount: number;
 
   /**
-   * Amount of bills received based in the timeframe
+   * Amount of bills received based in the timeframe in the group's base currency.
    */
   totalAmountBilled: number;
 

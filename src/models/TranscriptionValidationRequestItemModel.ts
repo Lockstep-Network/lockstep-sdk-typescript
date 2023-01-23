@@ -15,7 +15,7 @@
 /**
  * Represents a transcription validation request item to be validated.
  */
-export type TranscriptionValidationRequestItem = {
+export type TranscriptionValidationRequestItemModel = {
 
   /**
    * The unique identifier of the transcription validation request item.

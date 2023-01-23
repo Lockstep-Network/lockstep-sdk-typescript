@@ -56,6 +56,11 @@ export type CompanyDetailsPaymentModel = {
   invoiceReferenceCode: string | null;
 
   /**
+   * The currency code of the invoice the payment is associated with.
+   */
+  invoiceCurrencyCode: string | null;
+
+  /**
    * Invoice total amount payment is associated with
    */
   invoiceTotalAmount: number;
@@ -64,6 +69,11 @@ export type CompanyDetailsPaymentModel = {
    * Date payment placed
    */
   paymentDate: string;
+
+  /**
+   * The currency code of the payment.
+   */
+  paymentCurrencyCode: string | null;
 
   /**
    * Amount payment was made for

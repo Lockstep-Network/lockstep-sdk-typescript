@@ -41,7 +41,12 @@ export type PayablesComingDueHeaderModel = {
   percentageOfTotal: number;
 
   /**
-   * Total amount due for this time period
+   * The group's base currency code.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * Total amount due for this time period in the group's base currency.
    */
   totalAmountDue: number;
 

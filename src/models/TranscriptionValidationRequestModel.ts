@@ -11,12 +11,12 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { TranscriptionValidationRequestItem } from "..";
+import { TranscriptionValidationRequestItemModel } from "..";
 
 /**
  * Represents a transcription validation request that is used to validate if file is of a specific type.
  */
-export type TranscriptionValidationRequest = {
+export type TranscriptionValidationRequestModel = {
 
   /**
    * The unique identifier of the transcription validation request.
@@ -63,5 +63,5 @@ export type TranscriptionValidationRequest = {
    * All items attached to this transcription validation request.
    * To retrieve this collection, specify `Items` in the "Include" parameter for your query.
    */
-  items: TranscriptionValidationRequestItem[] | null;
+  items: TranscriptionValidationRequestItemModel[] | null;
 };
