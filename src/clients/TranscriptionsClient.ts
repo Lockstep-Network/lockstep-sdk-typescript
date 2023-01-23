@@ -112,58 +112,58 @@ export class TranscriptionsClient {
   }
 
   /**
-   * Retrieves the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+   * Retrieves the TranscriptionValidationRequestItemModel specified by this unique identifier.
    *
-   * A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+   * A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
    *
-   * @param body The LockstepApi2.Models.TranscriptionValidationRequestItemModels to add to an existing LockstepApi2.Models.TranscriptionValidationRequestItemModel
+   * @param body The TranscriptionValidationRequestItemModels to add to an existing TranscriptionValidationRequestItemModel
    */
-  createsaLockstepApi2.Models.TranscriptionValidationRequestItemModel(body: TranscriptionRequestSubmit[]): Promise<LockstepResponse<TranscriptionValidationRequestItemModel[]>> {
+  createsaTranscriptionValidationRequestItemModel(body: TranscriptionRequestSubmit[]): Promise<LockstepResponse<TranscriptionValidationRequestItemModel[]>> {
     const url = `/api/v1/Transcriptions/validation-items`;
     return this.client.request<TranscriptionValidationRequestItemModel[]>("post", url, null, body);
   }
 
   /**
-   * Retrieves the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+   * Retrieves the TranscriptionValidationRequestItemModel specified by this unique identifier.
    *
-   * A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+   * A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
    *
-   * @param id The unique Lockstep Platform ID number of the LockstepApi2.Models.TranscriptionValidationRequestItemModel
+   * @param id The unique Lockstep Platform ID number of the TranscriptionValidationRequestItemModel
    */
-  retrieveaLockstepApi2.Models.TranscriptionValidationRequestItemModel(id: string): Promise<LockstepResponse<TranscriptionValidationRequestItemModel>> {
+  retrieveaTranscriptionValidationRequestItemModel(id: string): Promise<LockstepResponse<TranscriptionValidationRequestItemModel>> {
     const url = `/api/v1/Transcriptions/validation-items/${id}`;
     return this.client.request<TranscriptionValidationRequestItemModel>("get", url, null, null);
   }
 
   /**
-   * Updates the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+   * Updates the TranscriptionValidationRequestItemModel specified by this unique identifier.
    *
    * The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
    *
-   * A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+   * A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
    *
-   * @param id The unique Lockstep Platform ID number of the LockstepApi2.Models.TranscriptionValidationRequestItemModel
-   * @param body A list of changes to apply to this LockstepApi2.Models.TranscriptionValidationRequestItemModel
+   * @param id The unique Lockstep Platform ID number of the TranscriptionValidationRequestItemModel
+   * @param body A list of changes to apply to this TranscriptionValidationRequestItemModel
    */
-  updateaLockstepApi2.Models.TranscriptionValidationRequestItemModel(id: string, body: object): Promise<LockstepResponse<TranscriptionValidationRequestItemModel>> {
+  updateaTranscriptionValidationRequestItemModel(id: string, body: object): Promise<LockstepResponse<TranscriptionValidationRequestItemModel>> {
     const url = `/api/v1/Transcriptions/validation-items/${id}`;
     return this.client.request<TranscriptionValidationRequestItemModel>("patch", url, null, body);
   }
 
   /**
-   * Deletes the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+   * Deletes the TranscriptionValidationRequestItemModel specified by this unique identifier.
    *
-   * A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+   * A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
    *
-   * @param id The unique Lockstep Platform ID number of the LockstepApi2.Models.TranscriptionValidationRequestItemModel
+   * @param id The unique Lockstep Platform ID number of the TranscriptionValidationRequestItemModel
    */
-  deleteaLockstepApi2.Models.TranscriptionValidationRequestItemModel(id: string): Promise<LockstepResponse<DeleteResult>> {
+  deleteaTranscriptionValidationRequestItemModel(id: string): Promise<LockstepResponse<DeleteResult>> {
     const url = `/api/v1/Transcriptions/validation-items/${id}`;
     return this.client.request<DeleteResult>("delete", url, null, null);
   }
 
   /**
-   * Queries LockstepApi2.Models.TranscriptionValidationRequestItemModels for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
+   * Queries TranscriptionValidationRequestItemModels for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
    *
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
    *
