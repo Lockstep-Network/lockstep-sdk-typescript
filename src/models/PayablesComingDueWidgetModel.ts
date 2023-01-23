@@ -32,7 +32,12 @@ export type PayablesComingDueWidgetModel = {
   date: string;
 
   /**
-   * Total amount due for this time period
+   * The group's base currency code.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * Total amount due for this time period at the group's base currency.
    */
   amountDue: number;
 };

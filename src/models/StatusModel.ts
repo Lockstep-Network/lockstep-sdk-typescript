@@ -12,6 +12,7 @@
  */
 
 import { MagicLinkStatusModel } from "..";
+import { SupportAccessModel } from "..";
 import { UserGroupModel } from "..";
 
 /**
@@ -98,6 +99,16 @@ export type StatusModel = {
    * Magic link information about the user
    */
   magicLink: MagicLinkStatusModel | null;
+
+  /**
+   * Information allowing Lockstep to offer direct support to the user
+   */
+  supportAccess: SupportAccessModel | null;
+
+  /**
+   * True if the user is being impersonated by the Lockstep support team.
+   */
+  isImpersonated: boolean;
 
   /**
    * Statuses for the dependencies of this api.

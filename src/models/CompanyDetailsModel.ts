@@ -107,12 +107,17 @@ export type CompanyDetailsModel = {
   outstandingInvoices: number;
 
   /**
-   * Company total outstanding invoice amount
+   * The group's base currency code.
+   */
+  groupBaseCurrencyCode: string | null;
+
+  /**
+   * Company total outstanding invoice amount in the group's base currency.
    */
   outstandingAmount: number;
 
   /**
-   * Company total past due amount
+   * Company total past due amount in the group's base currency.
    */
   amountPastDue: number;
 

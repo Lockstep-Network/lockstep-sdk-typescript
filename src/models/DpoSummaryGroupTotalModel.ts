@@ -36,7 +36,12 @@ export type DpoSummaryGroupTotalModel = {
   bills: number;
 
   /**
-   * The total amount outstanding
+   * The group's base currency code
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * The total amount outstanding at the group's base currency.
    */
   amountOutstanding: number;
 

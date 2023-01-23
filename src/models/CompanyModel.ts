@@ -243,6 +243,21 @@ export type CompanyModel = {
   publicUrlSlug: string | null;
 
   /**
+   * State Tax ID
+   */
+  stateTaxId: string | null;
+
+  /**
+   * The state where the company was registered.
+   */
+  stateOfIncorporation: string | null;
+
+  /**
+   * Linkedin Url
+   */
+  linkedInUrlSlug: string | null;
+
+  /**
    * View box settings for the company logo.
    */
   viewBoxSettings: ViewBoxSettingsModel | null;

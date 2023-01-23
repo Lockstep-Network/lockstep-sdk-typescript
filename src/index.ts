@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.1.3
+ * @version    2023.3.18
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -73,6 +73,7 @@ export { ArHeaderInfoModel } from "./models/ArHeaderInfoModel";
 export { AtRiskInvoiceSummaryModel } from "./models/AtRiskInvoiceSummaryModel";
 export { AttachmentHeaderInfoModel } from "./models/AttachmentHeaderInfoModel";
 export { AttachmentModel } from "./models/AttachmentModel";
+export { BaseCurrencySyncModel } from "./models/BaseCurrencySyncModel";
 export { BatchSyncModel } from "./models/BatchSyncModel";
 export { BulkCurrencyConversionModel } from "./models/BulkCurrencyConversionModel";
 export { BulkDeleteRequestModel } from "./models/BulkDeleteRequestModel";
@@ -150,6 +151,8 @@ export { RiskRateModel } from "./models/RiskRateModel";
 export { StateModel } from "./models/StateModel";
 export { StatusModel } from "./models/StatusModel";
 export { SummaryAgingTotalsModel } from "./models/SummaryAgingTotalsModel";
+export { SupportAccessModel } from "./models/SupportAccessModel";
+export { SupportAccessRequest } from "./models/SupportAccessRequest";
 export { SyncEntityResultModel } from "./models/SyncEntityResultModel";
 export { SyncRequestModel } from "./models/SyncRequestModel";
 export { SyncSubmitModel } from "./models/SyncSubmitModel";
@@ -158,8 +161,8 @@ export { TransactionModel } from "./models/TransactionModel";
 export { TransactionModelTransactionSummaryTotalModelSummaryFetchResult } from "./models/TransactionModelTransactionSummaryTotalModelSummaryFetchResult";
 export { TransactionSummaryTotalModel } from "./models/TransactionSummaryTotalModel";
 export { TranscriptionRequestSubmit } from "./models/TranscriptionRequestSubmit";
-export { TranscriptionValidationRequest } from "./models/TranscriptionValidationRequest";
-export { TranscriptionValidationRequestItem } from "./models/TranscriptionValidationRequestItem";
+export { TranscriptionValidationRequestItemModel } from "./models/TranscriptionValidationRequestItemModel";
+export { TranscriptionValidationRequestModel } from "./models/TranscriptionValidationRequestModel";
 export { TransferOwnerModel } from "./models/TransferOwnerModel";
 export { TransferOwnerSubmitModel } from "./models/TransferOwnerSubmitModel";
 export { UriModel } from "./models/UriModel";

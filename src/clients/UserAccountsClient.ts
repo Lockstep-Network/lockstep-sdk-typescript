@@ -22,6 +22,8 @@ import { TransferOwnerModel } from "..";
 import { TransferOwnerSubmitModel } from "..";
 import { FetchResult } from "..";
 import { UserDataResponseModel } from "..";
+import { SupportAccessModel } from "..";
+import { SupportAccessRequest } from "..";
 
 export class UserAccountsClient {
   private readonly client: LockstepApi;
@@ -162,7 +164,7 @@ export class UserAccountsClient {
   /**
    * Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.
    *
-   * @param include The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case in storage. Possible values are: UTM
+   * @param include The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case. Possible values are: UTM
    */
   getUserData(include: string[]): Promise<LockstepResponse<UserDataResponseModel>> {
     const url = `/api/v1/UserAccounts/user-data`;
@@ -172,5 +174,19 @@ export class UserAccountsClient {
       },
     };
     return this.client.request<UserDataResponseModel>("get", url, options, null);
+  }
+
+  /**
+   * Set support access for the calling user.
+   *
+   * Support access allows Lockstep to access the user's account to troubleshoot issues. Access is granted for a limited time, can be revoked at any time, and requires a code to verify the access.
+   *
+   * Every call to this API will regenerate the support access code.
+   *
+   * @param body Documentation pending
+   */
+  setSupportAccess(body: SupportAccessRequest): Promise<LockstepResponse<SupportAccessModel>> {
+    const url = `/api/v1/UserAccounts/support-access`;
+    return this.client.request<SupportAccessModel>("post", url, null, body);
   }
 }

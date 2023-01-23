@@ -36,4 +36,9 @@ export type TranscriptionRequestSubmit = {
    * The type of LockstepApi2.Models.TranscriptionRequestSubmit.InvoiceTypeCode requested to transcribe content to.
    */
   invoiceTypeCode: string | null;
+
+  /**
+   * Group account transcription validation request item is associated with.
+   */
+  transcriptionValidationRequestId: string | null;
 };

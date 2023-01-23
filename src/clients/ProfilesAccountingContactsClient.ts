@@ -104,4 +104,16 @@ export class ProfilesAccountingContactsClient {
     };
     return this.client.request<FetchResult<AccountingProfileContactModel>>("get", url, options, null);
   }
+
+  /**
+   * Updates an accounting profile contact that matches the specified id with the primary contact attached to the accounting profile
+   *
+   * An Accounting Profile Contact has a link to a Contact that is associated with your company's Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.
+   *
+   * @param id The unique Lockstep Platform ID number of the Accounting Profile Contact to update
+   */
+  swapSecondaryandPrimaryContact(id: string): Promise<LockstepResponse<AccountingProfileContactModel>> {
+    const url = `/api/v1/profiles/accounting/contacts/${id}/primary`;
+    return this.client.request<AccountingProfileContactModel>("patch", url, null, null);
+  }
 }
