@@ -17,22 +17,26 @@ import { CustomFieldDefinitionModel } from "..";
 import { CustomFieldValueModel } from "..";
 
 /**
- * An Accounting Profile is a child of a Company Profile, and collectively,
- * they comprise the identity and necessary information for an accounting  team
- * to work with trading partners, financial institutions, auditors, and others.
- * You can use Accounting Profiles to define an accounting function by what
- * the function does and how to interface with the function.
+ * A Contact contains information about a person or role within a Company.
+ * You can use Contacts to track information about who is responsible for a specific project,
+ * who handles invoices, or information about which role at a particular customer or
+ * vendor you should speak with about invoices.
+ *
+ * An Accounting Profile Contact has a link to a Contact that is associated with your company's
+ * Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.
  */
-export type AccountingProfileModel = {
+export type AccountingProfileContactResultModel = {
 
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
    * added to the Lockstep platform.
+   *
+   * For the ID of this record in its originating financial system, see `ErpKey`.
    */
-  accountingProfileId: string;
+  contactId: string;
 
   /**
-   * The ID of the company profile to which this accounting profile belongs.
+   * The ID of the company to which this contact belongs.
    */
   companyId: string;
 
@@ -45,25 +49,50 @@ export type AccountingProfileModel = {
   groupKey: string;
 
   /**
-   * The name of the accounting profile.
+   * The unique ID of this record as it was known in its originating financial system.
+   *
+   * If this contact record was imported from a financial system, it will have the value `ErpKey`
+   * set to the original primary key number of the record as it was known in the originating financial
+   * system.  If this record was not imported, this value will be `null`.
+   *
+   * For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
    */
-  name: string;
+  erpKey: string | null;
 
   /**
-   * The type of the accounting profile.
-   * Some examples include 'AR', 'AP', 'AR+AP', 'General Accounting', 'Treasury', 'Payroll', 'Finance'
+   * The name of the contact.
    */
-  type: string;
+  contactName: string | null;
 
   /**
-   * The email address associated with the accounting profile.
+   * A friendly human-readable code that describes this Contact.
    */
-  emailAddress: string;
+  contactCode: string | null;
 
   /**
-   * The phone number associated with the accounting profile.
+   * The title of the contact.
+   */
+  title: string | null;
+
+  /**
+   * The role code for the contact.
+   */
+  roleCode: string | null;
+
+  /**
+   * The email address of the contact.
+   */
+  emailAddress: string | null;
+
+  /**
+   * The phone number of the contact.
    */
   phone: string | null;
+
+  /**
+   * The fax number of the contact.
+   */
+  fax: string | null;
 
   /**
    * The first line of the address.
@@ -88,7 +117,7 @@ export type AccountingProfileModel = {
   /**
    * The state/region of the address.
    */
-  region: string | null;
+  stateRegion: string | null;
 
   /**
    * The postal/zip code of the address.
@@ -96,9 +125,24 @@ export type AccountingProfileModel = {
   postalCode: string | null;
 
   /**
-   * The two character country code of the address.
+   * The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set
    */
-  country: string | null;
+  countryCode: string | null;
+
+  /**
+   * Flag indicating if the contact is active.
+   */
+  isActive: boolean;
+
+  /**
+   * The webpage url of the contact.
+   */
+  webpageUrl: string | null;
+
+  /**
+   * The picture/avatar url of the contact.
+   */
+  pictureUrl: string | null;
 
   /**
    * The date on which this record was created.
@@ -106,7 +150,7 @@ export type AccountingProfileModel = {
   created: string;
 
   /**
-   * The ID of the user who created this accounting profile.
+   * The ID of the user who created this contact.
    */
   createdUserId: string;
 
@@ -116,16 +160,24 @@ export type AccountingProfileModel = {
   modified: string;
 
   /**
-   * The ID of the user who last modified this accounting profile.
+   * The ID of the user who last modified this contact.
    */
   modifiedUserId: string;
+
+  /**
+   * The AppEnrollmentId of the application that imported this record.  For accounts
+   * with more than one financial system connected, this field identifies the originating
+   * financial system that produced this record.  This value is null if this record
+   * was not loaded from an external ERP or financial system.
+   */
+  appEnrollmentId: string | null;
 
   /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
    * `include` parameter when retrieving data.
    *
    * To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-   * endpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For
+   * endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   notes: NoteModel[] | null;
@@ -135,7 +187,7 @@ export type AccountingProfileModel = {
    * the `include` parameter when retrieving data.
    *
    * To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-   * endpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For
+   * endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   attachments: AttachmentModel[] | null;
@@ -145,7 +197,7 @@ export type AccountingProfileModel = {
    * `CustomFieldDefinitions` in the `include` parameter when retrieving data.
    *
    * To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-   * endpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For
+   * endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   customFieldDefinitions: CustomFieldDefinitionModel[] | null;
@@ -155,8 +207,28 @@ export type AccountingProfileModel = {
    * `CustomFieldValues` in the `include` parameter when retrieving data.
    *
    * To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-   * endpoint with the `TableKey` to `AccountingProfile` and the `ObjectKey` set to the `AccountingProfileId` for this record.  For
+   * endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   customFieldValues: CustomFieldValueModel[] | null;
+
+  /**
+   * Determines whether the contact is primary or secondary.
+   */
+  isPrimary: boolean;
+
+  /**
+   * The ID of the profile this contact belongs to.
+   */
+  accountingProfileId: string;
+
+  /**
+   * The ID of the accounting profile contact this contact matches.
+   */
+  accountingProfileContactId: string;
+
+  /**
+   * The Name of the profile this contact belongs to.
+   */
+  name: string | null;
 };

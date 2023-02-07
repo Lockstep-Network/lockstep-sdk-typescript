@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.3.18
+ * @version    2023.5.21
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -20,6 +20,7 @@ export { LockstepResponse } from "./LockstepResponse";
 export { ApiKeysClient } from "./clients/ApiKeysClient";
 export { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient";
 export { ApplicationsClient } from "./clients/ApplicationsClient";
+export { AttachmentLinksClient } from "./clients/AttachmentLinksClient";
 export { AttachmentsClient } from "./clients/AttachmentsClient";
 export { CodeDefinitionsClient } from "./clients/CodeDefinitionsClient";
 export { CompaniesClient } from "./clients/CompaniesClient";
@@ -58,7 +59,9 @@ export { WebhookRulesClient } from "./clients/WebhookRulesClient";
 export { WebhooksClient } from "./clients/WebhooksClient";
 
 export { AccountingProfileContactModel } from "./models/AccountingProfileContactModel";
+export { AccountingProfileContactResultModel } from "./models/AccountingProfileContactResultModel";
 export { AccountingProfileModel } from "./models/AccountingProfileModel";
+export { AccountingProfileRequest } from "./models/AccountingProfileRequest";
 export { ActionResultModel } from "./models/ActionResultModel";
 export { AgingModel } from "./models/AgingModel";
 export { ApAgingHeaderInfoModel } from "./models/ApAgingHeaderInfoModel";
@@ -72,6 +75,7 @@ export { ArAgingHeaderInfoModel } from "./models/ArAgingHeaderInfoModel";
 export { ArHeaderInfoModel } from "./models/ArHeaderInfoModel";
 export { AtRiskInvoiceSummaryModel } from "./models/AtRiskInvoiceSummaryModel";
 export { AttachmentHeaderInfoModel } from "./models/AttachmentHeaderInfoModel";
+export { AttachmentLinkModel } from "./models/AttachmentLinkModel";
 export { AttachmentModel } from "./models/AttachmentModel";
 export { BaseCurrencySyncModel } from "./models/BaseCurrencySyncModel";
 export { BatchSyncModel } from "./models/BatchSyncModel";

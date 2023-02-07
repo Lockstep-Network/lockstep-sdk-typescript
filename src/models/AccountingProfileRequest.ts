@@ -23,7 +23,7 @@ import { CustomFieldValueModel } from "..";
  * You can use Accounting Profiles to define an accounting function by what
  * the function does and how to interface with the function.
  */
-export type AccountingProfileModel = {
+export type AccountingProfileRequest = {
 
   /**
    * The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -159,4 +159,9 @@ export type AccountingProfileModel = {
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   customFieldValues: CustomFieldValueModel[] | null;
+
+  /**
+   * The ID of the primary contact that is linked to this profile.
+   */
+  primaryContactId: string;
 };

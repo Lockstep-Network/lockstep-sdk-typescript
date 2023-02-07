@@ -23,7 +23,7 @@ export type AppEnrollmentReconnectInfo = {
   authCode: string | null;
 
   /**
-   * The OAuth authentication code.
+   * The username for the web services account with access permissions.
    */
   username: string | null;
 
@@ -46,4 +46,9 @@ export type AppEnrollmentReconnectInfo = {
    * The access token secret for the connector enrollment.
    */
   tokenSecret: string | null;
+
+  /**
+   * The OAuth redirect uri.
+   */
+  redirectUri: string | null;
 };

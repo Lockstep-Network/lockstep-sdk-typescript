@@ -15,8 +15,8 @@ import { LockstepApi } from "..";
 import { LockstepResponse } from "..";
 import { AccountingProfileModel } from "..";
 import { ActionResultModel } from "..";
+import { AccountingProfileRequest } from "..";
 import { FetchResult } from "..";
-import { ContactModel } from "..";
 
 export class ProfilesAccountingClient {
   private readonly client: LockstepApi;
@@ -80,7 +80,7 @@ export class ProfilesAccountingClient {
    *
    * @param body The Accounting Profiles to create
    */
-  createAccountingProfiles(body: AccountingProfileModel[]): Promise<LockstepResponse<AccountingProfileModel[]>> {
+  createAccountingProfiles(body: AccountingProfileRequest[]): Promise<LockstepResponse<AccountingProfileModel[]>> {
     const url = `/api/v1/profiles/accounting`;
     return this.client.request<AccountingProfileModel[]>("post", url, null, body);
   }
@@ -110,17 +110,5 @@ export class ProfilesAccountingClient {
       },
     };
     return this.client.request<FetchResult<AccountingProfileModel>>("get", url, options, null);
-  }
-
-  /**
-   * Retrieves all the Contacts associated with the Accounting Profile by this unique identifier, optionally including nested data sets.
-   *
-   * A Contact has a link to a Contact that is associated with your company's Accounting Profile.
-   *
-   * @param id The unique Lockstep Platform ID number of this Accounting Profile
-   */
-  retrieveAllAccountingProfileContacts(id: string): Promise<LockstepResponse<ContactModel[]>> {
-    const url = `/api/v1/profiles/accounting/${id}/contacts/models`;
-    return this.client.request<ContactModel[]>("get", url, null, null);
   }
 }

@@ -68,6 +68,11 @@ export type SyncRequestModel = {
   processResultMessage: string | null;
 
   /**
+   * The number of times this Sync Request has failed
+   */
+  failureCount: number;
+
+  /**
    * A boolean indicating whether a sync from an ERP system should process all the data from the ERP
    * as opposed to just the delta of changes since the previous sync run
    */
