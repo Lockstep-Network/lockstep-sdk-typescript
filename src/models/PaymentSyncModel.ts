@@ -91,12 +91,12 @@ export type PaymentSyncModel = {
   postDate: string;
 
   /**
-   * Total amount of this payment.
+   * Total amount of this payment in the payment's currency.
    */
   paymentAmount: number;
 
   /**
-   * Unapplied balance of this payment.  If this amount is nonzero, the field `IsOpen` will be true.
+   * Unapplied balance of this payment in the payment's currency.  If this amount is nonzero, the field `IsOpen` will be true.
    */
   unappliedAmount: number;
 
@@ -142,4 +142,14 @@ export type PaymentSyncModel = {
    * The Currency Rate used to get from the account's base currency to the payment amount.
    */
   currencyRate: number;
+
+  /**
+   * Total amount of this payment in the erp's base currency.
+   */
+  baseCurrencyPaymentAmount: number;
+
+  /**
+   * Unapplied balance of this payment in the erp's base currency.  If this amount is nonzero, the field `IsOpen` will be true.
+   */
+  baseCurrencyUnappliedAmount: number;
 };

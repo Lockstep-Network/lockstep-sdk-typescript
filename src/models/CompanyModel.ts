@@ -258,6 +258,16 @@ export type CompanyModel = {
   linkedInUrlSlug: string | null;
 
   /**
+   * This flag indicates whether the company is verified.
+   */
+  isVerified: boolean;
+
+  /**
+   * The date this company was last verified.
+   */
+  lastVerifiedDate: string | null;
+
+  /**
    * View box settings for the company logo.
    */
   viewBoxSettings: ViewBoxSettingsModel | null;

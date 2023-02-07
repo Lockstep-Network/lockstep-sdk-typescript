@@ -17,13 +17,13 @@ import { SummaryAgingTotalsModel } from "..";
 
 export type PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult = {
 
+  records: PaymentSummaryModel[] | null;
+
   totalCount: number | null;
 
   pageSize: number | null;
 
   pageNumber: number | null;
-
-  records: PaymentSummaryModel[] | null;
 
   /**
    * The totals for a Payment Summary

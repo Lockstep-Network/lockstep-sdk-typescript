@@ -129,24 +129,24 @@ export type InvoiceModel = {
   currencyCode: string | null;
 
   /**
-   * The total value of this invoice, inclusive of all taxes and line items.
+   * The total value of this invoice, inclusive of all taxes and line items in it's tendered currency.
    */
-  totalAmount: number | null;
+  totalAmount: number;
 
   /**
-   * The total sales (or transactional) tax calculated for this invoice.
+   * The total sales (or transactional) tax calculated for this invoice in it's tendered currency.
    */
-  salesTaxAmount: number | null;
+  salesTaxAmount: number;
 
   /**
-   * The total discounts given by the seller to the buyer on this invoice.
+   * The total discounts given by the seller to the buyer on this invoice in it's tendered currency.
    */
-  discountAmount: number | null;
+  discountAmount: number;
 
   /**
-   * The remaining balance value of this invoice.
+   * The remaining balance value of this invoice in it's tendered currency.
    */
-  outstandingBalanceAmount: number | null;
+  outstandingBalanceAmount: number;
 
   /**
    * The reporting date for this invoice.
@@ -246,6 +246,26 @@ export type InvoiceModel = {
    * The Currency Rate used to get from the account's base currency to the invoice amount.
    */
   currencyRate: number;
+
+  /**
+   * The total value of this invoice, inclusive of all taxes and line items in the group's base currency.
+   */
+  baseCurrencyTotalAmount: number;
+
+  /**
+   * The total sales (or transactional) tax calculated for this invoice in the group's base currency.
+   */
+  baseCurrencySalesTaxAmount: number;
+
+  /**
+   * The total discounts given by the seller to the buyer on this invoice in the group's base currency.
+   */
+  baseCurrencyDiscountAmount: number;
+
+  /**
+   * The remaining balance value of this invoice in the group's base currency.
+   */
+  baseCurrencyOutstandingBalanceAmount: number;
 
   /**
    * All addresses connected to this invoice.

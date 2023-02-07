@@ -122,22 +122,22 @@ export type InvoiceSyncModel = {
   currencyCode: string | null;
 
   /**
-   * The total value of this invoice, inclusive of all taxes and line items.
+   * The total value of this invoice, inclusive of all taxes and line items in the invoice currency.
    */
   totalAmount: number | null;
 
   /**
-   * The total sales (or transactional) tax calculated for this invoice.
+   * The total sales (or transactional) tax calculated for this invoice in the invoice currency.
    */
   salesTaxAmount: number | null;
 
   /**
-   * The total discounts given by the seller to the buyer on this invoice.
+   * The total discounts given by the seller to the buyer on this invoice in the invoice currency.
    */
   discountAmount: number | null;
 
   /**
-   * The remaining balance value of this invoice.
+   * The remaining balance value of this invoice in the invoice currency.
    */
   outstandingBalanceAmount: number | null;
 
@@ -340,4 +340,24 @@ export type InvoiceSyncModel = {
    * The Currency Rate used to get from the account's base currency to the invoice amount.
    */
   currencyRate: number;
+
+  /**
+   * The total value of this invoice, inclusive of all taxes and line items in the erp's base currency.
+   */
+  baseCurrencyTotalAmount: number | null;
+
+  /**
+   * The total sales (or transactional) tax calculated for this invoice in the erp's base currency.
+   */
+  baseCurrencySalesTaxAmount: number | null;
+
+  /**
+   * The total discounts given by the seller to the buyer on this invoice in the erp's base currency.
+   */
+  baseCurrencyDiscountAmount: number | null;
+
+  /**
+   * The remaining balance value of this invoice in the erp's base currency.
+   */
+  baseCurrencyOutstandingBalanceAmount: number | null;
 };

@@ -35,6 +35,11 @@ export type AccountingProfileContactModel = {
   contactId: string;
 
   /**
+   * Determines whether the contact is primary or secondary.
+   */
+  isPrimary: boolean;
+
+  /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
    * account will share the same GroupKey value.  GroupKey values cannot be changed once created.
    *

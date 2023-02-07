@@ -17,13 +17,13 @@ import { SummaryAgingTotalsModel } from "..";
 
 export type TransactionModelTransactionSummaryTotalModelSummaryFetchResult = {
 
+  records: TransactionModel[] | null;
+
   totalCount: number | null;
 
   pageSize: number | null;
 
   pageNumber: number | null;
-
-  records: TransactionModel[] | null;
 
   /**
    * Represents transaction summary information based on the query request within the group account.

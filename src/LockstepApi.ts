@@ -8,13 +8,14 @@
  *
  * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.3.18
+ * @version    2023.5.21
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 import { ApiKeysClient } from ".";
 import { AppEnrollmentsClient } from ".";
 import { ApplicationsClient } from ".";
+import { AttachmentLinksClient } from ".";
 import { AttachmentsClient } from ".";
 import { CodeDefinitionsClient } from ".";
 import { CompaniesClient } from ".";
@@ -80,7 +81,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2023.3.18";
+  private readonly version: string = "2023.5.21";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -90,6 +91,7 @@ export class LockstepApi {
   public readonly ApiKeys: ApiKeysClient;
   public readonly AppEnrollments: AppEnrollmentsClient;
   public readonly Applications: ApplicationsClient;
+  public readonly AttachmentLinks: AttachmentLinksClient;
   public readonly Attachments: AttachmentsClient;
   public readonly CodeDefinitions: CodeDefinitionsClient;
   public readonly Companies: CompaniesClient;
@@ -136,6 +138,7 @@ export class LockstepApi {
     this.ApiKeys = new ApiKeysClient(this);
     this.AppEnrollments = new AppEnrollmentsClient(this);
     this.Applications = new ApplicationsClient(this);
+    this.AttachmentLinks = new AttachmentLinksClient(this);
     this.Attachments = new AttachmentsClient(this);
     this.CodeDefinitions = new CodeDefinitionsClient(this);
     this.Companies = new CompaniesClient(this);
