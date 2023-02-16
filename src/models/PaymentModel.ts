@@ -182,6 +182,12 @@ export type PaymentModel = {
   baseCurrencyUnappliedAmount: number;
 
   /**
+   * The status of this payment within Service Fabric.
+   * "UNAUTHORISED" "PENDING" "PAID" "PAID_OFFLINE" "FAILED" "CANCELLED" "REJECTED" "REFUNDED" "PARTIALLY" "PARTIALLY_REFUNDED"
+   */
+  serviceFabricStatus: string | null;
+
+  /**
    * All applications this payment is associated with.
    * To retrieve this collection, specify `Applications` in the "Include" parameter for your query.
    */

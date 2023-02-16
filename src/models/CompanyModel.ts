@@ -273,6 +273,16 @@ export type CompanyModel = {
   viewBoxSettings: ViewBoxSettingsModel | null;
 
   /**
+   * The unique ID of the Service Fabric organisation to which this record belongs.
+   */
+  serviceFabricOrgId: string | null;
+
+  /**
+   * The unique ID of this record within Service Fabric.
+   */
+  serviceFabricCompanyId: string | null;
+
+  /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
    * `include` parameter when retrieving data.
    *
