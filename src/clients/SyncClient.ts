@@ -59,11 +59,19 @@ export class SyncClient {
    *
    * A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
    *
+   * @param appEnrollmentId The optional existing app enrollment to associate with the data in the zip file.
+   * @param isFullSync True if this is a full sync, false if this is a partial sync. Defaults to false.
    * @param filename The full path of a file to upload to the API
    */
-  uploadSyncFile(filename: string): Promise<LockstepResponse<SyncRequestModel>> {
+  uploadSyncFile(filename: string, appEnrollmentId?: string, isFullSync?: boolean): Promise<LockstepResponse<SyncRequestModel>> {
     const url = `/api/v1/Sync/zip`;
-    return this.client.fileUpload("post", url, null, filename);
+    const options = {
+      params: {
+        appEnrollmentId,
+        isFullSync,
+      },
+    };
+    return this.client.fileUpload("post", url, options, filename);
   }
 
   /**

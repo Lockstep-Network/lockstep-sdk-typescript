@@ -65,21 +65,6 @@ export class ProfilesAccountingContactsClient {
   }
 
   /**
-   * Updates an accounting profile contact that matches the specified id with the requested information.
-   *
-   * The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
-   *
-   * An Accounting Profile Contact has a link to a Contact that is associated with your company's Accounting Profile. A profile has one primary contact and any number of secondary contacts.
-   *
-   * @param id The unique Lockstep Platform ID number of the Accounting Profile Contact to update
-   * @param contactId The ID of the contact to link to this Accounting Profile Contact
-   */
-  updateAccountingProfileContact(id: string, contactId: string): Promise<LockstepResponse<AccountingProfileContactModel>> {
-    const url = `/api/v1/profiles/accounting/contacts/${id}/${contactId}`;
-    return this.client.request<AccountingProfileContactModel>("patch", url, null, null);
-  }
-
-  /**
    * Queries Accounting Profile Contacts for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
    *
    * More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
@@ -136,11 +121,11 @@ export class ProfilesAccountingContactsClient {
   }
 
   /**
-   * Updates an accounting profile contact that matches the specified id with the primary contact attached to the accounting profile
+   * Reverses the isPrimary fields on the primary and secondary contact to reflect a swap and returns the new primary accounting profile contact model.
    *
    * An Accounting Profile Contact has a link to a Contact that is associated with your company's Accounting Profile. A profile has one primary contact and any number of secondary contacts.
    *
-   * @param id The unique Lockstep Platform ID number of the Accounting Profile Contact to update
+   * @param id The unique Lockstep Platform ID number of the Accounting Profile Contact to set as primary
    */
   setSecondaryContactasPrimary(id: string): Promise<LockstepResponse<AccountingProfileContactModel>> {
     const url = `/api/v1/profiles/accounting/contacts/${id}/primary`;

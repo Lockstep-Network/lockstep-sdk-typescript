@@ -58,7 +58,7 @@ export type SyncRequestModel = {
   operationTypeName: string | null;
 
   /**
-   * The name of the OperationType for this SyncRequest
+   * Possible operation types for a SyncRequest
    */
   operationType: number;
 
@@ -76,7 +76,7 @@ export type SyncRequestModel = {
    * A boolean indicating whether a sync from an ERP system should process all the data from the ERP
    * as opposed to just the delta of changes since the previous sync run
    */
-  runFullSync: string | null;
+  runFullSync: boolean;
 
   /**
    * The AppEnrollmentId of the AppEnrollment object that executed this sync request
