@@ -77,11 +77,6 @@ export type UserAccountModel = {
   modifiedUserId: string;
 
   /**
-   * The name of the user who last modified the user account
-   */
-  modifiedUserName: string | null;
-
-  /**
    * The ID of the user in Azure B2C
    */
   b2CUserId: string | null;

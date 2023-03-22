@@ -30,6 +30,11 @@
 export type CustomFieldSyncModel = {
 
   /**
+   * Indicates what action to take when an existing object has been found during the sync process.
+   */
+  onMatchAction: number;
+
+  /**
    * This is the primary key of the record to which you will attach this custom field. You should provide the
    * identifying number as it is stored in the originating financial system. Search for a unique, non-changing
    * number within the originating financial system for this record.

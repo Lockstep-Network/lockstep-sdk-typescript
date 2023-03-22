@@ -8,7 +8,7 @@
  *
  * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.7.7
+ * @version    2023.11.28
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -31,7 +31,6 @@ import { FinancialAccountBalanceHistoryClient } from ".";
 import { FinancialYearSettingsClient } from ".";
 import { GroupAccountsClient } from ".";
 import { InvoiceAddressesClient } from ".";
-import { InvoiceHistoryClient } from ".";
 import { InvoiceLinesClient } from ".";
 import { InvoicesClient } from ".";
 import { LeadsClient } from ".";
@@ -81,7 +80,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2023.7.7";
+  private readonly version: string = "2023.11.28";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -107,7 +106,6 @@ export class LockstepApi {
   public readonly FinancialYearSettings: FinancialYearSettingsClient;
   public readonly GroupAccounts: GroupAccountsClient;
   public readonly InvoiceAddresses: InvoiceAddressesClient;
-  public readonly InvoiceHistory: InvoiceHistoryClient;
   public readonly InvoiceLines: InvoiceLinesClient;
   public readonly Invoices: InvoicesClient;
   public readonly Leads: LeadsClient;
@@ -154,7 +152,6 @@ export class LockstepApi {
     this.FinancialYearSettings = new FinancialYearSettingsClient(this);
     this.GroupAccounts = new GroupAccountsClient(this);
     this.InvoiceAddresses = new InvoiceAddressesClient(this);
-    this.InvoiceHistory = new InvoiceHistoryClient(this);
     this.InvoiceLines = new InvoiceLinesClient(this);
     this.Invoices = new InvoicesClient(this);
     this.Leads = new LeadsClient(this);

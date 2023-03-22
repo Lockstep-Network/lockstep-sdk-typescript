@@ -96,6 +96,16 @@ export type StatusModel = {
   onboardingScheduled: boolean | null;
 
   /**
+   * Base Currency of the group
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * Country code of the group
+   */
+  countryCode: string | null;
+
+  /**
    * Magic link information about the user
    */
   magicLink: MagicLinkStatusModel | null;
@@ -111,19 +121,14 @@ export type StatusModel = {
   isImpersonated: boolean;
 
   /**
-   * Statuses for the dependencies of this api.
-   * OK if the dependency is working.
-   */
-  dependencies: object | null;
-
-  /**
    * The set of Groups that the user has access to.
    * You can use the /api/v1/useraccounts/change-group endpoint to change your active group.
    */
   userGroups: UserGroupModel[] | null;
 
   /**
-   * Base Currency of the group
+   * Statuses for the dependencies of this api.
+   * OK if the dependency is working.
    */
-  baseCurrencyCode: string | null;
+  dependencies: object | null;
 };
