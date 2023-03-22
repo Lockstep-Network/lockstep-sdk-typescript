@@ -26,6 +26,11 @@
 export type PaymentAppliedSyncModel = {
 
   /**
+   * Indicates what action to take when an existing object has been found during the sync process.
+   */
+  onMatchAction: number;
+
+  /**
    * This is the primary key of the Payment Application record. For this field, you should use whatever this
    * transaction's unique identifying number is in the originating system. Search for a unique, non-changing
    * number within the originating financial system for this record.

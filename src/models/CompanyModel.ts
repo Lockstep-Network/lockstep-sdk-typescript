@@ -183,11 +183,6 @@ export type CompanyModel = {
   modifiedUserId: string;
 
   /**
-   * The name of the user who last modified this company
-   */
-  modifiedUserName: string | null;
-
-  /**
    * Federal Tax ID
    */
   taxId: string | null;
@@ -281,6 +276,11 @@ export type CompanyModel = {
    * The unique ID of this record within Service Fabric.
    */
   serviceFabricCompanyId: string | null;
+
+  /**
+   * A unique identification number assigned to the company by the national registration office.
+   */
+  companyRegistrationNumber: string | null;
 
   /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

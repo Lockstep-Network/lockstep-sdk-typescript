@@ -43,7 +43,7 @@ export type GroupAccountModel = {
   /**
    * Base Currency of the group
    */
-  baseCurrencyCode: string | null;
+  baseCurrencyCode: string;
 
   /**
    * The active status of the group
@@ -74,4 +74,9 @@ export type GroupAccountModel = {
    * The ID of the user who last modified this group account
    */
   modifiedUserId: string;
+
+  /**
+   * The 2-letter ISO country code for the group
+   */
+  countryCode: string;
 };

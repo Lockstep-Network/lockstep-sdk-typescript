@@ -26,6 +26,11 @@
 export type FinancialAccountSyncModel = {
 
   /**
+   * Indicates what action to take when an existing object has been found during the sync process.
+   */
+  onMatchAction: number;
+
+  /**
    * The code for the Financial Account. Can either be a general ledger or
    * an account code.
    */

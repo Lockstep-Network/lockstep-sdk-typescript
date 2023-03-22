@@ -37,7 +37,7 @@ export type ApplicationModel = {
   /**
    * The name of this application
    */
-  name: string | null;
+  name: string;
 
   /**
    * Brief summary of this application shown as a subtitle
@@ -65,39 +65,29 @@ export type ApplicationModel = {
   iconUrl: string | null;
 
   /**
-   * The description of the price for this application
-   */
-  priceTerms: string | null;
-
-  /**
    * The ID of the user who created this application
    */
-  createdUserId: string | null;
+  createdUserId: string;
 
   /**
    * The ID of the user who last modified this application
    */
-  modifiedUserId: string | null;
+  modifiedUserId: string;
 
   /**
    * The date this application was created
    */
-  created: string | null;
+  created: string;
 
   /**
    * The date this application was last modified
    */
-  modified: string | null;
+  modified: string;
 
   /**
    * Flag indicating if the application is active.
    */
   isActive: boolean;
-
-  /**
-   * URL to the Wiki for the Application
-   */
-  wikiURL: string | null;
 
   /**
    * The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this

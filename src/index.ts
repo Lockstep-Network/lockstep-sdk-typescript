@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.7.7
+ * @version    2023.11.28
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -36,7 +36,6 @@ export { FinancialAccountBalanceHistoryClient } from "./clients/FinancialAccount
 export { FinancialYearSettingsClient } from "./clients/FinancialYearSettingsClient";
 export { GroupAccountsClient } from "./clients/GroupAccountsClient";
 export { InvoiceAddressesClient } from "./clients/InvoiceAddressesClient";
-export { InvoiceHistoryClient } from "./clients/InvoiceHistoryClient";
 export { InvoiceLinesClient } from "./clients/InvoiceLinesClient";
 export { InvoicesClient } from "./clients/InvoicesClient";
 export { LeadsClient } from "./clients/LeadsClient";
@@ -124,7 +123,6 @@ export { InviteDataModel } from "./models/InviteDataModel";
 export { InviteModel } from "./models/InviteModel";
 export { InviteSubmitModel } from "./models/InviteSubmitModel";
 export { InvoiceAddressModel } from "./models/InvoiceAddressModel";
-export { InvoiceHistoryModel } from "./models/InvoiceHistoryModel";
 export { InvoiceLineModel } from "./models/InvoiceLineModel";
 export { InvoiceLineSyncModel } from "./models/InvoiceLineSyncModel";
 export { InvoiceModel } from "./models/InvoiceModel";

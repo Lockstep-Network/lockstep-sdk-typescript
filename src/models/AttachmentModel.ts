@@ -73,11 +73,6 @@ export type AttachmentModel = {
   fileExt: string | null;
 
   /**
-   * DEPRECATED: This field is replaced by `AttachmentType`.
-   */
-  attachmentTypeId: string;
-
-  /**
    * A flag indicating whether this Attachment is archived (also known as hidden or deleted).  When you call
    * [ArchiveAttachment](https://developer.lockstep.io/reference/delete_api-v1-attachments-id) this field will
    * be set to true.
@@ -85,21 +80,6 @@ export type AttachmentModel = {
    * You should avoid displaying Attachments with the IsArchived field set to true in your user interface.
    */
   isArchived: boolean;
-
-  /**
-   * DEPRECATED - Do not use
-   */
-  originAttachmentId: string;
-
-  /**
-   * Flag for if LS clients can see this file
-   */
-  viewInternal: boolean;
-
-  /**
-   * Flag for if Vendors and customers can see this file
-   */
-  viewExternal: boolean;
 
   /**
    * The unique ID of this record as it was known in its originating financial system.

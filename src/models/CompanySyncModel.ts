@@ -26,7 +26,7 @@
 export type CompanySyncModel = {
 
   /**
-   * Indicates what action to take when a sync model has been found during the sync process.
+   * Indicates what action to take when an existing object has been found during the sync process.
    */
   onMatchAction: number;
 
@@ -181,4 +181,9 @@ export type CompanySyncModel = {
    * An external reference that identifies the Company from the originating ERP system, separate from the ErpKey.
    */
   externalReference: string | null;
+
+  /**
+   * A unique identification number assigned to the company by the national registration office.
+   */
+  companyRegistrationNumber: string | null;
 };
