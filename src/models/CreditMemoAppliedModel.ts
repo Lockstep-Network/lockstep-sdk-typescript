@@ -73,6 +73,16 @@ export type CreditMemoAppliedModel = {
   erpKey: string | null;
 
   /**
+   * Possible statuses for a record that supports ERP write.
+   */
+  erpWriteStatus: number;
+
+  /**
+   * The name of the ErpWriteStatus for this credit memo application
+   */
+  erpWriteStatusName: string | null;
+
+  /**
    * Reference number for the applied credit memo.
    */
   entryNumber: number;
@@ -114,6 +124,11 @@ export type CreditMemoAppliedModel = {
    * was not loaded from an external ERP or financial system.
    */
   appEnrollmentId: string | null;
+
+  /**
+   * The date on which this record was last modified in source ERP.
+   */
+  sourceModifiedDate: string | null;
 
   /**
    * A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in

@@ -126,11 +126,6 @@ export type CustomerSummaryModel = {
   dso: number | null;
 
   /**
-   * The date stamp for the newest Activity on this Customer.
-   */
-  newestActivity: string | null;
-
-  /**
    * The modified date of the customer.
    */
   modified: string;

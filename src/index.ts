@@ -9,13 +9,14 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.11.28
+ * @version    2023.13.37
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
 export { FetchResult } from "./FetchResult";
 export { LockstepApi } from "./LockstepApi";
 export { LockstepResponse } from "./LockstepResponse";
+export { ErrorResult } from "./ErrorResult";
 
 export { ApiKeysClient } from "./clients/ApiKeysClient";
 export { AppEnrollmentsClient } from "./clients/AppEnrollmentsClient";
@@ -105,8 +106,10 @@ export { DeleteResult } from "./models/DeleteResult";
 export { DeveloperAccountSubmitModel } from "./models/DeveloperAccountSubmitModel";
 export { DpoSummaryGroupTotalModel } from "./models/DpoSummaryGroupTotalModel";
 export { DpoSummaryModel } from "./models/DpoSummaryModel";
+export { EmailReplyGeneratorRequest } from "./models/EmailReplyGeneratorRequest";
+export { EmailReplyGeneratorResponse } from "./models/EmailReplyGeneratorResponse";
+export { EmailReplyGeneratorSuggestions } from "./models/EmailReplyGeneratorSuggestions";
 export { ErpModel } from "./models/ErpModel";
-export { ErrorResult } from "./models/ErrorResult";
 export { FeatureFlagsRequestModel } from "./models/FeatureFlagsRequestModel";
 export { FeatureFlagsResponseModel } from "./models/FeatureFlagsResponseModel";
 export { FinancialAccountBalanceHistoryModel } from "./models/FinancialAccountBalanceHistoryModel";

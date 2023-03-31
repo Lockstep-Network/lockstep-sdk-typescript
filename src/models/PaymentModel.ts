@@ -61,6 +61,16 @@ export type PaymentModel = {
   erpKey: string | null;
 
   /**
+   * Possible statuses for a record that supports ERP write.
+   */
+  erpWriteStatus: number;
+
+  /**
+   * The name of the ErpWriteStatus for this Payment
+   */
+  erpWriteStatusName: string | null;
+
+  /**
    * The type of payment, AR Payment or AP Payment.
    *
    * Recognized PaymentType values are:
@@ -186,6 +196,11 @@ export type PaymentModel = {
    * "UNAUTHORISED" "PENDING" "PAID" "PAID_OFFLINE" "FAILED" "CANCELLED" "REJECTED" "REFUNDED" "PARTIALLY" "PARTIALLY_REFUNDED"
    */
   serviceFabricStatus: string | null;
+
+  /**
+   * The date on which this record was last modified in source ERP.
+   */
+  sourceModifiedDate: string | null;
 
   /**
    * All applications this payment is associated with.

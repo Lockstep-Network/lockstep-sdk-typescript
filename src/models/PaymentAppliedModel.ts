@@ -60,6 +60,16 @@ export type PaymentAppliedModel = {
   erpKey: string | null;
 
   /**
+   * Possible statuses for a record that supports ERP write.
+   */
+  erpWriteStatus: number;
+
+  /**
+   * The name of the ErpWriteStatus for this payment application
+   */
+  erpWriteStatusName: string | null;
+
+  /**
    * The entry number of this payment application.  This is often a journal entry number, confirmation code,
    * or other identifying field for this payment application.
    */
@@ -102,6 +112,11 @@ export type PaymentAppliedModel = {
    * was not loaded from an external ERP or financial system.
    */
   appEnrollmentId: string | null;
+
+  /**
+   * The date on which this record was last modified in source ERP.
+   */
+  sourceModifiedDate: string | null;
 
   /**
    * The payment associated with this applied payment

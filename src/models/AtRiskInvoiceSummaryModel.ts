@@ -102,11 +102,6 @@ export type AtRiskInvoiceSummaryModel = {
   invoiceTypeCode: string | null;
 
   /**
-   * The date stamp for the newest Activity on this Invoice.
-   */
-  newestActivity: string | null;
-
-  /**
    * The number of days this Invoice is past due.
    */
   daysPastDue: number | null;
