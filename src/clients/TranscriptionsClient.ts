@@ -18,6 +18,8 @@ import { DeleteResult } from "..";
 import { TranscriptionRequestSubmit } from "..";
 import { FetchResult } from "..";
 import { TranscriptionValidationRequestItemModel } from "..";
+import { EmailReplyGeneratorResponse } from "..";
+import { EmailReplyGeneratorRequest } from "..";
 
 export class TranscriptionsClient {
   private readonly client: LockstepApi;
@@ -185,5 +187,17 @@ export class TranscriptionsClient {
       },
     };
     return this.client.request<FetchResult<TranscriptionValidationRequestItemModel>>("get", url, options, null);
+  }
+
+  /**
+   * Retrieves the Email Reply Generator Response containing a list of email reply suggestions
+   *
+   * An Email Reply Generator Request represents an email to be sent for a list of email reply suggestions.
+   *
+   * @param body The Email Reply Generator Request to be sent
+   */
+  retrieveanEmailReplyGeneratorResponse(body: EmailReplyGeneratorRequest): Promise<LockstepResponse<EmailReplyGeneratorResponse>> {
+    const url = `/api/v1/Transcriptions/email-reply-suggestions`;
+    return this.client.request<EmailReplyGeneratorResponse>("post", url, null, body);
   }
 }

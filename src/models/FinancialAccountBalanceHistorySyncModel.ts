@@ -76,4 +76,9 @@ export type FinancialAccountBalanceHistorySyncModel = {
    * The current or end balance of this period.
    */
   balance: number;
+
+  /**
+   * The balance type of this period. If left null, the balance type will be determined by the balance.
+   */
+  balanceType: number | null;
 };

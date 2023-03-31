@@ -61,6 +61,16 @@ export type PaymentDetailModel = {
   email: string | null;
 
   /**
+   * Possible statuses for a record that supports ERP write.
+   */
+  erpWriteStatus: number;
+
+  /**
+   * The name of the ErpWriteStatus for this payment
+   */
+  erpWriteStatusName: string | null;
+
+  /**
    * The currency code of the payment.
    */
   currencyCode: string | null;

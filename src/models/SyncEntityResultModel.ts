@@ -46,4 +46,9 @@ export type SyncEntityResultModel = {
    * The errors encountered during sync keyed by ERP key
    */
   errors: object | null;
+
+  /**
+   * The records that were skipped during sync keyed by ERP key
+   */
+  skips: object | null;
 };

@@ -77,6 +77,16 @@ export type FinancialAccountBalanceHistoryModel = {
   balance: number;
 
   /**
+   * Financial Account Balance Types
+   */
+  balanceType: number;
+
+  /**
+   * The name of the BalanceType for this record.
+   */
+  balanceTypeName: string | null;
+
+  /**
    * The date on which this financial account balance history record was created.
    */
   created: string;
