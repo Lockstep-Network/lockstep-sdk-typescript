@@ -40,7 +40,7 @@ export type FinancialAccountBalanceHistorySyncModel = {
    * originating financial system for this record.
    * Example: If you store your company records in a database, whatever the primary key for the company table is
    * in the database should be the ErpKey.
-   * Example: If you use a financial system such as Quickbooks or Xero, look for the primary ID number of the
+   * Example: If you use a financial system such as QuickBooks or Xero, look for the primary ID number of the
    * company record within that financial system.
    */
   financialAccountErpKey: string | null;

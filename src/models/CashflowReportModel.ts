@@ -23,7 +23,12 @@ export type CashflowReportModel = {
   timeframe: number;
 
   /**
-   * Amount of payments collected based in the timeframe
+   * The base currency code of the group.
+   */
+  baseCurrencyCode: string | null;
+
+  /**
+   * Amount of payments collected based in the timeframe in the group's base currency
    */
   paymentsCollected: number;
 
@@ -33,7 +38,7 @@ export type CashflowReportModel = {
   paymentsCollectedCount: number;
 
   /**
-   * Amount of invoices billed based in the timeframe
+   * Amount of invoices billed based in the timeframe in the group's base currency
    */
   invoicesBilled: number;
 

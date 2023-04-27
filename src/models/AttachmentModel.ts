@@ -46,7 +46,7 @@ export type AttachmentModel = {
    *
    * For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
-  tableKey: string | null;
+  tableKey: string;
 
   /**
    * An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
