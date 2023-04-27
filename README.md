@@ -31,7 +31,7 @@ This tutorial will walk you through the basics of creating a project that uses t
 > npm install lockstep-sdk
 ```
 
-4. Obtain a [free Lockstep developer account](https://developer.lockstep.io/reference/post_api-v1-provisioning-free-account) from the [Lockstep developer site](https://developer.lockstep.io/).  When you fill out your information, you will receive an email with an API key.
+4. Obtain a [free Lockstep developer account](https://developer.lockstep.io/reference/v1_provisioning_provisionfreedeveloperaccount) from the [Lockstep developer site](https://developer.lockstep.io/).  When you fill out your information, you will receive an email with an API key.
 5. Set your API key to an environment variable such as `LOCKSTEP_APIKEY` so that it will not be committed to source control.
 6. Create a basic `index.ts` file for your project that creates a Lockstep API client:
 

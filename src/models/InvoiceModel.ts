@@ -268,6 +268,21 @@ export type InvoiceModel = {
   baseCurrencyOutstandingBalanceAmount: number;
 
   /**
+   * Possible statuses for a record that supports ERP write.
+   */
+  erpWriteStatus: number;
+
+  /**
+   * The name of the ErpWriteStatus for this Invoice
+   */
+  erpWriteStatusName: string | null;
+
+  /**
+   * The date on which this record was last modified in source ERP.
+   */
+  sourceModifiedDate: string | null;
+
+  /**
    * All addresses connected to this invoice.
    * To retrieve this collection, specify `Addresses` in the "Include" parameter for your query.
    */

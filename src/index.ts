@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.13.37
+ * @version    2023.17.21
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 

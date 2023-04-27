@@ -2,14 +2,12 @@ name: Publish to NPM CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
-  # Commentting this our as it will not push to NPM with the way we have the publish configured.
-  # workflow_dispatch:
-  
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -28,7 +26,7 @@ jobs:
       - name: npm build
         run: npm run build
       - name: Publish NPM Package
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
