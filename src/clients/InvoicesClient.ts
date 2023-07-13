@@ -134,6 +134,8 @@ export class InvoicesClient {
    *
    * Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.
    *
+   * Sage 50 supports AR Invoices and AR Credit Memos.
+   *
    * @param id The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key
    */
   retrieveinvoicePDF(id: string): Promise<LockstepResponse<Blob>> {

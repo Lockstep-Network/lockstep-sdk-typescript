@@ -8,7 +8,7 @@
  *
  * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.17.21
+ * @version    2023.28.10
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -28,6 +28,7 @@ import { DefinitionsClient } from ".";
 import { FeatureFlagsClient } from ".";
 import { FinancialAccountClient } from ".";
 import { FinancialAccountBalanceHistoryClient } from ".";
+import { FinancialInstitutionAccountsClient } from ".";
 import { FinancialYearSettingsClient } from ".";
 import { GroupAccountsClient } from ".";
 import { InvoiceAddressesClient } from ".";
@@ -80,7 +81,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2023.17.21";
+  private readonly version: string = "2023.28.10";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -103,6 +104,7 @@ export class LockstepApi {
   public readonly FeatureFlags: FeatureFlagsClient;
   public readonly FinancialAccount: FinancialAccountClient;
   public readonly FinancialAccountBalanceHistory: FinancialAccountBalanceHistoryClient;
+  public readonly FinancialInstitutionAccounts: FinancialInstitutionAccountsClient;
   public readonly FinancialYearSettings: FinancialYearSettingsClient;
   public readonly GroupAccounts: GroupAccountsClient;
   public readonly InvoiceAddresses: InvoiceAddressesClient;
@@ -149,6 +151,7 @@ export class LockstepApi {
     this.FeatureFlags = new FeatureFlagsClient(this);
     this.FinancialAccount = new FinancialAccountClient(this);
     this.FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
+    this.FinancialInstitutionAccounts = new FinancialInstitutionAccountsClient(this);
     this.FinancialYearSettings = new FinancialYearSettingsClient(this);
     this.GroupAccounts = new GroupAccountsClient(this);
     this.InvoiceAddresses = new InvoiceAddressesClient(this);

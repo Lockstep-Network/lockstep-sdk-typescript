@@ -157,4 +157,9 @@ export type PaymentSyncModel = {
    * Unapplied balance of this payment in the erp's base currency.  If this amount is nonzero, the field `IsOpen` will be true.
    */
   baseCurrencyUnappliedAmount: number;
+
+  /**
+   * Bank account id for the payment.
+   */
+  bankAccountId: string | null;
 };

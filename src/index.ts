@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.17.21
+ * @version    2023.28.10
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -34,6 +34,7 @@ export { DefinitionsClient } from "./clients/DefinitionsClient";
 export { FeatureFlagsClient } from "./clients/FeatureFlagsClient";
 export { FinancialAccountClient } from "./clients/FinancialAccountClient";
 export { FinancialAccountBalanceHistoryClient } from "./clients/FinancialAccountBalanceHistoryClient";
+export { FinancialInstitutionAccountsClient } from "./clients/FinancialInstitutionAccountsClient";
 export { FinancialYearSettingsClient } from "./clients/FinancialYearSettingsClient";
 export { GroupAccountsClient } from "./clients/GroupAccountsClient";
 export { InvoiceAddressesClient } from "./clients/InvoiceAddressesClient";
@@ -116,12 +117,16 @@ export { FinancialAccountBalanceHistoryModel } from "./models/FinancialAccountBa
 export { FinancialAccountBalanceHistorySyncModel } from "./models/FinancialAccountBalanceHistorySyncModel";
 export { FinancialAccountModel } from "./models/FinancialAccountModel";
 export { FinancialAccountSyncModel } from "./models/FinancialAccountSyncModel";
+export { FinancialInstitutionAccountModel } from "./models/FinancialInstitutionAccountModel";
 export { FinancialReportCellModel } from "./models/FinancialReportCellModel";
 export { FinancialReportModel } from "./models/FinancialReportModel";
 export { FinancialReportRowModel } from "./models/FinancialReportRowModel";
 export { FinancialYearSettingModel } from "./models/FinancialYearSettingModel";
 export { FinancialYearSettingSyncModel } from "./models/FinancialYearSettingSyncModel";
 export { GroupAccountModel } from "./models/GroupAccountModel";
+export { InsertPaymentAppliedRequestModel } from "./models/InsertPaymentAppliedRequestModel";
+export { InsertPaymentRequestModel } from "./models/InsertPaymentRequestModel";
+export { InsertPaymentRequestModelErpWriteSyncSubmitModel } from "./models/InsertPaymentRequestModelErpWriteSyncSubmitModel";
 export { InviteDataModel } from "./models/InviteDataModel";
 export { InviteModel } from "./models/InviteModel";
 export { InviteSubmitModel } from "./models/InviteSubmitModel";
@@ -147,6 +152,7 @@ export { PaymentAppliedSyncModel } from "./models/PaymentAppliedSyncModel";
 export { PaymentDetailHeaderModel } from "./models/PaymentDetailHeaderModel";
 export { PaymentDetailModel } from "./models/PaymentDetailModel";
 export { PaymentModel } from "./models/PaymentModel";
+export { PaymentModelErpWriteResult } from "./models/PaymentModelErpWriteResult";
 export { PaymentSummaryModel } from "./models/PaymentSummaryModel";
 export { PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult } from "./models/PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult";
 export { PaymentSummaryTotalsModel } from "./models/PaymentSummaryTotalsModel";
