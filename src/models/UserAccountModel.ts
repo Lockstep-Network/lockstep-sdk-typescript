@@ -175,6 +175,11 @@ export type UserAccountModel = {
   defaultCurrencyCode: string | null;
 
   /**
+   * The IETF language tag for the user's preferred locale.
+   */
+  locale: string | null;
+
+  /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
    * `include` parameter when retrieving data.
    *

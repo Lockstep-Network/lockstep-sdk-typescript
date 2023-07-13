@@ -134,6 +134,11 @@ export type PaymentModel = {
   currencyCode: string | null;
 
   /**
+   * The Bank account id for the company to which this payment belongs.
+   */
+  bankAccountId: string | null;
+
+  /**
    * Reference code for the payment for the given Erp system.
    */
   referenceCode: string | null;

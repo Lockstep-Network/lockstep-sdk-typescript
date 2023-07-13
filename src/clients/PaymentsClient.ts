@@ -20,6 +20,8 @@ import { Blob } from "buffer";
 import { PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult } from "..";
 import { PaymentDetailHeaderModel } from "..";
 import { PaymentDetailModel } from "..";
+import { PaymentModelErpWriteResult } from "..";
+import { InsertPaymentRequestModelErpWriteSyncSubmitModel } from "..";
 
 export class PaymentsClient {
   private readonly client: LockstepApi;
@@ -186,5 +188,17 @@ export class PaymentsClient {
       },
     };
     return this.client.request<FetchResult<PaymentDetailModel>>("get", url, options, null);
+  }
+
+  /**
+   * **This API endpoint is under maintenance and may not function properly.**  Schedule an ERP post request for payments.
+   *
+   * The payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.
+   *
+   * @param body The payments to submit to the connected ERP
+   */
+  writepaymentstoconnectedERP(body: InsertPaymentRequestModelErpWriteSyncSubmitModel): Promise<LockstepResponse<PaymentModelErpWriteResult>> {
+    const url = `/api/v1/Payments/erp-write`;
+    return this.client.request<PaymentModelErpWriteResult>("post", url, null, body);
   }
 }
