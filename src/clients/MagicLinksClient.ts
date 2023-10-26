@@ -16,6 +16,7 @@ import { LockstepResponse } from "..";
 import { MagicLinkModel } from "..";
 import { ActionResultModel } from "..";
 import { FetchResult } from "..";
+import { MagicLinkSummaryModel } from "..";
 
 export class MagicLinksClient {
   private readonly client: LockstepApi;
@@ -56,6 +57,18 @@ export class MagicLinksClient {
   }
 
   /**
+   * Revokes the bounced magic link with the specified id so it cannot be used to call the API.
+   *
+   * Revocation will be received by all servers within five minutes of revocation. API calls made using this magic link after the revocation will fail. A revoked magic link cannot be un-revoked.
+   *
+   * @param id The unique Lockstep Platform ID number of this magic link
+   */
+  revokeBouncedMagicLink(id: string): Promise<LockstepResponse<ActionResultModel>> {
+    const url = `/api/v1/useraccounts/magic-links/${id}/bounced`;
+    return this.client.request<ActionResultModel>("delete", url, null, null);
+  }
+
+  /**
    * Queries Magic Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
    *
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
@@ -76,5 +89,22 @@ export class MagicLinksClient {
       },
     };
     return this.client.request<FetchResult<MagicLinkModel>>("get", url, options, null);
+  }
+
+  /**
+   * Gets a summary of all magic links created during the specified date range, returns no content if there are no magic links for the specified date range
+   *
+   * @param from The date that the summary starts from (default one year ago from today)
+   * @param to The date that the summary ends at (default today)
+   */
+  magicLinkSummary(from?: string, to?: string): Promise<LockstepResponse<MagicLinkSummaryModel>> {
+    const url = `/api/v1/useraccounts/magic-links/summary`;
+    const options = {
+      params: {
+        from,
+        to,
+      },
+    };
+    return this.client.request<MagicLinkSummaryModel>("get", url, options, null);
   }
 }

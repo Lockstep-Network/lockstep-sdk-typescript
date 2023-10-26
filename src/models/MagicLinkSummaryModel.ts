@@ -11,21 +11,29 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
-import { InsertPaymentRequestModel } from "..";
 
 /**
- * Lockstep.Shared.Models.Sync.ErpWriteSyncSubmitModel`1 represents a request to write back a collection
- *             of requests to the connected AppEnrollment.
+ * A historic summary of all magic links sent in a given group
  */
-export type InsertPaymentRequestModelErpWriteSyncSubmitModel = {
+export type MagicLinkSummaryModel = {
 
   /**
-   * The connected App Enrollment id.
+   * Group that the summary is for
    */
-  appEnrollmentId: string;
+  groupKey: string;
 
   /**
-   * An array of requests to write back.
+   * Total number of magic links sent
    */
-  requests: InsertPaymentRequestModel[];
+  totalCount: number;
+
+  /**
+   * Total number of magic links that failed to send
+   */
+  totalBounced: number;
+
+  /**
+   * Total number of visits across all magic links
+   */
+  totalVisited: number;
 };

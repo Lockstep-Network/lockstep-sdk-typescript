@@ -61,14 +61,14 @@ export type PaymentModel = {
   erpKey: string | null;
 
   /**
-   * Possible statuses for a record that supports ERP write.
+   * Possible statuses for a record that supports ERP Update.
    */
-  erpWriteStatus: number;
+  erpUpdateStatus: number;
 
   /**
-   * The name of the ErpWriteStatus for this Payment
+   * Possible actions for a record that supports ERP Update.
    */
-  erpWriteStatusName: string | null;
+  erpUpdateAction: number;
 
   /**
    * The type of payment, AR Payment or AP Payment.

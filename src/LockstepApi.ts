@@ -8,7 +8,7 @@
  *
  * @author     Lockstep Network <support@lockstep.io>
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.28.10
+ * @version    2023.40.72
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -34,6 +34,8 @@ import { GroupAccountsClient } from ".";
 import { InvoiceAddressesClient } from ".";
 import { InvoiceLinesClient } from ".";
 import { InvoicesClient } from ".";
+import { JournalEntriesClient } from ".";
+import { JournalEntryLinesClient } from ".";
 import { LeadsClient } from ".";
 import { MagicLinksClient } from ".";
 import { NotesClient } from ".";
@@ -52,6 +54,7 @@ import { UserAccountsClient } from ".";
 import { UserRolesClient } from ".";
 import { WebhookRulesClient } from ".";
 import { WebhooksClient } from ".";
+import { WorkflowStatusesClient } from ".";
 import { LockstepResponse } from ".";
 
 import * as axios from "axios";
@@ -81,7 +84,7 @@ export class LockstepApi {
 
   // The URL of the environment we will use
   private readonly serverUrl: string;
-  private readonly version: string = "2023.28.10";
+  private readonly version: string = "2023.40.72";
   private bearerToken: string | null = null;
   private apiKey: string | null = null;
   private sdkName = "TypeScript";
@@ -110,6 +113,8 @@ export class LockstepApi {
   public readonly InvoiceAddresses: InvoiceAddressesClient;
   public readonly InvoiceLines: InvoiceLinesClient;
   public readonly Invoices: InvoicesClient;
+  public readonly JournalEntries: JournalEntriesClient;
+  public readonly JournalEntryLines: JournalEntryLinesClient;
   public readonly Leads: LeadsClient;
   public readonly MagicLinks: MagicLinksClient;
   public readonly Notes: NotesClient;
@@ -128,6 +133,7 @@ export class LockstepApi {
   public readonly UserRoles: UserRolesClient;
   public readonly WebhookRules: WebhookRulesClient;
   public readonly Webhooks: WebhooksClient;
+  public readonly WorkflowStatuses: WorkflowStatusesClient;
 
   /** 
    * Internal constructor for the API client
@@ -157,6 +163,8 @@ export class LockstepApi {
     this.InvoiceAddresses = new InvoiceAddressesClient(this);
     this.InvoiceLines = new InvoiceLinesClient(this);
     this.Invoices = new InvoicesClient(this);
+    this.JournalEntries = new JournalEntriesClient(this);
+    this.JournalEntryLines = new JournalEntryLinesClient(this);
     this.Leads = new LeadsClient(this);
     this.MagicLinks = new MagicLinksClient(this);
     this.Notes = new NotesClient(this);
@@ -175,6 +183,7 @@ export class LockstepApi {
     this.UserRoles = new UserRolesClient(this);
     this.WebhookRules = new WebhookRulesClient(this);
     this.Webhooks = new WebhooksClient(this);
+    this.WorkflowStatuses = new WorkflowStatusesClient(this);
   }
 
   /**

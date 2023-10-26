@@ -15,6 +15,7 @@ import { NoteModel } from "..";
 import { AttachmentModel } from "..";
 import { CustomFieldDefinitionModel } from "..";
 import { CustomFieldValueModel } from "..";
+import { AppEnrollmentModel } from "..";
 
 /**
  * An Application represents a feature available to customers within the Lockstep Platform.  You can create
@@ -141,4 +142,15 @@ export type ApplicationModel = {
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   customFieldValues: CustomFieldValueModel[] | null;
+
+  /**
+   * A collection of app enrollments linked to this record.  To retrieve this collection, specify
+   * `Enrollments` in the `include` parameter when retrieving data.
+   *
+   * To create an app enrollment, use the [Create App Enrollment](https://developer.lockstep.io/reference/v1_appenrollments_createappenrollments)
+   * endpoint with the `AppId` set to the `ApplicationId` for this record and associated auth connection info for the record.
+   *
+   * For more information on extensibility, see [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments).
+   */
+  enrollments: AppEnrollmentModel[] | null;
 };

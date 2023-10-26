@@ -73,14 +73,14 @@ export type CreditMemoAppliedModel = {
   erpKey: string | null;
 
   /**
-   * Possible statuses for a record that supports ERP write.
+   * Possible statuses for a record that supports ERP Update.
    */
-  erpWriteStatus: number;
+  erpUpdateStatus: number;
 
   /**
-   * The name of the ErpWriteStatus for this credit memo application
+   * Possible actions for a record that supports ERP Update.
    */
-  erpWriteStatusName: string | null;
+  erpUpdateAction: number;
 
   /**
    * Reference number for the applied credit memo.

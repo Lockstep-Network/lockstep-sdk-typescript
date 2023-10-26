@@ -52,8 +52,8 @@ export type FinancialAccountModel = {
   name: string | null;
 
   /**
-   * The status of the Financial Account. Possible values are active,
-   * inactive, deleted or archived.
+   * The status of the Financial Account. Possible values are Active,
+   * Inactive, Deleted or Archived.
    */
   status: string | null;
 

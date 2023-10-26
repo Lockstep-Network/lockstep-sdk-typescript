@@ -19,6 +19,7 @@ import { BulkDeleteRequestModel } from "..";
 import { FetchResult } from "..";
 import { CustomerSummaryModel } from "..";
 import { VendorSummaryModel } from "..";
+import { CompanyMagicLinkSummaryModel } from "..";
 import { CompanyDetailsModel } from "..";
 import { ViewBoxSettingsModel } from "..";
 
@@ -200,6 +201,29 @@ export class CompaniesClient {
       },
     };
     return this.client.request<FetchResult<VendorSummaryModel>>("get", url, options, null);
+  }
+
+  /**
+   * See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
+   *
+   * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future
+   * @param order The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).
+   * @param pageSize The page size for results (default 250, maximum of 500)
+   * @param pageNumber The page number for results (default 0)
+   */
+  queryMagicLinkSummary(filter?: string, include?: string, order?: string, pageSize?: number, pageNumber?: number): Promise<LockstepResponse<FetchResult<CompanyMagicLinkSummaryModel>>> {
+    const url = `/api/v1/Companies/views/magic-link-summary`;
+    const options = {
+      params: {
+        filter,
+        include,
+        order,
+        pageSize,
+        pageNumber,
+      },
+    };
+    return this.client.request<FetchResult<CompanyMagicLinkSummaryModel>>("get", url, options, null);
   }
 
   /**

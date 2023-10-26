@@ -60,14 +60,14 @@ export type PaymentAppliedModel = {
   erpKey: string | null;
 
   /**
-   * Possible statuses for a record that supports ERP write.
+   * Possible statuses for a record that supports ERP Update.
    */
-  erpWriteStatus: number;
+  erpUpdateStatus: number;
 
   /**
-   * The name of the ErpWriteStatus for this payment application
+   * Possible actions for a record that supports ERP Update.
    */
-  erpWriteStatusName: string | null;
+  erpUpdateAction: number;
 
   /**
    * The entry number of this payment application.  This is often a journal entry number, confirmation code,

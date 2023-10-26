@@ -63,6 +63,7 @@ export type CompanyModel = {
    * * `Vendor` - This record represents a business entity that sells things to the account holder.
    * * `Third Party` - This record represents a business entity that is neither a customer nor vendor.
    * * `CustomerVendor` - Both a customer and a vendor.
+   * * `CompanyProfile` - Profile for a Company, each Company should have at most 1 profile, used only for Profile Management.
    */
   companyType: string | null;
 
@@ -281,6 +282,11 @@ export type CompanyModel = {
    * A unique identification number assigned to the company by the national registration office.
    */
   companyRegistrationNumber: string | null;
+
+  /**
+   * An optional reference to a real company, making this a profile.
+   */
+  profileReferenceId: string | null;
 
   /**
    * A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

@@ -31,6 +31,11 @@ export type PaymentAppliedSyncModel = {
   onMatchAction: number;
 
   /**
+   * The unique identifier of this object in the Sage Network platform.
+   */
+  networkId: string | null;
+
+  /**
    * This is the primary key of the Payment Application record. For this field, you should use whatever this
    * transaction's unique identifying number is in the originating system. Search for a unique, non-changing
    * number within the originating financial system for this record.
@@ -55,6 +60,11 @@ export type PaymentAppliedSyncModel = {
   invoiceErpKey: string;
 
   /**
+   * The network id of the related Invoice.
+   */
+  invoiceNetworkId: string | null;
+
+  /**
    * This field indicates which Payment was used to provide the funds for this payment application. In this
    * field, identify the original primary key or unique ID of the Payment that was used for this payment
    * application.
@@ -66,6 +76,11 @@ export type PaymentAppliedSyncModel = {
    * field on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).
    */
   paymentErpKey: string;
+
+  /**
+   * The network id of the related Payment.
+   */
+  paymentNetworkId: string | null;
 
   /**
    * The entry number of this payment application.  This is often a journal entry number, confirmation code,

@@ -31,6 +31,11 @@ export type InvoiceLineSyncModel = {
   onMatchAction: number;
 
   /**
+   * The unique identifier of this object in the Sage Network platform.
+   */
+  networkId: string | null;
+
+  /**
    * This is the primary key of the Invoice Line record. For this field, you should use whatever the contact's unique
    * identifying number is in the originating system. Search for a unique, non-changing number within the
    * originating financial system for this record.
@@ -48,6 +53,11 @@ export type InvoiceLineSyncModel = {
    * [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices).
    */
   invoiceErpKey: string;
+
+  /**
+   * The network id of the parent Invoice.
+   */
+  invoiceNetworkId: string | null;
 
   /**
    * The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to

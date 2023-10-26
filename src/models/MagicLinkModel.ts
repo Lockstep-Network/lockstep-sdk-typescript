@@ -96,4 +96,14 @@ export type MagicLinkModel = {
    * To retrieve this item, specify `User` in the "Include" parameter for your query.
    */
   user: UserAccountModel | null;
+
+  /**
+   * The number of visits to this Magic Link
+   */
+  visits: number;
+
+  /**
+   * Possible statuses for a Magic Link.
+   */
+  status: number;
 };

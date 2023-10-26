@@ -11,6 +11,7 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
+import { InvoiceWorkflowStatusHistoryModel } from "..";
 import { InvoiceAddressModel } from "..";
 import { InvoiceLineModel } from "..";
 import { InvoicePaymentDetailModel } from "..";
@@ -111,6 +112,16 @@ export type InvoiceModel = {
    * * `Closed` - Represents an invoice that is considered closed and resolved
    */
   invoiceStatusCode: string | null;
+
+  /**
+   * The id of the work flow status associated with this invoice.
+   */
+  workflowStatusId: string | null;
+
+  /**
+   * A description of the current workflow status of this invoice.
+   */
+  workflowStatusNotes: string | null;
 
   /**
    * A code identifying the terms given to the purchaser.  This field is imported directly from the originating
@@ -268,19 +279,25 @@ export type InvoiceModel = {
   baseCurrencyOutstandingBalanceAmount: number;
 
   /**
-   * Possible statuses for a record that supports ERP write.
+   * Possible statuses for a record that supports ERP Update.
    */
-  erpWriteStatus: number;
+  erpUpdateStatus: number;
 
   /**
-   * The name of the ErpWriteStatus for this Invoice
+   * Possible actions for a record that supports ERP Update.
    */
-  erpWriteStatusName: string | null;
+  erpUpdateAction: number;
 
   /**
    * The date on which this record was last modified in source ERP.
    */
   sourceModifiedDate: string | null;
+
+  /**
+   * All workflow status histories connected to this invoice.
+   * To retrieve this collection, specify `WorkflowStatuses` in the "Include" parameter for your query.
+   */
+  workflowStatuses: InvoiceWorkflowStatusHistoryModel[] | null;
 
   /**
    * All addresses connected to this invoice.
@@ -363,4 +380,9 @@ export type InvoiceModel = {
    * more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
    */
   customFieldDefinitions: CustomFieldDefinitionModel[] | null;
+
+  /**
+   * Indicates if the invoice an E-Invoice or not
+   */
+  isEInvoice: boolean;
 };

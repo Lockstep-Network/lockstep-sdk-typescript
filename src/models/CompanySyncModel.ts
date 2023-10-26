@@ -31,6 +31,11 @@ export type CompanySyncModel = {
   onMatchAction: number;
 
   /**
+   * The unique identifier of this object in the Sage Network platform.
+   */
+  networkId: string | null;
+
+  /**
    * This is the primary key of the Company record. For this field, you should use whatever the company's unique
    * identifying number is in the originating system. Search for a unique, non-changing number within the
    * originating financial system for this record.
@@ -76,6 +81,11 @@ export type CompanySyncModel = {
   parentCompanyErpKey: string | null;
 
   /**
+   * The network id of the parent Company.
+   */
+  parentCompanyNetworkId: string | null;
+
+  /**
    * This flag indicates whether the company is currently active. An inactive company will be hidden from the
    * user interface but will still be available for querying.
    */
@@ -97,6 +107,11 @@ export type CompanySyncModel = {
    * [Importing Contacts](https://developer.lockstep.io/docs/importing-contacts) record for the contact table.
    */
   primaryContactErpKey: string | null;
+
+  /**
+   * The network id of the primary Contact.
+   */
+  primaryContactNetworkId: string | null;
 
   /**
    * The company's primary mailing address information

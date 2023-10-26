@@ -91,6 +91,16 @@ export type NoteModel = {
   createdUserId: string;
 
   /**
+   * The date this note was last modified
+   */
+  modified: string;
+
+  /**
+   * The ID of the user who last modified this note
+   */
+  modifiedUserId: string;
+
+  /**
    * The name of the user who created the note
    */
   createdUserName: string | null;

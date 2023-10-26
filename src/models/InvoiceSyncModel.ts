@@ -31,6 +31,11 @@ export type InvoiceSyncModel = {
   onMatchAction: number;
 
   /**
+   * The unique identifier of this object in the Sage Network platform.
+   */
+  networkId: string | null;
+
+  /**
    * This is the primary key of the Invoice record. For this field, you should use whatever the invoice's unique
    * identifying number is in the originating system. Search for a unique, non-changing number within the
    * originating financial system for this record.
@@ -54,6 +59,11 @@ export type InvoiceSyncModel = {
   companyErpKey: string;
 
   /**
+   * The network id of the related Company.
+   */
+  companyNetworkId: string | null;
+
+  /**
    * The original primary key or unique ID of the company to which this invoice was sent.  This value should
    * match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
    * [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
@@ -63,6 +73,11 @@ export type InvoiceSyncModel = {
    * was sent.
    */
   customerErpKey: string;
+
+  /**
+   * The network id of the related Customer.
+   */
+  customerNetworkId: string | null;
 
   /**
    * The name of the salesperson that wrote this invoice.  This is just text, it is not a reference to the
@@ -365,4 +380,14 @@ export type InvoiceSyncModel = {
    * The remaining balance value of this invoice in the erp's base currency.
    */
   baseCurrencyOutstandingBalanceAmount: number | null;
+
+  /**
+   * True if the invoice is an E-Invoice
+   */
+  isEInvoice: boolean | null;
+
+  /**
+   * True if the E-Invoice should be sent to gov/other recipients immediately
+   */
+  sendImmediately: boolean | null;
 };

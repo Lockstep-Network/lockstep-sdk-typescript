@@ -154,14 +154,14 @@ export type InvoiceLineModel = {
   appEnrollmentId: string | null;
 
   /**
-   * Possible statuses for a record that supports ERP write.
+   * Possible statuses for a record that supports ERP Update.
    */
-  erpWriteStatus: number;
+  erpUpdateStatus: number;
 
   /**
-   * The name of the ErpWriteStatus for this Invoice
+   * Possible actions for a record that supports ERP Update.
    */
-  erpWriteStatusName: string | null;
+  erpUpdateAction: number;
 
   /**
    * The date on which this record was last modified in source ERP.

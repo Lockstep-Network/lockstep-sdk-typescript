@@ -23,6 +23,8 @@ import { FinancialYearSettingSyncModel } from "..";
 import { FinancialAccountSyncModel } from "..";
 import { FinancialAccountBalanceHistorySyncModel } from "..";
 import { BaseCurrencySyncModel } from "..";
+import { JournalEntrySyncModel } from "..";
+import { JournalEntryLineSyncModel } from "..";
 
 /**
  * A BatchSyncModel contains a collection of records to load into the Lockstep Platform.  Data contained
@@ -106,4 +108,14 @@ export type BatchSyncModel = {
    * A list of BaseCurrency records to merge with your Lockstep Platform data
    */
   baseCurrencies: BaseCurrencySyncModel[] | null;
+
+  /**
+   * A list of JournalEntry records to merge with your Lockstep Platform data
+   */
+  journalEntries: JournalEntrySyncModel[] | null;
+
+  /**
+   * A list of JournalEntryLine records to merge with your Lockstep Platform data
+   */
+  journalEntryLines: JournalEntryLineSyncModel[] | null;
 };

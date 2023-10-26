@@ -31,6 +31,11 @@ export type PaymentSyncModel = {
   onMatchAction: number;
 
   /**
+   * The unique identifier of this object in the Sage Network platform.
+   */
+  networkId: string | null;
+
+  /**
    * This is the primary key of the Payment record. For this field, you should use whatever the payment's unique
    * identifying number is in the originating system. Search for a unique, non-changing number within the
    * originating financial system for this record.
@@ -48,6 +53,11 @@ export type PaymentSyncModel = {
    * [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
    */
   companyErpKey: string;
+
+  /**
+   * The network id of the related Company.
+   */
+  companyNetworkId: string | null;
 
   /**
    * The type of payment, AR Payment or AP Payment.

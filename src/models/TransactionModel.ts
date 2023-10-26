@@ -126,4 +126,9 @@ export type TransactionModel = {
    * call to Invoices/{id}/pdf or Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
    */
   supportsErpPdfRetrieval: boolean;
+
+  /**
+   * The customer associated with this transaction
+   */
+  transactionCustomerId: string;
 };

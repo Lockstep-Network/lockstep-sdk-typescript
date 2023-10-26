@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.28.10
+ * @version    2023.40.72
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-typescript
  */
 
@@ -40,6 +40,8 @@ export { GroupAccountsClient } from "./clients/GroupAccountsClient";
 export { InvoiceAddressesClient } from "./clients/InvoiceAddressesClient";
 export { InvoiceLinesClient } from "./clients/InvoiceLinesClient";
 export { InvoicesClient } from "./clients/InvoicesClient";
+export { JournalEntriesClient } from "./clients/JournalEntriesClient";
+export { JournalEntryLinesClient } from "./clients/JournalEntryLinesClient";
 export { LeadsClient } from "./clients/LeadsClient";
 export { MagicLinksClient } from "./clients/MagicLinksClient";
 export { NotesClient } from "./clients/NotesClient";
@@ -58,6 +60,7 @@ export { UserAccountsClient } from "./clients/UserAccountsClient";
 export { UserRolesClient } from "./clients/UserRolesClient";
 export { WebhookRulesClient } from "./clients/WebhookRulesClient";
 export { WebhooksClient } from "./clients/WebhooksClient";
+export { WorkflowStatusesClient } from "./clients/WorkflowStatusesClient";
 
 export { AccountingProfileContactModel } from "./models/AccountingProfileContactModel";
 export { AccountingProfileContactResultModel } from "./models/AccountingProfileContactResultModel";
@@ -86,6 +89,7 @@ export { CashflowReportModel } from "./models/CashflowReportModel";
 export { CodeDefinitionModel } from "./models/CodeDefinitionModel";
 export { CompanyDetailsModel } from "./models/CompanyDetailsModel";
 export { CompanyDetailsPaymentModel } from "./models/CompanyDetailsPaymentModel";
+export { CompanyMagicLinkSummaryModel } from "./models/CompanyMagicLinkSummaryModel";
 export { CompanyModel } from "./models/CompanyModel";
 export { CompanySyncModel } from "./models/CompanySyncModel";
 export { ConnectorInfoModel } from "./models/ConnectorInfoModel";
@@ -124,9 +128,6 @@ export { FinancialReportRowModel } from "./models/FinancialReportRowModel";
 export { FinancialYearSettingModel } from "./models/FinancialYearSettingModel";
 export { FinancialYearSettingSyncModel } from "./models/FinancialYearSettingSyncModel";
 export { GroupAccountModel } from "./models/GroupAccountModel";
-export { InsertPaymentAppliedRequestModel } from "./models/InsertPaymentAppliedRequestModel";
-export { InsertPaymentRequestModel } from "./models/InsertPaymentRequestModel";
-export { InsertPaymentRequestModelErpWriteSyncSubmitModel } from "./models/InsertPaymentRequestModelErpWriteSyncSubmitModel";
 export { InviteDataModel } from "./models/InviteDataModel";
 export { InviteModel } from "./models/InviteModel";
 export { InviteSubmitModel } from "./models/InviteSubmitModel";
@@ -139,9 +140,15 @@ export { InvoiceSummaryModel } from "./models/InvoiceSummaryModel";
 export { InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult } from "./models/InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult";
 export { InvoiceSummaryTotalsModel } from "./models/InvoiceSummaryTotalsModel";
 export { InvoiceSyncModel } from "./models/InvoiceSyncModel";
+export { InvoiceWorkflowStatusHistoryModel } from "./models/InvoiceWorkflowStatusHistoryModel";
+export { JournalEntryLineModel } from "./models/JournalEntryLineModel";
+export { JournalEntryLineSyncModel } from "./models/JournalEntryLineSyncModel";
+export { JournalEntryModel } from "./models/JournalEntryModel";
+export { JournalEntrySyncModel } from "./models/JournalEntrySyncModel";
 export { LeadModel } from "./models/LeadModel";
 export { MagicLinkModel } from "./models/MagicLinkModel";
 export { MagicLinkStatusModel } from "./models/MagicLinkStatusModel";
+export { MagicLinkSummaryModel } from "./models/MagicLinkSummaryModel";
 export { NoteModel } from "./models/NoteModel";
 export { PayablesComingDueHeaderModel } from "./models/PayablesComingDueHeaderModel";
 export { PayablesComingDueModel } from "./models/PayablesComingDueModel";
@@ -152,7 +159,6 @@ export { PaymentAppliedSyncModel } from "./models/PaymentAppliedSyncModel";
 export { PaymentDetailHeaderModel } from "./models/PaymentDetailHeaderModel";
 export { PaymentDetailModel } from "./models/PaymentDetailModel";
 export { PaymentModel } from "./models/PaymentModel";
-export { PaymentModelErpWriteResult } from "./models/PaymentModelErpWriteResult";
 export { PaymentSummaryModel } from "./models/PaymentSummaryModel";
 export { PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult } from "./models/PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult";
 export { PaymentSummaryTotalsModel } from "./models/PaymentSummaryTotalsModel";
@@ -186,3 +192,4 @@ export { ViewBoxSettingsModel } from "./models/ViewBoxSettingsModel";
 export { WebhookHistoryTableStorageModel } from "./models/WebhookHistoryTableStorageModel";
 export { WebhookModel } from "./models/WebhookModel";
 export { WebhookRuleModel } from "./models/WebhookRuleModel";
+export { WorkflowStatusModel } from "./models/WorkflowStatusModel";

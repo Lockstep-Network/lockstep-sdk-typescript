@@ -35,7 +35,7 @@ export class ApplicationsClient {
    * See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
    *
    * @param id The unique ID number of the Application to retrieve
-   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields, Enrollments
    */
   retrieveApplication(id: string, include?: string): Promise<LockstepResponse<ApplicationModel>> {
     const url = `/api/v1/Applications/${id}`;
@@ -102,7 +102,7 @@ export class ApplicationsClient {
    * See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
    *
    * @param filter The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
-   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields
+   * @param include To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields, Enrollments
    * @param order The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageSize The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
    * @param pageNumber The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)

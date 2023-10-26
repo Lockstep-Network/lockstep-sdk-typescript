@@ -20,8 +20,6 @@ import { Blob } from "buffer";
 import { PaymentSummaryModelPaymentSummaryTotalsModelSummaryFetchResult } from "..";
 import { PaymentDetailHeaderModel } from "..";
 import { PaymentDetailModel } from "..";
-import { PaymentModelErpWriteResult } from "..";
-import { InsertPaymentRequestModelErpWriteSyncSubmitModel } from "..";
 
 export class PaymentsClient {
   private readonly client: LockstepApi;
@@ -122,11 +120,27 @@ export class PaymentsClient {
    *
    * QuickBooks Online supports AR Payments.
    *
+   * For other ERPs, the supported types will depend on the synced data.
+   *
    * @param id The unique Lockstep Platform ID number of this payment; NOT the customer's ERP key
    */
   retrievepaymentPDF(id: string): Promise<LockstepResponse<Blob>> {
     const url = `/api/v1/Payments/${id}/pdf`;
     return this.client.requestBlob("get", url, null, null);
+  }
+
+  /**
+   * Checks for whether a PDF file for this payment exists if it has been synced using an app enrollment to one of the supported apps.
+   *
+   * QuickBooks Online supports AR Payments.
+   *
+   * For other ERPs, the supported types will depend on the synced data.
+   *
+   * @param id The unique Lockstep Platform ID number of this payment; NOT the customer's ERP key
+   */
+  checkpaymentPDF(id: string): Promise<LockstepResponse<Blob>> {
+    const url = `/api/v1/Payments/${id}/pdf`;
+    return this.client.requestBlob("head", url, null, null);
   }
 
   /**
@@ -188,17 +202,5 @@ export class PaymentsClient {
       },
     };
     return this.client.request<FetchResult<PaymentDetailModel>>("get", url, options, null);
-  }
-
-  /**
-   * **This API endpoint is under maintenance and may not function properly.**  Schedule an ERP post request for payments.
-   *
-   * The payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.
-   *
-   * @param body The payments to submit to the connected ERP
-   */
-  writepaymentstoconnectedERP(body: InsertPaymentRequestModelErpWriteSyncSubmitModel): Promise<LockstepResponse<PaymentModelErpWriteResult>> {
-    const url = `/api/v1/Payments/erp-write`;
-    return this.client.request<PaymentModelErpWriteResult>("post", url, null, body);
   }
 }
